@@ -1,0 +1,14 @@
+{
+    "name": "sanpi/behatch-contexts",
+    "description": "Behatch contexts",
+    "keywords": ["BDD", "Behat", "Symfony2", "Context"],
+    "type": "library",
+
+    "autoload": {
+        "psr-0": {
+            "Behat\\Behatch": "src/"
+        }
+    }
+}
+
+
