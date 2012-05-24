@@ -5,12 +5,13 @@ namespace Behat\Behatch\Behat\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\TranslatedContextInterface;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 /**
  * This context is intended for Browser interractions
  */
-class JSONContext extends BehatContext
+class JSONContext extends BehatContext implements TranslatedContextInterface
 {
   protected $evaluationMode = 'php';
 
@@ -248,5 +249,16 @@ class JSONContext extends BehatContext
     {
       throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $jsonExpression, $actual));
     }
+  }
+
+  /**
+   * Returns list of definition translation resources paths.
+   *
+   * @return array
+   */
+  public function getTranslationResources()
+  {
+      return glob(__DIR__.'/../../../../../i18n/*.xliff');
+
   }
 }

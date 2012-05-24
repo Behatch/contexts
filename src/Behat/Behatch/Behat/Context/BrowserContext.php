@@ -5,12 +5,13 @@ namespace Behat\Behatch\Behat\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\TranslatedContextInterface;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 /**
  * This context is intended for Browser interractions
  */
-class BrowserContext extends BehatContext
+class BrowserContext extends BehatContext implements TranslatedContextInterface
 {
   /**
    * Timeout value
@@ -409,5 +410,16 @@ class BrowserContext extends BehatContext
     }
 
     assertFalse($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
+  }
+
+  /**
+   * Returns list of definition translation resources paths.
+   *
+   * @return array
+   */
+  public function getTranslationResources()
+  {
+      return glob(__DIR__.'/../../../../../i18n/*.xliff');
+
   }
 }

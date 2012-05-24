@@ -3,12 +3,13 @@
 namespace Behat\Behatch\Behat\Context;
 
 use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Context\TranslatedContextInterface;
 use Behat\Behat\Event\StepEvent;
 
 /**
  * Features context.
  */
-class DebugContext extends BehatContext
+class DebugContext extends BehatContext implements TranslatedContextInterface
 {
   /**
    * Screenshot directory
@@ -120,5 +121,16 @@ class DebugContext extends BehatContext
     {
       throw new \Exception(sprintf("Screen %s is not available.", $this->screenId));
     }
+  }
+
+  /**
+   * Returns list of definition translation resources paths.
+   *
+   * @return array
+   */
+  public function getTranslationResources()
+  {
+      return glob(__DIR__.'/../../../../../i18n/*.xliff');
+
   }
 }

@@ -5,12 +5,13 @@ namespace Behat\Behatch\Behat\Context;
 use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\TranslatedContextInterface;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 /**
  * This context is intended for file system interractions
  */
-class FileSystemContext extends BehatContext
+class FileSystemContext extends BehatContext implements TranslatedContextInterface
 {
   /**
    *  Root directory
@@ -73,5 +74,16 @@ class FileSystemContext extends BehatContext
     $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
     //execution de la commande
     $this->iExecute($cmd);
+  }
+
+  /**
+   * Returns list of definition translation resources paths.
+   *
+   * @return array
+   */
+  public function getTranslationResources()
+  {
+      return glob(__DIR__.'/../../../../../i18n/*.xliff');
+
   }
 }

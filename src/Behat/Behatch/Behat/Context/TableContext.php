@@ -3,12 +3,13 @@
 namespace Behat\Behatch\Behat\Context;
 
 use \Behat\Behat\Context\BehatContext,
-    \Behat\Gherkin\Node\TableNode;
+    \Behat\Gherkin\Node\TableNode,
+    \Behat\Behat\Context\TranslatedContextInterface;
 
 /**
  * This context is intended for Browser interractions
  */
-class TableContext extends BehatContext
+class TableContext extends BehatContext implements TranslatedContextInterface
 {
   /**
    * Shortcut for retrieving Mink context
@@ -133,5 +134,16 @@ class TableContext extends BehatContext
     $e = null;
 
     assertContains($text, $actual);
+  }
+
+  /**
+   * Returns list of definition translation resources paths.
+   *
+   * @return array
+   */
+  public function getTranslationResources()
+  {
+      return glob(__DIR__.'/../../../../../i18n/*.xliff');
+
   }
 }

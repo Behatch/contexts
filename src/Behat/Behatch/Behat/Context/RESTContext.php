@@ -6,12 +6,13 @@ use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
+use Behat\Behat\Context\TranslatedContextInterface;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 /**
  * This context is intended for Browser interractions
  */
-class RESTContext extends BehatContext
+class RESTContext extends BehatContext implements TranslatedContextInterface
 {
   /**
    * Shortcut for retrieving Mink context
@@ -135,5 +136,16 @@ class RESTContext extends BehatContext
   public function iAddHeaderEqualTo($name, $value)
   {
     $this->getMinkContext()->getSession()->getDriver()->getClient()->setServerParameter($name, $value);
+  }
+
+  /**
+   * Returns list of definition translation resources paths.
+   *
+   * @return array
+   */
+  public function getTranslationResources()
+  {
+      return glob(__DIR__.'/../../../../../i18n/*.xliff');
+
   }
 }
