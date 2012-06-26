@@ -84,7 +84,7 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     /**
      * Checks, whether the response content is equal to given text
      *
-     * @Given /^the response should be equal to:$/
+     * @Then /^the response should be equal to:$/
      */
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
     {
@@ -102,7 +102,7 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     /**
      * Checks, whether the header name is equal to given text
      *
-     * @Given /^the header "([^"]*)" should be equal to "([^"]*)"$/
+     * @Then /^the header "([^"]*)" should be equal to "([^"]*)"$/
      */
     public function theHeaderShouldBeEqualTo($name, $expected)
     {
@@ -119,7 +119,7 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     /**
      * Checks, whether the header name contains the given text
      *
-     * @Given /^the header "([^"]*)" should be contains "([^"]*)"$/
+     * @Then /^the header "([^"]*)" should be contains "([^"]*)"$/
      */
     public function theHeaderShouldBeContains($name, $expected)
     {
@@ -136,7 +136,7 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     /**
      * Checks, whether the header not exist
      *
-     * @Given /^the header "([^"]*)" should not exist$/
+     * @Then /^the header "([^"]*)" should not exist$/
      */
     public function theHeaderNotShouldExist($name)
     {
@@ -150,7 +150,7 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     /**
      * Add an header element in a request
      *
-     * @Given /^I add "([^"]*)" header equal to "([^"]*)"$/
+     * @Then /^I add "([^"]*)" header equal to "([^"]*)"$/
      */
     public function iAddHeaderEqualTo($name, $value)
     {
