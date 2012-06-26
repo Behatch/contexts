@@ -111,7 +111,9 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
         assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        assertEquals($expected, $header[$name]);
+        assertEquals($expected, $header[$name],
+            sprintf('The header "%s" is not equal to "%s"', $name, $expected)
+        );
     }
 
     /**
@@ -126,7 +128,9 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
         assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        assertContains($expected, $header[$name]);
+        assertContains($expected, $header[$name],
+            sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $expected)
+        );
     }
 
     /**
