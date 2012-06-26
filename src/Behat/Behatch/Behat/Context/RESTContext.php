@@ -108,16 +108,12 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     {
         $header = $this->getMinkContext()->getSession()->getResponseHeaders();
 
-        try {
-            if (!isset($header[$name])) {
-                throw new \Exception(sprintf('The "%s" header do not exist'));
-            }
-            assertEquals($expected, $header[$name]);
-        } catch (AssertException $e) {
-            $message = sprintf('The header "%s" is not equal to "%s"', $name, $expected);
-            throw new \Behat\Mink\Exception\ExpectationException($message, $this->getMinkContext()->getSession(), $e);
-        }
+        assertArrayHasKey($name, $header,
+            sprintf('The header "%s" doesn\'t exist', $name)
+        );
+        assertEquals($expected, $header[$name]);
     }
+
     /**
      * Checks, whether the header name contains the given text
      *
