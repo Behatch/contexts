@@ -158,6 +158,21 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     }
 
     /**
+     * @Then /^the response should be encoded in "([^"]*)"$/
+     */
+    public function theResponeShouldBeEncodedIn($encoding)
+    {
+        $content = $this->getMinkContext()->getSession()->getPage()->getContent();
+        if (!mb_check_encoding($content, $encoding)) {
+            throw new \Exception("The response is not encoded in $encoding");
+        }
+
+        return array(
+            new Step\Then('the header "Content-Type" should be contains "charset=' . $encoding . '"'),
+        );
+    }
+
+    /**
      * Returns list of definition translation resources paths.
      *
      * @return array
