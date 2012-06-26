@@ -134,6 +134,20 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
     }
 
     /**
+     * Checks, whether the header not exist
+     *
+     * @Given /^the header "([^"]*)" should not exist$/
+     */
+    public function theHeaderNotShouldExist($name)
+    {
+        $header = $this->getMinkContext()->getSession()->getResponseHeaders();
+
+        assertArrayNotHasKey($name, $header,
+            sprintf('The header "%s" exist', $name)
+        );
+    }
+
+    /**
      * Add an header element in a request
      *
      * @Given /^I add "([^"]*)" header equal to "([^"]*)"$/
