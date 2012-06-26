@@ -3,6 +3,7 @@
 namespace Behat\Behatch\Behat\Context;
 
 use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Behat\Context\TranslatedContextInterface;
