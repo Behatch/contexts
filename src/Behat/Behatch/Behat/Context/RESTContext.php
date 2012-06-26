@@ -118,6 +118,20 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
             throw new \Behat\Mink\Exception\ExpectationException($message, $this->getMinkContext()->getSession(), $e);
         }
     }
+    /**
+     * Checks, whether the header name contains the given text
+     *
+     * @Given /^the header "([^"]*)" should be contains "([^"]*)"$/
+     */
+    public function theHeaderShouldBeContains($name, $expected)
+    {
+        $header = $this->getMinkContext()->getSession()->getResponseHeaders();
+
+        assertArrayHasKey($name, $header,
+            sprintf('The header "%s" doesn\'t exist', $name)
+        );
+        assertContains($expected, $header[$name]);
+    }
 
     /**
      * Add an header element in a request
