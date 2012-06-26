@@ -161,6 +161,18 @@
                 <source><![CDATA[/^I add "([^"]*)" header equal to "([^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|j' )ajoute l'entête "([^"]*)" égale à "([^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="the-header-should-not-contains">
+                <source><![CDATA[/^the header "([^"]*)" should be contains "([^"]*)"$/]]></source>
+                <target><![CDATA[/^l'entête "([^"]*)" doit contenir "([^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-exists">
+                <source><![CDATA[/^the header "([^"]*)" should not exist$/]]></source>
+                <target><![CDATA[/^l'entête "([^"]*)" ne doit pas exister$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-be-encoded-in">
+                <source><![CDATA[/^the response should be encoded in "([^"]*)"$/]]></source>
+                <target><![CDATA[/^la réponse doit être encodée en "([^"]*)"$/]]></target>
+            </trans-unit>
 
             <!-- TableContext.php -->
             <trans-unit id="the-columns-schema-of-the-table-should-match">
