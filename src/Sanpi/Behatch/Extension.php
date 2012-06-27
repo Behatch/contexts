@@ -15,13 +15,13 @@ class Extension implements ExtensionInterface
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/services'));
         $loader->load('core.xml');
 
-        if (isset($config['filesystem']['root'])) {
-            if (!is_dir($config['filesystem']['root'])) {
+        if (isset($config['system']['root'])) {
+            if (!is_dir($config['system']['root'])) {
                 throw new \RuntimeException(
-                    'The filesystem root directory doesn\'t exists.'
+                    'The system root directory doesn\'t exists.'
                 );
             }
-            if (!is_writable($config['filesystem']['root'])) {
+            if (!is_writable($config['system']['root'])) {
                 throw new \RuntimeException(
                     'The screenshot directory is not writable.'
                 );
@@ -80,7 +80,7 @@ class Extension implements ExtensionInterface
     {
         $builder->
             children()->
-                arrayNode('filesystem')->
+                arrayNode('system')->
                     children()->
                         scalarNode('root')->
                             defaultValue('.')->

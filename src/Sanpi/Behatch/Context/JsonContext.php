@@ -2,37 +2,8 @@
 
 namespace Sanpi\Behatch\Context;
 
-class JSONContext extends BaseContext
+class JsonContext extends BaseContext
 {
-    private function getJson()
-    {
-        $content = $this->getSession()->getPage()->getContent();
-
-        return json_decode($content);
-    }
-
-    private function evaluateJson($json, $expression)
-    {
-        if ($this->getParameter('behatch.json.evaluation_mode') == 'javascript') {
-            $expression = str_replace('.', '->', $expression);
-        }
-
-        try {
-            $result = null;
-            if (preg_match('/^(?:root)(.*)/', $expression, $r)) {
-                eval(sprintf('$result = $json%s;', $r[1]));
-            }
-            else {
-                eval(sprintf('$result = $json->%s;', $expression));
-            }
-        }
-        catch (\Exception $e) {
-            throw new \Exception(sprintf("Failed to evaluate expression '%s'.", $expression));
-        }
-
-        return $result;
-    }
-
     /**
      * @Then /^the response should be in JSON$/
      */
@@ -159,5 +130,34 @@ class JSONContext extends BaseContext
         if ($e === null) {
             throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $jsonExpression, $actual));
         }
+    }
+
+    private function getJson()
+    {
+        $content = $this->getSession()->getPage()->getContent();
+
+        return json_decode($content);
+    }
+
+    private function evaluateJson($json, $expression)
+    {
+        if ($this->getParameter('behatch.json.evaluation_mode') == 'javascript') {
+            $expression = str_replace('.', '->', $expression);
+        }
+
+        try {
+            $result = null;
+            if (preg_match('/^(?:root)(.*)/', $expression, $r)) {
+                eval(sprintf('$result = $json%s;', $r[1]));
+            }
+            else {
+                eval(sprintf('$result = $json->%s;', $expression));
+            }
+        }
+        catch (\Exception $e) {
+            throw new \Exception(sprintf("Failed to evaluate expression '%s'.", $expression));
+        }
+
+        return $result;
     }
 }

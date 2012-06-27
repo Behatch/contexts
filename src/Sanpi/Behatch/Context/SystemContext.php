@@ -4,14 +4,14 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\Step;
 
-class FileSystemContext extends BaseContext
+class SystemContext extends BaseContext
 {
     /**
      * @When /^(?:|I )put the file "(?P<path>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/
      */
     public function putFileIntoField($path, $field)
     {
-        $root = $this->getParameter('behatch.file.root');
+        $root = $this->getParameter('behatch.system.root');
         $path = $root . DIRECTORY_SEPARATOR . $path;
 
         return array(
@@ -36,7 +36,7 @@ class FileSystemContext extends BaseContext
      */
     public function iExecuteFromProjectRoot($cmd)
     {
-        $root = $this->getParameter('behatch.file.root');
+        $root = $this->getParameter('behatch.system.root');
         $cmd = $root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
     }

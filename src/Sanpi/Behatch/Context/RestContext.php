@@ -7,7 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
-class RESTContext extends BaseContext
+class RestContext extends BaseContext
 {
     /**
      * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)"$/

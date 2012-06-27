@@ -13,12 +13,12 @@ class BehatchContext extends BehatContext
 
     public function __construct()
     {
-        $this->useContext('browser', new BrowserContext());
-        $this->useContext('filesystem', new FileSystemContext());
-        $this->useContext('json', new JSONContext());
-        $this->useContext('rest', new RESTContext());
-        $this->useContext('table', new TableContext());
-        $this->useContext('debug', new DebugContext());
+        $contexts = array('browser', 'debug', 'json', 'rest', 'system', 'table');
+
+        foreach ($contexts as $context) {
+            $className = __NAMESPACE__ . '\\' . ucfirst($context) . 'Context';
+            $this->useContext($context, new $className());
+        }
     }
 
     public function getParameter($name)
