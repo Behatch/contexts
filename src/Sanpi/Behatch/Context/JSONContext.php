@@ -4,7 +4,7 @@ namespace Sanpi\Behatch\Context;
 
 class JSONContext extends BaseContext
 {
-    protected $evaluationMode = 'php';
+    private $evaluationMode = 'php';
 
     public function __construct(array $parameters)
     {
@@ -21,14 +21,14 @@ class JSONContext extends BaseContext
         }
     }
 
-    public function getJson()
+    private function getJson()
     {
         $content = $this->getMinkContext()->getSession()->getPage()->getContent();
 
         return json_decode($content);
     }
 
-    public function evaluateJson($json, $expression)
+    private function evaluateJson($json, $expression)
     {
         if ($this->evaluationMode == 'javascript') {
             $expression = str_replace('.', '->', $expression);

@@ -7,7 +7,7 @@ use Behat\Behat\Context\TranslatedContextInterface;
 
 abstract class BaseContext extends BehatContext implements TranslatedContextInterface
 {
-    public function getMinkContext()
+    protected function getMinkContext()
     {
         return $this->getMainContext()->getSubContext('mink');
     }

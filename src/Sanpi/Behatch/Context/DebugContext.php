@@ -48,7 +48,7 @@ class DebugContext extends BaseContext
         }
     }
 
-    public function saveScreenshot($filename)
+    private function saveScreenshot($filename)
     {
         if ($filename == '') {
             throw new \Exception("You must provide a filename for the screenshot.");
