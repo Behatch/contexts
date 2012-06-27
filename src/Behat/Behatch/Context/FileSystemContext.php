@@ -2,14 +2,12 @@
 
 namespace Behat\Behatch\Context;
 
-use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
-use Behat\Behat\Context\TranslatedContextInterface;
 
 /**
  * This context is intended for file system interractions
  */
-class FileSystemContext extends BehatContext implements TranslatedContextInterface
+class FileSystemContext extends BaseContext
 {
     /**
      * Root directory
@@ -70,16 +68,5 @@ class FileSystemContext extends BehatContext implements TranslatedContextInterfa
         $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
         //execution de la commande
         $this->iExecute($cmd);
-    }
-
-    /**
-     * Returns list of definition translation resources paths.
-     *
-     * @return array
-     */
-    public function getTranslationResources()
-    {
-        return glob(__DIR__.'/../../../../../i18n/*.xliff');
-
     }
 }

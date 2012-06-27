@@ -2,13 +2,10 @@
 
 namespace Behat\Behatch\Context;
 
-use Behat\Behat\Context\BehatContext;
-use Behat\Behat\Context\TranslatedContextInterface;
-
 /**
  * This context is intended for Browser interractions
  */
-class JSONContext extends BehatContext implements TranslatedContextInterface
+class JSONContext extends BaseContext
 {
     protected $evaluationMode = 'php';
 
@@ -30,16 +27,6 @@ class JSONContext extends BehatContext implements TranslatedContextInterface
                 throw new \Exception(sprintf("Unknown JSON evaluation mode '%s'", $evaluationMode));
             }
         }
-    }
-
-    /**
-     * Shortcut for retrieving Mink context
-     *
-     * @return \Behat\MinkExtension\Context\MinkContext
-     */
-    public function getMinkContext()
-    {
-        return $this->getMainContext()->getSubContext('mink');
     }
 
     /**
@@ -226,16 +213,5 @@ class JSONContext extends BehatContext implements TranslatedContextInterface
         if ($e === null) {
             throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $jsonExpression, $actual));
         }
-    }
-
-    /**
-     * Returns list of definition translation resources paths.
-     *
-     * @return array
-     */
-    public function getTranslationResources()
-    {
-        return glob(__DIR__.'/../../../../../i18n/*.xliff');
-
     }
 }

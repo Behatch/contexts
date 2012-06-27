@@ -2,28 +2,16 @@
 
 namespace Behat\Behatch\Context;
 
-use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
-use Behat\Behat\Context\TranslatedContextInterface;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 /**
  * This context is intended for Browser interractions
  */
-class RESTContext extends BehatContext implements TranslatedContextInterface
+class RESTContext extends BaseContext
 {
-    /**
-     * Shortcut for retrieving Mink context
-     *
-     * @return \Behat\MinkExtension\Context\MinkContext
-     */
-    public function getMinkContext()
-    {
-        return $this->getMainContext()->getSubContext('mink');
-    }
-
     /**
      * Sends a HTTP request
      *
@@ -171,16 +159,5 @@ class RESTContext extends BehatContext implements TranslatedContextInterface
         return array(
             new Step\Then('the header "Content-Type" should be contains "charset=' . $encoding . '"'),
         );
-    }
-
-    /**
-     * Returns list of definition translation resources paths.
-     *
-     * @return array
-     */
-    public function getTranslationResources()
-    {
-        return glob(__DIR__.'/../../../../../i18n/*.xliff');
-
     }
 }
