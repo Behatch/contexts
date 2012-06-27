@@ -7,9 +7,14 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
+/**
+ * This context is intended for Browser interractions
+ */
 class RESTContext extends BaseContext
 {
     /**
+     * Sends a HTTP request
+     *
      * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)"$/
      */
     public function iSendARequestOn($method, $url)
@@ -25,6 +30,8 @@ class RESTContext extends BaseContext
 
 
     /**
+     * Sends a HTTP request with a some parameters
+     *
      * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)" with parameters:$/
      */
     public function iSendARequestOnWithParameters($method, $url, TableNode $datas)
@@ -47,6 +54,8 @@ class RESTContext extends BaseContext
     }
 
     /**
+     * Sends a HTTP request with a body
+     *
      * @When /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)" with body:$/
      */
     public function iSendARequestOnWithBody($method, $url, PyStringNode $body)
@@ -62,6 +71,8 @@ class RESTContext extends BaseContext
     }
 
     /**
+     * Checks, whether the response content is equal to given text
+     *
      * @Then /^the response should be equal to:$/
      */
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
@@ -78,6 +89,8 @@ class RESTContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header name is equal to given text
+     *
      * @Then /^the header "([^"]*)" should be equal to "([^"]*)"$/
      */
     public function theHeaderShouldBeEqualTo($name, $expected)
@@ -93,6 +106,8 @@ class RESTContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header name contains the given text
+     *
      * @Then /^the header "([^"]*)" should be contains "([^"]*)"$/
      */
     public function theHeaderShouldBeContains($name, $expected)
@@ -108,6 +123,8 @@ class RESTContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header not exist
+     *
      * @Then /^the header "([^"]*)" should not exist$/
      */
     public function theHeaderNotShouldExist($name)
@@ -120,6 +137,8 @@ class RESTContext extends BaseContext
     }
 
     /**
+     * Add an header element in a request
+     *
      * @Then /^I add "([^"]*)" header equal to "([^"]*)"$/
      */
     public function iAddHeaderEqualTo($name, $value)

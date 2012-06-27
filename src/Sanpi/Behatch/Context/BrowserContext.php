@@ -6,13 +6,30 @@ use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
+/**
+ * This context is intended for Browser interractions
+ */
 class BrowserContext extends BaseContext
 {
+    /**
+     * Timeout value
+     *
+     * @var int
+     */
     private $timeout = 10;
+
+    /**
+     * Date format
+     *
+     * @var string
+     */
     private $dateFormat = 'dmYHi';
 
     /**
+     * After each scenario, we close the browser
+     *
      * @AfterScenario
+     * @return void
      */
     public function closeBrowser()
     {
@@ -20,6 +37,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Set login / password for next HTTP authentication
+     *
      * @When /^I set basic authentication with "([^"]*)" and "([^"]*)"$/
      */
     public function iSetBasicAuthenticationWithAnd($user, $password)
@@ -28,6 +47,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Open url with various parameters
+     *
      * @Given /^(?:|I )am on url composed by$/
      */
     public function iAmOnUrlComposedBy(TableNode $tableNode)
@@ -49,6 +70,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Clicks on the nth CSS element
+     *
      * @When /^(?:|I )click on the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" element$/
      */
     public function iClickOnTheNthElement($index, $element)
@@ -64,6 +87,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Click on the nth specified link
+     *
      * @When /^(?:|I )follow the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" link$/
      */
     public function iFollowTheNthLink($number, $locator)
@@ -82,6 +107,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Fills in form field with current date
+     *
      * @When /^(?:|I )fill in "([^"]*)" with the current date$/
      */
     public function iFillInWithTheCurrentDate($field)
@@ -90,6 +117,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Fills in form field with current date and strtotime modifier
+     *
      * @When /^(?:|I )fill in "([^"]*)" with the current date and modifier "([^"]*)"$/
      */
     public function iFillInWithTheCurentDateAndModifier($field, $modifier)
@@ -98,6 +127,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Mouse over a CSS element
+     *
      * @When /^(?:|I )hover "([^"]*)"$/
      */
     public function iHoverIShouldSeeIn($element)
@@ -110,6 +141,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Save value of the field in parameters array
+     *
      * @When /^(?:|I )save the value of "([^"]*)" in the "([^"]*)" parameter$/
      */
     public function iSaveTheValueOfInTheParameter($field, $parameterName)
@@ -124,6 +157,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should contains specified text after given timeout
+     *
      * @Then /^(?:|I )wait "([^"]*)" seconds until I see "([^"]*)"$/
      */
     public function iWaitsSecondsUntilISee($timeOut, $text)
@@ -132,6 +167,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should contains specified text after timeout
+     *
      * @Then /^(?:|I )wait until I see "([^"]*)"$/
      */
     public function iWaitUntilISee($text)
@@ -140,6 +177,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the element contains specified text after timeout
+     *
      * @Then /^(?:|I )wait (\d+) seconds until I see "([^"]*)" in the "([^"]*)" element$/
      */
     public function iWaitSecondsUntilISeeInTheElement($seconds, $text, $element)
@@ -179,6 +218,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the element contains specified text after timeout
+     *
      * @Then /^(?:|I )wait until I see "([^"]*)" in the "([^"]*)" element$/
      */
     public function iWaitUntilISeeInTheElement($text, $element)
@@ -205,6 +246,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that there is the given number of elements with specified CSS on page
+     *
      * @Then /^(?:|I )should see ([0-9]+) "([^"]*)" elements?$/
      */
     public function iShouldSeeNElements($occurences, $element)
@@ -217,6 +260,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that element with given CSS is disabled
+     *
      * @Then /^the element "([^"]*)" should be disabled$/
      */
     public function theElementShouldBeDisabled($element)
@@ -232,6 +277,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that element with given CSS is enabled
+     *
      * @Then /^the element "([^"]*)" should be enabled$/
      */
     public function theElementShouldBeEnabled($element)
@@ -247,6 +294,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that page contains specified parameter value
+     *
      * @Then /^(?:|I )shoud see the "([^"]*)" parameter$/
      */
     public function iShouldSeeTheParameter($parameter)
@@ -255,6 +304,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that given select box contains the specified option
+     *
      * @Then /^the "([^"]*)" select box should contain "([^"]*)"$/
      */
     public function theSelectBoxShouldContain($select, $option)
@@ -273,6 +324,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that given select box does not contain the specified option
+     *
      * @Then /^the "([^"]*)" select box should not contain "([^"]*)"$/
      */
     public function theSelectBoxShouldNotContain($select, $option)
@@ -291,6 +344,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the specified CSS element is visible
+     *
      * @Then /^the "([^"]*)" element should be visible$/
      */
     public function theElementShouldBeVisible($element)
@@ -304,6 +359,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the specified CSS element is not visible
+     *
      * @Then /^the "([^"]*)" element should not be visible$/
      */
     public function theElementShouldNotBeVisible($element)

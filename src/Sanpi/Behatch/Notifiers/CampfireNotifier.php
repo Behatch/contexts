@@ -7,15 +7,24 @@ use Behat\Behat\Formatter\ConsoleFormatter;
 use Behat\Behat\Event\StepEvent,
     Behat\Behat\Event\SuiteEvent;
 
+/**
+ * Campfire notifier
+ */
 class CampfireNotifier extends ConsoleFormatter
 {
     private $lastTimeError = null;
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getDescription()
     {
         return "Warns you in Campfire when a scenario is failing";
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getDefaultParameters()
     {
         return array(
@@ -27,6 +36,9 @@ class CampfireNotifier extends ConsoleFormatter
         );
     }
 
+    /**
+     * @see Symfony\Component\EventDispatcher\EventSubscriberInterface::getSubscribedEvents()
+     */
     public static function getSubscribedEvents()
     {
         $events = array('afterStep', 'afterSuite');
@@ -34,6 +46,13 @@ class CampfireNotifier extends ConsoleFormatter
         return array_combine($events, $events);
     }
 
+    /**
+     * Listens to "step.after" event.
+     *
+     * @param   Behat\Behat\Event\StepEvent $event
+     *
+     * @uses    printStep()
+     */
     public function afterStep(StepEvent $event)
     {
         if ($event->getResult() == StepEvent::FAILED) {
@@ -51,6 +70,13 @@ class CampfireNotifier extends ConsoleFormatter
         }
     }
 
+    /**
+     * Listens to "suite.after" event.
+     *
+     * @param Behat\Behat\Event\SuiteEvent $event
+     *
+     * @uses printSuiteFooter()
+     */
     public function afterSuite(SuiteEvent $event)
     {
         if ($event->isCompleted()) {
@@ -65,6 +91,9 @@ class CampfireNotifier extends ConsoleFormatter
         }
     }
 
+    /**
+     * @param $message
+     */
     public function send($message)
     {
         $campfireUrl = $this->parameters->get('campfire_url');

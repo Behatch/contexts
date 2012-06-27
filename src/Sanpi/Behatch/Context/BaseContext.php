@@ -7,11 +7,21 @@ use Behat\Behat\Context\TranslatedContextInterface;
 
 abstract class BaseContext extends BehatContext implements TranslatedContextInterface
 {
-    protected function getMinkContext()
+    /**
+     * Shortcut for retrieving Mink context
+     *
+     * @return \Behat\MinkExtension\Context\MinkContext
+     */
+    public function getMinkContext()
     {
         return $this->getMainContext()->getSubContext('mink');
     }
 
+    /**
+     * Returns list of definition translation resources paths.
+     *
+     * @return array
+     */
     public function getTranslationResources()
     {
         return glob(__DIR__.'/../../../../../i18n/*.xliff');

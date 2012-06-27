@@ -4,9 +4,14 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\TableNode;
 
+/**
+ * This context is intended for Browser interractions
+ */
 class TableContext extends BaseContext
 {
     /**
+     * Checks that the specified table's columns match the given schema
+     *
      * @Then /^the columns schema of the "([^"]*)" table should match:$/
      */
     public function theColumnsSchemaShouldMatch($element, TableNode $table)
@@ -22,6 +27,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified table contains the given number of columns
+     *
      * @Then /^(?:|I )should see (\d+) columns? in the "([^"]*)" table$/
      */
     public function iShouldSeeColumnsInTheTable($occurences, $element)
@@ -33,6 +40,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified table contains the specified number of rows in its body
+     *
      * @Then /^(?:|I )should see (\d+) rows in the (\d+)(?:st|nd|rd|th) "([^"]*)" table$/
      */
     public function iShouldSeeRowsInTheNthTable($occurences, $index, $element)
@@ -47,6 +56,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified table contains the specified number of rows in its body
+     *
      * @Then /^(?:|I )should see (\d+) rows? in the "([^"]*)" table$/
      */
     public function iShouldSeeRowsInTheTable($occurences, $element)
@@ -55,6 +66,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the data of the specified row matches the given schema
+     *
      * @Then /^the data in the (\d+)(?:st|nd|rd|th) row of the "([^"]*)" table should match:$/
      */
     public function theDataOfTheRowShouldMatch($index, $element, TableNode $table)
@@ -79,6 +92,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified cell (column/row) of the table's body contains the specified text
+     *
      * @Then /^the (\d+)(?:st|nd|rd|th) column of the (\d+)(?:st|nd|rd|th) row in the "([^"]*)" table should contain "([^"]*)"$/
      */
     public function theStColumnOfTheStRowInTheTableShouldContain($colIndex, $rowIndex, $element, $text)

@@ -4,16 +4,31 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\Step;
 
+/**
+ * This context is intended for file system interractions
+ */
 class FileSystemContext extends BaseContext
 {
+    /**
+     * Root directory
+     *
+     * @var string
+     */
     private $root;
 
+    /**
+     * Context initialization
+     *
+     * @param array $parameters context parameters (set them up through behat.yml)
+     */
     public function __construct(array $parameters)
     {
         $this->root = isset($parameters["filesystem"]['root']) ? $parameters["filesystem"]['root'] : null;
     }
 
     /**
+     * Uploads a file using the specified input field
+     *
      * @When /^(?:|I )put the file "(?P<path>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/
      */
     public function putFileIntoField($path, $field)
@@ -29,10 +44,13 @@ class FileSystemContext extends BaseContext
     }
 
     /**
+     * Execute a command
+     *
      * @Given /^(?:|I )execute "([^"]*)"$/
      */
     public function iExecute($cmd)
     {
+        //execution de la commande
         exec($cmd, $output, $return);
 
         if ($return == 1) {
@@ -41,11 +59,14 @@ class FileSystemContext extends BaseContext
     }
 
     /**
+     * Execute a command from project root
+     *
      * @Given /^(?:|I )execute "([^"]*)" from project root$/
      */
     public function iExecuteFromProjectRoot($cmd)
     {
         $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
+        //execution de la commande
         $this->iExecute($cmd);
     }
 }
