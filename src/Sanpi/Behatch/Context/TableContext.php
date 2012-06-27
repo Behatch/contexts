@@ -12,7 +12,7 @@ class TableContext extends BaseContext
     public function theColumnsSchemaShouldMatch($element, TableNode $table)
     {
         $columnsSelector = sprintf('%s thead tr th', $element);
-        $columns = $this->getMinkContext()->getSession()->getPage()->findAll('css', $columnsSelector);
+        $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
         $this->iShouldSeeColumnsInTheTable(count($table->getHash()), $element);
 
@@ -27,7 +27,7 @@ class TableContext extends BaseContext
     public function iShouldSeeColumnsInTheTable($occurences, $element)
     {
         $columnsSelector = sprintf('%s thead tr th', $element);
-        $columns = $this->getMinkContext()->getSession()->getPage()->findAll('css', $columnsSelector);
+        $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
         assertEquals($occurences, count($columns));
     }
@@ -37,7 +37,7 @@ class TableContext extends BaseContext
      */
     public function iShouldSeeRowsInTheNthTable($occurences, $index, $element)
     {
-        $tables = $this->getMinkContext()->getSession()->getPage()->findAll('css', $element);
+        $tables = $this->getSession()->getPage()->findAll('css', $element);
         if (!isset($tables[$index - 1])) {
             throw new \Exception(sprintf('The %d table "%s" was not found in the page', $index, $element));
         }
@@ -60,7 +60,7 @@ class TableContext extends BaseContext
     public function theDataOfTheRowShouldMatch($index, $element, TableNode $table)
     {
         $rowsSelector = sprintf('%s tbody tr', $element);
-        $rows = $this->getMinkContext()->getSession()->getPage()->findAll('css', $rowsSelector);
+        $rows = $this->getSession()->getPage()->findAll('css', $rowsSelector);
 
         if (!isset($rows[$index - 1])) {
             throw new \Exception(sprintf('The row %d was not found in the "%s" table', $index, $element));
@@ -84,7 +84,7 @@ class TableContext extends BaseContext
     public function theStColumnOfTheStRowInTheTableShouldContain($colIndex, $rowIndex, $element, $text)
     {
         $rowSelector = sprintf('%s tbody tr', $element);
-        $rows = $this->getMinkContext()->getSession()->getPage()->findAll('css', $rowSelector);
+        $rows = $this->getSession()->getPage()->findAll('css', $rowSelector);
 
         if (!isset($rows[$rowIndex - 1])) {
             throw new \Exception(sprintf("The row %d was not found in the %s table", $rowIndex, $element));

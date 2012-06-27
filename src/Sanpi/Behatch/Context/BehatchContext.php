@@ -3,7 +3,6 @@
 namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\BehatContext;
-use Behat\MinkExtension\Context\MinkContext;
 
 require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';
@@ -14,7 +13,6 @@ class BehatchContext extends BehatContext
 
     public function __construct()
     {
-        $this->useContext('mink', new MinkContext());
         $this->useContext('browser', new BrowserContext());
         $this->useContext('filesystem', new FileSystemContext());
         $this->useContext('json', new JSONContext());

@@ -16,7 +16,7 @@ class BrowserContext extends BaseContext
      */
     public function closeBrowser()
     {
-        $this->getMinkContext()->getSession()->stop();
+        $this->getSession()->stop();
     }
 
     /**
@@ -24,7 +24,7 @@ class BrowserContext extends BaseContext
      */
     public function iSetBasicAuthenticationWithAnd($user, $password)
     {
-        $this->getMinkContext()->getSession()->setBasicAuth($user, $password);
+        $this->getSession()->setBasicAuth($user, $password);
     }
 
     /**
@@ -53,7 +53,7 @@ class BrowserContext extends BaseContext
      */
     public function iClickOnTheNthElement($index, $element)
     {
-        $nodes = $this->getMinkContext()->getSession()->getPage()->findAll('css', $element);
+        $nodes = $this->getSession()->getPage()->findAll('css', $element);
 
         if (isset($nodes[$index-1])) {
             $nodes[$index-1]->click();
@@ -68,10 +68,10 @@ class BrowserContext extends BaseContext
      */
     public function iFollowTheNthLink($number, $locator)
     {
-        $page = $this->getMinkContext()->getSession()->getPage();
+        $page = $this->getSession()->getPage();
 
         $links = $page->findAll('named', array(
-            'link', $this->getMinkContext()->getSession()->getSelectorsHandler()->xpathLiteral($locator)
+            'link', $this->getSession()->getSelectorsHandler()->xpathLiteral($locator)
         ));
 
         if (!isset($links[$number-1])) {
@@ -102,7 +102,7 @@ class BrowserContext extends BaseContext
      */
     public function iHoverIShouldSeeIn($element)
     {
-        $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
+        $node = $this->getSession()->getPage()->find('css', $element);
         if ($node === null) {
             throw new \Exception(sprintf('The hovered element "%s" was not found anywhere in the page', $element));
         }
@@ -115,7 +115,7 @@ class BrowserContext extends BaseContext
     public function iSaveTheValueOfInTheParameter($field, $parameterName)
     {
         $field = str_replace('\\"', '"', $field);
-        $node  = $this->getMinkContext()->getSession()->getPage()->findField($field);
+        $node  = $this->getSession()->getPage()->findField($field);
         if ($node === null) {
             throw new \Exception(sprintf('The field "%s" was not found anywhere in the page', $field));
         }
@@ -128,7 +128,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitsSecondsUntilISee($timeOut, $text)
     {
-        $this->iWaitSecondsUntilISeeInTheElement($timeOut, $text, $this->getMinkContext()->getSession()->getPage());
+        $this->iWaitSecondsUntilISeeInTheElement($timeOut, $text, $this()->getSession()->getPage());
     }
 
     /**
@@ -149,7 +149,7 @@ class BrowserContext extends BaseContext
         $time = 0;
 
         if (is_string($element)) {
-            $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
+            $node = $this()->getSession()->getPage()->find('css', $element);
         }
         else {
             $node = $element;
@@ -166,7 +166,7 @@ class BrowserContext extends BaseContext
             catch (AssertException $e) {
                 if ($time >= $seconds) {
                     $message = sprintf('The text "%s" was not found anywhere in the text of %s atfer a %s seconds timeout', $expected, $element, $seconds);
-                    throw new ResponseTextException($message, $this->getMinkContext()->getSession(), $e);
+                    throw new ResponseTextException($message, $this()->getSession(), $e);
                 }
             }
 
@@ -191,7 +191,7 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeNElementInTheNthParent($occurences, $element, $index, $parent)
     {
-        $page = $this->getMinkContext()->getSession()->getPage();
+        $page = $this()->getSession()->getPage();
 
         $parents = $page->findAll('css', $parent);
         if (!isset($parents[$index-1])) {
@@ -209,7 +209,7 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeNElements($occurences, $element)
     {
-        $nodes = $this->getMinkContext()->getSession()->getPage()->findAll('css', $element);
+        $nodes = $this()->getSession()->getPage()->findAll('css', $element);
         $actual = sizeof($nodes);
         if ($actual !== (int)$occurences) {
             throw new \Exception(sprintf('%s occurences of the "%s" element found', $actual, $element));
@@ -221,7 +221,7 @@ class BrowserContext extends BaseContext
      */
     public function theElementShouldBeDisabled($element)
     {
-        $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
+        $node = $this()->getSession()->getPage()->find('css', $element);
         if ($node == null) {
             throw new \Exception(sprintf('There is no "%s" element', $element));
         }
@@ -236,7 +236,7 @@ class BrowserContext extends BaseContext
      */
     public function theElementShouldBeEnabled($element)
     {
-        $node = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
+        $node = $this()->getSession()->getPage()->find('css', $element);
         if ($node == null) {
             throw new \Exception(sprintf('There is no "%s" element', $element));
         }
@@ -262,7 +262,7 @@ class BrowserContext extends BaseContext
         $select = str_replace('\\"', '"', $select);
         $option = str_replace('\\"', '"', $option);
 
-        $optionText = $this->getMinkContext()->getSession()->getPage()->findField($select)->getText();
+        $optionText = $this()->getSession()->getPage()->findField($select)->getText();
 
         try {
             assertContains($option, $optionText);
@@ -280,7 +280,7 @@ class BrowserContext extends BaseContext
         $select = str_replace('\\"', '"', $select);
         $option = str_replace('\\"', '"', $option);
 
-        $optionText = $this->getMinkContext()->getSession()->getPage()->findField($select)->getText();
+        $optionText = $this()->getSession()->getPage()->findField($select)->getText();
 
         try {
             assertNotContains($option, $optionText);
@@ -295,7 +295,7 @@ class BrowserContext extends BaseContext
      */
     public function theElementShouldBeVisible($element)
     {
-        $displayedNode = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
+        $displayedNode = $this()->getSession()->getPage()->find('css', $element);
         if ($displayedNode === null) {
             throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
         }
@@ -308,7 +308,7 @@ class BrowserContext extends BaseContext
      */
     public function theElementShouldNotBeVisible($element)
     {
-        $displayedNode = $this->getMinkContext()->getSession()->getPage()->find('css', $element);
+        $displayedNode = $this()->getSession()->getPage()->find('css', $element);
         if ($displayedNode === null) {
             throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
         }

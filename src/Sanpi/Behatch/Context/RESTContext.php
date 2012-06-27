@@ -14,7 +14,7 @@ class RESTContext extends BaseContext
      */
     public function iSendARequestOn($method, $url)
     {
-        $client = $this->getMinkContext()->getSession()->getDriver()->getClient();
+        $client = $this->getSession()->getDriver()->getClient();
 
         // intercept redirection
         $client->followRedirects(false);
@@ -29,7 +29,7 @@ class RESTContext extends BaseContext
      */
     public function iSendARequestOnWithParameters($method, $url, TableNode $datas)
     {
-        $client = $this->getMinkContext()->getSession()->getDriver()->getClient();
+        $client = $this->getSession()->getDriver()->getClient();
 
         // intercept redirection
         $client->followRedirects(false);
@@ -51,7 +51,7 @@ class RESTContext extends BaseContext
      */
     public function iSendARequestOnWithBody($method, $url, PyStringNode $body)
     {
-        $client = $this->getMinkContext()->getSession()->getDriver()->getClient();
+        $client = $this->getSession()->getDriver()->getClient();
 
         // intercept redirection
         $client->followRedirects(false);
@@ -67,13 +67,13 @@ class RESTContext extends BaseContext
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
     {
         $expected = str_replace('\\"', '"', $expected);
-        $actual   = $this->getMinkContext()->getSession()->getPage()->getContent();
+        $actual   = $this->getSession()->getPage()->getContent();
 
         try {
             assertEquals($expected, $actual);
         } catch (AssertException $e) {
             $message = sprintf('The string "%s" is not equal to the response of the current page', $expected);
-            throw new \Behat\Mink\Exception\ExpectationException($message, $this->getMinkContext()->getSession(), $e);
+            throw new \Behat\Mink\Exception\ExpectationException($message, $this->getSession(), $e);
         }
     }
 
@@ -82,7 +82,7 @@ class RESTContext extends BaseContext
      */
     public function theHeaderShouldBeEqualTo($name, $expected)
     {
-        $header = $this->getMinkContext()->getSession()->getResponseHeaders();
+        $header = $this->getSession()->getResponseHeaders();
 
         assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
@@ -97,7 +97,7 @@ class RESTContext extends BaseContext
      */
     public function theHeaderShouldBeContains($name, $expected)
     {
-        $header = $this->getMinkContext()->getSession()->getResponseHeaders();
+        $header = $this->getSession()->getResponseHeaders();
 
         assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
@@ -112,7 +112,7 @@ class RESTContext extends BaseContext
      */
     public function theHeaderNotShouldExist($name)
     {
-        $header = $this->getMinkContext()->getSession()->getResponseHeaders();
+        $header = $this->getSession()->getResponseHeaders();
 
         assertArrayNotHasKey($name, $header,
             sprintf('The header "%s" exist', $name)
@@ -124,7 +124,7 @@ class RESTContext extends BaseContext
      */
     public function iAddHeaderEqualTo($name, $value)
     {
-        $this->getMinkContext()->getSession()->getDriver()->getClient()->setServerParameter($name, $value);
+        $this->getSession()->getDriver()->getClient()->setServerParameter($name, $value);
     }
 
     /**
@@ -132,7 +132,7 @@ class RESTContext extends BaseContext
      */
     public function theResponeShouldBeEncodedIn($encoding)
     {
-        $content = $this->getMinkContext()->getSession()->getPage()->getContent();
+        $content = $this->getSession()->getPage()->getContent();
         if (!mb_check_encoding($content, $encoding)) {
             throw new \Exception("The response is not encoded in $encoding");
         }
@@ -147,7 +147,7 @@ class RESTContext extends BaseContext
      */
     protected function locatePath($path)
     {
-        $startUrl = rtrim($this->getMinkContext()->getMinkParameter('base_url'), '/') . '/';
+        $startUrl = rtrim($this->getMinkParameter('base_url'), '/') . '/';
 
         return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
     }

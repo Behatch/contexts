@@ -6,7 +6,7 @@ class JSONContext extends BaseContext
 {
     private function getJson()
     {
-        $content = $this->getMinkContext()->getSession()->getPage()->getContent();
+        $content = $this->getSession()->getPage()->getContent();
 
         return json_decode($content);
     }
