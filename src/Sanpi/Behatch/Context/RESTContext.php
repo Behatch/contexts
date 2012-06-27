@@ -24,7 +24,7 @@ class RESTContext extends BaseContext
         // intercept redirection
         $client->followRedirects(false);
 
-        $client->request($method, $this->getMinkContext()->locatePath($url));
+        $client->request($method, $this->locatePath($url));
         $client->followRedirects(true);
     }
 
@@ -49,7 +49,7 @@ class RESTContext extends BaseContext
             $parameters[$row['key']] = $row['value'];
         }
 
-        $client->request($method, $this->getMinkContext()->locatePath($url), $parameters);
+        $client->request($method, $this->locatePath($url), $parameters);
         $client->followRedirects(true);
     }
 
@@ -65,7 +65,7 @@ class RESTContext extends BaseContext
         // intercept redirection
         $client->followRedirects(false);
 
-        $client->request($method, $this->getMinkContext()->locatePath($url),
+        $client->request($method, $this->locatePath($url),
             array(), array(), array(), $body->getRaw());
         $client->followRedirects(true);
     }
@@ -159,5 +159,15 @@ class RESTContext extends BaseContext
         return array(
             new Step\Then('the header "Content-Type" should be contains "charset=' . $encoding . '"'),
         );
+    }
+
+    /**
+     * @see Behat\MinkExtension\Context\MinkContext::locatePath()
+     */
+    protected function locatePath($path)
+    {
+        $startUrl = rtrim($this->getMinkContext()->getMinkParameter('base_url'), '/') . '/';
+
+        return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
     }
 }
