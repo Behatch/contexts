@@ -2,16 +2,14 @@
 
 namespace Sanpi\Behatch\Context;
 
-use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Context\TranslatedContextInterface;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 /**
  * This context is intended for Browser interractions
  */
-class BrowserContext extends BehatContext implements TranslatedContextInterface
+class BrowserContext extends BaseContext
 {
     /**
      * Timeout value
@@ -26,16 +24,6 @@ class BrowserContext extends BehatContext implements TranslatedContextInterface
      * @var string
      */
     private $dateFormat = 'dmYHi';
-
-    /**
-     * Shortcut for retrieving Mink context
-     *
-     * @return \Behat\MinkExtension\Context\MinkContext
-     */
-    public function getMinkContext()
-    {
-        return $this->getMainContext()->getSubContext('mink');
-    }
 
     /**
      * After each scenario, we close the browser
@@ -383,15 +371,5 @@ class BrowserContext extends BehatContext implements TranslatedContextInterface
         }
 
         assertFalse($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
-    }
-
-    /**
-     * Returns list of definition translation resources paths.
-     *
-     * @return array
-     */
-    public function getTranslationResources()
-    {
-        return glob(__DIR__.'/../../../../../i18n/*.xliff');
     }
 }

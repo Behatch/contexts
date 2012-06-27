@@ -2,25 +2,13 @@
 
 namespace Sanpi\Behatch\Context;
 
-use \Behat\Behat\Context\BehatContext,
-    \Behat\Gherkin\Node\TableNode,
-    \Behat\Behat\Context\TranslatedContextInterface;
+use Behat\Gherkin\Node\TableNode;
 
 /**
  * This context is intended for Browser interractions
  */
-class TableContext extends BehatContext implements TranslatedContextInterface
+class TableContext extends BaseContext
 {
-    /**
-     * Shortcut for retrieving Mink context
-     *
-     * @return \Behat\MinkExtension\Context\MinkContext
-     */
-    public function getMinkContext()
-    {
-        return $this->getMainContext()->getSubContext('mink');
-    }
-
     /**
      * Checks that the specified table's columns match the given schema
      *
@@ -129,16 +117,5 @@ class TableContext extends BehatContext implements TranslatedContextInterface
         $e = null;
 
         assertContains($text, $actual);
-    }
-
-    /**
-     * Returns list of definition translation resources paths.
-     *
-     * @return array
-     */
-    public function getTranslationResources()
-    {
-        return glob(__DIR__.'/../../../../../i18n/*.xliff');
-
     }
 }
