@@ -4,23 +4,6 @@ namespace Sanpi\Behatch\Context;
 
 class JSONContext extends BaseContext
 {
-    private $evaluationMode = 'php';
-
-    public function __construct(array $parameters)
-    {
-        if (isset($parameters['json']['evaluation_mode'])) {
-            $evaluationMode = $parameters['json']['evaluation_mode'];
-            switch ($evaluationMode) {
-            case 'php':
-            case 'javascript':
-                $this->evaluationMode = $evaluationMode;
-                break;
-            default:
-                throw new \Exception(sprintf("Unknown JSON evaluation mode '%s'", $evaluationMode));
-            }
-        }
-    }
-
     private function getJson()
     {
         $content = $this->getMinkContext()->getSession()->getPage()->getContent();
@@ -30,7 +13,7 @@ class JSONContext extends BaseContext
 
     private function evaluateJson($json, $expression)
     {
-        if ($this->evaluationMode == 'javascript') {
+        if ($this->getParameter('behatch.json.evaluation_mode') == 'javascript') {
             $expression = str_replace('.', '->', $expression);
         }
 

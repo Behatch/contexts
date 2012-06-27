@@ -10,17 +10,17 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 class BehatchContext extends BehatContext
 {
-    private $parameters = array();
+    private $parameters;
 
-    public function __construct(array $parameters)
+    public function __construct()
     {
-        $this->useContext('mink', new MinkContext($parameters));
-        $this->useContext('browser', new BrowserContext($parameters));
-        $this->useContext('filesystem', new FileSystemContext($parameters));
-        $this->useContext('json', new JSONContext($parameters));
-        $this->useContext('rest', new RESTContext($parameters));
-        $this->useContext('table', new TableContext($parameters));
-        $this->useContext('debug', new DebugContext($parameters));
+        $this->useContext('mink', new MinkContext());
+        $this->useContext('browser', new BrowserContext());
+        $this->useContext('filesystem', new FileSystemContext());
+        $this->useContext('json', new JSONContext());
+        $this->useContext('rest', new RESTContext());
+        $this->useContext('table', new TableContext());
+        $this->useContext('debug', new DebugContext());
     }
 
     public function getParameter($name)
@@ -36,5 +36,10 @@ class BehatchContext extends BehatContext
     public function setParameter($name, $value)
     {
         $this->parameters[$name] = $value;
+    }
+
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
     }
 }
