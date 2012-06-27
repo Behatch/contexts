@@ -10,7 +10,7 @@ use PHPUnit_Framework_ExpectationFailedException as AssertException;
 class RestContext extends BaseContext
 {
     /**
-     * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)"$/
+     * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)"$/
      */
     public function iSendARequestOn($method, $url)
     {
@@ -23,9 +23,8 @@ class RestContext extends BaseContext
         $client->followRedirects(true);
     }
 
-
     /**
-     * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)" with parameters:$/
+     * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)" with parameters:$/
      */
     public function iSendARequestOnWithParameters($method, $url, TableNode $datas)
     {
@@ -47,7 +46,7 @@ class RestContext extends BaseContext
     }
 
     /**
-     * @When /^I send a (GET|POST|PUT|DELETE|OPTION) request on "([^"]*)" with body:$/
+     * @When /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)" with body:$/
      */
     public function iSendARequestOnWithBody($method, $url, PyStringNode $body)
     {
@@ -78,9 +77,9 @@ class RestContext extends BaseContext
     }
 
     /**
-     * @Then /^the header "([^"]*)" should be equal to "([^"]*)"$/
+     * @Then /^the header "(?P<name>[^"]*)" should be equal to "(?P<value>[^"]*)"$/
      */
-    public function theHeaderShouldBeEqualTo($name, $expected)
+    public function theHeaderShouldBeEqualTo($name, $value)
     {
         $header = $this->getSession()->getResponseHeaders();
 
@@ -88,14 +87,14 @@ class RestContext extends BaseContext
             sprintf('The header "%s" doesn\'t exist', $name)
         );
         assertEquals($expected, $header[$name],
-            sprintf('The header "%s" is not equal to "%s"', $name, $expected)
+            sprintf('The header "%s" is not equal to "%s"', $name, $value)
         );
     }
 
     /**
-     * @Then /^the header "([^"]*)" should be contains "([^"]*)"$/
+     * @Then /^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/
      */
-    public function theHeaderShouldBeContains($name, $expected)
+    public function theHeaderShouldBeContains($name, $value)
     {
         $header = $this->getSession()->getResponseHeaders();
 
@@ -103,12 +102,12 @@ class RestContext extends BaseContext
             sprintf('The header "%s" doesn\'t exist', $name)
         );
         assertContains($expected, $header[$name],
-            sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $expected)
+            sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $value)
         );
     }
 
     /**
-     * @Then /^the header "([^"]*)" should not exist$/
+     * @Then /^the header "(?P<name>[^"]*)" should not exist$/
      */
     public function theHeaderNotShouldExist($name)
     {
@@ -120,7 +119,7 @@ class RestContext extends BaseContext
     }
 
     /**
-     * @Then /^I add "([^"]*)" header equal to "([^"]*)"$/
+     * @Then /^I add "(?P<name>[^"]*)" header equal to "(?P<value>[^"]*)"$/
      */
     public function iAddHeaderEqualTo($name, $value)
     {
@@ -128,7 +127,7 @@ class RestContext extends BaseContext
     }
 
     /**
-     * @Then /^the response should be encoded in "([^"]*)"$/
+     * @Then /^the response should be encoded in "(?P<encoding>[^"]*)"$/
      */
     public function theResponeShouldBeEncodedIn($encoding)
     {
@@ -151,4 +150,5 @@ class RestContext extends BaseContext
 
         return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
     }
+
 }

@@ -19,12 +19,12 @@ class DebugContext extends BaseContext
     }
 
     /**
-     * @When /^I save a screenshot in "([^"]*)"$/
+     * @When /^I save a screenshot in "(?P<filename>[^"]*)"$/
      */
-    public function iSaveAScreenshotIn($imageFilename)
+    public function iSaveAScreenshotIn($filename)
     {
         sleep(1);
-        $this->saveScreenshot($imageFilename);
+        $this->saveScreenshot($filename);
     }
 
     /**

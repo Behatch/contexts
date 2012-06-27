@@ -7,7 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 class TableContext extends BaseContext
 {
     /**
-     * @Then /^the columns schema of the "([^"]*)" table should match:$/
+     * @Then /^the columns schema of the "(?P<element>[^"]*)" table should match:$/
      */
     public function theColumnsSchemaShouldMatch($element, TableNode $table)
     {
@@ -22,20 +22,20 @@ class TableContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )should see (\d+) columns? in the "([^"]*)" table$/
+     * @Then /^(?:|I )should see (?P<nth>\d+) columns? in the "(?P<element>[^"]*)" table$/
      */
-    public function iShouldSeeColumnsInTheTable($occurences, $element)
+    public function iShouldSeeColumnsInTheTable($nth, $element)
     {
         $columnsSelector = sprintf('%s thead tr th', $element);
         $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
-        assertEquals($occurences, count($columns));
+        assertEquals($nth, count($columns));
     }
 
     /**
-     * @Then /^(?:|I )should see (\d+) rows in the (\d+)(?:st|nd|rd|th) "([^"]*)" table$/
+     * @Then /^(?:|I )should see (?P<nth>\d+) rows in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<element>[^"]*)" table$/
      */
-    public function iShouldSeeRowsInTheNthTable($occurences, $index, $element)
+    public function iShouldSeeRowsInTheNthTable($nth, $index, $element)
     {
         $tables = $this->getSession()->getPage()->findAll('css', $element);
         if (!isset($tables[$index - 1])) {
@@ -43,31 +43,31 @@ class TableContext extends BaseContext
         }
 
         $rows = $tables[$index - 1]->findAll('css', 'tbody tr');
-        assertEquals($occurences, count($rows));
+        assertEquals($nth, count($rows));
     }
 
     /**
-     * @Then /^(?:|I )should see (\d+) rows? in the "([^"]*)" table$/
+     * @Then /^(?:|I )should see (?P<nth>\d+) rows? in the "(?P<element>[^"]*)" table$/
      */
-    public function iShouldSeeRowsInTheTable($occurences, $element)
+    public function iShouldSeeRowsInTheTable($nth, $element)
     {
-        $this->iShouldSeeRowsInTheNthTable($occurences, 1, $element);
+        $this->iShouldSeeRowsInTheNthTable($nth, 1, $element);
     }
 
     /**
-     * @Then /^the data in the (\d+)(?:st|nd|rd|th) row of the "([^"]*)" table should match:$/
+     * @Then /^the data in the (?P<nth>\d+)(?:st|nd|rd|th) row of the "(?P<element>[^"]*)" table should match:$/
      */
-    public function theDataOfTheRowShouldMatch($index, $element, TableNode $table)
+    public function theDataOfTheRowShouldMatch($nth, $element, TableNode $table)
     {
         $rowsSelector = sprintf('%s tbody tr', $element);
         $rows = $this->getSession()->getPage()->findAll('css', $rowsSelector);
 
-        if (!isset($rows[$index - 1])) {
-            throw new \Exception(sprintf('The row %d was not found in the "%s" table', $index, $element));
+        if (!isset($rows[$nth - 1])) {
+            throw new \Exception(sprintf('The row %d was not found in the "%s" table', $nth, $element));
         }
 
-        $cells = (array)$rows[$index - 1]->findAll('css', 'td');
-        $cells = array_merge((array)$rows[$index - 1]->findAll('css', 'th'), $cells);
+        $cells = (array)$rows[$nth - 1]->findAll('css', 'td');
+        $cells = array_merge((array)$rows[$nth - 1]->findAll('css', 'th'), $cells);
 
         $hash = current($table->getHash());
         $keys = array_keys($hash);
@@ -79,7 +79,7 @@ class TableContext extends BaseContext
     }
 
     /**
-     * @Then /^the (\d+)(?:st|nd|rd|th) column of the (\d+)(?:st|nd|rd|th) row in the "([^"]*)" table should contain "([^"]*)"$/
+     * @Then /^the (?P<colIndex>\d+)(?:st|nd|rd|th) column of the (?P<rowIndex>\d+)(?:st|nd|rd|th) row in the "(?P<element>[^"]*)" table should contain "(?P<text>[^"]*)"$/
      */
     public function theStColumnOfTheStRowInTheTableShouldContain($colIndex, $rowIndex, $element, $text)
     {

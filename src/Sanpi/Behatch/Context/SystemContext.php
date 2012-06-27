@@ -20,19 +20,19 @@ class SystemContext extends BaseContext
     }
 
     /**
-     * @Given /^(?:|I )execute "([^"]*)"$/
+     * @Given /^(?:|I )execute "(?P<command>[^"]*)"$/
      */
     public function iExecute($cmd)
     {
         exec($cmd, $output, $return);
 
-        if ($return == 1) {
+        if ($return !== 0) {
             throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $output)));
         }
     }
 
     /**
-     * @Given /^(?:|I )execute "([^"]*)" from project root$/
+     * @Given /^(?:|I )execute "(?P<command>[^"]*)" from project root$/
      */
     public function iExecuteFromProjectRoot($cmd)
     {

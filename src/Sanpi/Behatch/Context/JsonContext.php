@@ -25,9 +25,9 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * @Then /^the JSON node "([^"]*)" should be equal to "([^"]*)"$/
+     * @Then /^the JSON node "(?P<element>[^"]*)" should be equal to "(?P<text>[^"]*)"$/
      */
-    public function theJsonNodeShouldBeEqualTo($jsonExpression, $expected)
+    public function theJsonNodeShouldBeEqualTo($element, $text)
     {
         $json = $this->getJson();
 
@@ -35,17 +35,17 @@ class JsonContext extends BaseContext
             throw new \Exception("The response is not in JSON");
         }
 
-        $actual = $this->evaluateJson($json, $jsonExpression);
+        $actual = $this->evaluateJson($json, $element);
 
-        if ($actual != $expected) {
+        if ($actual != $text) {
             throw new \Exception(sprintf("The node value is `%s`", $actual));
         }
     }
 
     /**
-     * @Then /^the JSON node "([^"]*)" should have (\d+) elements?$/
+     * @Then /^the JSON node "(?P<element>[^"]*)" should have (?P<nth>\d+) elements?$/
      */
-    public function theJsonNodeShouldHaveElements($jsonExpression, $expected)
+    public function theJsonNodeShouldHaveElements($element, $nth)
     {
         $json = $this->getJson();
 
@@ -53,15 +53,15 @@ class JsonContext extends BaseContext
             throw new \Exception("The response is not in JSON");
         }
 
-        $actual = $this->evaluateJson($json, $jsonExpression);
+        $actual = $this->evaluateJson($json, $element);
 
-        assertSame((integer)$expected, sizeof($actual));
+        assertSame((integer)$nth, sizeof($actual));
     }
 
     /**
-     * @Then /^the JSON node "([^"]*)" should contain "([^"]*)"$/
+     * @Then /^the JSON node "(?P<element>[^"]*)" should contain "(?P<text>[^"]*)"$/
      */
-    public function theJsonNodeShouldContain($jsonExpression, $expected)
+    public function theJsonNodeShouldContain($element, $text)
     {
         $json = $this->getJson();
 
@@ -69,15 +69,15 @@ class JsonContext extends BaseContext
             throw new \Exception("The response is not in JSON");
         }
 
-        $actual = $this->evaluateJson($json, $jsonExpression);
+        $actual = $this->evaluateJson($json, $element);
 
-        assertContains($expected, (string)$actual);
+        assertContains($text, (string)$actual);
     }
 
     /**
-     * @Then /^the JSON node "([^"]*)" should not contain "([^"]*)"$/
+     * @Then /^the JSON node "(?P<element>[^"]*)" should not contain "(?P<text>[^"]*)"$/
      */
-    public function theJsonNodeShouldNotContain($jsonExpression, $expected)
+    public function theJsonNodeShouldNotContain($element, $text)
     {
         $json = $this->getJson();
 
@@ -85,15 +85,15 @@ class JsonContext extends BaseContext
             throw new \Exception("The response is not in JSON");
         }
 
-        $actual = $this->evaluateJson($json, $jsonExpression);
+        $actual = $this->evaluateJson($json, $element);
 
-        assertNotContains($expected, (string)$actual);
+        assertNotContains($text, (string)$actual);
     }
 
     /**
-     * @Given /^the JSON node "([^"]*)" should exists$/
+     * @Given /^the JSON node "(?P<element>[^"]*)" should exists$/
      */
-    public function theJsonNodeShouldExists($jsonExpression)
+    public function theJsonNodeShouldExists($element)
     {
         $json = $this->getJson();
 
@@ -102,17 +102,17 @@ class JsonContext extends BaseContext
         }
 
         try {
-            $this->evaluateJson($json, $jsonExpression);
+            $this->evaluateJson($json, $element);
         }
         catch (\Exception $e) {
-            throw new \Exception(sprintf("The node '%s' does not exists.", $jsonExpression));
+            throw new \Exception(sprintf("The node '%s' does not exists.", $element));
         }
     }
 
     /**
-     * @Given /^the JSON node "([^"]*)" should not exists$/
+     * @Given /^the JSON node "(?P<element>[^"]*)" should not exists$/
      */
-    public function theJsonNodeShouldNotExists($jsonExpression)
+    public function theJsonNodeShouldNotExists($element)
     {
         $json = $this->getJson();
 
@@ -122,13 +122,13 @@ class JsonContext extends BaseContext
 
         $e = null;
         try {
-            $actual = $this->evaluateJson($json, $jsonExpression);
+            $actual = $this->evaluateJson($json, $element);
         }
         catch (\Exception $e) {
         }
 
         if ($e === null) {
-            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $jsonExpression, $actual));
+            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $element , $actual));
         }
     }
 

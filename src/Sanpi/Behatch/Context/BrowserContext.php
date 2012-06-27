@@ -20,7 +20,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @When /^I set basic authentication with "([^"]*)" and "([^"]*)"$/
+     * @When /^I set basic authentication with "(?P<user>[^"]*)" and "(?P<password>[^"]*)"$/
      */
     public function iSetBasicAuthenticationWithAnd($user, $password)
     {
@@ -49,40 +49,40 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @When /^(?:|I )click on the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" element$/
+     * @When /^(?:|I )click on the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<element>[^"]*)" element$/
      */
-    public function iClickOnTheNthElement($index, $element)
+    public function iClickOnTheNthElement($nth, $element)
     {
         $nodes = $this->getSession()->getPage()->findAll('css', $element);
 
-        if (isset($nodes[$index-1])) {
-            $nodes[$index-1]->click();
+        if (isset($nodes[$nth - 1])) {
+            $nodes[$nth - 1]->click();
         }
         else {
-            throw new \Exception(sprintf("The element %s number %s was not found anywhere in the page", $element, $index));
+            throw new \Exception(sprintf("The element %s number %s was not found anywhere in the page", $element, $nth));
         }
     }
 
     /**
-     * @When /^(?:|I )follow the ([0-9]+)(?:st|nd|rd|th) "([^"]*)" link$/
+     * @When /^(?:|I )follow the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<link>[^"]*)" link$/
      */
-    public function iFollowTheNthLink($number, $locator)
+    public function iFollowTheNthLink($nth, $link)
     {
         $page = $this->getSession()->getPage();
 
         $links = $page->findAll('named', array(
-            'link', $this->getSession()->getSelectorsHandler()->xpathLiteral($locator)
+            'link', $this->getSession()->getSelectorsHandler()->xpathLiteral($link)
         ));
 
-        if (!isset($links[$number-1])) {
-            throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $number, $locator));
+        if (!isset($links[$nth - 1])) {
+            throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $nth, $link));
         }
 
-        $links[$number-1]->click();
+        $links[$nth - 1]->click();
     }
 
     /**
-     * @When /^(?:|I )fill in "([^"]*)" with the current date$/
+     * @When /^(?:|I )fill in "(?P<field>[^"]*)" with the current date$/
      */
     public function iFillInWithTheCurrentDate($field)
     {
@@ -90,7 +90,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @When /^(?:|I )fill in "([^"]*)" with the current date and modifier "([^"]*)"$/
+     * @When /^(?:|I )fill in "(?P<field>[^"]*)" with the current date and modifier "(?P<modifier>[^"]*)"$/
      */
     public function iFillInWithTheCurentDateAndModifier($field, $modifier)
     {
@@ -98,7 +98,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @When /^(?:|I )hover "([^"]*)"$/
+     * @When /^(?:|I )hover "(?P<element>[^"]*)"$/
      */
     public function iHoverIShouldSeeIn($element)
     {
@@ -110,9 +110,9 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @When /^(?:|I )save the value of "([^"]*)" in the "([^"]*)" parameter$/
+     * @When /^(?:|I )save the value of "(?P<field>[^"]*)" in the "(?P<parameter>[^"]*)" parameter$/
      */
-    public function iSaveTheValueOfInTheParameter($field, $parameterName)
+    public function iSaveTheValueOfInTheParameter($field, $parameter)
     {
         $field = str_replace('\\"', '"', $field);
         $node  = $this->getSession()->getPage()->findField($field);
@@ -120,19 +120,19 @@ class BrowserContext extends BaseContext
             throw new \Exception(sprintf('The field "%s" was not found anywhere in the page', $field));
         }
 
-        $this->getMainContext()->setParameter($parameterName, $node->getValue());
+        $this->getMainContext()->setParameter($parameter, $node->getValue());
     }
 
     /**
-     * @Then /^(?:|I )wait "([^"]*)" seconds until I see "([^"]*)"$/
+     * @Then /^(?:|I )wait "(?P<seconds>[^"]*)" seconds until I see "(?P<text>[^"]*)"$/
      */
-    public function iWaitsSecondsUntilISee($timeOut, $text)
+    public function iWaitsSecondsUntilISee($seconds, $text)
     {
-        $this->iWaitSecondsUntilISeeInTheElement($timeOut, $text, $this()->getSession()->getPage());
+        $this->iWaitSecondsUntilISeeInTheElement($seconds, $text, $this()->getSession()->getPage());
     }
 
     /**
-     * @Then /^(?:|I )wait until I see "([^"]*)"$/
+     * @Then /^(?:|I )wait until I see "(?P<text>[^"]*)"$/
      */
     public function iWaitUntilISee($text)
     {
@@ -140,7 +140,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )wait (\d+) seconds until I see "([^"]*)" in the "([^"]*)" element$/
+     * @Then /^(?:|I )wait (?P<seconds>\d+) seconds until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/
      */
     public function iWaitSecondsUntilISeeInTheElement($seconds, $text, $element)
     {
@@ -179,7 +179,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )wait until I see "([^"]*)" in the "([^"]*)" element$/
+     * @Then /^(?:|I )wait until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/
      */
     public function iWaitUntilISeeInTheElement($text, $element)
     {
@@ -187,37 +187,37 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )Should see (\d+) "([^"]*)" in the (\d+)(?:st|nd|rd|th) "([^"]*)"$/
+     * @Then /^(?:|I )Should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
      */
-    public function iShouldSeeNElementInTheNthParent($occurences, $element, $index, $parent)
+    public function iShouldSeeNElementInTheNthParent($nth, $element, $index, $parent)
     {
         $page = $this()->getSession()->getPage();
 
         $parents = $page->findAll('css', $parent);
-        if (!isset($parents[$index-1])) {
+        if (!isset($parents[$index - 1])) {
             throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $index, $parent));
         }
 
-        $elements = $parents[$index-1]->findAll('css', $element);
-        if (count($elements) !== (int)$occurences) {
+        $elements = $parents[$index - 1]->findAll('css', $element);
+        if (count($elements) !== (int)$nth) {
             throw new \Exception(sprintf("%d occurences of the %s element in %s found", count($elements), $element, $parent));
         }
     }
 
     /**
-     * @Then /^(?:|I )should see ([0-9]+) "([^"]*)" elements?$/
+     * @Then /^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" elements?$/
      */
-    public function iShouldSeeNElements($occurences, $element)
+    public function iShouldSeeNElements($nth, $element)
     {
         $nodes = $this()->getSession()->getPage()->findAll('css', $element);
         $actual = sizeof($nodes);
-        if ($actual !== (int)$occurences) {
+        if ($actual !== (int)$nth) {
             throw new \Exception(sprintf('%s occurences of the "%s" element found', $actual, $element));
         }
     }
 
     /**
-     * @Then /^the element "([^"]*)" should be disabled$/
+     * @Then /^the element "(?P<element>[^"]*)" should be disabled$/
      */
     public function theElementShouldBeDisabled($element)
     {
@@ -232,7 +232,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^the element "([^"]*)" should be enabled$/
+     * @Then /^the element "(?P<element>[^"]*)" should be enabled$/
      */
     public function theElementShouldBeEnabled($element)
     {
@@ -247,7 +247,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )shoud see the "([^"]*)" parameter$/
+     * @Then /^(?:|I )shoud see the "(?P<element>[^"]*)" parameter$/
      */
     public function iShouldSeeTheParameter($parameter)
     {
@@ -255,7 +255,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^the "([^"]*)" select box should contain "([^"]*)"$/
+     * @Then /^the "(?P<select>[^"]*)" select box should contain "(?P<option>[^"]*)"$/
      */
     public function theSelectBoxShouldContain($select, $option)
     {
@@ -273,7 +273,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^the "([^"]*)" select box should not contain "([^"]*)"$/
+     * @Then /^the "(?P<select>[^"]*)" select box should not contain "(?P<option>[^"]*)"$/
      */
     public function theSelectBoxShouldNotContain($select, $option)
     {
@@ -291,7 +291,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^the "([^"]*)" element should be visible$/
+     * @Then /^the "(?P<element>[^"]*)" element should be visible$/
      */
     public function theElementShouldBeVisible($element)
     {
@@ -304,7 +304,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^the "([^"]*)" element should not be visible$/
+     * @Then /^the "(?P<element>[^"]*)" element should not be visible$/
      */
     public function theElementShouldNotBeVisible($element)
     {
