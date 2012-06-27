@@ -2,18 +2,10 @@
 
 namespace Sanpi\Behatch\Context;
 
-/**
- * This context is intended for Browser interractions
- */
 class JSONContext extends BaseContext
 {
     protected $evaluationMode = 'php';
 
-    /**
-     * Context initialization
-     *
-     * @param array $parameters context parameters (set them up through behat.yml)
-     */
     public function __construct(array $parameters)
     {
         if (isset($parameters['json']['evaluation_mode'])) {
@@ -29,11 +21,6 @@ class JSONContext extends BaseContext
         }
     }
 
-    /**
-     * Get JSON from page content
-     *
-     * @return mixed
-     */
     public function getJson()
     {
         $content = $this->getMinkContext()->getSession()->getPage()->getContent();
@@ -41,12 +28,6 @@ class JSONContext extends BaseContext
         return json_decode($content);
     }
 
-    /**
-     * Evaluate JSON with given expression
-     *
-     * @param $json
-     * @param $expression
-     */
     public function evaluateJson($json, $expression)
     {
         if ($this->evaluationMode == 'javascript') {
@@ -70,8 +51,6 @@ class JSONContext extends BaseContext
     }
 
     /**
-     * Checks, that the response is correct JSON
-     *
      * @Then /^the response should be in JSON$/
      */
     public function theResponseShouldBeInJson()
@@ -82,8 +61,6 @@ class JSONContext extends BaseContext
     }
 
     /**
-     * Checks, that the response is not correct JSON
-     *
      * @Then /^the response should not be in JSON$/
      */
     public function theResponseShouldNotBeInJson()
@@ -94,8 +71,6 @@ class JSONContext extends BaseContext
     }
 
     /**
-     * Checks, that given JSON node is equal to given value
-     *
      * @Then /^the JSON node "([^"]*)" should be equal to "([^"]*)"$/
      */
     public function theJsonNodeShouldBeEqualTo($jsonExpression, $expected)
@@ -113,10 +88,7 @@ class JSONContext extends BaseContext
         }
     }
 
-
     /**
-     * Checks, that given JSON node has N element(s)
-     *
      * @Then /^the JSON node "([^"]*)" should have (\d+) elements?$/
      */
     public function theJsonNodeShouldHaveElements($jsonExpression, $expected)
@@ -132,10 +104,7 @@ class JSONContext extends BaseContext
         assertSame((integer)$expected, sizeof($actual));
     }
 
-
     /**
-     * Checks, that given JSON node contains given value
-     *
      * @Then /^the JSON node "([^"]*)" should contain "([^"]*)"$/
      */
     public function theJsonNodeShouldContain($jsonExpression, $expected)
@@ -152,8 +121,6 @@ class JSONContext extends BaseContext
     }
 
     /**
-     * Checks, that given JSON node does not contain given value
-     *
      * @Then /^the JSON node "([^"]*)" should not contain "([^"]*)"$/
      */
     public function theJsonNodeShouldNotContain($jsonExpression, $expected)
@@ -170,8 +137,6 @@ class JSONContext extends BaseContext
     }
 
     /**
-     * Checks, that given JSON node exists
-     *
      * @Given /^the JSON node "([^"]*)" should exists$/
      */
     public function theJsonNodeShouldExists($jsonExpression)
@@ -191,8 +156,6 @@ class JSONContext extends BaseContext
     }
 
     /**
-     * Checks, that given JSON node does not exist
-     *
      * @Given /^the JSON node "([^"]*)" should not exists$/
      */
     public function theJsonNodeShouldNotExists($jsonExpression)
