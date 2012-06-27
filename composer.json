@@ -6,7 +6,7 @@
 
     "autoload": {
         "psr-0": {
-            "Behat\\Behatch": "src/"
+            "Sanpi\\Behatch": "src/"
         }
     }
 }

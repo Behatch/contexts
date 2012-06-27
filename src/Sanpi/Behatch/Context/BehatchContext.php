@@ -1,6 +1,6 @@
 <?php
 
-namespace Behat\Behatch\Behat\Context;
+namespace Sanpi\Behatch\Context;
 
 use Behat\Mink\Behat\Context\MinkContext;
 use Behat\Behat\Context\ClosuredContextInterface,

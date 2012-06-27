@@ -1,6 +1,6 @@
 <?php
 
-namespace Behat\Behatch\Behat\Context;
+namespace Sanpi\Behatch\Context;
 
 use \Behat\Behat\Context\BehatContext,
     \Behat\Gherkin\Node\TableNode,
