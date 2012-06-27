@@ -2,12 +2,11 @@
 
 namespace Sanpi\Behatch\Context;
 
+use Behat\Behat\Context\BehatContext;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+
+require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 /**
  * Features context.
