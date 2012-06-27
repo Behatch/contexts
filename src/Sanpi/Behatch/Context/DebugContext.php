@@ -4,30 +4,11 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Event\StepEvent;
 
-/**
- * Features context.
- */
 class DebugContext extends BaseContext
 {
-    /**
-     * Screenshot directory
-     *
-     * @var string
-     */
     private $screenshotDir;
-
-    /**
-     * Id of Xvfb screen (ex : ":99")
-     *
-     * @var string
-     */
     private $screenId;
 
-    /**
-     * Context initialization
-     *
-     * @param array $parameters context parameters (set them up through behat.yml)
-     */
     public function __construct(array $parameters)
     {
         $behatchDir = str_replace("/features/bootstrap/notifiers", "", __DIR__);
@@ -36,8 +17,6 @@ class DebugContext extends BaseContext
     }
 
     /**
-     * Pauses the scenario until the user presses a key. Usefull when debugging a scenario.
-     *
      * @Then /^(?:|I )put a breakpoint$/
      */
     public function iPutABreakpoint()
@@ -50,8 +29,6 @@ class DebugContext extends BaseContext
     }
 
     /**
-     * Saving a screenshot
-     *
      * @When /^I save a screenshot in "([^"]*)"$/
      */
     public function iSaveAScreenshotIn($imageFilename)
@@ -61,9 +38,6 @@ class DebugContext extends BaseContext
     }
 
     /**
-     * Save a screenshot when failing
-     * This uses Xvfb
-     *
      * @AfterStep @javascript
      */
     public function failScreenshots(StepEvent $event)
@@ -74,12 +48,6 @@ class DebugContext extends BaseContext
         }
     }
 
-    /**
-     * Saving the screenshot
-     *
-     * @param string $filename
-     * @throws Exception
-     */
     public function saveScreenshot($filename)
     {
         if ($filename == '') {

@@ -7,24 +7,15 @@ use Behat\Behat\Formatter\ConsoleFormatter;
 use Behat\Behat\Event\StepEvent,
     Behat\Behat\Event\SuiteEvent;
 
-/**
- * Ubuntu scenarios formatter.
- */
 class UbuntuNotifier extends ConsoleFormatter
 {
     private $lastTimeError = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getDescription()
     {
         return "Warns you in Ubuntu when a scenario is failing";
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getDefaultParameters()
     {
         $behatchDir = str_replace("/features/bootstrap/notifiers", "",__DIR__);
@@ -37,9 +28,6 @@ class UbuntuNotifier extends ConsoleFormatter
         );
     }
 
-    /**
-     * @see Symfony\Component\EventDispatcher\EventSubscriberInterface::getSubscribedEvents()
-     */
     public static function getSubscribedEvents()
     {
         $events = array('afterStep', 'afterSuite');
@@ -47,13 +35,6 @@ class UbuntuNotifier extends ConsoleFormatter
         return array_combine($events, $events);
     }
 
-    /**
-     * Listens to "step.after" event.
-     *
-     * @param Behat\Behat\Event\StepEvent $event
-     *
-     * @uses printStep()
-     */
     public function afterStep(StepEvent $event)
     {
         if ($event->getResult() == StepEvent::FAILED) {
@@ -70,13 +51,6 @@ class UbuntuNotifier extends ConsoleFormatter
         }
     }
 
-    /**
-     * Listens to "suite.after" event.
-     *
-     * @param   Behat\Behat\Event\SuiteEvent    $event
-     *
-     * @uses    printSuiteFooter()
-     */
     public function afterSuite(SuiteEvent $event)
     {
         if ($event->isCompleted()) {
@@ -86,7 +60,8 @@ class UbuntuNotifier extends ConsoleFormatter
                 $message .= "\n".$statuses['failed']. ' scenario failed';
                 $message .= "\n".$statuses['passed']. ' scenario ok';
                 exec(sprintf("notify-send -i %s -t 1000 'Behat suite ended' '%s'", $this->parameters->get('sad_icon'), $message));
-            } else {
+            }
+            else {
                 $message  = "SUCCESS";
                 $message .= "\n".$statuses['passed']. ' scenario ok';
                 exec(sprintf("notify-send -i %s -t 1000 'Behat suite ended' '%s'", $this->parameters->get('smile_icon'), $message));
