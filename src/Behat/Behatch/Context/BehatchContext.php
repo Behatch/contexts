@@ -2,7 +2,7 @@
 
 namespace Behat\Behatch\Context;
 
-use Behat\Mink\Behat\Context\MinkContext;
+use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException;

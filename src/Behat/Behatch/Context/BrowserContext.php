@@ -30,7 +30,7 @@ class BrowserContext extends BehatContext implements TranslatedContextInterface
     /**
      * Shortcut for retrieving Mink context
      *
-     * @return \Behat\Mink\Behat\Context\MinkContext
+     * @return \Behat\MinkExtension\Context\MinkContext
      */
     public function getMinkContext()
     {
