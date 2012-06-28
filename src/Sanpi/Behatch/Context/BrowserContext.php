@@ -124,7 +124,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )wait "(?P<seconds>[^"]*)" seconds until I see "(?P<text>[^"]*)"$/
+     * @Then /^(?:|I )wait "(?P<seconds>\d+)" seconds until I see "(?P<text>[^"]*)"$/
      */
     public function iWaitsSecondsUntilISee($seconds, $text)
     {
@@ -247,7 +247,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )shoud see the "(?P<element>[^"]*)" parameter$/
+     * @Then /^(?:|I )shoud see the "(?P<parameter>[^"]*)" parameter$/
      */
     public function iShouldSeeTheParameter($parameter)
     {

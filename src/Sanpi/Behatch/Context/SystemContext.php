@@ -7,12 +7,12 @@ use Behat\Behat\Context\Step;
 class SystemContext extends BaseContext
 {
     /**
-     * @When /^(?:|I )put the file "(?P<path>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/
+     * @When /^(?:|I )put the file "(?P<file>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/
      */
-    public function putFileIntoField($path, $field)
+    public function putFileIntoField($file, $field)
     {
         $root = $this->getParameter('behatch.system.root');
-        $path = $root . DIRECTORY_SEPARATOR . $path;
+        $path = $root . DIRECTORY_SEPARATOR . $file;
 
         return array(
             new Step\When(sprintf('I attach the file "%s" to "%s"', $path, $field))
