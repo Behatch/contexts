@@ -209,6 +209,36 @@
                 <source><![CDATA[/^I save a screenshot in "(?P<filename>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|je )sauvegarde une capture d'écran dans "(?P<filename>[^"]*)"$/]]></target>
             </trans-unit>
+
+            <!-- XmlContext.php -->
+            <trans-unit id="the-xml-feed-should-be-valid-accoriding-to-its-dtd">
+                <source><![CDATA[/^the XML feed should be valid according to its DTD$/]]></source>
+                <target><![CDATA[/^le flux XML doit être valide avec sa DTD$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-the-xsd">
+                <source><![CDATA[/^the XML feed should be valid according to the XSD "(?P<filename>[^"]*)"$/]]></source>
+                <target><![CDATA[/^le flux XML doit être valide avec le XSD "(?P<filename>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-this-xsd">
+                <source><![CDATA[/^the XML feed should be valid according to this XSD:$/]]></source>
+                <target><![CDATA[/^le flux XML doit être valide avec cette XSD:$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-the-relax-ng">
+                <source><![CDATA[/^the XML feed should be valid according to the relax NG schema "(?P<filename>[^"]*)"$/]]></source>
+                <target><![CDATA[/^le flux XML doit être valide avec le schéma relax NG "(?P<filename>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-this-relax-ng">
+                <source><![CDATA[/^the XML feed should be valid according to this relax NG schema:$/]]></source>
+                <target><![CDATA[/^le flux XML doit être valide avec ce schéma relax NG:$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-atom-feed-should-be-valid">
+                <source><![CDATA[/^the atom feed should be valid$/]]></source>
+                <target><![CDATA[/^le flux atom doit être valide$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-rss2-feed-should-be-valid">
+                <source><![CDATA[/^the RSS2 feed should be valid$/]]></source>
+                <target><![CDATA[/^le flux RSS2 doit être valide$/]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -13,7 +13,8 @@ class BehatchContext extends BehatContext
 
     public function __construct()
     {
-        $contexts = array('browser', 'debug', 'json', 'rest', 'system', 'table');
+        $contexts = array('browser', 'debug', 'json', 'rest', 'system',
+            'table', 'xml');
 
         foreach ($contexts as $context) {
             $className = __NAMESPACE__ . '\\' . ucfirst($context) . 'Context';
