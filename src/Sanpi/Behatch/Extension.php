@@ -15,96 +15,164 @@ class Extension implements ExtensionInterface
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/services'));
         $loader->load('core.xml');
 
-        if (isset($config['system']['root'])) {
-            if (!is_dir($config['system']['root'])) {
-                throw new \RuntimeException(
-                    'The system root directory doesn\'t exists.'
-                );
-            }
-            if (!is_writable($config['system']['root'])) {
-                throw new \RuntimeException(
-                    'The screenshot directory is not writable.'
-                );
-            }
+        foreach ($config as $name => $values) {
+            $this->validateConfig($name, $values);
         }
 
-        if (isset($config['json']['evaluation_mode'])) {
-            if(!in_array($config['json']['evaluation_mode'], array('php', 'javascript'))) {
-                throw new \RuntimeException(
-                    'Unknown JSON evaluation mode.'
-                );
-            }
-        }
-        else {
-            throw new \Exception(
-                'You must provide a a json evaluation mode.'
-            );
-        }
+        $container->setParameter('behatch.parameters', $config);
+    }
 
-        if (isset($config['debug']['screenshot_dir'])) {
-            if (!is_dir($config['debug']['screenshot_dir'])) {
-                throw new \RuntimeException(
-                    'The screenshot directory doesn\'t exists.'
-                );
-            }
-            if (!is_writable($config['debug']['screenshot_dir'])) {
-                throw new \RuntimeException(
-                    'The screenshot directory is not writable.'
-                );
-            }
-        }
-        if (isset($config['debug']['screen_id'])) {
-            exec(sprintf("xdpyinfo -display %s >/dev/null 2>&1 && echo OK || echo KO", $config['debug']['screen_id']), $output);
-            if (sizeof($output) != 1 || $output[0] != "OK") {
-                throw new \RuntimeException(
-                    'Screen id is not available.'
-                );
-            }
-        }
-        else {
-            throw new \Exception(
-                'You must provide a screen id.'
-            );
-        }
+    private function validateConfig($name, $values)
+    {
+        $validate = array($this, 'validate' . ucfirst($name) . 'Config');
+        $validate($values);
+    }
 
-        $parameters = array();
-        foreach ($config as $ns => $tlValue) {
-            foreach ($tlValue as $name => $value) {
-                $parameters["behatch.$ns.$name"] = $value;
+    private function validateBrowserConfig($values)
+    {
+    }
+
+    private function validateDebugConfig($values)
+    {
+        if ($values['enable']) {
+            if (isset($values['screenshot_dir'])) {
+                if (!is_dir($values['screenshot_dir'])) {
+                    throw new \RuntimeException(
+                        'The screenshot directory doesn\'t exists.'
+                    );
+                }
+                if (!is_writable($values['screenshot_dir'])) {
+                    throw new \RuntimeException(
+                        'The screenshot directory is not writable.'
+                    );
+                }
+            }
+            if (isset($values['screen_id'])) {
+                exec(sprintf("xdpyinfo -display %s >/dev/null 2>&1 && echo OK || echo KO", $values['screen_id']), $output);
+                if (sizeof($output) != 1 || $output[0] != "OK") {
+                    throw new \RuntimeException(
+                        'Screen id is not available.'
+                    );
+                }
+            }
+            else {
+                throw new \Exception(
+                    'You must provide a screen id.'
+                );
             }
         }
-        $container->setParameter('behatch.parameters', $parameters);
+    }
+
+    private function validateJsonConfig($values)
+    {
+        if ($values['enable']) {
+            if (isset($values['evaluation_mode'])) {
+                if(!in_array($values['evaluation_mode'], array('php', 'javascript'))) {
+                    throw new \RuntimeException(
+                        'Unknown JSON evaluation mode.'
+                    );
+                }
+            }
+            else {
+                throw new \Exception(
+                    'You must provide a a json evaluation mode.'
+                );
+            }
+        }
+    }
+
+    private function validateRestConfig($values)
+    {
+    }
+
+    private function validateSystemConfig($values)
+    {
+        if ($values['enable']) {
+            if (isset($values['root'])) {
+                if (!is_dir($values['root'])) {
+                    throw new \RuntimeException(
+                        'The system root directory doesn\'t exists.'
+                    );
+                }
+                if (!is_writable($values['root'])) {
+                    throw new \RuntimeException(
+                        'The screenshot directory is not writable.'
+                    );
+                }
+            }
+        }
+    }
+
+    private function validateTableConfig($values)
+    {
+    }
+
+    private function validateXmlConfig($values)
+    {
     }
 
     public function getConfig(ArrayNodeDefinition $builder)
     {
         $builder->
             children()->
-                arrayNode('system')->
+                arrayNode('browser')->
                     children()->
-                        scalarNode('root')->
-                            defaultValue('.')->
+                        scalarNode('enable')->
+                            defaultTrue()->
                         end()->
                     end()->
                 end()->
-            end()->
-            children()->
-                arrayNode('json')->
-                    children()->
-                        scalarNode('evaluation_mode')->
-                            defaultValue('javascript')->
-                        end()->
-                    end()->
-                end()->
-            end()->
-            children()->
                 arrayNode('debug')->
                     children()->
+                        scalarNode('enable')->
+                            defaultTrue()->
+                        end()->
                         scalarNode('screenshot_dir')->
                             defaultValue('.')->
                         end()->
                         scalarNode('screen_id')->
                             defaultValue(':0')->
+                        end()->
+                    end()->
+                end()->
+                arrayNode('json')->
+                    children()->
+                        scalarNode('enable')->
+                            defaultTrue()->
+                        end()->
+                        scalarNode('evaluation_mode')->
+                            defaultValue('javascript')->
+                        end()->
+                    end()->
+                end()->
+                arrayNode('rest')->
+                    children()->
+                        scalarNode('enable')->
+                            defaultTrue()->
+                        end()->
+                    end()->
+                end()->
+                arrayNode('system')->
+                    children()->
+                        scalarNode('enable')->
+                            defaultTrue()->
+                        end()->
+                        scalarNode('root')->
+                            defaultValue('.')->
+                        end()->
+                    end()->
+                end()->
+                arrayNode('table')->
+                    children()->
+                        scalarNode('enable')->
+                            defaultTrue()->
+                        end()->
+                    end()->
+                end()->
+                arrayNode('xml')->
+                    children()->
+                        scalarNode('enable')->
+                            defaultTrue()->
                         end()->
                     end()->
                 end()->

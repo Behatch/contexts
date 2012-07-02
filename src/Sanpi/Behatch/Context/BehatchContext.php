@@ -9,34 +9,30 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 class BehatchContext extends BehatContext
 {
-    public function __construct($parameters)
-    {
-        $contexts = array('browser', 'debug', 'json', 'rest', 'system',
-            'table', 'xml');
-
-        foreach ($contexts as $context) {
-            $className = __NAMESPACE__ . '\\' . ucfirst($context) . 'Context';
-            $this->useContext($context, new $className($parameters));
-        }
-    }
+    private $parameters;
 
     public function getParameter($extension, $name)
     {
-        return $this->parameters["behatch.$extension.$name"];
+        return $this->parameters[$extension][$name];
     }
 
     public function hasParameter($extension, $name)
     {
-        return isset($this->parameters["behatch.$extension.$name"]);
+        return isset($this->parameters[$extension][$name]);
     }
 
     public function setParameter($extenison, $name, $value)
     {
-        $this->parameters["behatch.$extension.$name"] = $value;
+        $this->parameters[$extension][$name] = $value;
     }
 
     public function setParameters($parameters)
     {
         $this->parameters = $parameters;
+
+        foreach ($this->parameters as $name => $values) {
+            $className = __NAMESPACE__ . '\\' . ucfirst($name) . 'Context';
+            $this->useContext($name, new $className($parameters));
+        }
     }
 }
