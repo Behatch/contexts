@@ -24,8 +24,13 @@ class Extension implements ExtensionInterface
 
     private function validateConfig($name, $values)
     {
-        $validate = array($this, 'validate' . ucfirst($name) . 'Config');
-        $validate($values);
+        $validate = 'validate' . ucfirst($name) . 'Config';
+        if (is_callable(array($this, $validate)) {
+            $this->validate($values);
+        }
+        else {
+            throw new \RuntimeException("Invalid config section '$name'.");
+        }
     }
 
     private function validateBrowserConfig($values)
