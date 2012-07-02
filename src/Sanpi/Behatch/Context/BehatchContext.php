@@ -9,16 +9,14 @@ require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 class BehatchContext extends BehatContext
 {
-    private $parameters;
-
-    public function __construct()
+    public function __construct($parameters)
     {
         $contexts = array('browser', 'debug', 'json', 'rest', 'system',
             'table', 'xml');
 
         foreach ($contexts as $context) {
             $className = __NAMESPACE__ . '\\' . ucfirst($context) . 'Context';
-            $this->useContext($context, new $className());
+            $this->useContext($context, new $className($parameters));
         }
     }
 
