@@ -12,9 +12,9 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
         return glob(__DIR__ . '/../../../../i18n/*.xliff');
     }
 
-    protected function getParameter($name)
+    protected function getParameter($extension, $name)
     {
         return $this->getMainContext()->getSubContext('behatch')
-            ->getParameter($name);
+            ->getParameter($extension, $name);
     }
 }

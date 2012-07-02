@@ -44,8 +44,8 @@ class DebugContext extends BaseContext
             throw new \Exception('You must provide a filename for the screenshot.');
         }
 
-        $screenshotDir = $this->getParameter('behatch.debug.screenshot_dir');
-        $screenId = $this->getParameter('behatch.debug.screen_id');
+        $screenshotDir = $this->getParameter('debug', 'screenshot_dir');
+        $screenId = $this->getParameter('debug', 'screen_id');
 
         exec(sprintf('DISPLAY=%s import -window root %s/%s', $screenId, rtrim($screenshotDir, '/'), $filename), $output, $return);
         if ($return !== 0) {

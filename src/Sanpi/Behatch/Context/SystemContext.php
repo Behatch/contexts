@@ -11,7 +11,7 @@ class SystemContext extends BaseContext
      */
     public function putFileIntoField($file, $field)
     {
-        $root = $this->getParameter('behatch.system.root');
+        $root = $this->getParameter('system', 'root');
         $path = $root . DIRECTORY_SEPARATOR . $file;
 
         return array(
@@ -36,7 +36,7 @@ class SystemContext extends BaseContext
      */
     public function iExecuteFromProjectRoot($cmd)
     {
-        $root = $this->getParameter('behatch.system.root');
+        $root = $this->getParameter('system', 'root');
         $cmd = $root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
     }

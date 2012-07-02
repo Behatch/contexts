@@ -141,7 +141,7 @@ class JsonContext extends BaseContext
 
     private function evaluateJson($json, $expression)
     {
-        if ($this->getParameter('behatch.json.evaluation_mode') == 'javascript') {
+        if ($this->getParameter('json', 'evaluation_mode') == 'javascript') {
             $expression = str_replace('.', '->', $expression);
         }
 

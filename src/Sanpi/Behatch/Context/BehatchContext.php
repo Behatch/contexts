@@ -20,19 +20,19 @@ class BehatchContext extends BehatContext
         }
     }
 
-    public function getParameter($name)
+    public function getParameter($extension, $name)
     {
-        return $this->parameters[$name];
+        return $this->parameters["behatch.$extension.$name"];
     }
 
-    public function hasParameter($name)
+    public function hasParameter($extension, $name)
     {
-        return isset($this->parameters[$name]);
+        return isset($this->parameters["behatch.$extension.$name"]);
     }
 
-    public function setParameter($name, $value)
+    public function setParameter($extenison, $name, $value)
     {
-        $this->parameters[$name] = $value;
+        $this->parameters["behatch.$extension.$name"] = $value;
     }
 
     public function setParameters($parameters)
