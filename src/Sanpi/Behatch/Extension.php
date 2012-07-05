@@ -25,8 +25,8 @@ class Extension implements ExtensionInterface
     private function validateConfig($name, $values)
     {
         $validate = 'validate' . ucfirst($name) . 'Config';
-        if (is_callable(array($this, $validate)) {
-            $this->validate($values);
+        if (is_callable(array($this, $validate))) {
+            $this->$validate($values);
         }
         else {
             throw new \RuntimeException("Invalid config section '$name'.");
