@@ -26,15 +26,15 @@ And activate it in your in your ``behat.yml``:
 
     # behat.yml
     default:
-      # ...
-      extensions:
-        behatch_contexts.phar: ~
+        # ...
+        extensions:
+            behatch_contexts.phar: ~
 
 Through Composer
 ~~~~~~~~~~~~~~~~
 
 The easiest way to keep your suite updated is to use
-`Composer <http://getcomposer.org>`.
+`Composer <http://getcomposer.org>`_.
 
 You can add behatch contexts as dependancies for your project or rapidly
 bootstrap a behatch projects.
@@ -67,12 +67,14 @@ Project dependancy
 
     # behat.yml
     default:
-      # ...
-      extensions:
-        Sanpi\Behatch\Extension: ~
+        # ...
+        extensions:
+            Sanpi\Behatch\Extension: ~
 
 Project boostraping
 *******************
+
+1. Download the behatch skeleton weth composer:
 
 .. code-block:: bash
 
@@ -80,8 +82,9 @@ Project boostraping
     $ php composer.phar create-project sanpi/behatch-skeleton
 
 .. note::
+
     Browser, json, table and rest step need a mink configuration, see
-    `Mink extension <http://extensions.behat.org/mink/>` for more informations.
+    `Mink extension <http://extensions.behat.org/mink/>`_ for more informations.
 
 Usage
 -----
@@ -106,7 +109,7 @@ In your main context, using behatch contexts:
 After this, you wouldn't have new available step. You should enable,
 in ``behat.yml``, the desired steps group:
 
-.. code-block:: yml
+.. code-block:: yaml
 
     Sanpi\Behatch\Extension:
         browser: ~
