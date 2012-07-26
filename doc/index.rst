@@ -16,10 +16,9 @@ Through PHAR
 
 Download the .phar archives:
 
-* `behat.phar <http://behat.org/downloads/behat.phar>` - Behat itself
-* `mink.phar <http://behat.org/downloads/mink.phar>` - Mink framework
-* `behatch_contexts.phar <http://behat.org/downloads/behatch_contexts.phar>` -
-Behatch contexts
+* `behat.phar <http://behat.org/downloads/behat.phar>`_ - Behat itself
+* `mink.phar <http://behat.org/downloads/mink.phar>`_ - Mink framework
+* `behatch_contexts.phar <http://behat.org/downloads/behatch_contexts.phar>`_ - Behatch contexts
 
 And activate it in your in your ``behat.yml``:
 
