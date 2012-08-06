@@ -4,6 +4,23 @@
     "keywords": ["BDD", "Behat", "Symfony2", "Context"],
     "type": "library",
 
+    "require": {
+        "phpunit-testing/phpunit": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/edorian/phpunit-composer-try"
+        },
+        {
+            "type": "pear",
+            "url":  "pear.phpunit.de"
+        },
+        {
+            "type": "pear",
+            "url":  "pear.symfony-project.com"
+        }
+    ],
     "autoload": {
         "psr-0": {
             "Sanpi\\Behatch": "src/"

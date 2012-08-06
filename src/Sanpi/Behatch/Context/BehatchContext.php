@@ -4,9 +4,6 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\BehatContext;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
-
 class BehatchContext extends BehatContext
 {
     private $parameters;
