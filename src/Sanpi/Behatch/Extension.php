@@ -15,16 +15,16 @@ class Extension implements ExtensionInterface
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/services'));
         $loader->load('core.xml');
 
-        foreach ($config as $name => $values) {
-            $this->validateConfig($name, $values);
+        foreach ($config['contexts'] as $name => $values) {
+            $this->validateContextsConfig($name, $values);
         }
 
         $container->setParameter('behatch.parameters', $config);
     }
 
-    private function validateConfig($name, $values)
+    private function validateContextsConfig($name, $values)
     {
-        $validate = 'validate' . ucfirst($name) . 'Config';
+        $validate = 'validateContexts' . ucfirst($name) . 'Config';
         if (is_callable(array($this, $validate))) {
             $this->$validate($values);
         }
@@ -33,11 +33,11 @@ class Extension implements ExtensionInterface
         }
     }
 
-    private function validateBrowserConfig($values)
+    private function validateContextsBrowserConfig($values)
     {
     }
 
-    private function validateDebugConfig($values)
+    private function validateContextsDebugConfig($values)
     {
         if ($values['enable']) {
             if (isset($values['screenshot_dir'])) {
@@ -68,7 +68,7 @@ class Extension implements ExtensionInterface
         }
     }
 
-    private function validateJsonConfig($values)
+    private function validateContextsJsonConfig($values)
     {
         if ($values['enable']) {
             if (isset($values['evaluation_mode'])) {
@@ -86,11 +86,11 @@ class Extension implements ExtensionInterface
         }
     }
 
-    private function validateRestConfig($values)
+    private function validateContextsRestConfig($values)
     {
     }
 
-    private function validateSystemConfig($values)
+    private function validateContextsSystemConfig($values)
     {
         if ($values['enable']) {
             if (isset($values['root'])) {
@@ -108,11 +108,11 @@ class Extension implements ExtensionInterface
         }
     }
 
-    private function validateTableConfig($values)
+    private function validateContextsTableConfig($values)
     {
     }
 
-    private function validateXmlConfig($values)
+    private function validateContextsXmlConfig($values)
     {
     }
 
@@ -120,64 +120,68 @@ class Extension implements ExtensionInterface
     {
         $builder->
             children()->
-                arrayNode('browser')->
+                arrayNode('contexts')->
                     children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
+                        arrayNode('browser')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                            end()->
                         end()->
-                    end()->
-                end()->
-                arrayNode('debug')->
-                    children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
+                        arrayNode('debug')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                                scalarNode('screenshot_dir')->
+                                    defaultValue('.')->
+                                end()->
+                                scalarNode('screen_id')->
+                                    defaultValue(':0')->
+                                end()->
+                            end()->
                         end()->
-                        scalarNode('screenshot_dir')->
-                            defaultValue('.')->
+                        arrayNode('json')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                                scalarNode('evaluation_mode')->
+                                    defaultValue('javascript')->
+                                end()->
+                            end()->
                         end()->
-                        scalarNode('screen_id')->
-                            defaultValue(':0')->
+                        arrayNode('rest')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                            end()->
                         end()->
-                    end()->
-                end()->
-                arrayNode('json')->
-                    children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
+                        arrayNode('system')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                                scalarNode('root')->
+                                    defaultValue('.')->
+                                end()->
+                            end()->
                         end()->
-                        scalarNode('evaluation_mode')->
-                            defaultValue('javascript')->
+                        arrayNode('table')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                            end()->
                         end()->
-                    end()->
-                end()->
-                arrayNode('rest')->
-                    children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
-                        end()->
-                    end()->
-                end()->
-                arrayNode('system')->
-                    children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
-                        end()->
-                        scalarNode('root')->
-                            defaultValue('.')->
-                        end()->
-                    end()->
-                end()->
-                arrayNode('table')->
-                    children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
-                        end()->
-                    end()->
-                end()->
-                arrayNode('xml')->
-                    children()->
-                        scalarNode('enable')->
-                            defaultTrue()->
+                        arrayNode('xml')->
+                            children()->
+                                scalarNode('enable')->
+                                    defaultTrue()->
+                                end()->
+                            end()->
                         end()->
                     end()->
                 end()->

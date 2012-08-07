@@ -25,7 +25,7 @@ class BehatchContext extends BehatContext
 
     public function setParameters($parameters)
     {
-        $this->parameters = $parameters;
+        $this->parameters = $parameters['contexts'];
 
         foreach ($this->parameters as $name => $values) {
             $className = __NAMESPACE__ . '\\' . ucfirst($name) . 'Context';
