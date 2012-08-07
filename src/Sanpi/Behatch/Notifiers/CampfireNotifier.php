@@ -72,15 +72,15 @@ class CampfireNotifier extends ConsoleFormatter
         $campfireRoom = $this->parameters->get('campfire_room');
 
         if ($campfireUrl == null) {
-            throw new Exception("You must set a campfire URL in behat.yml");
+            throw new \Exception("You must set a campfire URL in behat.yml");
         }
 
         if ($campfireToken == null) {
-            throw new Exception("You must set a campfire room in behat.yml");
+            throw new \Exception("You must set a campfire room in behat.yml");
         }
 
         if ($campfireRoom == null) {
-            throw new Exception("You must set a campfire token in behat.yml");
+            throw new \Exception("You must set a campfire token in behat.yml");
         }
 
         $cmd = sprintf("curl -s -u %s:X -H 'Content-Type: application/json' -d %s %s/room/%s/speak.xml",
@@ -90,7 +90,7 @@ class CampfireNotifier extends ConsoleFormatter
             $campfireRoom);
         exec($cmd, $output, $return);
         if ($return != 0) {
-            throw new Exception(sprintf("Unable to send campfire notification with curl :\n%s",
+            throw new \Exception(sprintf("Unable to send campfire notification with curl :\n%s",
                 implode("\n", $output)));
         }
     }
