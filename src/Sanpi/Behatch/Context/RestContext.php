@@ -86,7 +86,7 @@ class RestContext extends BaseContext
         assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        assertEquals($expected, $header[$name],
+        assertEquals($value, $header[$name],
             sprintf('The header "%s" is not equal to "%s"', $name, $value)
         );
     }
@@ -101,7 +101,7 @@ class RestContext extends BaseContext
         assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        assertContains($expected, $header[$name],
+        assertContains($value, $header[$name],
             sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $value)
         );
     }
