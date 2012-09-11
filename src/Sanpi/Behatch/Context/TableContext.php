@@ -17,7 +17,7 @@ class TableContext extends BaseContext
         $this->iShouldSeeColumnsInTheTable(count($text->getHash()), $table);
 
         foreach ($text->getHash() as $key => $column) {
-            assertEquals($column['columns'], $columns[$key]->getText());
+            $this->assertEquals($column['columns'], $columns[$key]->getText());
         }
     }
 
@@ -29,7 +29,7 @@ class TableContext extends BaseContext
         $columnsSelector = sprintf('%s thead tr th', $table);
         $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
-        assertEquals($nth, count($columns));
+        $this->assertEquals($nth, count($columns));
     }
 
     /**
@@ -43,7 +43,7 @@ class TableContext extends BaseContext
         }
 
         $rows = $tables[$index - 1]->findAll('css', 'tbody tr');
-        assertEquals($nth, count($rows));
+        $this->assertEquals($nth, count($rows));
     }
 
     /**
@@ -71,10 +71,10 @@ class TableContext extends BaseContext
 
         $hash = current($text->getHash());
         $keys = array_keys($hash);
-        assertEquals(count($hash), count($cells));
+        $this->assertEquals(count($hash), count($cells));
 
         for ($i = 0; $i < count($cells); $i++) {
-            assertEquals($hash[$keys[$i]], $cells[$i]->getText());
+            $this->assertEquals($hash[$keys[$i]], $cells[$i]->getText());
         }
     }
 
@@ -101,6 +101,6 @@ class TableContext extends BaseContext
         $actual   = $cols[$colIndex - 1]->getText();
         $e = null;
 
-        assertContains($text, $actual);
+        $this->assertContains($text, $actual);
     }
 }

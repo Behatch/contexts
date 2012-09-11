@@ -5,7 +5,6 @@ namespace Sanpi\Behatch\Context;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
-use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 class RestContext extends BaseContext
 {
@@ -67,13 +66,8 @@ class RestContext extends BaseContext
     {
         $expected = str_replace('\\"', '"', $expected);
         $actual   = $this->getSession()->getPage()->getContent();
-
-        try {
-            assertEquals($expected, $actual);
-        } catch (AssertException $e) {
-            $message = sprintf('The string "%s" is not equal to the response of the current page', $expected);
-            throw new \Behat\Mink\Exception\ExpectationException($message, $this->getSession(), $e);
-        }
+        $message = sprintf('The string "%s" is not equal to the response of the current page', $expected);
+        $this->assertEquals($expected, $actual, $message);
     }
 
     /**
@@ -83,10 +77,10 @@ class RestContext extends BaseContext
     {
         $header = $this->getSession()->getResponseHeaders();
 
-        assertArrayHasKey($name, $header,
+        $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        assertEquals($value, $header[$name],
+        $this->assertEquals($value, $header[$name],
             sprintf('The header "%s" is not equal to "%s"', $name, $value)
         );
     }
@@ -98,10 +92,10 @@ class RestContext extends BaseContext
     {
         $header = $this->getSession()->getResponseHeaders();
 
-        assertArrayHasKey($name, $header,
+        $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        assertContains($value, $header[$name],
+        $this->assertContains($value, $header[$name],
             sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $value)
         );
     }
@@ -113,7 +107,7 @@ class RestContext extends BaseContext
     {
         $header = $this->getSession()->getResponseHeaders();
 
-        assertArrayNotHasKey($name, $header,
+        $this->assertArrayNotHasKey($name, $header,
             sprintf('The header "%s" exist', $name)
         );
     }

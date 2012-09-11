@@ -4,7 +4,6 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
-use PHPUnit_Framework_ExpectationFailedException as AssertException;
 
 class BrowserContext extends BaseContext
 {
@@ -161,9 +160,9 @@ class BrowserContext extends BaseContext
 
             try {
                 $time++;
-                assertContains($expected, $actual);
+                $this->assertContains($expected, $actual);
             }
-            catch (AssertException $e) {
+            catch (ExpectationException $e) {
                 if ($time >= $seconds) {
                     $message = sprintf('The text "%s" was not found anywhere in the text of %s atfer a %s seconds timeout', $expected, $element, $seconds);
                     throw new ResponseTextException($message, $this->getSession(), $e);
@@ -264,12 +263,8 @@ class BrowserContext extends BaseContext
 
         $optionText = $this->getSession()->getPage()->findField($select)->getText();
 
-        try {
-            assertContains($option, $optionText);
-        }
-        catch (AssertException $e) {
-            throw new \Exception(sprintf('The "%s" select box does not contain the "%s" option', $select, $option));
-        }
+        $message = sprintf('The "%s" select box does not contain the "%s" option', $select, $option);
+        $this->assertContains($option, $optionText, $message);
     }
 
     /**
@@ -282,12 +277,8 @@ class BrowserContext extends BaseContext
 
         $optionText = $this->getSession()->getPage()->findField($select)->getText();
 
-        try {
-            assertNotContains($option, $optionText);
-        }
-        catch (AssertException $e) {
-            throw new \Exception(sprintf('The "%s" select box does contain the "%s" option', $select, $option));
-        }
+        $message = sprintf('The "%s" select box does contain the "%s" option', $select, $option);
+        $this->assertNotContains($option, $optionText);
     }
 
     /**
@@ -300,7 +291,9 @@ class BrowserContext extends BaseContext
             throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
         }
 
-        assertTrue($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
+
+        $message = sprintf('The element "%s" is not visible', $element);
+        $this->assertTrue($displayedNode->isVisible(), $message);
     }
 
     /**
@@ -313,6 +306,7 @@ class BrowserContext extends BaseContext
             throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
         }
 
-        assertFalse($displayedNode->isVisible(), sprintf('The element "%s" is not visible', $element));
+        $message = sprintf('The element "%s" is not visible', $element);
+        $this->assertFalse($displayedNode->isVisible(), $message);
     }
 }

@@ -55,7 +55,7 @@ class JsonContext extends BaseContext
 
         $actual = $this->evaluateJson($json, $node);
 
-        assertSame((integer)$nth, sizeof($actual));
+        $this->assertSame((integer)$nth, sizeof($actual));
     }
 
     /**
@@ -71,7 +71,7 @@ class JsonContext extends BaseContext
 
         $actual = $this->evaluateJson($json, $node);
 
-        assertContains($text, (string)$actual);
+        $this->assertContains($text, (string)$actual);
     }
 
     /**
@@ -87,7 +87,7 @@ class JsonContext extends BaseContext
 
         $actual = $this->evaluateJson($json, $node);
 
-        assertNotContains($text, (string)$actual);
+        $this->assertNotContains($text, (string)$actual);
     }
 
     /**
