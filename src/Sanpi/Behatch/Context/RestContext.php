@@ -109,7 +109,7 @@ class RestContext extends BaseContext
     /**
      * @Then /^the header "(?P<name>[^"]*)" should not exist$/
      */
-    public function theHeaderNotShouldExist($name)
+    public function theHeaderShouldNotExist($name)
     {
         $header = $this->getSession()->getResponseHeaders();
 
