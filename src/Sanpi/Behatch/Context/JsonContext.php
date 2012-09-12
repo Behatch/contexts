@@ -2,6 +2,8 @@
 
 namespace Sanpi\Behatch\Context;
 
+use Behat\Gherkin\Node\PyStringNode;
+
 class JsonContext extends BaseContext
 {
     /**
@@ -132,6 +134,30 @@ class JsonContext extends BaseContext
         }
     }
 
+    /**
+     * @Then /^the JSON should be valid according to this schema:$/
+     */
+    public function theJsonShouldBeValidAccordingToThisSchema(PyStringNode $schema)
+    {
+        $this->validate($schema);
+    }
+
+    /**
+     * @Then /^the JSON should be valid according to the schema "(?P<filename>[^"]*)"$/
+     */
+    public function theJsonShouldBeValidAccordingToTheSchema($filename)
+    {
+        if (is_file($filename)) {
+            $schema = file_get_contents($filename);
+            $this->validate($schema);
+        }
+        else {
+            throw new \RuntimeException(
+                'The JSON schema doesn\'t exist'
+            );
+        }
+    }
+
     private function getJson()
     {
         $content = $this->getSession()->getPage()->getContent();
@@ -159,5 +185,18 @@ class JsonContext extends BaseContext
         }
 
         return $result;
+    }
+
+    private function validate($schema)
+    {
+        $validator = new \JsonSchema\Validator();
+        $validator->check($this->getJson(), json_decode($schema));
+        if (!$validator->isValid()) {
+            $msg = "JSON does not validate. Violations:\n";
+            foreach ($validator->getErrors() as $error) {
+                $msg .= sprintf("  - [%s] %s\n", $error['property'], $error['message']);
+            }
+            throw new \Exception($msg);
+        }
     }
 }

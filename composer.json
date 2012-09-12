@@ -4,6 +4,10 @@
     "keywords": ["BDD", "Behat", "Symfony2", "Context"],
     "type": "library",
 
+    "require": {
+        "justinrainbow/json-schema": "*"
+    },
+
     "autoload": {
         "psr-0": {
             "Sanpi\\Behatch": "src/"
