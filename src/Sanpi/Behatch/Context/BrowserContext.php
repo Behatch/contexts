@@ -19,6 +19,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Set login / password for next HTTP authentication
+     *
      * @When /^I set basic authentication with "(?P<user>[^"]*)" and "(?P<password>[^"]*)"$/
      */
     public function iSetBasicAuthenticationWithAnd($user, $password)
@@ -27,6 +29,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Open url with various parameters
+     *
      * @Given /^(?:|I )am on url composed by$/
      */
     public function iAmOnUrlComposedBy(TableNode $tableNode)
@@ -48,6 +52,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Clicks on the nth CSS element
+     *
      * @When /^(?:|I )click on the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<element>[^"]*)" element$/
      */
     public function iClickOnTheNthElement($nth, $element)
@@ -63,6 +69,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Click on the nth specified link
+     *
      * @When /^(?:|I )follow the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<link>[^"]*)" link$/
      */
     public function iFollowTheNthLink($nth, $link)
@@ -81,6 +89,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Fills in form field with current date
+     *
      * @When /^(?:|I )fill in "(?P<field>[^"]*)" with the current date$/
      */
     public function iFillInWithTheCurrentDate($field)
@@ -89,6 +99,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Fills in form field with current date and strtotime modifier
+     *
      * @When /^(?:|I )fill in "(?P<field>[^"]*)" with the current date and modifier "(?P<modifier>[^"]*)"$/
      */
     public function iFillInWithTheCurentDateAndModifier($field, $modifier)
@@ -97,6 +109,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Mouse over a CSS element
+     *
      * @When /^(?:|I )hover "(?P<element>[^"]*)"$/
      */
     public function iHoverIShouldSeeIn($element)
@@ -109,6 +123,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Save value of the field in parameters array
+     *
      * @When /^(?:|I )save the value of "(?P<field>[^"]*)" in the "(?P<parameter>[^"]*)" parameter$/
      */
     public function iSaveTheValueOfInTheParameter($field, $parameter)
@@ -123,6 +139,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should contains specified text after given timeout
+     *
      * @Then /^(?:|I )wait "(?P<seconds>\d+)" seconds until I see "(?P<text>[^"]*)"$/
      */
     public function iWaitsSecondsUntilISee($seconds, $text)
@@ -131,6 +149,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should contains specified text after timeout
+     *
      * @Then /^(?:|I )wait until I see "(?P<text>[^"]*)"$/
      */
     public function iWaitUntilISee($text)
@@ -139,6 +159,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the element contains specified text after timeout
+     *
      * @Then /^(?:|I )wait (?P<seconds>\d+) seconds until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/
      */
     public function iWaitSecondsUntilISeeInTheElement($seconds, $text, $element)
@@ -178,6 +200,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the element contains specified text after timeout
+     *
      * @Then /^(?:|I )wait until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/
      */
     public function iWaitUntilISeeInTheElement($text, $element)
@@ -204,6 +228,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that there is the given number of elements with specified CSS on page
+     *
      * @Then /^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" elements?$/
      */
     public function iShouldSeeNElements($nth, $element)
@@ -216,6 +242,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that element with given CSS is disabled
+     *
      * @Then /^the element "(?P<element>[^"]*)" should be disabled$/
      */
     public function theElementShouldBeDisabled($element)
@@ -231,6 +259,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that element with given CSS is enabled
+     *
      * @Then /^the element "(?P<element>[^"]*)" should be enabled$/
      */
     public function theElementShouldBeEnabled($element)
@@ -246,6 +276,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that page contains specified parameter value
+     *
      * @Then /^(?:|I )shoud see the "(?P<parameter>[^"]*)" parameter$/
      */
     public function iShouldSeeTheParameter($parameter)
@@ -254,6 +286,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that given select box contains the specified option
+     *
      * @Then /^the "(?P<select>[^"]*)" select box should contain "(?P<option>[^"]*)"$/
      */
     public function theSelectBoxShouldContain($select, $option)
@@ -268,6 +302,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that given select box does not contain the specified option
+     *
      * @Then /^the "(?P<select>[^"]*)" select box should not contain "(?P<option>[^"]*)"$/
      */
     public function theSelectBoxShouldNotContain($select, $option)
@@ -282,6 +318,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the specified CSS element is visible
+     *
      * @Then /^the "(?P<element>[^"]*)" element should be visible$/
      */
     public function theElementShouldBeVisible($element)
@@ -297,6 +335,8 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the specified CSS element is not visible
+     *
      * @Then /^the "(?P<element>[^"]*)" element should not be visible$/
      */
     public function theElementShouldNotBeVisible($element)

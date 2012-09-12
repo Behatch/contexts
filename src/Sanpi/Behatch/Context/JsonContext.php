@@ -7,6 +7,8 @@ use Behat\Gherkin\Node\PyStringNode;
 class JsonContext extends BaseContext
 {
     /**
+     * Checks, that the response is correct JSON
+     *
      * @Then /^the response should be in JSON$/
      */
     public function theResponseShouldBeInJson()
@@ -17,6 +19,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that the response is not correct JSON
+     *
      * @Then /^the response should not be in JSON$/
      */
     public function theResponseShouldNotBeInJson()
@@ -27,6 +31,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node is equal to given value
+     *
      * @Then /^the JSON node "(?P<node>[^"]*)" should be equal to "(?P<text>[^"]*)"$/
      */
     public function theJsonNodeShouldBeEqualTo($node, $text)
@@ -45,6 +51,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node has N element(s)
+     *
      * @Then /^the JSON node "(?P<node>[^"]*)" should have (?P<nth>\d+) elements?$/
      */
     public function theJsonNodeShouldHaveElements($node, $nth)
@@ -61,6 +69,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node contains given value
+     *
      * @Then /^the JSON node "(?P<node>[^"]*)" should contain "(?P<text>[^"]*)"$/
      */
     public function theJsonNodeShouldContain($node, $text)
@@ -77,6 +87,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node does not contain given value
+     *
      * @Then /^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>[^"]*)"$/
      */
     public function theJsonNodeShouldNotContain($node, $text)
@@ -93,6 +105,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node exists
+     *
      * @Given /^the JSON node "(?P<node>[^"]*)" should exists$/
      */
     public function theJsonNodeShouldExists($node)
@@ -112,6 +126,8 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node does not exist
+     *
      * @Given /^the JSON node "(?P<node>[^"]*)" should not exists$/
      */
     public function theJsonNodeShouldNotExists($node)

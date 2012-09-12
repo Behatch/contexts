@@ -7,6 +7,8 @@ use Behat\Behat\Event\StepEvent;
 class DebugContext extends BaseContext
 {
     /**
+     * Pauses the scenario until the user presses a key. Usefull when debugging a scenario.
+     *
      * @Then /^(?:|I )put a breakpoint$/
      */
     public function iPutABreakpoint()
@@ -19,6 +21,8 @@ class DebugContext extends BaseContext
     }
 
     /**
+     * Saving a screenshot
+     *
      * @When /^I save a screenshot in "(?P<filename>[^"]*)"$/
      */
     public function iSaveAScreenshotIn($filename)

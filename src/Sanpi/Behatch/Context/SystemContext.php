@@ -7,6 +7,8 @@ use Behat\Behat\Context\Step;
 class SystemContext extends BaseContext
 {
     /**
+     * Uploads a file using the specified input field
+     *
      * @When /^(?:|I )put the file "(?P<file>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/
      */
     public function putFileIntoField($file, $field)
@@ -20,6 +22,8 @@ class SystemContext extends BaseContext
     }
 
     /**
+     * Execute a command
+     *
      * @Given /^(?:|I )execute "(?P<command>[^"]*)"$/
      */
     public function iExecute($cmd)
@@ -32,6 +36,8 @@ class SystemContext extends BaseContext
     }
 
     /**
+     * Execute a command from project root
+     *
      * @Given /^(?:|I )execute "(?P<command>[^"]*)" from project root$/
      */
     public function iExecuteFromProjectRoot($cmd)

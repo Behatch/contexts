@@ -9,6 +9,8 @@ use Behat\Gherkin\Node\PyStringNode;
 class RestContext extends BaseContext
 {
     /**
+     * Sends a HTTP request
+     *
      * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)"$/
      */
     public function iSendARequestOn($method, $url)
@@ -23,6 +25,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Sends a HTTP request with a some parameters
+     *
      * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)" with parameters:$/
      */
     public function iSendARequestOnWithParameters($method, $url, TableNode $datas)
@@ -45,6 +49,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Sends a HTTP request with a body
+     *
      * @When /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)" with body:$/
      */
     public function iSendARequestOnWithBody($method, $url, PyStringNode $body)
@@ -60,6 +66,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Checks, whether the response content is equal to given text
+     *
      * @Then /^the response should be equal to:$/
      */
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
@@ -71,6 +79,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header name is equal to given text
+     *
      * @Then /^the header "(?P<name>[^"]*)" should be equal to "(?P<value>[^"]*)"$/
      */
     public function theHeaderShouldBeEqualTo($name, $value)
@@ -86,6 +96,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header name contains the given text
+     *
      * @Then /^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/
      */
     public function theHeaderShouldBeContains($name, $value)
@@ -101,6 +113,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header not exist
+     *
      * @Then /^the header "(?P<name>[^"]*)" should not exist$/
      */
     public function theHeaderShouldNotExist($name)
@@ -113,6 +127,8 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Add an header element in a request
+     *
      * @Then /^I add "(?P<name>[^"]*)" header equal to "(?P<value>[^"]*)"$/
      */
     public function iAddHeaderEqualTo($name, $value)

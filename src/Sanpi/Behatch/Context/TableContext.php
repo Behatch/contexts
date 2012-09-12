@@ -7,6 +7,8 @@ use Behat\Gherkin\Node\TableNode;
 class TableContext extends BaseContext
 {
     /**
+     * Checks that the specified table's columns match the given schema
+     *
      * @Then /^the columns schema of the "(?P<table>[^"]*)" table should match:$/
      */
     public function theColumnsSchemaShouldMatch($table, TableNode $text)
@@ -22,6 +24,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified table contains the given number of columns
+     *
      * @Then /^(?:|I )should see (?P<nth>\d+) columns? in the "(?P<table>[^"]*)" table$/
      */
     public function iShouldSeeColumnsInTheTable($nth, $table)
@@ -33,6 +37,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified table contains the specified number of rows in its body
+     *
      * @Then /^(?:|I )should see (?P<nth>\d+) rows in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<table>[^"]*)" table$/
      */
     public function iShouldSeeRowsInTheNthTable($nth, $index, $table)
@@ -47,6 +53,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified table contains the specified number of rows in its body
+     *
      * @Then /^(?:|I )should see (?P<nth>\d+) rows? in the "(?P<table>[^"]*)" table$/
      */
     public function iShouldSeeRowsInTheTable($nth, $table)
@@ -55,6 +63,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the data of the specified row matches the given schema
+     *
      * @Then /^the data in the (?P<nth>\d+)(?:st|nd|rd|th) row of the "(?P<table>[^"]*)" table should match:$/
      */
     public function theDataOfTheRowShouldMatch($nth, $table, TableNode $text)
@@ -79,6 +89,8 @@ class TableContext extends BaseContext
     }
 
     /**
+     * Checks that the specified cell (column/row) of the table's body contains the specified text
+     *
      * @Then /^the (?P<colIndex>\d+)(?:st|nd|rd|th) column of the (?P<rowIndex>\d+)(?:st|nd|rd|th) row in the "(?P<table>[^"]*)" table should contain "(?P<text>[^"]*)"$/
      */
     public function theStColumnOfTheStRowInTheTableShouldContain($colIndex, $rowIndex, $table, $text)
