@@ -137,11 +137,11 @@
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
                 <source><![CDATA[/^the JSON should be valid according to this schema:$/]]></source>
-                <target><![CDATA[/^Le JSON doit être valide avec ce schéma:$/]]></target>
+                <target><![CDATA[/^le JSON doit être valide avec ce schéma:$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-the-schema">
                 <source><![CDATA[/^the JSON should be valid according to the schema "(?P<filename>[^"]*)"$/]]></source>
-                <target><![CDATA[/^Le JSON doit être valide avec le schéma "(?P<filename>[^"]*)"$/]]></target>
+                <target><![CDATA[/^le JSON doit être valide avec le schéma "(?P<filename>[^"]*)"$/]]></target>
             </trans-unit>
 
             <!-- RestContext.php -->
