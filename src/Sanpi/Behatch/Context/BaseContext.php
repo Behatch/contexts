@@ -105,7 +105,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
         }
     }
 
-    protected function assertTrue($value)
+    protected function assertTrue($value, $message = null)
     {
         if ($value) {
             if (is_null($message)) {
@@ -115,7 +115,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
         }
     }
 
-    protected function assertFalse($value)
+    protected function assertFalse($value, $message = null)
     {
         if (!$value) {
             if (is_null($message)) {
