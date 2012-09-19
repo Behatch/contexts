@@ -18,7 +18,7 @@ class BehatchContext extends BehatContext
         return isset($this->parameters[$extension][$name]);
     }
 
-    public function setParameter($extenison, $name, $value)
+    public function setParameter($extension, $name, $value)
     {
         $this->parameters[$extension][$name] = $value;
     }
