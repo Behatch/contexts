@@ -314,7 +314,7 @@ class BrowserContext extends BaseContext
         $optionText = $this->getSession()->getPage()->findField($select)->getText();
 
         $message = sprintf('The "%s" select box does contain the "%s" option', $select, $option);
-        $this->assertNotContains($option, $optionText);
+        $this->assertNotContains($option, $optionText, $message);
     }
 
     /**
