@@ -142,7 +142,7 @@ class XmlContext extends BaseContext
 
     private function throwError()
     {
-        $errors = libxml_get_last_error();
+        $error = libxml_get_last_error();
         if (!empty($error)) {
             throw new \DomException($error->message . ' at line ' . $error->line);
         }
