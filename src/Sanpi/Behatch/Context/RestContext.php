@@ -139,7 +139,7 @@ class RestContext extends BaseContext
     /**
      * @Then /^the response should be encoded in "(?P<encoding>[^"]*)"$/
      */
-    public function theResponeShouldBeEncodedIn($encoding)
+    public function theResponseShouldBeEncodedIn($encoding)
     {
         $content = $this->getSession()->getPage()->getContent();
         if (!mb_check_encoding($content, $encoding)) {

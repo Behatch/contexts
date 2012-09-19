@@ -7,7 +7,7 @@ use Behat\Behat\Event\StepEvent;
 class DebugContext extends BaseContext
 {
     /**
-     * Pauses the scenario until the user presses a key. Usefull when debugging a scenario.
+     * Pauses the scenario until the user presses a key. Useful when debugging a scenario.
      *
      * @Then /^(?:|I )put a breakpoint$/
      */
