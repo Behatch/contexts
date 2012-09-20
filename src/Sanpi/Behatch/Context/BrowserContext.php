@@ -103,7 +103,7 @@ class BrowserContext extends BaseContext
      *
      * @When /^(?:|I )fill in "(?P<field>[^"]*)" with the current date and modifier "(?P<modifier>[^"]*)"$/
      */
-    public function iFillInWithTheCurentDateAndModifier($field, $modifier)
+    public function iFillInWithTheCurrentDateAndModifier($field, $modifier)
     {
         return new Step\When(sprintf('I fill in "%s" with "%s"', $field, date($this->dateFormat, strtotime($modifier))));
     }
@@ -143,7 +143,7 @@ class BrowserContext extends BaseContext
      *
      * @Then /^(?:|I )wait "(?P<seconds>\d+)" seconds until I see "(?P<text>[^"]*)"$/
      */
-    public function iWaitsSecondsUntilISee($seconds, $text)
+    public function iWaitSecondsUntilISee($seconds, $text)
     {
         $this->iWaitSecondsUntilISeeInTheElement($seconds, $text, $this->getSession()->getPage());
     }
@@ -155,7 +155,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitUntilISee($text)
     {
-        $this->iWaitsSecondsUntilISee($this->timeout, $text);
+        $this->iWaitSecondsUntilISee($this->timeout, $text);
     }
 
     /**
@@ -186,7 +186,7 @@ class BrowserContext extends BaseContext
             }
             catch (ExpectationException $e) {
                 if ($time >= $seconds) {
-                    $message = sprintf('The text "%s" was not found anywhere in the text of %s atfer a %s seconds timeout', $expected, $element, $seconds);
+                    $message = sprintf('The text "%s" was not found anywhere in the text of %s after a %s seconds timeout', $expected, $element, $seconds);
                     throw new ResponseTextException($message, $this->getSession(), $e);
                 }
             }
@@ -223,7 +223,7 @@ class BrowserContext extends BaseContext
 
         $elements = $parents[$index - 1]->findAll('css', $element);
         if (count($elements) !== (int)$nth) {
-            throw new \Exception(sprintf("%d occurences of the %s element in %s found", count($elements), $element, $parent));
+            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
     }
 
@@ -237,7 +237,7 @@ class BrowserContext extends BaseContext
         $nodes = $this->getSession()->getPage()->findAll('css', $element);
         $actual = sizeof($nodes);
         if ($actual !== (int)$nth) {
-            throw new \Exception(sprintf('%s occurences of the "%s" element found', $actual, $element));
+            throw new \Exception(sprintf('%s occurrences of the "%s" element found', $actual, $element));
         }
     }
 
