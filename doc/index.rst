@@ -112,12 +112,13 @@ in ``behat.yml``, the desired steps group:
 .. code-block:: yaml
 
     Sanpi\Behatch\Extension:
-        browser: ~
-        debug: ~
-        system: ~
-        json: ~
-        table: ~
-        rest: ~
+        contexts:
+            browser: ~
+            debug: ~
+            system: ~
+            json: ~
+            table: ~
+            rest: ~
 
 Configuration
 -------------
