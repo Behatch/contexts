@@ -150,15 +150,4 @@ class RestContext extends BaseContext
             new Step\Then('the header "Content-Type" should be contains "charset=' . $encoding . '"'),
         );
     }
-
-    /**
-     * @see Behat\MinkExtension\Context\MinkContext::locatePath()
-     */
-    protected function locatePath($path)
-    {
-        $startUrl = rtrim($this->getMinkParameter('base_url'), '/') . '/';
-
-        return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
-    }
-
 }
