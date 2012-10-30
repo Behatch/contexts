@@ -28,7 +28,8 @@ class DebugContext extends BaseContext
     public function iSaveAScreenshotIn($filename)
     {
         sleep(1);
-        $this->saveScreenshot($filename);
+        $path = $this->getParameter('debug', 'screenshot_dir');
+        $this->saveScreenshot($filename, $path);
     }
 
     /**
@@ -37,23 +38,10 @@ class DebugContext extends BaseContext
     public function failScreenshots(StepEvent $event)
     {
         if ($event->getResult() == StepEvent::FAILED) {
+            $path = $this->getParameter('debug', 'screenshot_dir');
             $scenarioName = str_replace(' ', '_', $event->getStep()->getParent()->getTitle());
-            $this->saveScreenshot(sprintf('fail_%s_%s.png', time(), $scenarioName));
-        }
-    }
-
-    private function saveScreenshot($filename)
-    {
-        if (empty($filename)) {
-            throw new \Exception('You must provide a filename for the screenshot.');
-        }
-
-        $screenshotDir = $this->getParameter('debug', 'screenshot_dir');
-        $screenId = $this->getParameter('debug', 'screen_id');
-
-        exec(sprintf('DISPLAY=%s import -window root %s/%s', $screenId, rtrim($screenshotDir, '/'), $filename), $output, $return);
-        if ($return !== 0) {
-            throw new \Exception(sprintf('Screenshot was not saved :\n%s', implode("\n", $output)));
+            $filename = sprintf('fail_%s_%s.png', time(), $scenarioName);
+            $this->saveScreenshot($filename, $path);
         }
     }
 }
