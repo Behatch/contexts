@@ -154,7 +154,7 @@ class RestContext extends BaseContext
     /**
      * @see Behat\MinkExtension\Context\MinkContext::locatePath()
      */
-    protected function locatePath($path)
+    public function locatePath($path)
     {
         $startUrl = rtrim($this->getMinkParameter('base_url'), '/') . '/';
 
