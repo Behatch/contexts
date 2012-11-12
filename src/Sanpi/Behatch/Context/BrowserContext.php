@@ -175,28 +175,16 @@ class BrowserContext extends BaseContext
         else {
             $node = $element;
         }
-
         while ($time < $seconds) {
-            $actual   = $node->getText();
-            $e = null;
-
-            try {
-                $time++;
-                $this->assertContains($expected, $actual);
+            $actual = $node->getText();
+            $time++;
+            if($this->checkContains($expected, $actual)) {
+                return;
             }
-            catch (ExpectationException $e) {
-                if ($time >= $seconds) {
-                    $message = sprintf('The text "%s" was not found anywhere in the text of %s after a %s seconds timeout', $expected, $element, $seconds);
-                    throw new ResponseTextException($message, $this->getSession(), $e);
-                }
-            }
-
-            if ($e == null) {
-                break;
-            }
-
             sleep(1);
         }
+        $message = sprintf('The text "%s" was not found anywhere in the text of %s after a %s seconds timeout', $expected, $element, $seconds);
+        throw new ResponseTextException($message, $this->getSession());
     }
 
     /**

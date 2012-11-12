@@ -31,6 +31,12 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
         }
     }
 
+    protected function checkContains($expected, $actual, $message = null)
+    {
+        $regex   = '/'.preg_quote($expected, '/').'/ui';
+        return (bool)preg_match($regex, $actual);
+    }
+
     protected function assertNotContains($expected, $actual, $message = null)
     {
         $regex   = '/'.preg_quote($expected, '/').'/ui';
