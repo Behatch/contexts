@@ -4,6 +4,8 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Exception\ExpectationException;
+use Behat\Mink\Exception\ResponseTextException;
 
 class BrowserContext extends BaseContext
 {
@@ -186,7 +188,7 @@ class BrowserContext extends BaseContext
             }
             catch (ExpectationException $e) {
                 if ($time >= $seconds) {
-                    $message = sprintf('The text "%s" was not found anywhere in the text of %s after a %s seconds timeout', $expected, $element, $seconds);
+                    $message = sprintf('The text "%s" was not found after a %s seconds timeout', $expected, $seconds);
                     throw new ResponseTextException($message, $this->getSession(), $e);
                 }
             }
