@@ -6,8 +6,6 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class XmlContext extends BaseContext
 {
-    private $xmlError;
-
     /**
      * @BeforeScenario
      */
