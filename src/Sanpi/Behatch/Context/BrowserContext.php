@@ -143,7 +143,7 @@ class BrowserContext extends BaseContext
     /**
      * Checks, that the page should contains specified text after given timeout
      *
-     * @Then /^(?:|I )wait "(?P<seconds>\d+)" seconds until I see "(?P<text>[^"]*)"$/
+     * @Then /^(?:|I )wait (?P<seconds>\d+) seconds until I see "(?P<text>[^"]*)"$/
      */
     public function iWaitSecondsUntilISee($seconds, $text)
     {
