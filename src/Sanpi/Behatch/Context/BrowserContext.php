@@ -169,8 +169,6 @@ class BrowserContext extends BaseContext
     {
         $expected = str_replace('\\"', '"', $text);
 
-        $time = 0;
-
         if (is_string($element)) {
             $node = $this->getSession()->getPage()->find('css', $element);
         }
@@ -178,16 +176,18 @@ class BrowserContext extends BaseContext
             $node = $element;
         }
 
-        while ($time < $seconds) {
+        $startTime = time();
+
+        do {
+            $now = time();
             $actual   = $node->getText();
             $e = null;
 
             try {
-                $time++;
                 $this->assertContains($expected, $actual);
             }
             catch (ExpectationException $e) {
-                if ($time >= $seconds) {
+                if ($now - $startTime >= $seconds) {
                     $message = sprintf('The text "%s" was not found after a %s seconds timeout', $expected, $seconds);
                     throw new ResponseTextException($message, $this->getSession(), $e);
                 }
@@ -197,8 +197,7 @@ class BrowserContext extends BaseContext
                 break;
             }
 
-            sleep(1);
-        }
+        } while ($now - $startTime < $seconds);
     }
 
     /**
