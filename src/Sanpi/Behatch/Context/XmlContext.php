@@ -11,6 +11,7 @@ class XmlContext extends BaseContext
      */
     public function beforeScenario()
     {
+        libxml_clear_errors();
         libxml_use_internal_errors(true);
     }
 
