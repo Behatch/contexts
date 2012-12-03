@@ -78,7 +78,7 @@ Project dependancy
 Project boostraping
 *******************
 
-1. Download the behatch skeleton weth composer:
+1. Download the behatch skeleton with composer:
 
 .. code-block:: bash
 
