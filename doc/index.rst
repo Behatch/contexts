@@ -10,10 +10,7 @@ This extension requires:
 
 * Behat 2.4+
 * Mink 1.4+
-* Mink extension 1.0.0
-
-If you use Mink extension newer than 1.0.0, use the dev branch of behatch
-contets instead of master.
+* Mink extension
 
 Through PHAR
 ~~~~~~~~~~~~
