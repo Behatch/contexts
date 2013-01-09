@@ -5,6 +5,9 @@
     "type": "library",
 
     "require": {
+        "behat/behat": "*",
+        "behat/mink": "*",
+        "behat/mink-extension": "*",
         "justinrainbow/json-schema": "*"
     },
 
