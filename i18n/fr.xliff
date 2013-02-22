@@ -143,6 +143,10 @@
                 <source><![CDATA[/^the JSON should be valid according to the schema "(?P<filename>[^"]*)"$/]]></source>
                 <target><![CDATA[/^le JSON doit être valide avec le schéma "(?P<filename>[^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="the-json-should-be-eqal-to">
+                <source><![CDATA[/^the JSON should be equal to:$/]]></source>
+                <target><![CDATA[/^le JSON doit être égal à :$/]]></target>
+            </trans-unit>
 
             <!-- RestContext.php -->
             <trans-unit id="i-send-a-request-on">
