@@ -174,6 +174,21 @@ class JsonContext extends BaseContext
         }
     }
 
+    /**
+     * @Then /^the JSON should be equal to:$/
+     */
+    public function theJsonShouldBeEqualTo(PyStringNode $content)
+    {
+        $actual = $this->getJson();
+        $expected = json_decode($content);
+
+        $this->assertSame(
+            json_encode($expected),
+            json_encode($actual),
+            'The json are different'
+        );
+    }
+
     private function getJson()
     {
         $content = $this->getSession()->getPage()->getContent();
