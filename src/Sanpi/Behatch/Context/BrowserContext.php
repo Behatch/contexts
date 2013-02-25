@@ -230,20 +230,6 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * Checks, that there is the given number of elements with specified CSS on page
-     *
-     * @Then /^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" elements?$/
-     */
-    public function iShouldSeeNElements($nth, $element)
-    {
-        $nodes = $this->getSession()->getPage()->findAll('css', $element);
-        $actual = sizeof($nodes);
-        if ($actual !== (int)$nth) {
-            throw new \Exception(sprintf('%s occurrences of the "%s" element found', $actual, $element));
-        }
-    }
-
-    /**
      * Checks, that element with given CSS is disabled
      *
      * @Then /^the element "(?P<element>[^"]*)" should be disabled$/
