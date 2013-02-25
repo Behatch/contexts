@@ -80,7 +80,7 @@ class Extension implements ExtensionInterface
             }
             else {
                 throw new \Exception(
-                    'You must provide a a json evaluation mode.'
+                    'You must provide a json evaluation mode.'
                 );
             }
         }
