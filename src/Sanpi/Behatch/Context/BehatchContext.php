@@ -29,7 +29,7 @@ class BehatchContext extends BehatContext
 
         foreach ($this->parameters as $name => $values) {
             $className = __NAMESPACE__ . '\\' . ucfirst($name) . 'Context';
-            $this->useContext($name, new $className($parameters));
+            $this->useContext($name, new $className());
         }
     }
 }
