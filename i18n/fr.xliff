@@ -55,10 +55,6 @@
                 <source><![CDATA[/^(?:|I )Should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|je )dois voir (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
-            <trans-unit id="i-should-see-n-elements">
-                <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" elements?$/]]></source>
-                <target><![CDATA[/^(?:|je )dois voir (?P<nth>\d+) "(?P<element>[^"]*)" éléments?$/]]></target>
-            </trans-unit>
             <trans-unit id="the-element-shouls-be-disabled">
                 <source><![CDATA[/^the element "(?P<element>[^"]*)" should be disabled$/]]></source>
                 <target><![CDATA[/^l'élément "(?P<element>[^"]*)" doit être désactivé$/]]></target>
