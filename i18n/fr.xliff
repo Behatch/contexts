@@ -109,27 +109,27 @@
             </trans-unit>
             <trans-unit id="the-json-node-should-be-equal-to">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should be equal to "(?P<text>[^"]*)"$/]]></source>
-                <target><![CDATA[/^le n(œ|oe)ud JSON "?P<node>([^"]*)" doit être égal à "(?P<text>[^"]*)"$/]]></target>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" doit être égal à "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should have (?P<nth>\d+) elements?$/]]></source>
-                <target><![CDATA[/^le n(œ|oe)ud JSON "?P<node>([^"]*)" doit avoir (?P<nth>\d+) éléments?$/]]></target>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" doit avoir (?P<nth>\d+) éléments?$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-contain">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should contain "(?P<text>[^"]*)"$/]]></source>
-                <target><![CDATA[/^le n(œ|oe)ud JSON "?P<node>([^"]*)" doit contenir "(?P<text>[^"]*)"$/]]></target>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" doit contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-contain">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>[^"]*)"$/]]></source>
-                <target><![CDATA[/^le n(œ|oe)ud JSON "?P<node>([^"]*)" ne doit pas contenir "(?P<text>[^"]*)"$/]]></target>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne doit pas contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exists">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should exists$/]]></source>
-                <target><![CDATA[/^le n(œ|oe)ud JSON "?P<node>([^"]*)" doit exister$/]]></target>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" doit exister$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-exsists">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should not exists$/]]></source>
-                <target><![CDATA[/^le n(œ|oe)ud JSON "?P<node>([^"]*)" ne doit pas exister$/]]></target>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne doit pas exister$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
                 <source><![CDATA[/^the JSON should be valid according to this schema:$/]]></source>
