@@ -169,9 +169,13 @@
                 <source><![CDATA[/^I add "(?P<name>[^"]*)" header equal to "(?P<value>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|j' )ajoute l'entête "(?P<name>[^"]*)" égale à "(?P<value>[^"]*)"$/]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-not-contains">
+            <trans-unit id="the-header-should-be-contains">
                 <source><![CDATA[/^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/]]></source>
                 <target><![CDATA[/^l'entête "(?P<name>[^"]*)" doit contenir "(?P<value>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-contain">
+                <source><![CDATA[/^the header "(?P<name>[^"]*)" should not contain "(?P<value>[^"]*)"$/]]></source>
+                <target><![CDATA[/^l'entête "(?P<name>[^"]*)" ne doit pas contenir "(?P<value>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-not-exists">
                 <source><![CDATA[/^the header "(?P<name>[^"]*)" should not exist$/]]></source>
