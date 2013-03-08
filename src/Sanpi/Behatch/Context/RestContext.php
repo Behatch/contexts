@@ -113,6 +113,23 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Checks, whether the header name doesn't contain the given text
+     *
+     * @Then /^the header "(?P<name>[^"]*)" should not contain "(?P<value>[^"]*)"$/
+     */
+    public function theHeaderShouldNotContain($name, $value)
+    {
+        $header = $this->getSession()->getResponseHeaders();
+
+        $this->assertArrayHasKey($name, $header,
+            sprintf('The header "%s" doesn\'t exist', $name)
+        );
+        $this->assertNotContains($value, $this->getHttpHeader($name),
+            sprintf('The header "%s" contains "%s"', $name, $value)
+        );
+    }
+
+    /**
      * Checks, whether the header not exist
      *
      * @Then /^the header "(?P<name>[^"]*)" should not exist$/
