@@ -90,7 +90,7 @@ class RestContext extends BaseContext
         $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        $this->assertEquals($value, $header[$name],
+        $this->assertEquals($value, $this->getHttpHeader($name),
             sprintf('The header "%s" is not equal to "%s"', $name, $value)
         );
     }
@@ -107,7 +107,7 @@ class RestContext extends BaseContext
         $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
-        $this->assertContains($value, $header[$name],
+        $this->assertContains($value, $this->getHttpHeader($name),
             sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $value)
         );
     }
@@ -149,5 +149,17 @@ class RestContext extends BaseContext
         return array(
             new Step\Then('the header "Content-Type" should be contains "charset=' . $encoding . '"'),
         );
+    }
+
+    private function getHttpHeader($name)
+    {
+        $header = $this->getSession()->getResponseHeaders();
+        if (is_array($header[$name])) {
+            $value = $header[$name][0];
+        }
+        else {
+            $value = $header[$name];
+        }
+        return $value;
     }
 }
