@@ -185,9 +185,13 @@
                 <source><![CDATA[/^the response should be encoded in "(?P<encoding>[^"]*)"$/]]></source>
                 <target><![CDATA[/^la réponse doit être encodée en "(?P<encoding>[^"]*)"$/]]></target>
             </trans-unit>
-            <trans-unit id="the response should expire in the future">
+            <trans-unit id="the-response-should-expire-in-the-future">
                 <source><![CDATA[/^the response should expire in the future$/]]></source>
                 <target><![CDATA[/^la réponse doit expirer dans le futur$/]]></target>
+            </trans-unit>
+            <trans-unit id="print-last-response-headers">
+                <source><![CDATA[/^print last response headers$/]]></source>
+                <target><![CDATA[/^imprimer les entêtes de la dernières réponse$/]]></target>
             </trans-unit>
 
             <!-- TableContext.php -->

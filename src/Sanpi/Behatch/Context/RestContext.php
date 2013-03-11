@@ -194,6 +194,20 @@ class RestContext extends BaseContext
         );
     }
 
+    /**
+     * @Then /^print last response headers$/
+     */
+    public function printLastResponseHeaders()
+    {
+        $text = '';
+        $headers = $this->getSession()->getResponseHeaders();
+
+        foreach ($headers as $name => $value) {
+            $text .= $name . ': '. $this->getHttpHeader($name) . "\n";
+        }
+        $this->printDebug($text);
+    }
+
     private function getHttpHeader($name)
     {
         $header = $this->getSession()->getResponseHeaders();
