@@ -143,6 +143,32 @@ class RestContext extends BaseContext
         );
     }
 
+   /**
+     * Checks, that the response header expire is in the future
+     *
+     * @Then /^the response should expire in the future$/
+     */
+    public function theResponseShouldExpireInTheFuture()
+    {
+        $header = $this->getSession()->getResponseHeaders();
+        
+        $name = 'Date';
+        $this->assertArrayHasKey($name, $header,
+            sprintf('The header "%s" doesn\'t exist', $name)
+        );
+        $date = new DateTime($this->getHttpHeader($name));
+        
+        $name = 'expires';
+        $this->assertArrayHasKey($name, $header,
+            sprintf('The header "%s" doesn\'t exist', $name)
+        );
+        $expires = new DateTime($this->getHttpHeader($name));
+        
+        $this->assertSame(1, $expire->diff($date)->invert,
+            sprintf(sprintf('The response doesn\'t expire in the future (%s)', $expire->format(DATE_ATOM)))
+        );
+    }
+ 
     /**
      * Add an header element in a request
      *
