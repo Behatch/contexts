@@ -158,7 +158,7 @@ class RestContext extends BaseContext
         );
         $date = new \DateTime($this->getHttpHeader($name));
         
-        $name = 'expires';
+        $name = 'Expires';
         $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
         );
