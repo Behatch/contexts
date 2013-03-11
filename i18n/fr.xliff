@@ -185,6 +185,10 @@
                 <source><![CDATA[/^the response should be encoded in "(?P<encoding>[^"]*)"$/]]></source>
                 <target><![CDATA[/^la réponse doit être encodée en "(?P<encoding>[^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="the response should expire in the future">
+                <source><![CDATA[/^the response should expire in the future$/]]></source>
+                <target><![CDATA[/^la réponse doit expirer dans le futur$/]]></target>
+            </trans-unit>
 
             <!-- TableContext.php -->
             <trans-unit id="the-columns-schema-of-the-table-should-match">
