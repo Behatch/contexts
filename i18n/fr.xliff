@@ -201,15 +201,15 @@
             </trans-unit>
             <trans-unit id="i-should-ess-n-columns-in-the-tables">
                 <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) columns? in the "(?P<table>[^"]*)" table$/]]></source>
-                <target><![CDATA[/^(?:|je )devrait voir (?P<nth>\d+) colonnes? dans le tableau "(?P<table>[^"]*)"$/]]></target>
+                <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) colonnes? dans le tableau "(?P<table>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-nth-tables">
                 <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) rows in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<table>[^"]*)" table$/]]></source>
-                <target><![CDATA[/^(?:|je )devrait voir (?P<nth>\d+) lignes dans le (?P<index>\d+)(?:ier|nd|ième) tableau "(?P<table>[^"]*)"$/]]></target>
+                <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) lignes dans le (?P<index>\d+)(?:ier|nd|ième) tableau "(?P<table>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-tables">
                 <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) rows? in the "(?P<table>[^"]*)" table$/]]></source>
-                <target><![CDATA[/^(?:|je )devrait voir (?P<nth>\d+) lignes? dans le tableau "(?P<table>[^"]*)"$/]]></target>
+                <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) lignes? dans le tableau "(?P<table>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-data-in-the-nth-row-of-the-table-should-match">
                 <source><![CDATA[/^the data in the (?P<nth>\d+)(?:st|nd|rd|th) row of the "(?P<table>[^"]*)" table should match:$/]]></source>
