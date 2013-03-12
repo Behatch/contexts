@@ -20,7 +20,7 @@ $phar->setSignatureAlgorithm(\Phar::SHA1);
 $phar->startBuffering();
 
 foreach (findFiles('src') as $path) {
-    $phar->addFromString($path, file_get_contents(__DIR__.'/'.$path));
+    $phar->addFromString($path, file_get_contents(__DIR__.'/../'.$path));
 }
 
 $phar->addFromString('init.php', file_get_contents(__DIR__.'/init.php'));
