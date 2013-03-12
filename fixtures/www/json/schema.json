@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required":true,
+    "properties": {
+        "foo": {
+            "type": "string",
+            "required":true
+        },
+        "numbers": {
+            "type": "array",
+            "required":true,
+            "one": {
+                "type": "string",
+                "required":true
+            },
+            "two": {
+                "type": "string",
+                "required":true
+            },
+            "three": {
+                "type": "string",
+                "required":true
+            }
+        }
+    }
+}

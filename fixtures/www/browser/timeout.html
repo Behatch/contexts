@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Timeout test</title>
+        <script type="text/javascript" src="../jquery.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $('body').text('timeout');
+                }, 2000);
+            });
+        </script>
+    </body>
+</html>

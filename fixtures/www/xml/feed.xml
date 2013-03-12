@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<!DOCTYPE page SYSTEM "http://localhost:8080/xml/schema.dtd">
+<page>
+    <title>Title</title>
+    <content>Content</content>
+    <comment>Comment</comment>
+</page>

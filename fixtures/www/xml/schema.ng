@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <element name="page">
+            <element name="title">
+                <data type="string"/>
+            </element>
+            <element name="content">
+                <data type="string"/>
+            </element>
+            <element name="comment">
+                <data type="string"/>
+            </element>
+        </element>
+    </start>
+</grammar>

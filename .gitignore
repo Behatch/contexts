@@ -1,4 +1,6 @@
+behat.yml
 behatch_contexts.phar
+bin/
 composer.lock
 composer.phar
 vendor

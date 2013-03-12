@@ -1,0 +1,12 @@
+{
+  "foo": "bar",
+  "numbers": [
+    "one",
+    "two",
+    "three",
+    {
+      "complexeshizzle": true,
+      "so": ["very", {"complicated": "indeed"}]
+    }
+  ]
+}
