@@ -19,16 +19,3 @@ default:
                 table: ~
                 rest: ~
                 xml: ~
-    formatter:
-        #name: pretty,UbuntuNotifier,CampfireNotifier
-        parameters:
-            # UbuntuNotifier specific parameters
-            # You can change icons (default includded in BehatCH dir)
-            #error_icon: "/usr/error.png"
-            #smile_icon: "/usr/face-laugh.png"
-            #sad_icon: "/usr/sad.png"
-
-            #CampfireNotifier specific parameters
-            #campfire_url: "https://foobar.campfirenow.com"
-            #campfire_room: 1337
-            #campfire_token: "123456789101112"

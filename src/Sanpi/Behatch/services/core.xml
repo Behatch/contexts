@@ -12,17 +12,5 @@
             <argument>%behatch.parameters%</argument>
             <tag name="behat.context.initializer" />
         </service>
-        <service id="behatch.formatter.notifier.desktop" class="%behat.formatter.dispatcher.class%">
-            <argument>Sanpi\Behatch\Notifiers\UbuntuNotifier</argument>
-            <argument>desktop</argument>
-            <argument>Notify via libnotify.</argument>
-            <tag name="behat.formatter.dispatcher" />
-        </service>
-        <service id="behatch.formatter.notifier.campfire" class="%behat.formatter.dispatcher.class%">
-            <argument>Sanpi\Behatch\Notifiers\CampfireNotifier</argument>
-            <argument>campfire</argument>
-            <argument>Notify via campfire.</argument>
-            <tag name="behat.formatter.dispatcher" />
-        </service>
     </services>
 </container>
