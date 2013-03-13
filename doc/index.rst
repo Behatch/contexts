@@ -1,6 +1,10 @@
 Behatch contexts
 ================
 
+.. image:: https://api.travis-ci.org/sanpii/behatch-contexts.png
+    :target: https://travis-ci.org/sanpii/behatch-contexts
+    :alt: Build status
+
 Behatch contexts provide most common behat tests.
 
 Installation
