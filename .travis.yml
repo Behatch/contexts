@@ -9,7 +9,7 @@ before_script:
     - curl http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar > selenium.jar
     - java -jar selenium.jar > /dev/null &
 
-    - php -S localhost:8080 -t fixtures/www &
+    - php -S localhost:8080 -t fixtures/www 2> /dev/null &
     - cp behat.yml{-dist,}
     - curl http://getcomposer.org/installer | php
     - php composer.phar install --dev
