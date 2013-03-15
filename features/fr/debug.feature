@@ -1,6 +1,7 @@
 #language: fr
 Fonctionnalité:
 
+    @user
     Scénario:
         Étant donné je suis sur "index.html"
         Alors je pose un point d'arrêt

@@ -1,7 +1,7 @@
 default:
     extensions:
         Behat\MinkExtension\Extension:
-            base_url: '%hostname%'
+            base_url: 'http://localhost:8080'
             goutte: ~
             selenium2: ~
         Sanpi\Behatch\Extension:
@@ -9,7 +9,7 @@ default:
                 browser: ~
                 debug:
                     screenshot_dir: "."
-                    screen_id: ":0"
+                    screen_id: ":99.0"
                 system:
                     #root should never end up with /.
                     root: "."

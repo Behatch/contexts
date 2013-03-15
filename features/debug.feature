@@ -1,5 +1,6 @@
 Feature: Browser Feature
 
+    @user
     Scenario: Testing a break point
         Given I am on "index.html"
         Then I put a breakpoint

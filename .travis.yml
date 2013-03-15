@@ -1,0 +1,14 @@
+language: php
+
+php:
+    - 5.4
+
+before_script:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - php -S localhost:8080 -t fixtures/www &
+    - cp behat.yml{-dist,}
+    - curl http://getcomposer.org/installer | php
+    - php composer.phar install --dev
+
+script: ./bin/behat -fprogress --tags='~@javascript&&~@user'
