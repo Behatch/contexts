@@ -6,9 +6,12 @@ php:
 before_script:
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
+    - curl http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar > selenium.jar
+    - java -jar selenium.jar > /dev/null &
+
     - php -S localhost:8080 -t fixtures/www &
     - cp behat.yml{-dist,}
     - curl http://getcomposer.org/installer | php
     - php composer.phar install --dev
 
-script: ./bin/behat -fprogress --tags='~@javascript&&~@user'
+script: ./bin/behat -fprogress --tags='~@user'
