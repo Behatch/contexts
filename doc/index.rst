@@ -120,6 +120,7 @@ in ``behat.yml``, the desired steps group:
             json: ~
             table: ~
             rest: ~
+            xml: ~
 
 Configuration
 -------------
@@ -134,3 +135,4 @@ Configuration
     * ``evaluation_mode`` - javascript "foo.bar" or php "foo->bar"
 * ``table`` - play with HTML the tables
 * ``rest`` - send GET, POST, … requests and test the HTTP headers
+* ``xml`` - XML related steps
