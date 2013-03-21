@@ -211,7 +211,7 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )Should see (?P<nth>\d+)(?P<modifier>[+-]|) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
+     * @Then /^(?:|I )(S|s)hould see (?P<nth>\d+)(?P<modifier>[+-]|) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
      */
     public function iShouldSeeNElementInTheNthParent($nth, $element, $modifier, $index, $parent)
     {
