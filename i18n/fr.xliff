@@ -51,9 +51,17 @@
                 <source><![CDATA[/^(?:|I )wait until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/]]></source>
                 <target><![CDATA[/^(?:|j')attends de voir "(?P<text>[^"]*)" dans l'élément "(?P<element>[^"]*)"$/]]></target>
             </trans-unit>
-            <trans-unit id="i-shouls-see-n-in-the-nth">
-                <source><![CDATA[/^(?:|I )Should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
+            <trans-unit id="i-should-see-n-in-the-nth">
+                <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-less-than-n-in-the-nth">
+                <source><![CDATA[/^(?:|I )should see less than (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
+                <target><![CDATA[/^(?:|je )devrais voir moins de (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-more-than-n-in-the-nth">
+                <source><![CDATA[/^(?:|I )should see more than (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
+                <target><![CDATA[/^(?:|je )devrais voir plus de (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-element-shouls-be-disabled">
                 <source><![CDATA[/^the element "(?P<element>[^"]*)" should be disabled$/]]></source>
