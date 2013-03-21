@@ -31,6 +31,12 @@ Feature: Browser Feature
         Then the response status code should be 401
         And I should see "NONE SHALL PASS"
 
+    Scenario: Elements testing
+        Given I am on "/browser/elements.html"
+        Then I should see 2 "div" in the 1st "body"
+        And I should see less than 3 "div" in the 1st "body"
+        And I should see more than 1 "div" in the 1st "body"
+
     @javascript
     Scenario: Wait before seeing
         Given I am on "/browser/timeout.html"

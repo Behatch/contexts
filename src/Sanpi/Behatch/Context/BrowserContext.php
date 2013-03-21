@@ -223,10 +223,10 @@ class BrowserContext extends BaseContext
         }
 
         $elements = $parents[$index - 1]->findAll('css', $element);
-		if (count($elements) !== (int)$nth) {
+        if (count($elements) !== (int)$nth) {
                     throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
-        
+
     }
 
     /**
@@ -243,16 +243,16 @@ class BrowserContext extends BaseContext
 
         $elements = $parents[$index - 1]->findAll('css', $element);
         if (count($elements) > (int)$nth) {
-        	throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
+            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
 
-	}
+    }
 
     /**
      * @Then /^(?:|I )should see more than (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
      */
     public function iShouldSeeMoreThanNElementInTheNthParent($nth, $element, $index, $parent)
-	{
+    {
         $page = $this->getSession()->getPage();
 
         $parents = $page->findAll('css', $parent);
@@ -262,11 +262,9 @@ class BrowserContext extends BaseContext
 
         $elements = $parents[$index - 1]->findAll('css', $element);
         if (count($elements) < (int)$nth) {
-        	throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
+            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
-	}
-
-
+    }
 
     /**
      * Checks, that element with given CSS is disabled
