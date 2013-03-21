@@ -211,9 +211,9 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * @Then /^(?:|I )Should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
+     * @Then /^(?:|I )Should see (?P<nth>\d+)(?P<modifier>[+-]|) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
      */
-    public function iShouldSeeNElementInTheNthParent($nth, $element, $index, $parent)
+    public function iShouldSeeNElementInTheNthParent($nth, $element, $modifier, $index, $parent)
     {
         $page = $this->getSession()->getPage();
 
@@ -223,8 +223,22 @@ class BrowserContext extends BaseContext
         }
 
         $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) !== (int)$nth) {
-            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
+        switch ($modifier)
+        {
+            case '+':
+                if (count($elements) < (int)$nth) {
+                    throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
+                }
+                break;
+            case '-':
+                if (count($elements) > (int)$nth) {
+                    throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
+                }
+                break;
+            default:
+                if (count($elements) !== (int)$nth) {
+                    throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
+                }
         }
     }
 
