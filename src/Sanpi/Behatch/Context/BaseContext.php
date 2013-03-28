@@ -107,7 +107,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
 
     protected function assertTrue($value, $message = null)
     {
-        if ($value) {
+        if (!$value) {
             if (is_null($message)) {
                 $message = sprintf('The value is true');
             }
@@ -117,7 +117,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
 
     protected function assertFalse($value, $message = null)
     {
-        if (!$value) {
+        if ($value) {
             if (is_null($message)) {
                 $message = sprintf('The value is false');
             }
