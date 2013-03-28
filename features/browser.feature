@@ -8,7 +8,7 @@ Feature: Browser Feature
         Given I am on "/index.html"
         Then I should see "Congratulations, you've correctly set up your apache environment."
 
-  # Testing basic authentication
+    # Testing basic authentication
     Scenario: Basic authentication
         Given I am on "/browser/auth.php"
         Then the response status code should be 401
@@ -41,3 +41,9 @@ Feature: Browser Feature
     Scenario: Wait before seeing
         Given I am on "/browser/timeout.html"
         Then I wait 3 seconds until I see "timeout"
+
+    @javascript
+    Scenario: Check element visibility
+        Given I am on "/browser/index.html"
+        Then the "#visible-element" element should be visible
+        And the "#hidden-element" element should not be visible
