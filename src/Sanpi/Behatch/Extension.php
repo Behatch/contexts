@@ -101,7 +101,7 @@ class Extension implements ExtensionInterface
                 }
                 if (!is_writable($values['root'])) {
                     throw new \RuntimeException(
-                        'The screenshot directory is not writable.'
+                        'The system root directory is not writable.'
                     );
                 }
             }
