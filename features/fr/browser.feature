@@ -37,3 +37,9 @@ Fonctionnalité:
     Scénario:
         Étant donnée je vais sur "/browser/timeout.html"
         Alors I wait 3 seconds until I see "timeout"
+
+    @javascript
+    Scénario:
+        Étant donnée je suis sur "/browser/index.html"
+        Alors l'élément "#visible-element" devrait être visible
+        Et l'élément "#hidden-element" ne devrait pas être visible

@@ -85,11 +85,11 @@
             </trans-unit>
             <trans-unit id="the-element-shouls-be-visible">
                 <source><![CDATA[/^the "(?P<element>[^"]*)" element should be visible$/]]></source>
-                <target><![CDATA[/^l'élément (?P<element>[^"]*)" devrait être visible$/]]></target>
+                <target><![CDATA[/^l'élément "(?P<element>[^"]*)" devrait être visible$/]]></target>
             </trans-unit>
             <trans-unit id="the-element-should-not-be-visible">
                 <source><![CDATA[/^the "(?P<element>[^"]*)" element should not be visible$/]]></source>
-                <target><![CDATA[/^l'élément (?P<element>[^"]*)" ne devrait pas être visible$/]]></target>
+                <target><![CDATA[/^l'élément "(?P<element>[^"]*)" ne devrait pas être visible$/]]></target>
             </trans-unit>
 
             <!-- FileSystemContext.php -->
