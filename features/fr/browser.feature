@@ -29,9 +29,9 @@ Fonctionnalité:
 
     Scénario:
         Étant donné je suis sur "/browser/elements.html"
-        Alors je devrais voir 2 "div" dans le 1er "body"
-        Alors je devrais voir moins de 3 "div" dans le 1er "body"
-        Alors je devrais voir plus de 1 "div" dans le 1er "body"
+        Alors je devrais voir 3 "div" dans le 1er "body"
+        Alors je devrais voir moins de 4 "div" dans le 1er "body"
+        Alors je devrais voir plus de 2 "div" dans le 1er "body"
 
     @javascript
     Scénario:

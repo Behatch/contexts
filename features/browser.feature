@@ -33,9 +33,9 @@ Feature: Browser Feature
 
     Scenario: Elements testing
         Given I am on "/browser/elements.html"
-        Then I should see 2 "div" in the 1st "body"
-        And I should see less than 3 "div" in the 1st "body"
-        And I should see more than 1 "div" in the 1st "body"
+        Then I should see 3 "div" in the 1st "body"
+        And I should see less than 4 "div" in the 1st "body"
+        And I should see more than 2 "div" in the 1st "body"
         And the "months_selector" select box should not contain "december"
         And the "months_selector" select box should contain "january"
 
