@@ -12,6 +12,6 @@ before_script:
     - php -S localhost:8080 -t fixtures/www 2> /dev/null &
     - cp behat.yml{-dist,}
     - curl http://getcomposer.org/installer | php
-    - php composer.phar install --dev
+    - php composer.phar install --dev --prefer-source
 
 script: ./bin/behat -fprogress --tags='~@user'
