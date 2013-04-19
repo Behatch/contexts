@@ -320,7 +320,16 @@ class BrowserContext extends BaseContext
         $select = str_replace('\\"', '"', $select);
         $option = str_replace('\\"', '"', $option);
 
-        $optionText = $this->getSession()->getPage()->findField($select)->getText();
+        $obj = $this->getSession()->getPage()->findField($select);
+        if ( $obj == null)
+        {
+            throw new ElementNotFoundException(
+                $this->getSession(), 'select box', 'id|name|label|value', $select
+            );
+        }
+        $optionText = $obj->getText();
+
+
 
         $message = sprintf('The "%s" select box does not contain the "%s" option', $select, $option);
         $this->assertContains($option, $optionText, $message);
@@ -336,7 +345,14 @@ class BrowserContext extends BaseContext
         $select = str_replace('\\"', '"', $select);
         $option = str_replace('\\"', '"', $option);
 
-        $optionText = $this->getSession()->getPage()->findField($select)->getText();
+        $obj = $this->getSession()->getPage()->findField($select);
+        if ( $obj == null)
+        {
+            throw new ElementNotFoundException(
+                $this->getSession(), 'select box', 'id|name|label|value', $select
+            );
+        }
+        $optionText = $obj->getText();
 
         $message = sprintf('The "%s" select box does contain the "%s" option', $select, $option);
         $this->assertNotContains($option, $optionText, $message);
