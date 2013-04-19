@@ -36,6 +36,8 @@ Feature: Browser Feature
         Then I should see 2 "div" in the 1st "body"
         And I should see less than 3 "div" in the 1st "body"
         And I should see more than 1 "div" in the 1st "body"
+        And the "months_selector" select box should not contain "december"
+        And the "months_selector" select box should contain "january"
 
     @javascript
     Scenario: Wait before seeing
