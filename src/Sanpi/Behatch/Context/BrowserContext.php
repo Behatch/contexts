@@ -327,7 +327,7 @@ class BrowserContext extends BaseContext
                 $this->getSession(), 'select box', 'id|name|label|value', $select
             );
         }
-        $optionText = $obj->getHtml();
+        $optionText = $obj->getText();
 
 
 
@@ -352,7 +352,7 @@ class BrowserContext extends BaseContext
                 $this->getSession(), 'select box', 'id|name|label|value', $select
             );
         }
-        $optionText = $obj->getHtml();
+        $optionText = $obj->getText();
 
         $message = sprintf('The "%s" select box does contain the "%s" option', $select, $option);
         $this->assertNotContains($option, $optionText, $message);
