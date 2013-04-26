@@ -13,7 +13,7 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldBeInJson()
     {
-        if (false == $this->getJson()) {
+        if (false === $this->getJson()) {
             throw new \Exception("The response is not in JSON");
         }
     }
@@ -25,7 +25,7 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldNotBeInJson()
     {
-        if (false != $this->getJson()) {
+        if (false !== $this->getJson()) {
             throw new \Exception("The response is in JSON");
         }
     }
@@ -39,7 +39,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false == $json) {
+        if (false === $json) {
             throw new \Exception("The response is not in JSON");
         }
 
@@ -59,7 +59,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false == $json) {
+        if (false === $json) {
             throw new \Exception("The response is not in JSON");
         }
 
@@ -77,7 +77,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false == $json) {
+        if (false === $json) {
             throw new \Exception("The response is not in JSON");
         }
 
@@ -95,7 +95,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false == $json) {
+        if (false === $json) {
             throw new \Exception("The response is not in JSON");
         }
 
@@ -113,7 +113,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false == $json) {
+        if (false === $json) {
             throw new \Exception("The response is not in JSON");
         }
 
@@ -134,7 +134,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false == $json) {
+        if (false === $json) {
             throw new \Exception("The response is not in JSON");
         }
 
@@ -193,7 +193,13 @@ class JsonContext extends BaseContext
     {
         $content = $this->getSession()->getPage()->getContent();
 
-        return json_decode($content);
+        $result = json_decode($content);
+
+        if (json_last_error() === JSON_ERROR_NONE) {
+            return $result;
+        } else {
+            return false;
+        }
     }
 
     private function evaluateJson($json, $expression)

@@ -3,6 +3,10 @@ Feature: Testing JSONContext
     Scenario: Am I a JSON ?
         Given I am on "/json/imajson.json"
         Then the response should be in JSON
+        When I am on "/json/emptyarray.json"
+        Then the response should be in JSON
+        When I am on "/json/emptyobject.json"
+        Then the response should be in JSON
         When I am on "/json/imnotajson.json"
         Then the response should not be in JSON
 
