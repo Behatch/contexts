@@ -193,7 +193,13 @@ class JsonContext extends BaseContext
     {
         $content = $this->getSession()->getPage()->getContent();
 
-        return json_decode($content);
+        $result = json_decode($content);
+
+        if (json_last_error() === JSON_ERROR_NONE) {
+            return $result;
+        } else {
+            return false;
+        }
     }
 
     private function evaluateJson($json, $expression)
