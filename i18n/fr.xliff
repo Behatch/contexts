@@ -36,8 +36,8 @@
                 <target><![CDATA[/^(?:|je )sauvegarde la valeur de "(?P<field>[^"]*)" dans le paramètre "(?P<parameter>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see">
-                <source><![CDATA[/^(?:|I )wait "(?P<seconds>\d+)" seconds until I see "(?P<text>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')attends "(?P<seconds>\d+)" secondes de voir "(?P<text>[^"]*)"$/]]></target>
+                <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds until I see "(?P<text>[^"]*)"$/]]></source>
+                <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes de voir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see">
                 <source><![CDATA[/^(?:|I )wait until I see "(?P<text>[^"]*)"$/]]></source>
