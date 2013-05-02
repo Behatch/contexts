@@ -40,6 +40,16 @@ Feature: Browser Feature
         And the "months_selector" select box should contain "january"
 
     @javascript
+    Scenario: Frames testing
+        Given I am on "/browser/frames.html"
+        Then switch to iframe "index"
+        And I should see "Visible"
+
+        Then switch to main frame
+        And switch to iframe "elements"
+        Then the "months_selector" select box should contain "january"
+
+    @javascript
     Scenario: Wait before seeing
         Given I am on "/browser/timeout.html"
         Then I wait 3 seconds until I see "timeout"
