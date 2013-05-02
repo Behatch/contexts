@@ -390,4 +390,26 @@ class BrowserContext extends BaseContext
         $message = sprintf('The element "%s" is visible', $element);
         $this->assertFalse($displayedNode->isVisible(), $message);
     }
+
+
+    /**
+     * Select a frame by its name or ID.
+     * 
+     * @Then /^switch to iframe "([^"]*)"$/
+     * @Then /^switch to frame "([^"]*)"$/
+     */
+    public function switchToIFrame($name)
+    {
+        $this->getSession()->switchToIFrame($name);
+    }
+
+    /**
+     * Go back to main document frame.
+     *
+     * @Then /^switch to main frame$/
+     */
+    public function switchToMainFrame()
+    {
+        $this->getSession()->switchToIFrame();
+    }
 }
