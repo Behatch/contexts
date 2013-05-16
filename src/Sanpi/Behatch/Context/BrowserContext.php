@@ -201,6 +201,14 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * @Then /^(?:|I )wait (?P<seconds>\d+) seconds?$/
+     */
+    public function iWaitSeconds($seconds)
+    {
+        sleep($seconds);
+    }
+
+    /**
      * Checks, that the element contains specified text after timeout
      *
      * @Then /^(?:|I )wait until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/

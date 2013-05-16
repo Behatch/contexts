@@ -53,6 +53,7 @@ Feature: Browser Feature
     Scenario: Wait before seeing
         Given I am on "/browser/timeout.html"
         Then I wait 3 seconds until I see "timeout"
+        And I wait 1 second
 
     @javascript
     Scenario: Check element visibility

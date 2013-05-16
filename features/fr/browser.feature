@@ -37,6 +37,7 @@ Fonctionnalité:
     Scénario:
         Étant donnée je vais sur "/browser/timeout.html"
         Alors j'attends 3 secondes de voir "timeout"
+        Et j'attends 1 seconde
 
     @javascript
     Scénario:
