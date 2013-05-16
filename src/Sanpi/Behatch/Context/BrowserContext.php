@@ -391,10 +391,9 @@ class BrowserContext extends BaseContext
         $this->assertFalse($displayedNode->isVisible(), $message);
     }
 
-
     /**
      * Select a frame by its name or ID.
-     * 
+     *
      * @Then /^switch to iframe "([^"]*)"$/
      * @Then /^switch to frame "([^"]*)"$/
      */
