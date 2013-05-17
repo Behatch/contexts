@@ -9,7 +9,6 @@ default:
                 browser: ~
                 debug:
                     screenshot_dir: "."
-                    screen_id: ":99.0"
                 system:
                     #root should never end up with /.
                     root: "."
