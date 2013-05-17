@@ -52,19 +52,6 @@ class Extension implements ExtensionInterface
                     );
                 }
             }
-            if (isset($values['screen_id'])) {
-                exec(sprintf("xdpyinfo -display %s >/dev/null 2>&1 && echo OK || echo KO", $values['screen_id']), $output);
-                if (sizeof($output) != 1 || $output[0] != "OK") {
-                    throw new \RuntimeException(
-                        'Screen id is not available.'
-                    );
-                }
-            }
-            else {
-                throw new \Exception(
-                    'You must provide a screen id.'
-                );
-            }
         }
     }
 
@@ -136,9 +123,6 @@ class Extension implements ExtensionInterface
                                 end()->
                                 scalarNode('screenshot_dir')->
                                     defaultValue('.')->
-                                end()->
-                                scalarNode('screen_id')->
-                                    defaultValue(':0')->
                                 end()->
                             end()->
                         end()->

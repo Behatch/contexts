@@ -132,7 +132,6 @@ Configuration
 * ``browser`` - more browser related steps (like mink)
 * ``debug`` - helper steps for debuging
     * ``screenshot_dir`` - the directory where store screenshots
-    * ``screen_id`` - then xorg screen id
 * ``system`` - shell related steps
     * ``root`` - the root directory of the filesystem
 * ``json`` - JSON related steps
