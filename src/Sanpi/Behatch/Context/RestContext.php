@@ -11,7 +11,7 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request
      *
-     * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)"$/
+     * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)"$/
      */
     public function iSendARequestOn($method, $url)
     {
@@ -27,7 +27,7 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request with a some parameters
      *
-     * @Given /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)" with parameters:$/
+     * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with parameters:$/
      */
     public function iSendARequestOnWithParameters($method, $url, TableNode $datas)
     {
@@ -51,7 +51,7 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request with a body
      *
-     * @When /^I send a (GET|POST|PUT|DELETE|OPTION) request on "(?P<url>[^"]*)" with body:$/
+     * @When /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with body:$/
      */
     public function iSendARequestOnWithBody($method, $url, PyStringNode $body)
     {
