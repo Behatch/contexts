@@ -108,6 +108,7 @@ class Extension implements ExtensionInterface
         $builder->
             children()->
                 arrayNode('contexts')->
+                    isRequired()->
                     children()->
                         arrayNode('browser')->
                             children()->
