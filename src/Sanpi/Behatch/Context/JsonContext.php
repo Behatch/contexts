@@ -189,19 +189,6 @@ class JsonContext extends BaseContext
         );
     }
 
-    private function getJson()
-    {
-        $content = $this->getSession()->getPage()->getContent();
-
-        $result = json_decode($content);
-
-        if (json_last_error() === JSON_ERROR_NONE) {
-            return $result;
-        } else {
-            return false;
-        }
-    }
-
     private function evaluateJson($json, $expression)
     {
         if ($this->getParameter('json', 'evaluation_mode') == 'javascript') {
@@ -234,6 +221,20 @@ class JsonContext extends BaseContext
                 $msg .= sprintf("  - [%s] %s\n", $error['property'], $error['message']);
             }
             throw new \Exception($msg);
+        }
+    }
+
+    private function getJson()
+    {
+        $content = $this->getSession()->getPage()->getContent();
+
+        $result = json_decode($content);
+
+        if (json_last_error() === JSON_ERROR_NONE) {
+            return $result;
+        }
+        else {
+            return false;
         }
     }
 }
