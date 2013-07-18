@@ -13,9 +13,7 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldBeInJson()
     {
-        if (false === $this->getJson()) {
-            throw new \Exception("The response is not in JSON");
-        }
+        $this->getJson();
     }
 
     /**
@@ -25,8 +23,11 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldNotBeInJson()
     {
-        if (false !== $this->getJson()) {
+        try {
+            $this->getJson();
             throw new \Exception("The response is in JSON");
+        }
+        catch (\Exception $e) {
         }
     }
 
@@ -38,10 +39,6 @@ class JsonContext extends BaseContext
     public function theJsonNodeShouldBeEqualTo($node, $text)
     {
         $json = $this->getJson();
-
-        if (false === $json) {
-            throw new \Exception("The response is not in JSON");
-        }
 
         $actual = $this->evaluateJson($json, $node);
 
@@ -59,10 +56,6 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false === $json) {
-            throw new \Exception("The response is not in JSON");
-        }
-
         $actual = $this->evaluateJson($json, $node);
 
         $this->assertSame((integer)$nth, sizeof($actual));
@@ -76,10 +69,6 @@ class JsonContext extends BaseContext
     public function theJsonNodeShouldContain($node, $text)
     {
         $json = $this->getJson();
-
-        if (false === $json) {
-            throw new \Exception("The response is not in JSON");
-        }
 
         $actual = $this->evaluateJson($json, $node);
 
@@ -95,10 +84,6 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        if (false === $json) {
-            throw new \Exception("The response is not in JSON");
-        }
-
         $actual = $this->evaluateJson($json, $node);
 
         $this->assertNotContains($text, (string)$actual);
@@ -112,10 +97,6 @@ class JsonContext extends BaseContext
     public function theJsonNodeShouldExists($node)
     {
         $json = $this->getJson();
-
-        if (false === $json) {
-            throw new \Exception("The response is not in JSON");
-        }
 
         try {
             $this->evaluateJson($json, $node);
@@ -133,10 +114,6 @@ class JsonContext extends BaseContext
     public function theJsonNodeShouldNotExists($node)
     {
         $json = $this->getJson();
-
-        if (false === $json) {
-            throw new \Exception("The response is not in JSON");
-        }
 
         $e = null;
         try {
@@ -230,11 +207,10 @@ class JsonContext extends BaseContext
 
         $result = json_decode($content);
 
-        if (json_last_error() === JSON_ERROR_NONE) {
-            return $result;
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("The response is not in JSON");
         }
-        else {
-            return false;
-        }
+
+        return $result;
     }
 }
