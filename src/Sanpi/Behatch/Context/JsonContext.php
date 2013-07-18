@@ -157,7 +157,7 @@ class JsonContext extends BaseContext
     public function theJsonShouldBeEqualTo(PyStringNode $content)
     {
         $actual = $this->getJson();
-        $expected = json_decode($content);
+        $expected = $this->decode($content);
 
         $this->assertSame(
             json_encode($expected),
@@ -191,7 +191,7 @@ class JsonContext extends BaseContext
     private function validate($schema)
     {
         $validator = new \JsonSchema\Validator();
-        $validator->check($this->getJson(), json_decode($schema));
+        $validator->check($this->getJson(), $this->decode($schema));
         if (!$validator->isValid()) {
             $msg = "JSON does not validate. Violations:\n";
             foreach ($validator->getErrors() as $error) {
@@ -205,6 +205,11 @@ class JsonContext extends BaseContext
     {
         $content = $this->getSession()->getPage()->getContent();
 
+        return $this->decode($content);
+    }
+
+    private function decode($content)
+    {
         $result = json_decode($content);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
