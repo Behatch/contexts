@@ -190,8 +190,15 @@ class JsonContext extends BaseContext
 
     private function validate($schema)
     {
+        try {
+            $jsonSchema = $this->decode($schema);
+        }
+        catch (\Exception $e) {
+            throw new \Exception('The schema is not a valid JSON');
+        }
+
         $validator = new \JsonSchema\Validator();
-        $validator->check($this->getJson(), $this->decode($schema));
+        $validator->check($this->getJson(), $jsonSchema);
         if (!$validator->isValid()) {
             $msg = "JSON does not validate. Violations:\n";
             foreach ($validator->getErrors() as $error) {
