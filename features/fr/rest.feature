@@ -44,3 +44,10 @@ Fonctionnalité:
         Étant donné j'ajoute l'entête "xxx" égale à "yyy"
         Quand j'envoie une requête GET sur "/rest/index.php"
         Alors je devrais voir "HTTP_XXX : yyy"
+
+    Scénario: Nom d'entête insenible à la casse
+        Comme décrit dans la rfc2616 §4.2
+        https://tools.ietf.org/html/rfc2616#section-4.2
+
+        Quand j'envoie une requête GET sur "/rest/index.php"
+        Alors l'entête "Content-Type" devrait contenir "text"
