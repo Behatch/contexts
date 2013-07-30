@@ -162,7 +162,7 @@ class JsonContext extends BaseContext
         $this->assertSame(
             json_encode($expected),
             json_encode($actual),
-            'The json are different'
+            'The json is equal to ' . json_encode($actual)
         );
     }
 
