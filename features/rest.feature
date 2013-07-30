@@ -43,3 +43,10 @@ Feature: Testing RESTContext
         Given I add "xxx" header equal to "yyy"
         When I send a GET request on "/rest/index.php"
         Then I should see "HTTP_XXX : yyy"
+
+    Scenario: Case-insensitive header name
+        Like describe in the rfc2614 §4.2
+        https://tools.ietf.org/html/rfc2616#section-4.2
+
+        When I send a GET request on "rest/index.php"
+        Then the header "content-type" should be contains "text"
