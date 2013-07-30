@@ -85,11 +85,6 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeEqualTo($name, $value)
     {
-        $header = $this->getHttpHeaders();
-
-        $this->assertArrayHasKey($name, $header,
-            sprintf('The header "%s" doesn\'t exist', $name)
-        );
         $this->assertEquals($value, $this->getHttpHeader($name),
             sprintf('The header "%s" is not equal to "%s"', $name, $value)
         );
@@ -102,11 +97,6 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeContains($name, $value)
     {
-        $header = $this->getHttpHeaders();
-
-        $this->assertArrayHasKey($name, $header,
-            sprintf('The header "%s" doesn\'t exist', $name)
-        );
         $this->assertContains($value, $this->getHttpHeader($name),
             sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $value)
         );
@@ -119,11 +109,6 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldNotContain($name, $value)
     {
-        $header = $this->getHttpHeaders();
-
-        $this->assertArrayHasKey($name, $header,
-            sprintf('The header "%s" doesn\'t exist', $name)
-        );
         $this->assertNotContains($value, $this->getHttpHeader($name),
             sprintf('The header "%s" contains "%s"', $name, $value)
         );
@@ -136,11 +121,13 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldNotExist($name)
     {
-        $header = $this->getHttpHeaders();
-
-        $this->assertArrayNotHasKey($name, $header,
-            sprintf('The header "%s" exist', $name)
-        );
+        try {
+            $this->getHttpHeader($name);
+            $message = sprintf('The header "%s" exist', $name);
+            throw new ExpectationException($message, $this->getSession());
+        }
+        catch (\OutOfBoundsException $e) {
+        }
     }
 
    /**
@@ -150,19 +137,8 @@ class RestContext extends BaseContext
      */
     public function theResponseShouldExpireInTheFuture()
     {
-        $header = $this->getHttpHeaders();
-
-        $name = 'Date';
-        $this->assertArrayHasKey($name, $header,
-            sprintf('The header "%s" doesn\'t exist', $name)
-        );
-        $date = new \DateTime($this->getHttpHeader($name));
-
-        $name = 'Expires';
-        $this->assertArrayHasKey($name, $header,
-            sprintf('The header "%s" doesn\'t exist', $name)
-        );
-        $expires = new \DateTime($this->getHttpHeader($name));
+        $date = new \DateTime($this->getHttpHeader('Date'));
+        $expires = new \DateTime($this->getHttpHeader('Expires'));
 
         $this->assertSame(1, $expires->diff($date)->invert,
             sprintf(sprintf('The response doesn\'t expire in the future (%s)', $expires->format(DATE_ATOM)))
@@ -212,11 +188,18 @@ class RestContext extends BaseContext
     {
         $header = $this->getHttpHeaders();
 
-        if (is_array($header[$name])) {
-            $value = $header[$name][0];
+        if (isset($header[$name])) {
+            if (is_array($header[$name])) {
+                $value = $header[$name][0];
+            }
+            else {
+                $value = $header[$name];
+            }
         }
         else {
-            $value = $header[$name];
+            throw new \OutOfBoundsException(
+                sprintf('The header "%s" doesn\'t exist', $name)
+            );
         }
         return $value;
     }
