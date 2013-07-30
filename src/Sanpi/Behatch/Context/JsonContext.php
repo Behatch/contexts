@@ -157,7 +157,13 @@ class JsonContext extends BaseContext
     public function theJsonShouldBeEqualTo(PyStringNode $content)
     {
         $actual = $this->getJson();
-        $expected = $this->decode($content);
+
+        try {
+            $expected = $this->decode($content);
+        }
+        catch (\Exception $e) {
+            throw new \Exception('The expected JSON is not a valid');
+        }
 
         $this->assertSame(
             json_encode($expected),
