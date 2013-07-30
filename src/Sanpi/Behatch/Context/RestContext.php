@@ -85,7 +85,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeEqualTo($name, $value)
     {
-        $header = $this->getSession()->getResponseHeaders();
+        $header = $this->getHttpHeaders();
 
         $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
@@ -102,7 +102,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeContains($name, $value)
     {
-        $header = $this->getSession()->getResponseHeaders();
+        $header = $this->getHttpHeaders();
 
         $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
@@ -119,7 +119,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldNotContain($name, $value)
     {
-        $header = $this->getSession()->getResponseHeaders();
+        $header = $this->getHttpHeaders();
 
         $this->assertArrayHasKey($name, $header,
             sprintf('The header "%s" doesn\'t exist', $name)
@@ -136,7 +136,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldNotExist($name)
     {
-        $header = $this->getSession()->getResponseHeaders();
+        $header = $this->getHttpHeaders();
 
         $this->assertArrayNotHasKey($name, $header,
             sprintf('The header "%s" exist', $name)
@@ -150,7 +150,7 @@ class RestContext extends BaseContext
      */
     public function theResponseShouldExpireInTheFuture()
     {
-        $header = $this->getSession()->getResponseHeaders();
+        $header = $this->getHttpHeaders();
 
         $name = 'Date';
         $this->assertArrayHasKey($name, $header,
@@ -200,7 +200,7 @@ class RestContext extends BaseContext
     public function printLastResponseHeaders()
     {
         $text = '';
-        $headers = $this->getSession()->getResponseHeaders();
+        $headers = $this->getHttpHeaders();
 
         foreach ($headers as $name => $value) {
             $text .= $name . ': '. $this->getHttpHeader($name) . "\n";
@@ -210,7 +210,8 @@ class RestContext extends BaseContext
 
     private function getHttpHeader($name)
     {
-        $header = $this->getSession()->getResponseHeaders();
+        $header = $this->getHttpHeaders();
+
         if (is_array($header[$name])) {
             $value = $header[$name][0];
         }
@@ -218,5 +219,10 @@ class RestContext extends BaseContext
             $value = $header[$name];
         }
         return $value;
+    }
+
+    private function getHttpHeaders()
+    {
+        return $this->getSession()->getResponseHeaders();
     }
 }
