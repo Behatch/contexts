@@ -9,7 +9,6 @@ use Behat\Mink\Exception\ResponseTextException;
 
 class BrowserContext extends BaseContext
 {
-    private $timeout = 10;
     private $dateFormat = 'dmYHi';
 
     /**
@@ -157,7 +156,8 @@ class BrowserContext extends BaseContext
      */
     public function iWaitUntilISee($text)
     {
-        $this->iWaitSecondsUntilISee($this->timeout, $text);
+        $timeout = $this->getParameter('browser', 'timeout');
+        $this->iWaitSecondsUntilISee($timeout, $text);
     }
 
     /**
@@ -215,7 +215,8 @@ class BrowserContext extends BaseContext
      */
     public function iWaitUntilISeeInTheElement($text, $element)
     {
-        $this->iWaitSecondsUntilISeeInTheElement($this->timeout, $text, $element);
+        $timeout = $this->getParameter('browser', 'timeout');
+        $this->iWaitSecondsUntilISeeInTheElement($timeout, $text, $element);
     }
 
     /**
