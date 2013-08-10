@@ -115,6 +115,9 @@ class Extension implements ExtensionInterface
                                 scalarNode('enable')->
                                     defaultTrue()->
                                 end()->
+                                scalarNode('timeout')->
+                                    defaultValue('10')->
+                                end()->
                             end()->
                         end()->
                         arrayNode('debug')->
