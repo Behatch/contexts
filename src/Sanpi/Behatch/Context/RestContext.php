@@ -85,8 +85,9 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeEqualTo($name, $value)
     {
-        $this->assertEquals($value, $this->getHttpHeader($name),
-            sprintf('The header "%s" is not equal to "%s"', $name, $value)
+        $actual = $this->getHttpHeader($name);
+        $this->assertEquals($value, $actual,
+            sprintf('The header "%s" is equal to "%s"', $name, $actual)
         );
     }
 
