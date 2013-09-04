@@ -7,7 +7,9 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 setTimeout(function() {
-                    $('body').text('timeout');
+                    $('body')
+                        .text('timeout')
+                        .append('<iframe id="iframe_google" src="http://www.google.de"></iframe>');
                 }, 2000);
             });
         </script>

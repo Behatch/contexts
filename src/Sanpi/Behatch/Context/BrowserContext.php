@@ -220,6 +220,48 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should contains specified element after timeout
+     *
+     * @Then /^(?:|I )wait for "(?P<element>[^"]*)" element$/
+     */
+    public function iWaitForElement($element)
+    {
+        $timeout = $this->getParameter('browser', 'timeout');
+        $this->iWaitSecondsForElement($timeout, $element);
+    }
+
+    /**
+     * Wait for a element
+     *
+     * @Then /^(?:|I )wait (?P<seconds>\d+) seconds? for "(?P<element>[^"]*)" element$/
+     */
+    public function iWaitSecondsForElement($seconds, $element)
+    {
+        $startTime = time();
+
+        do {
+            $now = time();
+            $e = null;
+
+            try {
+                $node = $this->getSession()->getPage()->findAll('css', $element);
+                $this->assertCount(1, $node);
+            }
+            catch (ExpectationException $e) {
+                if ($now - $startTime >= $seconds) {
+                    $message = sprintf('The element "%s" was not found after a %s seconds timeout', $element, $seconds);
+                    throw new ResponseTextException($message, $this->getSession(), $e);
+                }
+            }
+
+            if ($e == null) {
+                break;
+            }
+
+        } while ($now - $startTime < $seconds);
+    }
+
+    /**
      * @Then /^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
      */
     public function iShouldSeeNElementInTheNthParent($nth, $element, $index, $parent)
