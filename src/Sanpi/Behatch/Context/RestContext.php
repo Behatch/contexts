@@ -5,6 +5,7 @@ namespace Sanpi\Behatch\Context;
 use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
+use Behat\Mink\Exception\ExpectationException;
 
 class RestContext extends BaseContext
 {
