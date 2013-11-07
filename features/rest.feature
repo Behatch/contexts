@@ -2,7 +2,6 @@ Feature: Testing RESTContext
 
     Scenario: Testing headers
         When I send a GET request on "rest/index.php"
-        Then print last response headers
         And the header "Content-Type" should be contains "text"
         And the header "Content-Type" should be equal to "text/html"
         And the header "Content-Type" should not contain "text/json"
@@ -50,3 +49,11 @@ Feature: Testing RESTContext
 
         When I send a GET request on "rest/index.php"
         Then the header "content-type" should be contains "text"
+
+    Scenario: Debug
+        Given I add "xxx" header equal to "yyy"
+        When I send a POST request on "/rest/index.php" with parameters:
+            | key | value |
+            | foo | bar   |
+        Then print last response headers
+        And print the corresponding curl command

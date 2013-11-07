@@ -3,7 +3,6 @@ Fonctionnalité:
 
     Scénario:
         Quand j'envoie une requête GET sur "rest/index.php"
-        Alors imprimer les entêtes de la dernière réponse
         Et l'entête "Content-Type" devrait contenir "text"
         Et l'entête "Content-Type" devrait être égal à "text/html"
         Et l'entête "Content-Type" ne devrait pas contenir "text/json"
@@ -51,3 +50,11 @@ Fonctionnalité:
 
         Quand j'envoie une requête GET sur "/rest/index.php"
         Alors l'entête "Content-Type" devrait contenir "text"
+
+    Scénario: Debug
+        Étant donné j'ajoute l'entête "xxx" égale à "yyy"
+        Quand j'envoie une requête POST sur "/rest/index.php" avec les paramètres :
+          | key | value |
+          | foo | bar   |
+        Alors imprimer les entêtes de la dernière réponse
+        Et imprimer la commande curl correspondante

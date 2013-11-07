@@ -205,6 +205,10 @@
                 <source><![CDATA[/^print last response headers$/]]></source>
                 <target><![CDATA[/^imprimer les entêtes de la dernière réponse$/]]></target>
             </trans-unit>
+            <trans-unit id="print-the-corresponding-curl-command">
+                <source><![CDATA[/^print the corresponding curl command$/]]></source>
+                <target><![CDATA[/^imprimer la commande curl correspondante$/]]></target>
+            </trans-unit>
 
             <!-- TableContext.php -->
             <trans-unit id="the-columns-schema-of-the-table-should-match">

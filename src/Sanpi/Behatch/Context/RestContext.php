@@ -186,6 +186,35 @@ class RestContext extends BaseContext
         $this->printDebug($text);
     }
 
+
+    /**
+     * @Then /^print the corresponding curl command$/
+     */
+    public function printTheCorrespondingCurlCommand()
+    {
+        $request = $this->getSession()->getDriver()->getClient()->getRequest();
+
+        $method = $request->getMethod();
+        $url = $request->getUri();
+
+        $headers = '';
+        foreach ($request->getServer() as $name => $value) {
+            if (substr($name, 0, 5) !== 'HTTP_' && $name !== 'HTTPS') {
+                $headers .= " -H '$name: $value'";
+            }
+        }
+
+        $data = '';
+        $params = $request->getParameters();
+        if (!empty($params)) {
+            $data = ' --data ' . http_build_query($params);
+        }
+
+        $command = "curl -X $method$data$headers $url";
+
+        $this->printDebug($command);
+    }
+
     private function getHttpHeader($name)
     {
         $name = strtolower($name);
