@@ -207,10 +207,11 @@ class RestContext extends BaseContext
         $data = '';
         $params = $request->getParameters();
         if (!empty($params)) {
-            $data = ' --data ' . http_build_query($params);
+            $query = http_build_query($params);
+            $data = " --data '$query'" ;
         }
 
-        $command = "curl -X $method$data$headers $url";
+        $command = "curl -X $method$data$headers '$url'";
 
         $this->printDebug($command);
     }
