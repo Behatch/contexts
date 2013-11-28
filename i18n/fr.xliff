@@ -189,7 +189,7 @@
                 <source><![CDATA[/^the header "(?P<name>[^"]*)" should not contain "(?P<value>[^"]*)"$/]]></source>
                 <target><![CDATA[/^l'entête "(?P<name>[^"]*)" ne devrait pas contenir "(?P<value>[^"]*)"$/]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-not-exist>
+            <trans-unit id="the-header-should-not-exist">
                 <source><![CDATA[/^the header "(?P<name>[^"]*)" should not exist$/]]></source>
                 <target><![CDATA[/^l'entête "(?P<name>[^"]*)" ne devrait pas exister$/]]></target>
             </trans-unit>

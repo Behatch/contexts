@@ -90,11 +90,11 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * Checks, that given JSON node exists
+     * Checks, that given JSON node exist
      *
      * @Given /^the JSON node "(?P<node>[^"]*)" should exist$/
      */
-    public function theJsonNodeShouldExists($node)
+    public function theJsonNodeShouldExist($node)
     {
         $json = $this->getJson();
 
@@ -111,7 +111,7 @@ class JsonContext extends BaseContext
      *
      * @Given /^the JSON node "(?P<node>[^"]*)" should not exist$/
      */
-    public function theJsonNodeShouldNotExists($node)
+    public function theJsonNodeShouldNotExist($node)
     {
         $json = $this->getJson();
 
