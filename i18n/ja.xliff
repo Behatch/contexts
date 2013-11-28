@@ -134,7 +134,7 @@
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>[^"]*)"$/]]></source>
                 <target><![CDATA[/^JSONのノード"(?P<node>[^"]*)"が"(?P<text>[^"]*)"を含まないこと$/u]]></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-exists">
+            <trans-unit id="the-json-node-should-exist">
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should exist$/]]></source>
                 <target><![CDATA[/^JSONにノード"(?P<node>[^"]*)"が存在すること$/u]]></target>
             </trans-unit>
@@ -188,7 +188,7 @@
                 <source><![CDATA[/^the header "(?P<name>[^"]*)" should not contain "(?P<value>[^"]*)"$/]]></source>
                 <target><![CDATA[/^"(?P<name>[^"]*)"ヘッダが"(?P<value>[^"]*)"を含まないこと$/u]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-not-exists">
+            <trans-unit id="the-header-should-not-exist">
                 <source><![CDATA[/^the header "(?P<name>[^"]*)" should not exist$/]]></source>
                 <target><![CDATA[/^"(?P<name>[^"]*)"ヘッダが存在しないこと$/u]]></target>
             </trans-unit>
