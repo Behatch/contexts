@@ -92,7 +92,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node exists
      *
-     * @Given /^the JSON node "(?P<node>[^"]*)" should exists$/
+     * @Given /^the JSON node "(?P<node>[^"]*)" should exist$/
      */
     public function theJsonNodeShouldExists($node)
     {
@@ -102,14 +102,14 @@ class JsonContext extends BaseContext
             $this->evaluateJson($json, $node);
         }
         catch (\Exception $e) {
-            throw new \Exception(sprintf("The node '%s' does not exists.", $node));
+            throw new \Exception(sprintf("The node '%s' does not exist.", $node));
         }
     }
 
     /**
      * Checks, that given JSON node does not exist
      *
-     * @Given /^the JSON node "(?P<node>[^"]*)" should not exists$/
+     * @Given /^the JSON node "(?P<node>[^"]*)" should not exist$/
      */
     public function theJsonNodeShouldNotExists($node)
     {

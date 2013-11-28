@@ -17,7 +17,7 @@ Feature: Testing JSONContext
     Scenario: Checking JSON evaluation
         Given I am on "/json/imajson.json"
 
-        Then the JSON node "foo" should exists
+        Then the JSON node "foo" should exist
         And the JSON node "foo" should contain "bar"
         And the JSON node "foo" should not contain "something else"
 
@@ -28,7 +28,7 @@ Feature: Testing JSONContext
         And the JSON node "numbers[3].so[0]" should be equal to "very"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
 
-        And the JSON node "bar" should not exists
+        And the JSON node "bar" should not exist
 
     Scenario: Json validation with schema
         Given I am on "/json/imajson.json"
