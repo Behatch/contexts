@@ -25,9 +25,12 @@ class JsonContext extends BaseContext
     {
         try {
             $this->getJson();
-            throw new \Exception("The response is in JSON");
         }
         catch (\Exception $e) {
+        }
+
+        if (!isset($e)) {
+            throw new \Exception("The response is in JSON");
         }
     }
 
