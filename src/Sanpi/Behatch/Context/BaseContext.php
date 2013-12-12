@@ -109,7 +109,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
     {
         if (!$value) {
             if (is_null($message)) {
-                $message = sprintf('The value is true');
+                $message = sprintf('The value is false');
             }
             throw new ExpectationException($message, $this->getSession());
         }
@@ -119,7 +119,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
     {
         if ($value) {
             if (is_null($message)) {
-                $message = sprintf('The value is false');
+                $message = sprintf('The value is true');
             }
             throw new ExpectationException($message, $this->getSession());
         }
