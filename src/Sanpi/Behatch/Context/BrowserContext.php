@@ -373,8 +373,7 @@ class BrowserContext extends BaseContext
         $option = str_replace('\\"', '"', $option);
 
         $obj = $this->getSession()->getPage()->findField($select);
-        if ( $obj == null)
-        {
+        if ($obj === null) {
             throw new ElementNotFoundException(
                 $this->getSession(), 'select box', 'id|name|label|value', $select
             );
@@ -398,8 +397,7 @@ class BrowserContext extends BaseContext
         $option = str_replace('\\"', '"', $option);
 
         $obj = $this->getSession()->getPage()->findField($select);
-        if ( $obj == null)
-        {
+        if ($obj === null) {
             throw new ElementNotFoundException(
                 $this->getSession(), 'select box', 'id|name|label|value', $select
             );
