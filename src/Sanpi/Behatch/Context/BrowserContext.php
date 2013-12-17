@@ -6,6 +6,7 @@ use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Exception\ResponseTextException;
+use Behat\Mink\Exception\ElementNotFoundException;
 
 class BrowserContext extends BaseContext
 {
