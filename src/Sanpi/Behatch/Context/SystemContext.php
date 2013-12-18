@@ -3,9 +3,12 @@
 namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\Step;
+use Behat\Gherkin\Node\PyStringNode;
 
 class SystemContext extends BaseContext
 {
+    private $createdFiles = [];
+
     /**
      * Uploads a file using the specified input field
      *
@@ -45,5 +48,29 @@ class SystemContext extends BaseContext
         $root = $this->getParameter('system', 'root');
         $cmd = $root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
+    }
+
+    /**
+     * @Given /^(?:|I )create the file "(?P<filename>[^"]*)" contening:$/
+     */
+    public function iCreateTheFileContening($filename, PyStringNode $string)
+    {
+        if (!is_file($filename)) {
+            file_put_contents($filename, $string);
+            $this->createdFiles[] = $filename;
+        }
+        else {
+            throw new \RuntimeException("'$filename' already exists.");
+        }
+    }
+
+    /**
+     * @AfterScenario
+     */
+    public function after($event)
+    {
+        foreach ($this->createdFiles as $filename) {
+            unlink($filename);
+        }
     }
 }

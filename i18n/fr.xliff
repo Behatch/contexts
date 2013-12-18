@@ -109,6 +109,10 @@
                 <source><![CDATA[/^(?:|I )execute "(?P<command>[^"]*)" from project root$/]]></source>
                 <target><![CDATA[/^(?:|j')exécute "(?P<command>[^"]*)" depuis la racine du projet$/]]></target>
             </trans-unit>
+            <trans-unit id="i-create-the-file-contening">
+                <source><![CDATA[/^(?:|I )create the file "(?P<filename>[^"]*)" contening:$/]]></source>
+                <target><![CDATA[/^(?:|je )crée le fichier "(?P<filename>[^"]*)" contenant :$/]]></target>
+            </trans-unit>
 
             <!-- JsonContext.php -->
             <trans-unit id="the-response-should-be-in-json">
