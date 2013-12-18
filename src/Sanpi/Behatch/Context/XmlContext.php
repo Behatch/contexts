@@ -56,7 +56,7 @@ class XmlContext extends BaseContext
         $this->schemaValidate($dom, $xsd->getRaw());
     }
 
-    private function schemaValidate($dom, $xsd)
+    private function schemaValidate(\DomDocument $dom, $xsd)
     {
         try {
             $dom->schemaValidateSource($xsd);
@@ -93,7 +93,7 @@ class XmlContext extends BaseContext
         $this->relaxNGValidate($dom, $ng->getRaw());
     }
 
-    private function relaxNGValidate($dom, $ng)
+    private function relaxNGValidate(\DomDocument $dom, $ng)
     {
         try {
             $dom->relaxNGValidateSource($ng);
