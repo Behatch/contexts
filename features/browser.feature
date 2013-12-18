@@ -54,8 +54,8 @@ Feature: Browser Feature
         Given I am on "/browser/timeout.html"
         Then I wait 3 seconds until I see "timeout"
         And I wait 1 second
-        And I wait for "#iframe_google" element
-        And I wait 5 seconds for "#iframe_google" element
+        And I wait for "#iframe" element
+        And I wait 5 seconds for "#iframe" element
 
     @javascript
     Scenario: Check element visibility

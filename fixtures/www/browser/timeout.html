@@ -1,17 +1,17 @@
 <html>
     <head>
         <title>Timeout test</title>
-        <script type="text/javascript" src="../jquery.js"></script>
     </head>
     <body>
         <script type="text/javascript">
-            $(document).ready(function() {
-                setTimeout(function() {
-                    $('body')
-                        .text('timeout')
-                        .append('<iframe id="iframe_google" src="http://www.google.de"></iframe>');
-                }, 2000);
-            });
+            setTimeout(function() {
+                var body = document.getElementsByTagName('body')[0];
+                body.innerHtml = 'timeout';
+                body.innerHTML = 'timeout';
+
+                var iframe = document.createElement('iframe');
+                iframe.id = 'iframe';
+                body.appendChild(iframe);
+            }, 2000);
         </script>
-    </body>
 </html>
