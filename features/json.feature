@@ -18,6 +18,7 @@ Feature: Testing JSONContext
         Given I am on "/json/imajson.json"
 
         Then the JSON node "foo" should exist
+        And the JSON node "root.foo" should exist
         And the JSON node "foo" should contain "bar"
         And the JSON node "foo" should not contain "something else"
 

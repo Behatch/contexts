@@ -186,21 +186,16 @@ class JsonContext extends BaseContext
 
     private function evaluateJson($json, $expression)
     {
-        if ($this->getParameter('json', 'evaluation_mode') == 'javascript') {
+        if ($this->getParameter('json', 'evaluation_mode') === 'javascript') {
             $expression = str_replace('.', '->', $expression);
         }
 
         try {
-            $result = null;
-            if (preg_match('/^(?:root)(.*)/', $expression, $r)) {
-                eval(sprintf('$result = $json%s;', $r[1]));
-            }
-            else {
-                eval(sprintf('$result = $json->%s;', $expression));
-            }
+            $expression =  preg_replace('/^root->/', '', $expression);
+            eval(sprintf('$result = $json->%s;', $expression));
         }
         catch (\Exception $e) {
-            throw new \Exception(sprintf("Failed to evaluate expression '%s'.", $expression));
+            throw new \Exception("Failed to evaluate expression '$expression'.");
         }
 
         return $result;
