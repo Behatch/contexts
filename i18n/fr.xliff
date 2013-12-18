@@ -51,6 +51,14 @@
                 <source><![CDATA[/^(?:|I )wait until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/]]></source>
                 <target><![CDATA[/^(?:|j')attends de voir "(?P<text>[^"]*)" dans l'élément "(?P<element>[^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="i-wait-for-element">
+                <source><![CDATA[/^(?:|I )wait for "(?P<element>[^"]*)" element$/]]></source>
+                <target><![CDATA[/^(?:|j')attends l'élément "(?P<element>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="i-wait-seconds-for-element">
+                <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds? for "(?P<element>[^"]*)" element$/]]></source>
+                <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes? l'élément "(?P<element>[^"]*)"$/]]></target>
+            </trans-unit>
             <trans-unit id="i-wait-second">
                 <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds?$/]]></source>
                     <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes?$/]]></target>
@@ -94,6 +102,18 @@
             <trans-unit id="the-element-should-not-be-visible">
                 <source><![CDATA[/^the "(?P<element>[^"]*)" element should not be visible$/]]></source>
                 <target><![CDATA[/^l'élément "(?P<element>[^"]*)" ne devrait pas être visible$/]]></target>
+            </trans-unit>
+            <trans-unit id="i-switch-to-iframe">
+                <source><![CDATA[/^(?:|I )switch to iframe "(?P<name>[^"]*)"$/]]></source>
+                <target><![CDATA[/^(?:|je )bascule vers l'iframe "(?P<name>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="i-switch-to-frame">
+                <source><![CDATA[/^(?:|I )switch to frame "(?P<name>[^"]*)"$/]]></source>
+                <target><![CDATA[/^(?:|je )bascule vers le cadre "(?P<name>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="i-switch-to-main-frame">
+                <source><![CDATA[/^(?:|I )switch to main frame$/]]></source>
+                <target><![CDATA[/^(?:|je )bascule vers le cadre principal$/]]></target>
             </trans-unit>
 
             <!-- FileSystemContext.php -->

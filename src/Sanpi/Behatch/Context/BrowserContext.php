@@ -444,8 +444,8 @@ class BrowserContext extends BaseContext
     /**
      * Select a frame by its name or ID.
      *
-     * @Then /^switch to iframe "([^"]*)"$/
-     * @Then /^switch to frame "([^"]*)"$/
+     * @When /^(?:|I )switch to iframe "(?P<name>[^"]*)"$/
+     * @When /^(?:|I )switch to frame "(?P<name>[^"]*)"$/
      */
     public function switchToIFrame($name)
     {
@@ -455,7 +455,7 @@ class BrowserContext extends BaseContext
     /**
      * Go back to main document frame.
      *
-     * @Then /^switch to main frame$/
+     * @When /^(?:|I )switch to main frame$/
      */
     public function switchToMainFrame()
     {

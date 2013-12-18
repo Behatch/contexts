@@ -8,7 +8,6 @@ Feature: Browser Feature
         Given I am on "/index.html"
         Then I should see "Congratulations, you've correctly set up your apache environment."
 
-    # Testing basic authentication
     Scenario: Basic authentication
         Given I am on "/browser/auth.php"
         Then the response status code should be 401
@@ -42,11 +41,12 @@ Feature: Browser Feature
     @javascript
     Scenario: Frames testing
         Given I am on "/browser/frames.html"
-        Then switch to iframe "index"
-        And I should see "Visible"
+        When I switch to iframe "index"
+        Then I should see "Visible"
 
-        Then switch to main frame
-        And switch to iframe "elements"
+        When switch to main frame
+
+        When switch to iframe "elements"
         Then the "months_selector" select box should contain "january"
 
     @javascript

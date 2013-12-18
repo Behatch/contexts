@@ -30,8 +30,21 @@ Fonctionnalité:
     Scénario:
         Étant donné je suis sur "/browser/elements.html"
         Alors je devrais voir 3 "div" dans le 1er "body"
-        Alors je devrais voir moins de 4 "div" dans le 1er "body"
-        Alors je devrais voir plus de 2 "div" dans le 1er "body"
+        Et je devrais voir moins de 4 "div" dans le 1er "body"
+        Et je devrais voir plus de 2 "div" dans le 1er "body"
+        Et la liste de sélection "months_selector" ne devrait pas contenir "december"
+        Et la liste de sélection "months_selector" devrait contenir "january"
+
+    @javascript
+    Scénario:
+        Étant donné je suis sur "/browser/frames.html"
+        Quand je bascule vers l'iframe "index"
+        Alors je devrais voir "Visible"
+
+        Quand je bascule vers le cadre principal
+
+        Quand je bascule vers le cadre "elements"
+        Alors la liste de sélection "months_selector" devrait contenir "january"
 
     @javascript
     Scénario:
