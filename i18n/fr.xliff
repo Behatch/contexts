@@ -113,6 +113,10 @@
                 <source><![CDATA[/^(?:|I )create the file "(?P<filename>[^"]*)" contening:$/]]></source>
                 <target><![CDATA[/^(?:|je )crée le fichier "(?P<filename>[^"]*)" contenant :$/]]></target>
             </trans-unit>
+            <trans-unit id="print-the-content-of-file">
+                <source><![CDATA[/^print the content of "(?P<filename>[^"]*)" file$/]]></source>
+                <target><![CDATA[/^imprimer le contenu du fichier "(?P<filename>[^"]*)"$/]]></target>
+            </trans-unit>
 
             <!-- JsonContext.php -->
             <trans-unit id="the-response-should-be-in-json">

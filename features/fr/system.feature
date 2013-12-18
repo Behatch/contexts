@@ -12,3 +12,4 @@ Fonctionnalité:
         """
         A new file
         """
+        Alors imprimer le contenu du fichier "fixtures/test"

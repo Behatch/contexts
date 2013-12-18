@@ -65,6 +65,20 @@ class SystemContext extends BaseContext
     }
 
     /**
+     * @Then /^print the content of "(?P<filename>[^"]*)" file$/
+     */
+    public function printTheContentOfFile($filename)
+    {
+        if (is_file($filename)) {
+            $content = file_get_contents($filename);
+            $this->printDebug($content);
+        }
+        else {
+            throw new \RuntimeException("'$filename' doesn't exists.");
+        }
+    }
+
+    /**
      * @AfterScenario
      */
     public function after($event)

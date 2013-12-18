@@ -11,3 +11,4 @@ Feature: System feature
         """
         A new file
         """
+        Then print the content of "fixtures/test" file
