@@ -86,3 +86,4 @@ Fonctionnalité:
             ]
         }
         """
+        Et imprimer la dernière réponse JSON

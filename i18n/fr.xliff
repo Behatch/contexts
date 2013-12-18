@@ -155,6 +155,10 @@
                 <source><![CDATA[/^the JSON should be equal to:$/]]></source>
                 <target><![CDATA[/^le JSON devrait être égal à :$/]]></target>
             </trans-unit>
+            <trans-unit id="print-last-json-response">
+                <source><![CDATA[/^print last JSON response$/]]></source>
+                <target><![CDATA[/^imprimer la dernière réponse JSON$/]]></target>
+            </trans-unit>
 
             <!-- RestContext.php -->
             <trans-unit id="i-send-a-request-on">

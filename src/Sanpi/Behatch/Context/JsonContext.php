@@ -175,6 +175,15 @@ class JsonContext extends BaseContext
         );
     }
 
+    /**
+     * @Then /^print last JSON response$/
+     */
+    public function printLastJsonResponse()
+    {
+        $content = json_encode($this->getJson(), JSON_PRETTY_PRINT);
+        $this->printDebug($content);
+    }
+
     private function evaluateJson($json, $expression)
     {
         if ($this->getParameter('json', 'evaluation_mode') == 'javascript') {

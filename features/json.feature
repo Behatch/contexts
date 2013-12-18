@@ -89,3 +89,4 @@ Feature: Testing JSONContext
                 ]
             }
             """
+        And print last JSON response
