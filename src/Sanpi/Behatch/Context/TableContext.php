@@ -111,7 +111,6 @@ class TableContext extends BaseContext
         }
 
         $actual   = $cols[$colIndex - 1]->getText();
-        $e = null;
 
         $this->assertContains($text, $actual);
     }
