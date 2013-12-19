@@ -7,7 +7,7 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class SystemContext extends BaseContext
 {
-    private $createdFiles = [];
+    private $createdFiles = array();
 
     /**
      * Uploads a file using the specified input field
