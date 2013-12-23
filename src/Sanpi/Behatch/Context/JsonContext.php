@@ -191,8 +191,13 @@ class JsonContext extends BaseContext
         }
 
         try {
-            $expression =  preg_replace('/^root->/', '', $expression);
-            eval(sprintf('$result = $json->%s;', $expression));
+            if(is_array($json)){
+                $expression =  preg_replace('/^root/', '', $expression);
+                eval(sprintf('$result = $json%s;', $expression));
+            } else {
+                $expression =  preg_replace('/^root->/', '', $expression);
+                eval(sprintf('$result = $json->%s;', $expression));
+            }
         }
         catch (\Exception $e) {
             throw new \Exception("Failed to evaluate expression '$expression'.");
