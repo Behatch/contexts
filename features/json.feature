@@ -92,7 +92,7 @@ Feature: Testing JSONContext
             """
         And print last JSON response
 
-    Scenario Check json root node
+    Scenario: Check json root node
         Given I am on "/json/rootarray.json"
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
