@@ -7,6 +7,222 @@ use Behat\Gherkin\Node\PyStringNode;
 class XmlContext extends BaseContext
 {
     /**
+     * Checks that the response is correct XML
+     *
+     * @Then /^the response should be in XML$/
+     */
+    public function theResponseShouldBeInXml()
+    {
+        $this->getDom();
+    }
+
+    /**
+     * Checks that the response is not correct XML
+     *
+     * @Then /^the response should not be in XML$/
+     */
+    public function theResponseShouldNotBeInXml()
+    {
+        try {
+            $this->getDom();
+        }
+        catch (\Exception $e) {
+        }
+
+        if (!isset($e)) {
+            throw new \Exception("The response is in XML");
+        }
+    }
+
+    /**
+     * Checks that the specified XML element exists
+     *
+     * @param string $element
+     * @throws \Exception
+     * @return \DomNodeList
+     *
+     * @Then /^the XML element "(?P<element>[^"]*)" should exists?$/
+     */
+    public function theXmlElementShouldExist($element)
+    {
+        $elements = $this->xpath($element);
+
+        if ($elements->length == 0) {
+            throw new \Exception(sprintf("The element '%s' does not exist.", $element));
+        }
+
+        return $elements;
+    }
+
+    /**
+     * Checks that the specified XML element does not exist
+     *
+     * @Then /^the XML element "(?P<element>[^"]*)" should not exists?$/
+     */
+    public function theXmlElementShouldNotExist($element)
+    {
+        $elements = $this->xpath($element);
+
+        if ($elements->length != 0) {
+            throw new \Exception(sprintf("The element '%s' exists.", $element));
+        }
+    }
+
+    /**
+     * Checks that the specified XML element is equal to the given value
+     *
+     * @Then /^the XML element "(?P<element>(?:[^"]|\\")*)" should be equal to "(?P<text>[^"]*)"$/
+     */
+    public function theXmlElementShouldBeEqualTo($element, $text)
+    {
+        $elements = $this->theXmlElementShouldExist($element);
+
+        $actual = $elements->item(0)->nodeValue;
+
+        if ($text != $actual) {
+            throw new \Exception(sprintf("The element value is `%s`", $actual));
+        }
+    }
+
+    /**
+     * Checks that the specified XML element is not equal to the given value
+     *
+     * @Then /^the XML element "(?P<element>(?:[^"]|\\")*)" should not be equal to "(?P<text>[^"]*)"$/
+     */
+    public function theXmlElementShouldNotBeEqualTo($element, $text)
+    {
+        $elements = $this->theXmlElementShouldExist($element);
+
+        $actual = $elements->item(0)->nodeValue;
+
+        if ($text == $actual) {
+            throw new \Exception(sprintf("The element value is `%s`", $actual));
+        }
+    }
+
+    /**
+     * Checks that the XML attribute on the specified element exists
+     *
+     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should exists?$/
+     */
+    public function theXmlAttributeShouldExist($attribute, $element)
+    {
+        $elements = $this->theXmlElementShouldExist("{$element}[@{$attribute}]");
+
+        $actual = $elements->item(0)->getAttribute($attribute);
+
+        if (empty($actual)) {
+            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+        }
+
+        return $actual;
+    }
+
+    /**
+     * Checks that the XML attribute on the specified element does not exist
+     *
+     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should not exists?$/
+     */
+    public function theXmlAttributeShouldNotExist($attribute, $element)
+    {
+        try {
+            $elements = $this->theXmlElementShouldExist("{$element}[@{$attribute}]");
+
+            $actual = $elements->item(0)->getAttribute($attribute);
+
+            if (!empty($actual)) {
+                throw new \Exception(sprintf("The element '%s' exists and contains '%s'.", $element , $elements));
+            }
+        }
+        catch (\Exception $e) {
+        }
+    }
+
+    /**
+     * Checks that the XML attribute on the specified element is equal to the given value
+     *
+     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should be equal to "(?P<text>[^"]*)"$/
+     */
+    public function theXmlAttributeShouldBeEqualTo($attribute, $element, $text)
+    {
+        $actual = $this->theXmlAttributeShouldExist($attribute, $element);
+
+        if ($text != $actual) {
+            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+        }
+    }
+
+    /**
+     * Checks that the XML attribute on the specified element is not equal to the given value
+     *
+     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should not be equal to "(?P<text>[^"]*)"$/
+     */
+    public function theXmlAttributeShouldNotBeEqualTo($attribute, $element, $text)
+    {
+        $actual = $this->theXmlAttributeShouldExist($attribute, $element);
+
+        if ($text === $actual) {
+            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+        }
+    }
+
+    /**
+     * Checks that the given XML element has N child element(s)
+     *
+     * @Then /^the XML element "(?P<element>[^"]*)" should have (?P<nth>\d+) elements?$/
+     */
+    public function theXmlElementShouldHaveNChildElements($element, $nth)
+    {
+        $elements = $this->theXmlElementShouldExist($element);
+
+        $length = 0;
+        foreach ($elements->item(0)->childNodes as $node) {
+            if ($node->hasAttributes() || (trim($node->nodeValue) != '')) {
+                ++$length;
+            }
+        }
+
+        $this->assertEquals((integer) $nth, $length);
+    }
+
+    /**
+     * Checks that the given XML element contains the given value
+     *
+     * @Then /^the XML element "(?P<element>[^"]*)" should contain "(?P<text>[^"]*)"$/
+     */
+    public function theXmlElementShouldContain($element, $text)
+    {
+        $elements = $this->theXmlElementShouldExist($element);
+
+        $this->assertContains($text, $elements->item(0)->nodeValue);
+    }
+
+    /**
+     * Checks that the given XML element does not contain the given value
+     *
+     * @Then /^the XML element "(?P<element>[^"]*)" should not contain "(?P<text>[^"]*)"$/
+     */
+    public function theXmlElementShouldNotContain($element, $text)
+    {
+        $elements = $this->theXmlElementShouldExist($element);
+
+        $this->assertNotContains($text, $elements->item(0)->nodeValue);
+    }
+
+    /**
+     * @param string $element
+     * @return \DomNodeList
+     */
+    public function xpath($element)
+    {
+        $dom = $this->getDom();
+        $xpath = new \DOMXpath($dom);
+        $elements = $xpath->query($element);
+
+        return ($elements === false) ? new \DOMNodeList() : $elements;
+    }
+
+    /**
      * @BeforeScenario
      */
     public function beforeScenario()
