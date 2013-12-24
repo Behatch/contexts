@@ -130,12 +130,15 @@ class XmlContext extends BaseContext
 
         $dom = new \DomDocument();
         try {
-            $dom->loadXML($content);
-            $this->throwError();
+            $dom->strictErrorChecking = false;
+            $dom->validateOnParse = false;
+            $dom->loadXML($content, LIBXML_PARSEHUGE);
+            $this->throwError($dom);
         }
         catch(\DOMException $e) {
             throw new \RuntimeException($e->getMessage());
         }
+
         return $dom;
     }
 
@@ -143,7 +146,9 @@ class XmlContext extends BaseContext
     {
         $error = libxml_get_last_error();
         if (!empty($error)) {
-            throw new \DomException($error->message . ' at line ' . $error->line);
+            if ($error->message != 'Validation failed: no DTD found !') {
+                throw new \DomException($error->message . ' at line ' . $error->line);
+            }
         }
     }
 }
