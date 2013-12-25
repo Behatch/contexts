@@ -3,7 +3,7 @@ Feature: Testing XmlContext
     Background:
         Given I am on "/xml/feed.xml"
 
-  Scenario: Am I a XML ?
+    Scenario: Am I a XML ?
         Then the response should be in XML
         When I am on "/xml/feed.atom"
         Then the response should be in XML
@@ -72,9 +72,8 @@ Feature: Testing XmlContext
         Given I am on "/xml/feed.rss"
         Then the RSS2 feed should be valid
 
-    Scenario: Check XML validation
+    Scenario: Check XML evaluation
         Given I am on "/xml/book.xml"
-          And print last response
          Then the XML element "//book/chapter/title" should exist
           And the XML element "//book/chapter/index" should not exist
           And the XML element "//book/chapter/title" should be equal to "My books"
