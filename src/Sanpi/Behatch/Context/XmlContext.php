@@ -146,6 +146,7 @@ class XmlContext extends BaseContext
     {
         $error = libxml_get_last_error();
         if (!empty($error)) {
+            // https://bugs.php.net/bug.php?id=46465
             if ($error->message != 'Validation failed: no DTD found !') {
                 throw new \DomException($error->message . ' at line ' . $error->line);
             }
