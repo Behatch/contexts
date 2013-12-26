@@ -3,6 +3,19 @@ Feature: Testing XmlContext
     Background:
         Given I am on "/xml/feed.xml"
 
+    Scenario: Am I a XML ?
+        Then the response should be in XML
+        When I am on "/xml/feed.atom"
+        Then the response should be in XML
+        When I am on "/xml/feed.rss"
+        Then the response should be in XML
+        When I am on "/xml/book.xml"
+        Then the response should be in XML
+        When I am on "/xml/imnotaxml.xml"
+        Then the response should not be in XML
+        When I am on "/xml/notfound.xml"
+        Then the response should not be in XML
+
     Scenario: Validation with DTD
         Then the XML feed should be valid according to its DTD
 
@@ -58,3 +71,17 @@ Feature: Testing XmlContext
     Scenario: RSS feed validation
         Given I am on "/xml/feed.rss"
         Then the RSS2 feed should be valid
+
+    Scenario: Check XML evaluation
+        Given I am on "/xml/book.xml"
+         Then the XML element "//book/chapter/title" should exist
+          And the XML element "//book/chapter/index" should not exist
+          And the XML element "//book/chapter/title" should be equal to "My books"
+          And the XML element "//book/title" should not be equal to "My wonderful lists"
+          And the XML attribute "cols" on element "//book/chapter/para/informaltable/tgroup" should exist
+          And the XML attribute "color" on element "//book/chapter/title" should not exist
+          And the XML attribute "id" on element "//book/chapter" should be equal to "books"
+          And the XML attribute "id" on element "//book" should not be equal to "choices"
+          And the XML element "//book/chapter/para/informaltable/tgroup/tbody" should have 4 elements
+          And the XML element "//book/title" should contain "is"
+          And the XML element "//book/chapter/title" should not contain "if"
