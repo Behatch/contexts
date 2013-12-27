@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<country xmlns="http://example.org/xsd/country" xmlns:country="http://example.org/xsd/country" xmlns:city="http://example.org/xsd/city" version="0.0.13" name="Japan">
+    <airports>
+        <city:airport>
+        </city:airport>
+    </airports>
+    <cities>
+        <city:city id="1" name="Tokyo">
+            <city:park opened="1873">Shiba Park</city:park>
+        </city:city>
+        <city:city id="2" name="Kyoto">
+            <city:park attraction="Cherry Blossom">Maruyama Park</city:park>
+        </city:city>
+    </cities>
+</country>
