@@ -216,8 +216,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlShouldUseTheNamespace($namespace)
     {
-        $xml = $this->getSimpleXml();
-        $namespaces = $xml->getNamespaces(true);
+        $namespaces = $this->getNamespaces();
 
         if (!in_array($namespace, $namespaces)) {
             throw new \Exception(sprintf("The namespace '%s' is not used", $namespace));
@@ -231,8 +230,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlShouldNotUseTheNamespace($namespace)
     {
-        $xml = $this->getSimpleXml();
-        $namespaces = $xml->getNamespaces(true);
+        $namespaces = $this->getNamespaces();
 
         if (in_array($namespace, $namespaces)) {
             throw new \Exception(sprintf("The namespace '%s' is used", $namespace));
@@ -247,8 +245,7 @@ class XmlContext extends BaseContext
     {
         $dom = $this->getDom();
         $xpath = new \DOMXpath($dom);
-        $xml = $this->getSimpleXml($dom);
-        $namespaces = $xml->getNamespaces(true);
+        $namespaces = $this->getNamespaces($dom);
 
         foreach ($namespaces as $prefix => $namespace) {
             if (empty($prefix)) {
@@ -274,9 +271,21 @@ class XmlContext extends BaseContext
      * @param \DomDocument $dom
      * @return \SimpleXMLElement
      */
-    private function getSimpleXml($dom = null)
+    private function getSimpleXml(\DOMDocument $dom = null)
     {
         return simplexml_import_dom($dom ? $dom : $this->getDom());
+    }
+
+    /**
+     * @param \DOMDocument $dom
+     * @return array
+     */
+    private function getNamespaces(\DOMDocument $dom = null)
+    {
+        $xml = $this->getSimpleXml($dom);
+        $namespaces = $xml->getNamespaces(true);
+
+        return $namespaces;
     }
 
     /**
