@@ -247,15 +247,18 @@ class XmlContext extends BaseContext
         $xpath = new \DOMXpath($dom);
         $namespaces = $this->getNamespaces($dom);
 
+        $defaultNamespaceUri = $dom->lookupNamespaceURI(null);
+        $defaultNamespacePrefix = $defaultNamespaceUri ? $dom->lookupPrefix($defaultNamespaceUri) : null;
+
         foreach ($namespaces as $prefix => $namespace) {
-            if (empty($prefix)) {
+            if (empty($prefix) && empty($defaultNamespacePrefix) && !empty($defaultNamespaceUri)) {
                 $prefix = 'rootns';
             }
             $xpath->registerNamespace($prefix, $namespace);
         }
 
         // "fix" queries to the default namespace if any namespaces are defined
-        if (!empty($namespaces)) {
+        if (!empty($namespaces) && empty($defaultNamespacePrefix) && !empty($defaultNamespaceUri)) {
             for ($i=0; $i < 2; ++$i) {
                 $element = preg_replace('/\/(\w+)(\[[^]]+\])?\//', '/rootns:$1$2/', $element);
             }

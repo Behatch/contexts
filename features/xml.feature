@@ -11,6 +11,8 @@ Feature: Testing XmlContext
         Then the response should be in XML
         When I am on "/xml/book.xml"
         Then the response should be in XML
+        When I am on "/xml/people.xml"
+        Then the response should be in XML
         When I am on "/xml/country.xml"
         Then the response should be in XML
         When I am on "/xml/imnotaxml.xml"
@@ -88,7 +90,7 @@ Feature: Testing XmlContext
           And the XML element "//book/title" should contain "is"
           And the XML element "//book/chapter/title" should not contain "if"
 
-    Scenario: Check XML evaluation with namespaces
+    Scenario: Check XML evaluation with namespaces and a default namespace
         Given I am on "/xml/country.xml"
          Then the XML should use the namespace "http://example.org/xsd/country"
           And the XML element "//country/airports" should exist
@@ -100,3 +102,17 @@ Feature: Testing XmlContext
           And the XML attribute "typo" on element "//country/airports/city:airport" should not exist
           And the XML element "//country/cities" should have 2 elements
           And the XML element "//country/cities/city:city[@id=2]" should have 1 element
+
+    Scenario: Check XML evaluation with namespaces but no default namespace
+        Given I am on "/xml/people.xml"
+         Then the XML should use the namespace "http://example.org/ns"
+          And the XML should not use the namespace "http://example.org/test"
+          And the XML element "//people" should exist
+          And the XML element "//people/p:person" should exist
+          And the XML element "//people/description" should not exist
+          And the XML element "//people/p:person[@id=1]/items/item[@id=1]" should be equal to "Rubber Ducky"
+          And the XML element "//people" should have 3 elements
+          And the XML attribute "name" on element "//people/p:person[@id=1]" should be equal to "Bert"
+          And the XML attribute "id" on element "//people/p:person[@id=2]" should not be equal to "4"
+          And the XML attribute "name" on element "//people/p:person[@id=3]" should exist
+          And the XML attribute "size" on element "//people/p:person[@id=1]/items/item" should not exist
