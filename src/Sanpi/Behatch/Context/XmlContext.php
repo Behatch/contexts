@@ -210,6 +210,34 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks that the XML uses the specified namespace
+     *
+     * @Then /^[Tt]he XML should use the namespace "(?P<namespace>[^"]*)"$/
+     */
+    public function theXmlShouldUseTheNamespace($namespace)
+    {
+        $namespaces = $this->getNamespaces();
+
+        if (!in_array($namespace, $namespaces)) {
+            throw new \Exception(sprintf("The namespace '%s' is not used", $namespace));
+        }
+    }
+
+    /**
+     * Checks that the XML does not use the specified namespace
+     *
+     * @Then /^[Tt]he XML should not use the namespace "(?P<namespace>[^"]*)"$/
+     */
+    public function theXmlShouldNotUseTheNamespace($namespace)
+    {
+        $namespaces = $this->getNamespaces();
+
+        if (in_array($namespace, $namespaces)) {
+            throw new \Exception(sprintf("The namespace '%s' is used", $namespace));
+        }
+    }
+
+    /**
      * @param string $element
      * @return \DomNodeList
      */
@@ -217,9 +245,47 @@ class XmlContext extends BaseContext
     {
         $dom = $this->getDom();
         $xpath = new \DOMXpath($dom);
+        $namespaces = $this->getNamespaces($dom);
+
+        foreach ($namespaces as $prefix => $namespace) {
+            if (empty($prefix)) {
+                $prefix = 'rootns';
+            }
+            $xpath->registerNamespace($prefix, $namespace);
+        }
+
+        // "fix" queries to the default namespace if any namespaces are defined
+        if (!empty($namespaces)) {
+            for ($i=0; $i < 2; ++$i) {
+                $element = preg_replace('/\/(\w+)(\[[^]]+\])?\//', '/rootns:$1$2/', $element);
+            }
+            $element = preg_replace('/\/(\w+)(\[[^]]+\])?$/', '/rootns:$1$2', $element);
+        }
+
         $elements = $xpath->query($element);
 
         return ($elements === false) ? new \DOMNodeList() : $elements;
+    }
+
+    /**
+     * @param \DomDocument $dom
+     * @return \SimpleXMLElement
+     */
+    private function getSimpleXml(\DOMDocument $dom = null)
+    {
+        return simplexml_import_dom($dom ? $dom : $this->getDom());
+    }
+
+    /**
+     * @param \DOMDocument $dom
+     * @return array
+     */
+    private function getNamespaces(\DOMDocument $dom = null)
+    {
+        $xml = $this->getSimpleXml($dom);
+        $namespaces = $xml->getNamespaces(true);
+
+        return $namespaces;
     }
 
     /**
