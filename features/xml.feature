@@ -11,6 +11,8 @@ Feature: Testing XmlContext
         Then the response should be in XML
         When I am on "/xml/book.xml"
         Then the response should be in XML
+        When I am on "/xml/country.xml"
+        Then the response should be in XML
         When I am on "/xml/imnotaxml.xml"
         Then the response should not be in XML
         When I am on "/xml/notfound.xml"
@@ -85,3 +87,16 @@ Feature: Testing XmlContext
           And the XML element "//book/chapter/para/informaltable/tgroup/tbody" should have 4 elements
           And the XML element "//book/title" should contain "is"
           And the XML element "//book/chapter/title" should not contain "if"
+
+    Scenario: Check XML evaluation with namespaces
+        Given I am on "/xml/country.xml"
+         Then the XML should use the namespace "http://example.org/xsd/country"
+          And the XML element "//country/airports" should exist
+          And the XML element "//country/cities/city:city/city:park" should exist
+          And the XML element "//country/treasure" should not exist
+          And the XML attribute "opened" on element "//city:city[@id=1]/city:park" should be equal to "1873"
+          And the XML attribute "attraction" on element "//city:city[@id=2]/city:park" should not be equal to "Fireworks"
+          And the XML attribute "version" on element "//country" should exist
+          And the XML attribute "typo" on element "//country/airports/city:airport" should not exist
+          And the XML element "//country/cities" should have 2 elements
+          And the XML element "//country/cities/city:city[@id=2]" should have 1 element
