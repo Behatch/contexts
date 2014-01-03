@@ -12,9 +12,10 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request
      *
+     * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/
      * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)"$/
      */
-    public function iSendARequestOn($method, $url)
+    public function iSendARequestTo($method, $url)
     {
         $client = $this->getSession()->getDriver()->getClient();
 
@@ -28,9 +29,10 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request with a some parameters
      *
+     * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with parameters:$/
      * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with parameters:$/
      */
-    public function iSendARequestOnWithParameters($method, $url, TableNode $datas)
+    public function iSendARequestToWithParameters($method, $url, TableNode $datas)
     {
         $client = $this->getSession()->getDriver()->getClient();
 
@@ -52,9 +54,10 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request with a body
      *
-     * @When /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with body:$/
+     * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with body:$/
+     * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with body:$/
      */
-    public function iSendARequestOnWithBody($method, $url, PyStringNode $body)
+    public function iSendARequestToWithBody($method, $url, PyStringNode $body)
     {
         $client = $this->getSession()->getDriver()->getClient();
 

@@ -190,15 +190,15 @@
 
             <!-- RestContext.php -->
             <trans-unit id="i-send-a-request-on">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)"$/]]></source>
+                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|j')envoie une requête (?P<method>[A-Z]+) sur "(?P<url>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-send-a-request-on-with-parameters">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with parameters:$/]]></source>
+                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with parameters:$/]]></source>
                 <target><![CDATA[/^(?:|j')envoie une requête (?P<method>[A-Z]+) sur "(?P<url>[^"]*)" avec les paramètres :$/]]></target>
             </trans-unit>
             <trans-unit id="i-send-a-request-on-with-body">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with body:$/]]></source>
+                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with body:$/]]></source>
                 <target><![CDATA[/^(?:|j')envoie une requête (?P<method>[A-Z]+) sur "(?P<url>[^"]*)" avec le contenu :$/]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
