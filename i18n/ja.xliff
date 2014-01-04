@@ -157,15 +157,15 @@
 
             <!-- RestContext.php -->
             <trans-unit id="i-send-a-request-on">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)"$/]]></source>
+                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|私が)(?P<method>[A-Z]+)メソッドで"(?P<url>[^"]*)"へリクエストを送る$/u]]></target>
             </trans-unit>
             <trans-unit id="i-send-a-request-on-with-parameters">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with parameters:$/]]></source>
+                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with parameters:$/]]></source>
                 <target><![CDATA[/^(?:|私が)(?P<method>[A-Z]+)メソッドで"(?P<url>[^"]*)"へ下記のパラメーターを伴ったリクエストを送る:$/u]]></target>
             </trans-unit>
             <trans-unit id="i-send-a-request-on-with-body">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with body:$/]]></source>
+                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with body:$/]]></source>
                 <target><![CDATA[/^(?:|私が)(?P<method>[A-Z]+)メソッドで"(?P<url>[^"]*)"へ下記のボディを持ったリクエストを送る:$/u]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
