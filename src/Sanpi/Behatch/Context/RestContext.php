@@ -157,7 +157,7 @@ class RestContext extends BaseContext
      */
     public function iAddHeaderEqualTo($name, $value)
     {
-        $this->getSession()->getDriver()->getClient()->setServerParameter($name, $value);
+        $this->getSession()->setRequestHeader($name, $value);
     }
 
     /**
