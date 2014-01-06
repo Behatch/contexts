@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<people xmlns:p="http://example.org/ns" xmlns:t="http://example.org/test">
+    <p:person id="1" name="Bert">
+        <items>
+            <item id="1">Rubber Ducky</item>
+        </items>
+    </p:person>
+    <p:person id="2" name="Speed Racer">
+        <items>
+            <item id="5">Car</item>
+        </items>
+    </p:person>
+    <p:person id="3" name="Fred Flintstone">
+        <items>
+            <item id="99">Bowling ball</item>
+        </items>
+    </p:person>
+</people>
