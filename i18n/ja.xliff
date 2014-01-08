@@ -181,7 +181,7 @@
                 <target><![CDATA[/^(?:|私が)"(?P<name>[^"]*)"ヘッダに"(?P<value>[^"]*)"を追加する$/u]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-be-contains">
-                <source><![CDATA[/^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/]]></source>
+                <source><![CDATA[/^the header "(?P<name>[^"]*)" should contain "(?P<value>[^"]*)"$/]]></source>
                 <target><![CDATA[/^"(?P<name>[^"]*)"ヘッダが"(?P<value>[^"]*)"を含むこと$/u]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-not-contain">

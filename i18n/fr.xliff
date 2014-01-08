@@ -214,7 +214,7 @@
                 <target><![CDATA[/^(?:|j')ajoute l'entête "(?P<name>[^"]*)" égale à "(?P<value>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-be-contains">
-                <source><![CDATA[/^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/]]></source>
+                <source><![CDATA[/^the header "(?P<name>[^"]*)" should contain "(?P<value>[^"]*)"$/]]></source>
                 <target><![CDATA[/^l'entête "(?P<name>[^"]*)" devrait contenir "(?P<value>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-not-contain">
