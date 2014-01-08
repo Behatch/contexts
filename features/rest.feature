@@ -2,7 +2,7 @@ Feature: Testing RESTContext
 
     Scenario: Testing headers
         When I send a GET request to "rest/index.php"
-        And the header "Content-Type" should be contains "text"
+        And the header "Content-Type" should contain "text"
         And the header "Content-Type" should be equal to "text/html"
         And the header "Content-Type" should not contain "text/json"
         And the header "xxx" should not exist
@@ -48,7 +48,7 @@ Feature: Testing RESTContext
         https://tools.ietf.org/html/rfc2616#section-4.2
 
         When I send a GET request to "rest/index.php"
-        Then the header "content-type" should be contains "text"
+        Then the header "content-type" should contain "text"
 
     Scenario: Debug
         Given I add "xxx" header equal to "yyy"

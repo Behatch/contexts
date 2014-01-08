@@ -98,12 +98,13 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the header name contains the given text
      *
+     * @Then /^the header "(?P<name>[^"]*)" should contain "(?P<value>[^"]*)"$/
      * @Then /^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/
      */
     public function theHeaderShouldBeContains($name, $value)
     {
         $this->assertContains($value, $this->getHttpHeader($name),
-            sprintf('The header "%s" is doesn\'t contain to "%s"', $name, $value)
+            sprintf('The header "%s" doesn\'t contain "%s"', $name, $value)
         );
     }
 
@@ -171,7 +172,7 @@ class RestContext extends BaseContext
         }
 
         return array(
-            new Step\Then('the header "Content-Type" should be contains "charset=' . $encoding . '"'),
+            new Step\Then('the header "Content-Type" should contain "charset=' . $encoding . '"'),
         );
     }
 
