@@ -7,7 +7,7 @@ Feature: System feature
         Given I execute "bin/behat --help"
 
     Scenario: File creation
-        When I create the file "fixtures/test" contening:
+        When I create the file "fixtures/test" containing:
         """
         A new file
         """
