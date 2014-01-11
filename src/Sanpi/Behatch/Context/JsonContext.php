@@ -126,7 +126,7 @@ class JsonContext extends BaseContext
         }
 
         if ($e === null) {
-            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $node , $actual));
+            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $node , json_encode($actual)));
         }
     }
 
