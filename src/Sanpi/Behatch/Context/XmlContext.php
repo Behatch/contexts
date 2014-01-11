@@ -13,7 +13,7 @@ class XmlContext extends BaseContext
      */
     public function theResponseShouldBeInXml()
     {
-        $this->getDom();
+        $this->getDom(true);
     }
 
     /**
@@ -24,7 +24,7 @@ class XmlContext extends BaseContext
     public function theResponseShouldNotBeInXml()
     {
         try {
-            $this->getDom();
+            $this->getDom(true);
         }
         catch (\Exception $e) {
         }
@@ -243,7 +243,7 @@ class XmlContext extends BaseContext
      */
     public function xpath($element)
     {
-        $dom = $this->getDom();
+        $dom = $this->getDom(false);
         $xpath = new \DOMXpath($dom);
         $namespaces = $this->getNamespaces($dom);
 
@@ -276,7 +276,7 @@ class XmlContext extends BaseContext
      */
     private function getSimpleXml(\DOMDocument $dom = null)
     {
-        return simplexml_import_dom($dom ? $dom : $this->getDom());
+        return simplexml_import_dom($dom ? $dom : $this->getDom(false));
     }
 
     /**
@@ -305,7 +305,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlFeedShouldBeValidAccordingToItsDtd()
     {
-        $dom = $this->getDom();
+        $dom = $this->getDom(false);
         try {
             $dom->validate();
             $this->throwError();
@@ -321,7 +321,7 @@ class XmlContext extends BaseContext
     public function theXmlFeedShouldBeValidAccordingToTheXsd($filename)
     {
         if (is_file($filename)) {
-            $dom = $this->getDom();
+            $dom = $this->getDom(false);
             $xsd = file_get_contents($filename);
             $this->schemaValidate($dom, $xsd);
         }
@@ -337,7 +337,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlFeedShouldBeValidAccordingToThisXsd(PyStringNode $xsd)
     {
-        $dom = $this->getDom();
+        $dom = $this->getDom(false);
         $this->schemaValidate($dom, $xsd->getRaw());
     }
 
@@ -358,7 +358,7 @@ class XmlContext extends BaseContext
     public function theXmlFeedShouldBeValidAccordingToTheRelaxNgSchema($filename)
     {
         if (is_file($filename)) {
-            $dom = $this->getDom();
+            $dom = $this->getDom(false);
             $ng = file_get_contents($filename);
             $this->relaxNGValidate($dom, $ng);
         }
@@ -374,7 +374,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlFeedShouldBeValidAccordingToThisRelaxNgSchema(PyStringNode $ng)
     {
-        $dom = $this->getDom();
+        $dom = $this->getDom(false);
         $this->relaxNGValidate($dom, $ng->getRaw());
     }
 
@@ -409,7 +409,12 @@ class XmlContext extends BaseContext
         );
     }
 
-    private function getDom()
+    /**
+     * @param bool $throwExceptions
+     * @return \DomDocument
+     * @throws \RuntimeException
+     */
+    private function getDom($throwExceptions)
     {
         $content = $this->getSession()->getPage()->getContent();
 
@@ -418,10 +423,12 @@ class XmlContext extends BaseContext
             $dom->strictErrorChecking = false;
             $dom->validateOnParse = false;
             $dom->loadXML($content, LIBXML_PARSEHUGE);
-            $this->throwError($dom);
+            $this->throwError();
         }
         catch(\DOMException $e) {
-            throw new \RuntimeException($e->getMessage());
+            if ($throwExceptions) {
+                throw new \RuntimeException($e->getMessage());
+            }
         }
 
         return $dom;
