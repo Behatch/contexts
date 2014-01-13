@@ -238,6 +238,19 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Optimistically (ignoring errors) attempt to pretty-print the last XML response
+     *
+     * @Then /^print last XML response$/
+     */
+    public function printLastXmlResponse()
+    {
+        $dom = $this->getDom(false, false);
+        $dom->formatOutput = true;
+        $content = $dom->saveXML();
+        $this->printDebug($content);
+    }
+
+    /**
      * @param string $element
      * @return \DomNodeList
      */
@@ -411,10 +424,11 @@ class XmlContext extends BaseContext
 
     /**
      * @param bool $throwExceptions
+     * @param bool $preserveWhitespace
      * @return \DomDocument
      * @throws \RuntimeException
      */
-    private function getDom($throwExceptions)
+    private function getDom($throwExceptions, $preserveWhitespace = true)
     {
         $content = $this->getSession()->getPage()->getContent();
 
@@ -422,6 +436,7 @@ class XmlContext extends BaseContext
         try {
             $dom->strictErrorChecking = false;
             $dom->validateOnParse = false;
+            $dom->preserveWhiteSpace = $preserveWhitespace;
             $dom->loadXML($content, LIBXML_PARSEHUGE);
             $this->throwError();
         }

@@ -15,6 +15,8 @@ Feature: Testing XmlContext
         Then the response should be in XML
         When I am on "/xml/country.xml"
         Then the response should be in XML
+        When I am on "/xml/needsformatting.xml"
+        Then the response should be in XML
         When I am on "/xml/imnotaxml.xml"
         Then the response should not be in XML
         When I am on "/xml/notfound.xml"
@@ -116,3 +118,7 @@ Feature: Testing XmlContext
           And the XML attribute "id" on element "//people/p:person[@id=2]" should not be equal to "4"
           And the XML attribute "name" on element "//people/p:person[@id=3]" should exist
           And the XML attribute "size" on element "//people/p:person[@id=1]/items/item" should not exist
+
+    Scenario: Pretty print xml
+       Given I am on "/xml/needsformatting.xml"
+         And print last XML response
