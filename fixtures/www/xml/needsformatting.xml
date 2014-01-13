@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes"?>
+<wibble xmlns:w="http://example.org/ns"><w:wibbler name="John"><w:kersplang /></w:wibbler>
+                <w:wibbler name="Max"><w:kersplang noisy="very"> </w:kersplang></w:wibbler><w:wibbler name="Roberta"><w:kersplang noisy="early"> </w:kersplang></w:wibbler>
+<w:wibbler name="Axel"><w:kersplang noisy="nope" /></w:wibbler><w:wibbler name="Vald"><w:kersplang noisy="tomorrow" /><difficulty level="4" /></w:wibbler>
+    <w:wibbler
+  name="Ariel"><w:kersplang noisy="yes" /></w:wibbler      >
+
+
+<w:wibbler
+name="Axel"><w:kersplang noisy
+                     ="deafening"><difficulty     level= "expert" /></w:kersplang>
+</w:wibbler         ></wibble>
