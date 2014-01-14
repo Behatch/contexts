@@ -51,9 +51,10 @@ class SystemContext extends BaseContext
     }
 
     /**
+     * @Given /^(?:|I )create the file "(?P<filename>[^"]*)" containing:$/
      * @Given /^(?:|I )create the file "(?P<filename>[^"]*)" contening:$/
      */
-    public function iCreateTheFileContening($filename, PyStringNode $string)
+    public function iCreateTheFileContaining($filename, PyStringNode $string)
     {
         if (!is_file($filename)) {
             file_put_contents($filename, $string);

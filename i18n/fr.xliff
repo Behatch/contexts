@@ -130,7 +130,7 @@
                 <target><![CDATA[/^(?:|j')exécute "(?P<command>[^"]*)" depuis la racine du projet$/]]></target>
             </trans-unit>
             <trans-unit id="i-create-the-file-contening">
-                <source><![CDATA[/^(?:|I )create the file "(?P<filename>[^"]*)" contening:$/]]></source>
+                <source><![CDATA[/^(?:|I )create the file "(?P<filename>[^"]*)" containing:$/]]></source>
                 <target><![CDATA[/^(?:|je )crée le fichier "(?P<filename>[^"]*)" contenant :$/]]></target>
             </trans-unit>
             <trans-unit id="print-the-content-of-file">
