@@ -173,7 +173,7 @@ class JsonContext extends BaseContext
         $this->assertSame(
             json_encode($expected),
             json_encode($actual),
-            "The json is equal to:\n" . json_encode($actual, JSON_PRETTY_PRINT)
+            "The json is equal to:\n" . $this->encode($actual)
         );
     }
 
@@ -182,7 +182,7 @@ class JsonContext extends BaseContext
      */
     public function printLastJsonResponse()
     {
-        $content = json_encode($this->getJson(), JSON_PRETTY_PRINT);
+        $content = $this->encode($this->getJson());
         $this->printDebug($content);
     }
 
@@ -244,5 +244,18 @@ class JsonContext extends BaseContext
         }
 
         return $result;
+    }
+
+    private function encode($content)
+    {
+        $json = null;
+
+        if (defined('JSON_PRETTY_PRINT')) {
+            $json = json_encode($this->getJson(), JSON_PRETTY_PRINT);
+        }
+        else {
+            $json = json_encode($this->getJson());
+        }
+        return $json;
     }
 }
