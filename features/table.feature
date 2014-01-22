@@ -28,6 +28,20 @@ Feature: Browser Feature
             | col1   | col2   |
             | Dolor  | Sit    |
 
+    Scenario: Partial Testing rows
+        Given I am on "/table/index.html"
+
+        Then I should see 2 rows in the "table" table
+        And I should see 2 rows in the 1st "table" table
+
+        And the data in the 1st row of the "table" table should match:
+            | col2   |
+            | Ipsum  |
+
+        And the data in the 2nd row of the "table" table should match:
+            | col1   |
+            | Dolor  |
+
     Scenario: Testing cell content
         Given I am on "/table/index.html"
         Then the 1st column of the 1st row in the "table" table should contain "Lorem"
