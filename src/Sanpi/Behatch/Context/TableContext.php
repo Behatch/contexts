@@ -81,10 +81,13 @@ class TableContext extends BaseContext
 
         $hash = current($text->getHash());
         $keys = array_keys($hash);
-        $this->assertEquals(count($hash), count($cells));
 
-        for ($i = 0; $i < count($cells); $i++) {
-            $this->assertEquals($hash[$keys[$i]], $cells[$i]->getText());
+        foreach (array_keys($hash) as $columnName) {
+            // Extract index from column. ex "col2" -> 2
+            preg_match('/^col(?P<index>\d+)$/', $columnName, $matches);
+            $index = (int) $matches['index'] - 1;
+
+            $this->assertEquals($hash[$columnName], $cells[$index]->getText());
         }
     }
 
