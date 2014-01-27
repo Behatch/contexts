@@ -4,7 +4,13 @@ default:
             path: %paths.base%/features
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
-                - Sanpi\Behatch\Context\BehatchContext
+                - Sanpi\Behatch\Context\BrowserContext
+                - Sanpi\Behatch\Context\DebugContext
+                - Sanpi\Behatch\Context\SystemContext
+                - Sanpi\Behatch\Context\JsonContext
+                - Sanpi\Behatch\Context\TableContext
+                - Sanpi\Behatch\Context\RestContext
+                - Sanpi\Behatch\Context\XmlContext
     extensions:
         Behat\MinkExtension\Extension:
             base_url: 'http://localhost:8080'
