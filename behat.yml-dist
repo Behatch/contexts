@@ -1,4 +1,10 @@
 default:
+    suites:
+        default:
+            path: %paths.base%/features
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - Sanpi\Behatch\Context\BehatchContext
     extensions:
         Behat\MinkExtension\Extension:
             base_url: 'http://localhost:8080'
