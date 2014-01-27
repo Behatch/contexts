@@ -2,9 +2,9 @@
 
 namespace Sanpi\Behatch\Context;
 
-use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Context\Context;
 
-class BehatchContext extends BehatContext
+class BehatchContext implements Context
 {
     private $parameters;
 

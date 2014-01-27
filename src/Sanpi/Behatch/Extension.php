@@ -3,14 +3,28 @@
 namespace Sanpi\Behatch;
 
 use Symfony\Component\Config\FileLocator;
-use Behat\Behat\Extension\ExtensionInterface;
+use Behat\Testwork\ServiceContainer\ExtensionManager;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
 
 class Extension implements ExtensionInterface
 {
-    public function load(array $config, ContainerBuilder $container)
+    public function getConfigKey()
+    {
+        return 'behatch';
+    }
+
+    public function initialize(ExtensionManager $extensionManager)
+    {
+    }
+
+    public function process(ContainerBuilder $container)
+    {
+    }
+
+    public function load(ContainerBuilder $container, array $config)
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/services'));
         $loader->load('core.xml');
@@ -103,7 +117,7 @@ class Extension implements ExtensionInterface
     {
     }
 
-    public function getConfig(ArrayNodeDefinition $builder)
+    public function configure(ArrayNodeDefinition $builder)
     {
         $builder->
             children()->
