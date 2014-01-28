@@ -23,6 +23,7 @@ Download the .phar archives:
 
 * `behat.phar <http://behat.org/downloads/behat.phar>`_ - Behat itself
 * `mink.phar <http://behat.org/downloads/mink.phar>`_ - Mink framework
+* `mink_extension.phar <http://behat.org/downloads/mink_extension.phar>`_ - Mink integration extension
 * `behatch_contexts.phar <http://behat.org/downloads/behatch_contexts.phar>`_ - Behatch contexts
 
 And activate it in your in your ``behat.yml``:
