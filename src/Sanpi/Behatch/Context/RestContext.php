@@ -13,7 +13,6 @@ class RestContext extends BaseContext
      * Sends a HTTP request
      *
      * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/
-     * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)"$/
      */
     public function iSendARequestTo($method, $url)
     {
@@ -30,7 +29,6 @@ class RestContext extends BaseContext
      * Sends a HTTP request with a some parameters
      *
      * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with parameters:$/
-     * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with parameters:$/
      */
     public function iSendARequestToWithParameters($method, $url, TableNode $datas)
     {
@@ -60,7 +58,6 @@ class RestContext extends BaseContext
      * Sends a HTTP request with a body
      *
      * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with body:$/
-     * @Given /^I send a (?P<method>[A-Z]+) request on "(?P<url>[^"]*)" with body:$/
      */
     public function iSendARequestToWithBody($method, $url, PyStringNode $body)
     {
@@ -116,7 +113,6 @@ class RestContext extends BaseContext
      * Checks, whether the header name contains the given text
      *
      * @Then /^the header "(?P<name>[^"]*)" should contain "(?P<value>[^"]*)"$/
-     * @Then /^the header "(?P<name>[^"]*)" should be contains "(?P<value>[^"]*)"$/
      */
     public function theHeaderShouldBeContains($name, $value)
     {
