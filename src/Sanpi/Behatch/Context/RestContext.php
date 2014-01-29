@@ -45,8 +45,8 @@ class RestContext extends BaseContext
             if (!isset($row['key']) || !isset($row['value'])) {
                 throw new \Exception("You must provide a 'key' and 'value' column in your table node.");
             }
-            if (preg_match('~^file:(.*)~', $row['key'], $file) === 1) {
-                $files[$file[1]] = rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$row['value'];
+            if (isset($row['file']) && $row['file'] === 'x') {
+                $files[$row['key']] = rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$row['value'];
             }
             else {
                 $parameters[$row['key']] = $row['value'];

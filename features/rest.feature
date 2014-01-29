@@ -20,9 +20,16 @@ Feature: Testing RESTContext
         And I should see "second : bar"
 
         When I send a POST request to "/rest/index.php" with parameters:
-            | key           | value     |
-            | foo           | bar       |
-            | file:foofile  | lorem.txt |
+            | key | value |
+            | foo | bar   |
+        Then I should see "You have sent a POST request. "
+        And I should see "1 parameter(s)"
+        And I should see "foo : bar"
+
+        When I send a POST request to "/rest/index.php" with parameters:
+            | file | key      | value     |
+            |      | foo      | bar       |
+            | x    | foofile  | lorem.txt |
         Then I should see "You have sent a POST request. "
         And I should see "1 parameter(s)"
         And I should see "1 file(s)"
