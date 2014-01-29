@@ -54,8 +54,8 @@ Fonctionnalité:
 
     Scénario:
         Étant donné je suis sur "/xml/feed.atom"
-        Alors the atom feed should be valid
+        Alors le flux atom devrait être valide
 
     Scénario:
         Étant donné je suis sur "/xml/feed.rss"
-        Alors the RSS2 feed should be valid
+        Alors le flux RSS2 devrait être valide
