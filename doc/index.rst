@@ -12,8 +12,8 @@ Installation
 
 This extension requires:
 
-* Behat 2.4+
-* Mink 1.4+
+* Behat 3+
+* Mink
 * Mink extension
 
 Through PHAR
@@ -95,37 +95,36 @@ Project boostraping
 Usage
 -----
 
-In your main context, using behatch contexts:
-
-.. code-block:: php
-
-    <?php
-
-    use Behat\Behat\Context\BehatContext;
-    use Sanpi\Behatch\Context\BehatchContext;
-
-    class FeatureContext extends BehatContext
-    {
-        public function __construct(array $parameters)
-        {
-            $this->useContext('behatch', new BehatchContext($parameters));
-        }
-    }
-
-After this, you wouldn't have new available step. You should enable,
-in ``behat.yml``, the desired steps group:
+In ``behat.yml``, enable desired contexts:
 
 .. code-block:: yaml
 
-    Sanpi\Behatch\Extension:
-        contexts:
-            browser: ~
-            debug: ~
-            system: ~
-            json: ~
-            table: ~
-            rest: ~
-            xml: ~
+    default:
+        suites:
+            default:
+                contexts:
+                    - Sanpi\Behatch\Context\BrowserContext
+                    - Sanpi\Behatch\Context\DebugContext
+                    - Sanpi\Behatch\Context\SystemContext
+                    - Sanpi\Behatch\Context\JsonContext
+                    - Sanpi\Behatch\Context\TableContext
+                    - Sanpi\Behatch\Context\RestContext
+                    - Sanpi\Behatch\Context\XmlContext
+
+And configure in the ``extensions`` section:
+
+.. code-block:: yaml
+
+    extensions:
+        Sanpi\Behatch\Extension:
+            contexts:
+                browser: ~
+                debug: ~
+                system: ~
+                json: ~
+                table: ~
+                rest: ~
+                xml: ~
 
 Configuration
 -------------
