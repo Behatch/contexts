@@ -26,6 +26,18 @@ Feature: Testing RESTContext
         And I should see "1 parameter(s)"
         And I should see "foo : bar"
 
+        When I send a POST request to "/rest/index.php" with parameters:
+            | file | key      | value     |
+            |      | foo      | bar       |
+            | x    | foofile  | lorem.txt |
+        Then I should see "You have sent a POST request. "
+        And I should see "1 parameter(s)"
+        And I should see "1 file(s)"
+        And I should see "foo : bar"
+        And I should see "foofile - name : lorem.txt"
+        And I should see "foofile - error : 0"
+        And I should see "foofile - size : 39"
+
         When I send a PUT request to "/rest/index.php"
         Then I should see "You have sent a PUT request. "
 

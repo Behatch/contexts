@@ -40,14 +40,20 @@ class RestContext extends BaseContext
         $client->followRedirects(false);
 
         $parameters = array();
+        $files = array();
         foreach ($datas->getHash() as $row) {
             if (!isset($row['key']) || !isset($row['value'])) {
                 throw new \Exception("You must provide a 'key' and 'value' column in your table node.");
             }
-            $parameters[$row['key']] = $row['value'];
+            if (isset($row['file']) && $row['file'] === 'x') {
+                $files[$row['key']] = rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$row['value'];
+            }
+            else {
+                $parameters[$row['key']] = $row['value'];
+            }
         }
 
-        $client->request($method, $this->locatePath($url), $parameters);
+        $client->request($method, $this->locatePath($url), $parameters, $files);
         $client->followRedirects(true);
     }
 

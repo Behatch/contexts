@@ -23,6 +23,18 @@ You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
   <?php endforeach; ?>
 <?php endif; ?>
 
+<?php if(sizeof($_FILES) == 0): ?>
+  <br />No files received.
+<?php else: ?>
+  <br /><?php print sizeof($_FILES); ?> file(s) received.
+  <?php foreach($_FILES as $key => $value): ?>
+    <br /><?php print $key ?> - name : <?php print $value['name']; ?>
+    <br /><?php print $key ?> - error : <?php print $value['error']; ?>
+    <br /><?php print $key ?> - size : <?php print $value['size']; ?>
+  <?php endforeach; ?>
+<?php endif; ?>
+
+
 <?php $body = file_get_contents('php://input'); ?>
 <?php if($body == null): ?>
   <br />No body received.
