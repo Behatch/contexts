@@ -2,10 +2,11 @@
 
 namespace Sanpi\Behatch;
 
-use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Reference;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
+use Symfony\Component\DependencyInjection\Definition;
+use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
 
@@ -26,12 +27,11 @@ class Extension implements ExtensionInterface
 
     public function load(ContainerBuilder $container, array $config)
     {
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/services'));
-        $loader->load('core.xml');
-
         foreach ($config['contexts'] as $name => $values) {
             $this->validateContextsConfig($name, $values);
         }
+
+        $this->loadContextInitializer($container);
 
         $container->setParameter('behatch.parameters', $config);
     }
@@ -190,6 +190,15 @@ class Extension implements ExtensionInterface
             end()->
         end();
 
+    }
+
+    private function loadContextInitializer(ContainerBuilder $container)
+    {
+        $definition = new Definition('Sanpi\Behatch\Context\Initializer\BehatchAwareInitializer', array(
+            '%behatch.parameters%',
+        ));
+        $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
+        $container->setDefinition('behatch.context_initializer', $definition);
     }
 
     public function getCompilerPasses()

@@ -2,11 +2,11 @@
 
 namespace Sanpi\Behatch\Context\Initializer;
 
-use Sanpi\Behatch\Context\BehatchContext;
-use Behat\Behat\Context\ContextInterface;
-use Behat\Behat\Context\Initializer\InitializerInterface;
+use Behat\Behat\Context\Context;
+use Sanpi\Behatch\Context\BaseContext;
+use Behat\Behat\Context\Initializer\ContextInitializer;
 
-class BehatchAwareInitializer implements InitializerInterface
+class BehatchAwareInitializer implements ContextInitializer
 {
     private $parameters;
 
@@ -15,13 +15,12 @@ class BehatchAwareInitializer implements InitializerInterface
         $this->parameters = $parameters;
     }
 
-    public function supports(ContextInterface $context)
+    public function initializeContext(Context $context)
     {
-        return ($context instanceof BehatchContext);
-    }
+        if (!$context instanceof BaseContext) {
+            return;
+        }
 
-    public function initialize(ContextInterface $context)
-    {
         $context->setParameters($this->parameters);
     }
 }

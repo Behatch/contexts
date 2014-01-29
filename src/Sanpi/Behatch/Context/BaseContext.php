@@ -2,21 +2,37 @@
 
 namespace Sanpi\Behatch\Context;
 
+use Behat\Behat\Context\TranslatableContext;
 use Behat\MinkExtension\Context\RawMinkContext;
-use Behat\Behat\Context\TranslatedContextInterface;
 use Behat\Mink\Exception\ExpectationException;
 
-abstract class BaseContext extends RawMinkContext implements TranslatedContextInterface
+abstract class BaseContext extends RawMinkContext implements TranslatableContext
 {
-    public function getTranslationResources()
+    private $parameters;
+
+    public static function getTranslationResources()
     {
         return glob(__DIR__ . '/../../../../i18n/*.xliff');
     }
 
-    protected function getParameter($extension, $name)
+    public function getParameter($extension, $name)
     {
-        return $this->getMainContext()->getSubContext('behatch')
-            ->getParameter($extension, $name);
+        return $this->parameters[$extension][$name];
+    }
+
+    public function hasParameter($extension, $name)
+    {
+        return isset($this->parameters[$extension][$name]);
+    }
+
+    public function setParameter($extension, $name, $value)
+    {
+        $this->parameters[$extension][$name] = $value;
+    }
+
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters['contexts'];
     }
 
     protected function assertContains($expected, $actual, $message = null)
