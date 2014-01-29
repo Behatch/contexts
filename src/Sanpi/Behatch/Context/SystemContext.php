@@ -71,8 +71,7 @@ class SystemContext extends BaseContext
     public function printTheContentOfFile($filename)
     {
         if (is_file($filename)) {
-            $content = file_get_contents($filename);
-            $this->printDebug($content);
+            echo file_get_contents($filename);
         }
         else {
             throw new \RuntimeException("'$filename' doesn't exists.");

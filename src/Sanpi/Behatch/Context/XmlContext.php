@@ -246,8 +246,7 @@ class XmlContext extends BaseContext
     {
         $dom = $this->getDom(false, false);
         $dom->formatOutput = true;
-        $content = $dom->saveXML();
-        $this->printDebug($content);
+        echo $dom->saveXML();
     }
 
     /**

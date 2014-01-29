@@ -182,8 +182,7 @@ class JsonContext extends BaseContext
      */
     public function printLastJsonResponse()
     {
-        $content = $this->encode($this->getJson());
-        $this->printDebug($content);
+        echo $this->encode($this->getJson());
     }
 
     private function evaluateJson($json, $expression)
