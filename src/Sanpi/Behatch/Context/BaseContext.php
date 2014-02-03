@@ -15,26 +15,6 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         return glob(__DIR__ . '/../../../../i18n/*.xliff');
     }
 
-    public function getParameter($extension, $name)
-    {
-        return $this->parameters[$extension][$name];
-    }
-
-    public function hasParameter($extension, $name)
-    {
-        return isset($this->parameters[$extension][$name]);
-    }
-
-    public function setParameter($extension, $name, $value)
-    {
-        $this->parameters[$extension][$name] = $value;
-    }
-
-    public function setParameters($parameters)
-    {
-        $this->parameters = $parameters['contexts'];
-    }
-
     protected function assertContains($expected, $actual, $message = null)
     {
         $regex   = '/'.preg_quote($expected, '/').'/ui';

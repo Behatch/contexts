@@ -6,6 +6,13 @@ use Behat\Behat\Event\StepEvent;
 
 class DebugContext extends BaseContext
 {
+    private $screenshotDir;
+
+    public function __construct($screenshotDir = '.')
+    {
+        $this->screenshotDir = $screenshotDir;
+    }
+
     /**
      * Pauses the scenario until the user presses a key. Useful when debugging a scenario.
      *
@@ -28,8 +35,7 @@ class DebugContext extends BaseContext
     public function iSaveAScreenshotIn($filename)
     {
         sleep(1);
-        $path = $this->getParameter('debug', 'screenshot_dir');
-        $this->saveScreenshot($filename, $path);
+        $this->saveScreenshot($filename, $this->screenshotDir);
     }
 
     /**
@@ -38,10 +44,9 @@ class DebugContext extends BaseContext
     public function failScreenshots(StepEvent $event)
     {
         if ($event->getResult() == StepEvent::FAILED) {
-            $path = $this->getParameter('debug', 'screenshot_dir');
             $scenarioName = urlencode(str_replace(' ', '_', $event->getStep()->getParent()->getTitle()));
             $filename = sprintf('fail_%s_%s.png', time(), $scenarioName);
-            $this->saveScreenshot($filename, $path);
+            $this->saveScreenshot($filename, $this->screenshotDir);
         }
     }
 }

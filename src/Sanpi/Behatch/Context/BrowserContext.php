@@ -10,7 +10,13 @@ use Behat\Mink\Exception\ElementNotFoundException;
 
 class BrowserContext extends BaseContext
 {
+    private $timeout;
     private $dateFormat = 'dmYHi';
+
+    public function __construct($timeout = 1)
+    {
+        $this->timeout = $timeout;
+    }
 
     /**
      * @AfterScenario
@@ -157,8 +163,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitUntilISee($text)
     {
-        $timeout = $this->getParameter('browser', 'timeout');
-        $this->iWaitSecondsUntilISee($timeout, $text);
+        $this->iWaitSecondsUntilISee($this->timeout, $text);
     }
 
     /**
@@ -216,8 +221,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitUntilISeeInTheElement($text, $element)
     {
-        $timeout = $this->getParameter('browser', 'timeout');
-        $this->iWaitSecondsUntilISeeInTheElement($timeout, $text, $element);
+        $this->iWaitSecondsUntilISeeInTheElement($this->timeout, $text, $element);
     }
 
     /**
@@ -227,8 +231,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitForElement($element)
     {
-        $timeout = $this->getParameter('browser', 'timeout');
-        $this->iWaitSecondsForElement($timeout, $element);
+        $this->iWaitSecondsForElement($this->timeout, $element);
     }
 
     /**

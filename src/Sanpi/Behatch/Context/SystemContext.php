@@ -9,6 +9,11 @@ class SystemContext extends BaseContext
 {
     private $createdFiles = array();
 
+    public function __construct($root = '.')
+    {
+        $this->root = $root;
+    }
+
     /**
      * Uploads a file using the specified input field
      *
@@ -16,8 +21,7 @@ class SystemContext extends BaseContext
      */
     public function putFileIntoField($file, $field)
     {
-        $root = $this->getParameter('system', 'root');
-        $path = $root . DIRECTORY_SEPARATOR . $file;
+        $path = $this->root . DIRECTORY_SEPARATOR . $file;
 
         return array(
             new Step\When(sprintf('I attach the file "%s" to "%s"', $path, $field))
@@ -45,8 +49,7 @@ class SystemContext extends BaseContext
      */
     public function iExecuteFromProjectRoot($cmd)
     {
-        $root = $this->getParameter('system', 'root');
-        $cmd = $root . DIRECTORY_SEPARATOR . $cmd;
+        $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
     }
 

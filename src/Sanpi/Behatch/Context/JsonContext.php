@@ -6,6 +6,13 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class JsonContext extends BaseContext
 {
+    private $evaluationMode;
+
+    public function __construct($evaluationMode = 'javascript')
+    {
+        $this->evaluationMode = $evaluationMode;
+    }
+
     /**
      * Checks, that the response is correct JSON
      *
@@ -187,7 +194,7 @@ class JsonContext extends BaseContext
 
     private function evaluateJson($json, $expression)
     {
-        if ($this->getParameter('json', 'evaluation_mode') === 'javascript') {
+        if ($this->evaluationMode === 'javascript') {
             $expression = str_replace('.', '->', $expression);
         }
 

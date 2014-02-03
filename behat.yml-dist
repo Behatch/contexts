@@ -1,33 +1,23 @@
 default:
     suites:
         default:
-            path: %paths.base%/features
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
-                - Sanpi\Behatch\Context\BrowserContext
-                - Sanpi\Behatch\Context\DebugContext
-                - Sanpi\Behatch\Context\SystemContext
-                - Sanpi\Behatch\Context\JsonContext
-                - Sanpi\Behatch\Context\TableContext
-                - Sanpi\Behatch\Context\RestContext
-                - Sanpi\Behatch\Context\XmlContext
+                - behatch:browser:
+                    timeout: 1
+                - behatch:debug:
+                    screenshotDir: "."
+                - behatch:json:
+                    evaluationMode: javascript
+                - behatch:rest
+                - behatch:system:
+                    root: "."
+                - behatch:table
+                - behatch:xml
     extensions:
         Behat\MinkExtension\Extension:
             base_url: 'http://localhost:8080'
             files_path: 'fixtures/files'
             goutte: ~
             selenium2: ~
-        Sanpi\Behatch\Extension:
-            contexts:
-                browser: ~
-                debug:
-                    screenshot_dir: "."
-                system:
-                    #root should never end up with /.
-                    root: "."
-                json:
-                    #evaluate_mode can be javascript "foo.bar" or php "foo->bar"
-                    evaluation_mode: javascript
-                table: ~
-                rest: ~
-                xml: ~
+        Sanpi\Behatch\Extension: ~

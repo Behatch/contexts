@@ -103,39 +103,25 @@ In ``behat.yml``, enable desired contexts:
         suites:
             default:
                 contexts:
-                    - Sanpi\Behatch\Context\BrowserContext
-                    - Sanpi\Behatch\Context\DebugContext
-                    - Sanpi\Behatch\Context\SystemContext
-                    - Sanpi\Behatch\Context\JsonContext
-                    - Sanpi\Behatch\Context\TableContext
-                    - Sanpi\Behatch\Context\RestContext
-                    - Sanpi\Behatch\Context\XmlContext
-
-And configure in the ``extensions`` section:
-
-.. code-block:: yaml
-
-    extensions:
-        Sanpi\Behatch\Extension:
-            contexts:
-                browser: ~
-                debug: ~
-                system: ~
-                json: ~
-                table: ~
-                rest: ~
-                xml: ~
+                    - behatch:browser
+                    - behatch:debug
+                    - behatch:system
+                    - behatch:json
+                    - behatch:table
+                    - behatch:rest
+                    - behatch:xml
 
 Configuration
 -------------
 
 * ``browser`` - more browser related steps (like mink)
+    * ``timeout`` - default timeout
 * ``debug`` - helper steps for debuging
-    * ``screenshot_dir`` - the directory where store screenshots
+    * ``screenshotDir`` - the directory where store screenshots
 * ``system`` - shell related steps
     * ``root`` - the root directory of the filesystem
 * ``json`` - JSON related steps
-    * ``evaluation_mode`` - javascript "foo.bar" or php "foo->bar"
+    * ``evaluationMode`` - javascript "foo.bar" or php "foo->bar"
 * ``table`` - play with HTML the tables
 * ``rest`` - send GET, POST, … requests and test the HTTP headers
 * ``xml`` - XML related steps
