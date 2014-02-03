@@ -356,16 +356,6 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * Checks, that page contains specified parameter value
-     *
-     * @Then /^(?:|I )shoud see the "(?P<parameter>[^"]*)" parameter$/
-     */
-    public function iShouldSeeTheParameter($parameter)
-    {
-        return new Step\Then(sprintf('I should see "%s"', $this->getMainContext()->getParameter($parameter)));
-    }
-
-    /**
      * Checks, that given select box contains the specified option
      *
      * @Then /^the "(?P<select>[^"]*)" select box should contain "(?P<option>[^"]*)"$/

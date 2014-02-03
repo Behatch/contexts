@@ -75,10 +75,6 @@
                 <source><![CDATA[/^the element "(?P<element>[^"]*)" should be enabled$/]]></source>
                 <target><![CDATA[/^"(?P<element>[^"]*)"(?:|要素)が有効であること$/u]]></target>
             </trans-unit>
-            <trans-unit id="i-should-see-the-parameter">
-                <source><![CDATA[/^(?:|I )shoud see the "(?P<parameter>[^"]*)" parameter$/]]></source>
-                <target><![CDATA[/^(?:|私が)"(?P<parameter>[^"]*)"パラメーターを確認できること$/u]]></target>
-            </trans-unit>
             <trans-unit id="the-select-box-should-contain">
                 <source><![CDATA[/^the "(?P<select>[^"]*)" select box should contain "(?P<option>[^"]*)"$/]]></source>
                 <target><![CDATA[/^セレクトボックス"(?P<select>[^"]*)"は"(?P<option>[^"]*)"を含むこと$/u]]></target>

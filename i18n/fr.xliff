@@ -83,10 +83,6 @@
                 <source><![CDATA[/^the element "(?P<element>[^"]*)" should be enabled$/]]></source>
                 <target><![CDATA[/^l'élément "(?P<element>[^"]*)" devrait être activé$/]]></target>
             </trans-unit>
-            <trans-unit id="i-should-see-the-parameter">
-                <source><![CDATA[/^(?:|I )shoud see the "(?P<parameter>[^"]*)" parameter$/]]></source>
-                <target><![CDATA[/^(?:|je )devrais voir le paramètre "(?P<parameter>[^"]*)"$/]]></target>
-            </trans-unit>
             <trans-unit id="the-select-box-should-contain">
                 <source><![CDATA[/^the "(?P<select>[^"]*)" select box should contain "(?P<option>[^"]*)"$/]]></source>
                 <target><![CDATA[/^la liste de sélection "(?P<select>[^"]*)" devrait contenir "(?P<option>[^"]*)"$/]]></target>
