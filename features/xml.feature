@@ -88,7 +88,7 @@ Feature: Testing XmlContext
           And the XML attribute "color" on element "//book/chapter/title" should not exist
           And the XML attribute "id" on element "//book/chapter" should be equal to "books"
           And the XML attribute "id" on element "//book" should not be equal to "choices"
-          And the XML element "//book/chapter/para/informaltable/tgroup/tbody" should have 4 elements
+          And the XML element "//book/chapter/para/informaltable/tgroup/tbody" should have 3 elements
           And the XML element "//book/title" should contain "is"
           And the XML element "//book/chapter/title" should not contain "if"
 
