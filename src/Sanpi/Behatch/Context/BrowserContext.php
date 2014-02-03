@@ -45,15 +45,7 @@ class BrowserContext extends BaseContext
     {
         $url = '';
         foreach ($tableNode->getHash() as $hash) {
-            $param = $hash['parameters'];
-
-            //this parameter is actually a context parameter
-            if ($this->getMainContext()->hasParameter($param)) {
-                $url .= $this->getMainContext()->getParameter($param);
-            }
-            else {
-                $url .= $param;
-            }
+            $url .= $hash['parameters'];
         }
 
         return new Step\Given(sprintf('I am on "%s"', $url));
