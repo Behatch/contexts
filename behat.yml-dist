@@ -2,6 +2,7 @@ default:
     extensions:
         Behat\MinkExtension\Extension:
             base_url: 'http://localhost:8080'
+            files_path: 'fixtures/files'
             goutte: ~
             selenium2: ~
         Sanpi\Behatch\Extension:

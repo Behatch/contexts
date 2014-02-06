@@ -21,11 +21,16 @@ Fonctionnalité:
         Et je devrais voir "second : bar"
 
         Quand j'envoie une requête POST sur "/rest/index.php" avec les paramètres :
-          | key | value |
-          | foo | bar   |
+            | key     | value      |
+            | foo     | bar        |
+            | foofile | @lorem.txt |
         Alors je devrais voir "You have sent a POST request. "
         Et je devrais voir "1 parameter(s)"
+        Et je devrais voir "1 file(s)"
         Et je devrais voir "foo : bar"
+        Et je devrais voir "foofile - name : lorem.txt"
+        Et je devrais voir "foofile - error : 0"
+        Et je devrais voir "foofile - size : 39"
 
         Quand j'envoie une requête PUT sur "rest/index.php"
         Alors je devrais voir "You have sent a PUT request. "

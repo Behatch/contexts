@@ -44,6 +44,11 @@ class RestContext extends BaseContext
             if (!isset($row['key']) || !isset($row['value'])) {
                 throw new \Exception("You must provide a 'key' and 'value' column in your table node.");
             }
+
+            if (is_string($row['value']) && substr($row['value'], 0, 1) == '@') {
+                $row['value'] = '@'.rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.substr($row['value'],1);
+            }
+
             $parameters[$row['key']] = $row['value'];
         }
 
