@@ -21,9 +21,9 @@ Fonctionnalité:
         Et je devrais voir "second : bar"
 
         Quand j'envoie une requête POST sur "/rest/index.php" avec les paramètres :
-            | key     | value                     |
-            | foo     | bar                       |
-            | foofile | @fixtures/files/lorem.txt |
+            | key     | value      |
+            | foo     | bar        |
+            | foofile | @lorem.txt |
         Alors je devrais voir "You have sent a POST request. "
         Et je devrais voir "1 parameter(s)"
         Et je devrais voir "1 file(s)"
