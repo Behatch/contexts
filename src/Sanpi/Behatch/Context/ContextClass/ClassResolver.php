@@ -13,7 +13,7 @@ class ClassResolver implements BaseClassResolver
 
     public function resolveClass($contextClass)
     {
-        list($_, $className) = explode(':', $contextClass);
+        list(, $className) = explode(':', $contextClass);
 
         $className = ucfirst($className);
         return "\\Sanpi\\Behatch\\Context\\{$className}Context";
