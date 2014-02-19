@@ -6,7 +6,7 @@
     "license": "beerware",
 
     "require": {
-        "behat/behat": "*@dev",
+        "behat/behat": "3.*",
         "behat/mink": "*",
         "behat/mink-extension": "*@dev",
         "justinrainbow/json-schema": "*"
