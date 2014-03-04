@@ -147,7 +147,13 @@ class JsonContext extends BaseContext
 
 		foreach($nodes as $i => $currentNode) {
 			$testNode = sprintf('%s[%d].%s', $parent, $i, $node);
-			$this->theJsonNodeShouldExist($testNode);
+			try {
+				$this->theJsonNodeShouldExist($testNode);
+			}
+			catch (\Exception $e) {
+				$this->printDebug($this->encode($nodes[$i]));
+				throw $e;
+			}
 		}
 	}
 
