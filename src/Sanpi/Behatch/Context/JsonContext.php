@@ -251,10 +251,10 @@ class JsonContext extends BaseContext
         $json = null;
 
         if (defined('JSON_PRETTY_PRINT')) {
-            $json = json_encode($this->getJson(), JSON_PRETTY_PRINT);
+            $json = json_encode($content, JSON_PRETTY_PRINT);
         }
         else {
-            $json = json_encode($this->getJson());
+            $json = json_encode($content);
         }
         return $json;
     }
