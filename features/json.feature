@@ -31,6 +31,8 @@ Feature: Testing JSONContext
 
         And the JSON node "bar" should not exist
 
+        And the JSON node "key" should exist in every JSON node "array"
+
     Scenario: Json validation with schema
         Given I am on "/json/imajson.json"
         Then the JSON should be valid according to the schema "fixtures/www/json/schema.json"
@@ -63,6 +65,10 @@ Feature: Testing JSONContext
                             "type": "string",
                             "required":true
                         }
+                    },
+                    "array": {
+                        "type": "array",
+                        "required": true
                     }
                 }
             }
@@ -86,6 +92,14 @@ Feature: Testing JSONContext
                                 "complicated": "indeed"
                             }
                         ]
+                    }
+                ],
+                "array": [
+                    {
+                        "key": "one"
+                    },
+                    {
+                        "key": "two"
                     }
                 ]
             }

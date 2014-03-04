@@ -27,6 +27,8 @@ Fonctionnalité:
 
     Et le nœud JSON "bar" ne devrait pas exister
 
+    Et le nœud JSON "key" devrait exister dans chaque nœud JSON "array"
+
   Scénario:
     Étant donné je suis sur "/json/imajson.json"
     Alors le JSON devrait être valide avec le schéma "fixtures/www/json/schema.json"
@@ -59,6 +61,10 @@ Fonctionnalité:
             "type": "string",
             "required":true
           }
+        },
+        "array": {
+            "type": "array",
+            "required": true
         }
       }
     }
@@ -82,6 +88,14 @@ Fonctionnalité:
                             "complicated": "indeed"
                         }
                     ]
+                }
+            ],
+            "array": [
+                {
+                    "key": "one"
+                },
+                {
+                    "key": "two"
                 }
             ]
         }

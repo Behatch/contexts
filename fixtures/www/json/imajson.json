@@ -8,5 +8,13 @@
       "complexeshizzle": true,
       "so": ["very", {"complicated": "indeed"}]
     }
+  ],
+  "array": [
+    {
+      "key": "one"
+    },
+    {
+      "key": "two"
+    }
   ]
 }
