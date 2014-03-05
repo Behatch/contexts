@@ -51,6 +51,8 @@ Fonctionnalité:
         Étant donnée je vais sur "/browser/timeout.html"
         Alors j'attends 3 secondes de voir "timeout"
         Et j'attends 1 seconde
+        Et j'attends l'élément "#iframe"
+        Et j'attends 5 secondes l'élément "#iframe"
 
     @javascript
     Scénario:
