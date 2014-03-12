@@ -43,6 +43,12 @@ Feature: Testing RESTContext
             """
         Then I should see "Body : This is a body."
 
+        When I send a PUT request to "/rest/index.php" with body:
+            """
+            {"this is":"some json"}
+            """
+        Then the response should be empty
+
     Scenario: Add header
         Given I add "xxx" header equal to "yyy"
         When I send a GET request to "/rest/index.php"
