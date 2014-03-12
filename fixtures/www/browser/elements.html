@@ -9,5 +9,19 @@
 			<option value=3>march</option>
 		</select>
 	</div>
+    <div>
+        <ul>
+            <li>First</li>
+            <li>Second</li>
+        </ul>
+        <span id="element"></span>
+    </div>
+    <script>
+        [].forEach.call(document.querySelectorAll('li'), function(el) {
+                el.addEventListener('click', function() {
+                    document.getElementById('element').innerHTML = 'You clicked ' + el.innerHTML;
+                })
+            });
+    </script>
     </body>
 </html>

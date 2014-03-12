@@ -13,7 +13,7 @@
             </trans-unit>
             <trans-unit id="i-click-on-the-nth-element">
                 <source><![CDATA[/^(?:|I )click on the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<element>[^"]*)" element$/]]></source>
-                <target><![CDATA[/^(?:|je )clique sur le (?P<nth>\d+)(?:er|nd|ième) élément$/]]></target>
+                <target><![CDATA[/^(?:|je )clique sur le (?P<nth>\d+)(?:er|nd|ième) élément "(?P<element>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-follow-the-nth-link">
                 <source><![CDATA[/^(?:|I )follow the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<link>[^"]*)" link$/]]></source>
