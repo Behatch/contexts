@@ -30,13 +30,16 @@ Feature: Browser Feature
         Then the response status code should be 401
         And I should see "NONE SHALL PASS"
 
+    @javascript
     Scenario: Elements testing
         Given I am on "/browser/elements.html"
-        Then I should see 3 "div" in the 1st "body"
-        And I should see less than 4 "div" in the 1st "body"
+        Then I should see 4 "div" in the 1st "body"
+        And I should see less than 5 "div" in the 1st "body"
         And I should see more than 2 "div" in the 1st "body"
         And the "months_selector" select box should not contain "december"
         And the "months_selector" select box should contain "january"
+        When I click on the 1st "ul li" element
+        Then I should see "You clicked First"
 
     @javascript
     Scenario: Frames testing
