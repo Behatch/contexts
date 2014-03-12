@@ -171,6 +171,10 @@
                 <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should not exist$/]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne devrait pas exister$/]]></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-exsists-for-every-json-node">
+                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should exist in every JSON node "(?P<parent>[^"]*)"$/]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait exister dans chaque n(?:œ|oe)ud JSON "(?P<parent>[^"]*)"$/]]></target>
+            </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
                 <source><![CDATA[/^the JSON should be valid according to this schema:$/]]></source>
                 <target><![CDATA[/^le JSON devrait être valide avec ce schéma:$/]]></target>

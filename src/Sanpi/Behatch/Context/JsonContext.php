@@ -132,6 +132,31 @@ class JsonContext extends BaseContext
         }
     }
 
+	/**
+	 * @Given /^the JSON node "(?P<node>[^"]*)" should exist in every JSON node "(?P<parent>[^"]*)"$/
+	 */
+	public function theJsonNodeShouldExistInEachNode($node, $parent)
+	{
+        $json = $this->getJson();
+
+		$nodes = $this->evaluateJson($json, $parent);
+
+		if (!is_array($nodes)) {
+            throw new \Exception(sprintf("The node '%s' is not an array.", $parent));
+		}
+
+		foreach($nodes as $i => $currentNode) {
+			$testNode = sprintf('%s[%d].%s', $parent, $i, $node);
+			try {
+				$this->theJsonNodeShouldExist($testNode);
+			}
+			catch (\Exception $e) {
+				$this->printDebug($this->encode($nodes[$i]));
+				throw $e;
+			}
+		}
+	}
+
     /**
      * @Then /^the JSON should be valid according to this schema:$/
      */
@@ -251,10 +276,10 @@ class JsonContext extends BaseContext
         $json = null;
 
         if (defined('JSON_PRETTY_PRINT')) {
-            $json = json_encode($this->getJson(), JSON_PRETTY_PRINT);
+            $json = json_encode($content, JSON_PRETTY_PRINT);
         }
         else {
-            $json = json_encode($this->getJson());
+            $json = json_encode($content);
         }
         return $json;
     }
