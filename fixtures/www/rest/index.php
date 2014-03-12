@@ -5,6 +5,13 @@ error_reporting(E_ALL);
 header('Date: ' . date('c'));
 header('Expires: ' . date('c', time() + 60));
 
+$body = file_get_contents('php://input');
+if ($_SERVER['REQUEST_METHOD'] === 'PUT' && !empty($body)) {
+    // For PUT with body we simulate an empty response with 204
+    header("HTTP/1.0 204 No Content");
+    die();
+}
+
 ?>
 
 You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
@@ -34,8 +41,6 @@ You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
   <?php endforeach; ?>
 <?php endif; ?>
 
-
-<?php $body = file_get_contents('php://input'); ?>
 <?php if($body == null): ?>
   <br />No body received.
 <?php else: ?>
