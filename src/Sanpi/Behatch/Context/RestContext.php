@@ -225,7 +225,7 @@ class RestContext extends BaseContext
         $this->printDebug($command);
     }
 
-    private function getHttpHeader($name)
+    protected function getHttpHeader($name)
     {
         $name = strtolower($name);
         $header = $this->getHttpHeaders();
@@ -246,7 +246,7 @@ class RestContext extends BaseContext
         return $value;
     }
 
-    private function getHttpHeaders()
+    protected function getHttpHeaders()
     {
         return array_change_key_case(
             $this->getSession()->getResponseHeaders(),
