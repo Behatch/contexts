@@ -88,6 +88,18 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Checks, whether the response content is null or empty string
+     *
+     * @Then /^the response should be empty$/
+     */
+    public function theResponseShouldBeEmpty()
+    {
+        $actual = $this->getSession()->getPage()->getContent();
+        $message = 'The response of the current page is not empty';
+        $this->assertTrue(null === $actual || "" === $actual, $message);
+    }
+
+    /**
      * Checks, whether the header name is equal to given text
      *
      * @Then /^the header "(?P<name>[^"]*)" should be equal to "(?P<value>[^"]*)"$/
