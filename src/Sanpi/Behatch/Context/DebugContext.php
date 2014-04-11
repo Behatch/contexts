@@ -39,7 +39,7 @@ class DebugContext extends BaseContext
     {
         if ($event->getResult() == StepEvent::FAILED) {
             $path = $this->getParameter('debug', 'screenshot_dir');
-            $scenarioName = str_replace(' ', '_', $event->getStep()->getParent()->getTitle());
+            $scenarioName = urlencode(str_replace(' ', '_', $event->getStep()->getParent()->getTitle()));
             $filename = sprintf('fail_%s_%s.png', time(), $scenarioName);
             $this->saveScreenshot($filename, $path);
         }
