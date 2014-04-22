@@ -10,7 +10,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatedContextIn
 {
     public function getTranslationResources()
     {
-        return glob(__DIR__ . '/../../../../i18n/*.xliff');
+        return glob(__DIR__ . '/../../i18n/*.xliff');
     }
 
     protected function getParameter($extension, $name)
