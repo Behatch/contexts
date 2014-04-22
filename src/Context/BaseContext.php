@@ -12,7 +12,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
 
     public static function getTranslationResources()
     {
-        return glob(__DIR__ . '/../../../../i18n/*.xliff');
+        return glob(__DIR__ . '/../../i18n/*.xliff');
     }
 
     protected function assertContains($expected, $actual, $message = null)
