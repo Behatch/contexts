@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": true,
+    "definitions": {
+        "url": {
+            "type": "string",
+            "pattern": "^https?\\:\\/\\/.+\\.[a-zA-Z]{2,4}$"
+        }
+    },
+    "properties": {
+        "foo": { "$ref": "#/definitions/url"},
+        "bar": { "$ref": "definitions.json#/definitions/https"}
+    }
+}
