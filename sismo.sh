@@ -22,3 +22,4 @@ wget -q http://getcomposer.org/installer -O - | php;
 cp behat.yml{-dist,}
 
 ./bin/behat -fprogress --tags='~@user'
+./bin/atoum

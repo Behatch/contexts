@@ -9,13 +9,15 @@
         "behat/behat": "3.*",
         "behat/mink": "*",
         "behat/mink-extension": "2.0.x-dev",
-        "justinrainbow/json-schema": "*"
+        "justinrainbow/json-schema": "*",
+        "symfony/property-access": "~2.3"
     },
 
     "require-dev": {
         "kherge/box": "~2.0",
         "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*"
+        "behat/mink-selenium2-driver": "*",
+        "atoum/atoum": "*@dev"
     },
 
     "autoload": {
