@@ -17,7 +17,7 @@ class SystemContext extends BaseContext
     /**
      * Uploads a file using the specified input field
      *
-     * @When /^(?:|I )put the file "(?P<file>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/
+     * @When (I )put the file :file into :field
      */
     public function putFileIntoField($file, $field)
     {
@@ -31,7 +31,7 @@ class SystemContext extends BaseContext
     /**
      * Execute a command
      *
-     * @Given /^(?:|I )execute "(?P<command>[^"]*)"$/
+     * @Given (I )execute :command
      */
     public function iExecute($cmd)
     {
@@ -45,7 +45,7 @@ class SystemContext extends BaseContext
     /**
      * Execute a command from project root
      *
-     * @Given /^(?:|I )execute "(?P<command>[^"]*)" from project root$/
+     * @Given (I )execute :command from project root
      */
     public function iExecuteFromProjectRoot($cmd)
     {
@@ -54,8 +54,8 @@ class SystemContext extends BaseContext
     }
 
     /**
-     * @Given /^(?:|I )create the file "(?P<filename>[^"]*)" containing:$/
-     * @Given /^(?:|I )create the file "(?P<filename>[^"]*)" contening:$/
+     * @Given (I )create the file :filename containing:
+     * @Given (I )create the file :filename contening:
      */
     public function iCreateTheFileContaining($filename, PyStringNode $string)
     {
@@ -69,7 +69,7 @@ class SystemContext extends BaseContext
     }
 
     /**
-     * @Then /^print the content of "(?P<filename>[^"]*)" file$/
+     * @Then print the content of :filename file
      */
     public function printTheContentOfFile($filename)
     {

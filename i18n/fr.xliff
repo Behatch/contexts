@@ -4,304 +4,304 @@
         <body>
             <!-- BrowserContext.php -->
             <trans-unit id="i-set-basic-authentication">
-                <source><![CDATA[/^I set basic authentication with "(?P<user>[^"]*)" and "(?P<password>[^"]*)"$/]]></source>
-                <target><![CDATA[/^je remplis l'authentification basique avec "(?P<user>[^"]*)" et "(?P<password>[^"]*)"$/]]></target>
+                <source><![CDATA[I set basic authentication with :user and :password]]></source>
+                <target><![CDATA[je remplis l'authentification basique avec :user et :password]]></target>
             </trans-unit>
             <trans-unit id="i-am-on-url-composed-by">
-                <source><![CDATA[/^(?:|I )am on url composed by$/]]></source>
-                <target><![CDATA[/^(?:|je )suis sur une url composée par$/]]></target>
+                <source><![CDATA[(I )am on url composed by]]></source>
+                <target><![CDATA[(je )suis sur une url composée par]]></target>
             </trans-unit>
             <trans-unit id="i-click-on-the-nth-element">
-                <source><![CDATA[/^(?:|I )click on the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<element>[^"]*)" element$/]]></source>
-                <target><![CDATA[/^(?:|je )clique sur le (?P<nth>\d+)(?:er|nd|ième) élément "(?P<element>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )click on the :index :element element]]></source>
+                <target><![CDATA[(je )clique sur le :index élément :element]]></target>
             </trans-unit>
             <trans-unit id="i-follow-the-nth-link">
-                <source><![CDATA[/^(?:|I )follow the (?P<nth>\d+)(?:st|nd|rd|th) "(?P<link>[^"]*)" link$/]]></source>
-                <target><![CDATA[/^(?:|je )suis le (?P<nth>\d+)(?:er|nd|ième) liens$/]]></target>
+                <source><![CDATA[(I )follow the :index :link link]]></source>
+                <target><![CDATA[(je )suis le :index liens]]></target>
             </trans-unit>
             <trans-unit id="i-fill-in-with-the-current-date">
-                <source><![CDATA[/^(?:|I )fill in "(?P<field>[^"]*)" with the current date$/]]></source>
-                <target><![CDATA[/^(?:|je )remplis "(?P<field>[^"]*)" avec la date actuelle$/]]></target>
+                <source><![CDATA[(I )fill in :field with the current date]]></source>
+                <target><![CDATA[(je )remplis :field avec la date actuelle]]></target>
             </trans-unit>
             <trans-unit id="i-fill-in-with-the-current-date-and-modifier">
-                <source><![CDATA[/^(?:|I )fill in "(?P<field>[^"]*)" with the current date and modifier "(?P<modifier>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )remplis "(?P<field>[^"]*)" avec la date actuelle et modificateur "(?P<modifier>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )fill in :field with the current date and modifier :modifier]]></source>
+                <target><![CDATA[(je )remplis :field avec la date actuelle et modificateur :modifier]]></target>
             </trans-unit>
             <trans-unit id="i-hover">
-                <source><![CDATA[/^(?:|I )hover "(?P<element>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )survole "(?P<element>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )hover :element]]></source>
+                <target><![CDATA[(je )survole :element]]></target>
             </trans-unit>
             <trans-unit id="i-save-the-value-of-in-the-parameters">
-                <source><![CDATA[/^(?:|I )save the value of "(?P<field>[^"]*)" in the "(?P<parameter>[^"]*)" parameter$/]]></source>
-                <target><![CDATA[/^(?:|je )sauvegarde la valeur de "(?P<field>[^"]*)" dans le paramètre "(?P<parameter>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )save the value of :field in the :parameter parameter]]></source>
+                <target><![CDATA[(je )sauvegarde la valeur de :field dans le paramètre :parameter]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see">
-                <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds? until I see "(?P<text>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes? de voir "(?P<text>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )wait :seconds second(s) until I see :text]]></source>
+                <target><![CDATA[(j')attends :seconds seconde(s) de voir :text]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see">
-                <source><![CDATA[/^(?:|I )wait until I see "(?P<text>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')attends de voir "(?P<text>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )wait until I see :text]]></source>
+                <target><![CDATA[(j')attends de voir :text]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
-                <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds? until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/]]></source>
-                <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes? de voir "(?P<text>[^"]*)" dans l'élément (?P<element>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )wait :seconds second(s) until I see :text in the :element element]]></source>
+                <target><![CDATA[(j')attends (?P<seconds>\d+) secondes? de voir :text dans l'élément (?P<element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
-                <source><![CDATA[/^(?:|I )wait until I see "(?P<text>[^"]*)" in the "(?P<element>[^"]*)" element$/]]></source>
-                <target><![CDATA[/^(?:|j')attends de voir "(?P<text>[^"]*)" dans l'élément "(?P<element>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )wait until I see :text in the :element element]]></source>
+                <target><![CDATA[(j')attends de voir :text dans l'élément :element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-for-element">
-                <source><![CDATA[/^(?:|I )wait for "(?P<element>[^"]*)" element$/]]></source>
-                <target><![CDATA[/^(?:|j')attends l'élément "(?P<element>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )wait for :element element]]></source>
+                <target><![CDATA[(j')attends l'élément :element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-for-element">
-                <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds? for "(?P<element>[^"]*)" element$/]]></source>
-                <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes? l'élément "(?P<element>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )wait :seconds second(s) for :element element]]></source>
+                <target><![CDATA[(j')attends :seconds seconde(s) l'élément :element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-second">
-                <source><![CDATA[/^(?:|I )wait (?P<seconds>\d+) seconds?$/]]></source>
-                    <target><![CDATA[/^(?:|j')attends (?P<seconds>\d+) secondes?$/]]></target>
+                <source><![CDATA[(I )wait :seconds second(s)]]></source>
+                <target><![CDATA[(j')attends :seconds seconde(s)]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
                 <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-less-than-n-in-the-nth">
-                <source><![CDATA[/^(?:|I )should see less than (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )devrais voir moins de (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see less than :nth :element in the :index :parent]]></source>
+                <target><![CDATA[(je )devrais voir moins de :nth :element dans le :index :parent]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-more-than-n-in-the-nth">
-                <source><![CDATA[/^(?:|I )should see more than (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )devrais voir plus de (?P<nth>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see more than :nth :element in the :index :parent]]></source>
+                <target><![CDATA[(je )devrais voir plus de :nth :element dans le :index :parent]]></target>
             </trans-unit>
             <trans-unit id="the-element-shouls-be-disabled">
-                <source><![CDATA[/^the element "(?P<element>[^"]*)" should be disabled$/]]></source>
-                <target><![CDATA[/^l'élément "(?P<element>[^"]*)" devrait être désactivé$/]]></target>
+                <source><![CDATA[the element :element should be disabled]]></source>
+                <target><![CDATA[l'élément :element devrait être désactivé]]></target>
             </trans-unit>
             <trans-unit id="the-element-should-be-enabled">
-                <source><![CDATA[/^the element "(?P<element>[^"]*)" should be enabled$/]]></source>
-                <target><![CDATA[/^l'élément "(?P<element>[^"]*)" devrait être activé$/]]></target>
+                <source><![CDATA[the element :element should be enabled]]></source>
+                <target><![CDATA[l'élément :element devrait être activé]]></target>
             </trans-unit>
             <trans-unit id="the-select-box-should-contain">
-                <source><![CDATA[/^the "(?P<select>[^"]*)" select box should contain "(?P<option>[^"]*)"$/]]></source>
-                <target><![CDATA[/^la liste de sélection "(?P<select>[^"]*)" devrait contenir "(?P<option>[^"]*)"$/]]></target>
+                <source><![CDATA[the :select select box should contain :option]]></source>
+                <target><![CDATA[la liste de sélection :select devrait contenir :option]]></target>
             </trans-unit>
             <trans-unit id="the-select-box-should-not-contain">
-                <source><![CDATA[/^the "(?P<select>[^"]*)" select box should not contain "(?P<option>[^"]*)"$/]]></source>
-                <target><![CDATA[/^la liste de sélection "(?P<select>[^"]*)" ne devrait pas contenir "(?P<option>[^"]*)"$/]]></target>
+                <source><![CDATA[the :select select box should not contain :option]]></source>
+                <target><![CDATA[la liste de sélection :select ne devrait pas contenir :option]]></target>
             </trans-unit>
             <trans-unit id="the-element-shouls-be-visible">
-                <source><![CDATA[/^the "(?P<element>[^"]*)" element should be visible$/]]></source>
-                <target><![CDATA[/^l'élément "(?P<element>[^"]*)" devrait être visible$/]]></target>
+                <source><![CDATA[the :element element should be visible]]></source>
+                <target><![CDATA[l'élément :element devrait être visible]]></target>
             </trans-unit>
             <trans-unit id="the-element-should-not-be-visible">
-                <source><![CDATA[/^the "(?P<element>[^"]*)" element should not be visible$/]]></source>
-                <target><![CDATA[/^l'élément "(?P<element>[^"]*)" ne devrait pas être visible$/]]></target>
+                <source><![CDATA[the :element element should not be visible]]></source>
+                <target><![CDATA[l'élément :element ne devrait pas être visible]]></target>
             </trans-unit>
             <trans-unit id="i-switch-to-iframe">
-                <source><![CDATA[/^(?:|I )switch to iframe "(?P<name>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )bascule vers l'iframe "(?P<name>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )switch to iframe :name]]></source>
+                <target><![CDATA[(je )bascule vers l'iframe :name]]></target>
             </trans-unit>
             <trans-unit id="i-switch-to-frame">
-                <source><![CDATA[/^(?:|I )switch to frame "(?P<name>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )bascule vers le cadre "(?P<name>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )switch to frame :name]]></source>
+                <target><![CDATA[(je )bascule vers le cadre ":name"]]></target>
             </trans-unit>
             <trans-unit id="i-switch-to-main-frame">
-                <source><![CDATA[/^(?:|I )switch to main frame$/]]></source>
-                <target><![CDATA[/^(?:|je )bascule vers le cadre principal$/]]></target>
+                <source><![CDATA[(I )switch to main frame]]></source>
+                <target><![CDATA[(je )bascule vers le cadre principal]]></target>
             </trans-unit>
 
-            <!-- FileSystemContext.php -->
+            <!-- SystemContext.php -->
             <trans-unit id="i-put-the-file-into-field">
-                <source><![CDATA[/^(?:|I )put the file "(?P<file>[^"]*)" into "(?P<field>(?:[^"]|\\")*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')envoie le fichier "(?P<file>[^"]*)" dans "(?P<field>(?:[^"]|\\")*)"$/]]></target>
+                <source><![CDATA[(I )put the file :file into :field]]></source>
+                <target><![CDATA[(j')envoie le fichier :file dans :field]]></target>
             </trans-unit>
             <trans-unit id="i-execute">
-                <source><![CDATA[/^(?:|I )execute "(?P<command>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')exécute "(?P<command>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )execute :command]]></source>
+                <target><![CDATA[(j')exécute :command]]></target>
             </trans-unit>
             <trans-unit id="i-execute-from-project-root">
-                <source><![CDATA[/^(?:|I )execute "(?P<command>[^"]*)" from project root$/]]></source>
-                <target><![CDATA[/^(?:|j')exécute "(?P<command>[^"]*)" depuis la racine du projet$/]]></target>
+                <source><![CDATA[(I )execute :command from project root]]></source>
+                <target><![CDATA[(j')exécute :command depuis la racine du projet]]></target>
             </trans-unit>
             <trans-unit id="i-create-the-file-contening">
-                <source><![CDATA[/^(?:|I )create the file "(?P<filename>[^"]*)" containing:$/]]></source>
-                <target><![CDATA[/^(?:|je )crée le fichier "(?P<filename>[^"]*)" contenant :$/]]></target>
+                <source><![CDATA[(I )create the file :filename containing:]]></source>
+                <target><![CDATA[(je )crée le fichier :filename contenant :]]></target>
             </trans-unit>
             <trans-unit id="print-the-content-of-file">
-                <source><![CDATA[/^print the content of "(?P<filename>[^"]*)" file$/]]></source>
-                <target><![CDATA[/^imprimer le contenu du fichier "(?P<filename>[^"]*)"$/]]></target>
+                <source><![CDATA[print the content of :filename file]]></source>
+                <target><![CDATA[imprimer le contenu du fichier :filename]]></target>
             </trans-unit>
 
             <!-- JsonContext.php -->
             <trans-unit id="the-response-should-be-in-json">
-                <source><![CDATA[/^the response should be in JSON$/]]></source>
-                <target><![CDATA[/^la réponse devrait être du JSON$/]]></target>
+                <source><![CDATA[the response should be in JSON]]></source>
+                <target><![CDATA[la réponse devrait être du JSON]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-not-be-in-json">
-                <source><![CDATA[/^the response should not be in JSON$/]]></source>
-                <target><![CDATA[/^la réponse ne devrait pas être du JSON$/]]></target>
+                <source><![CDATA[the response should not be in JSON]]></source>
+                <target><![CDATA[la réponse ne devrait pas être du JSON]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-be-equal-to">
-                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should be equal to "(?P<text>[^"]*)"$/]]></source>
+                <source><![CDATA[the JSON node :node should be equal to :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait être égal à "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
-                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should have (?P<nth>\d+) elements?$/]]></source>
+                <source><![CDATA[the JSON node :node should have :nth element(s)]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait avoir (?P<nth>\d+) éléments?$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-contain">
-                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should contain "(?P<text>[^"]*)"$/]]></source>
+                <source><![CDATA[the JSON node :node should contain :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-contain">
-                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>[^"]*)"$/]]></source>
+                <source><![CDATA[the JSON node :node should not contain :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne devrait pas contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
-                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should exist$/]]></source>
+                <source><![CDATA[the JSON node :node should exist]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait exister$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-exsists">
-                <source><![CDATA[/^the JSON node "(?P<node>[^"]*)" should not exist$/]]></source>
+                <source><![CDATA[the JSON node :node should not exist]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne devrait pas exister$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
-                <source><![CDATA[/^the JSON should be valid according to this schema:$/]]></source>
-                <target><![CDATA[/^le JSON devrait être valide avec ce schéma:$/]]></target>
+                <source><![CDATA[the JSON should be valid according to this schema:]]></source>
+                <target><![CDATA[le JSON devrait être valide avec ce schéma:]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-the-schema">
-                <source><![CDATA[/^the JSON should be valid according to the schema "(?P<filename>[^"]*)"$/]]></source>
-                <target><![CDATA[/^le JSON devrait être valide avec le schéma "(?P<filename>[^"]*)"$/]]></target>
+                <source><![CDATA[the JSON should be valid according to the schema :filename]]></source>
+                <target><![CDATA[le JSON devrait être valide avec le schéma :filename]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-eqal-to">
-                <source><![CDATA[/^the JSON should be equal to:$/]]></source>
-                <target><![CDATA[/^le JSON devrait être égal à :$/]]></target>
+                <source><![CDATA[the JSON should be equal to:]]></source>
+                <target><![CDATA[le JSON devrait être égal à :]]></target>
             </trans-unit>
             <trans-unit id="print-last-json-response">
-                <source><![CDATA[/^print last JSON response$/]]></source>
-                <target><![CDATA[/^imprimer la dernière réponse JSON$/]]></target>
+                <source><![CDATA[print last JSON response]]></source>
+                <target><![CDATA[imprimer la dernière réponse JSON]]></target>
             </trans-unit>
 
             <!-- RestContext.php -->
-            <trans-unit id="i-send-a-request-on">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')envoie une requête (?P<method>[A-Z]+) sur "(?P<url>[^"]*)"$/]]></target>
+            <trans-unit id="i-send-a-request-to">
+                <source><![CDATA[I send a :method request to :url]]></source>
+                <target><![CDATA[(j')envoie une requête :method sur :url]]></target>
             </trans-unit>
             <trans-unit id="i-send-a-request-on-with-parameters">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with parameters:$/]]></source>
-                <target><![CDATA[/^(?:|j')envoie une requête (?P<method>[A-Z]+) sur "(?P<url>[^"]*)" avec les paramètres :$/]]></target>
+                <source><![CDATA[I send a :method request to :url with parameters:]]></source>
+                <target><![CDATA[(j')envoie une requête :method sur :url avec les paramètres :]]></target>
             </trans-unit>
             <trans-unit id="i-send-a-request-on-with-body">
-                <source><![CDATA[/^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with body:$/]]></source>
-                <target><![CDATA[/^(?:|j')envoie une requête (?P<method>[A-Z]+) sur "(?P<url>[^"]*)" avec le contenu :$/]]></target>
+                <source><![CDATA[I send a :method request to :url with body:]]></source>
+                <target><![CDATA[(j')envoie une requête :method sur :url avec le contenu :]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
-                <source><![CDATA[/^the response should be equal to:$/]]></source>
-                <target><![CDATA[/^la réponse devrait être égale à :$/]]></target>
+                <source><![CDATA[the response should be equal to:]]></source>
+                <target><![CDATA[la réponse devrait être égale à :]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-equal-to">
-                <source><![CDATA[/^the header "(?P<name>[^"]*)" should be equal to "(?P<value>[^"]*)"$/]]></source>
-                <target><![CDATA[/^l'entête "(?P<name>[^"]*)" devrait être égal à "(?P<value>[^"]*)"$/]]></target>
+                <source><![CDATA[the header :name should be equal to :value]]></source>
+                <target><![CDATA[l'entête :name devrait être égal à :value]]></target>
             </trans-unit>
             <trans-unit id="i-add-header-equal-to">
-                <source><![CDATA[/^I add "(?P<name>[^"]*)" header equal to "(?P<value>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|j')ajoute l'entête "(?P<name>[^"]*)" égale à "(?P<value>[^"]*)"$/]]></target>
+                <source><![CDATA[I add :name header equal to :value]]></source>
+                <target><![CDATA[(j')ajoute l'entête :name égale à :value]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-be-contains">
-                <source><![CDATA[/^the header "(?P<name>[^"]*)" should contain "(?P<value>[^"]*)"$/]]></source>
-                <target><![CDATA[/^l'entête "(?P<name>[^"]*)" devrait contenir "(?P<value>[^"]*)"$/]]></target>
+                <source><![CDATA[the header :name should contain :value]]></source>
+                <target><![CDATA[l'entête :name devrait contenir :value]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-not-contain">
-                <source><![CDATA[/^the header "(?P<name>[^"]*)" should not contain "(?P<value>[^"]*)"$/]]></source>
-                <target><![CDATA[/^l'entête "(?P<name>[^"]*)" ne devrait pas contenir "(?P<value>[^"]*)"$/]]></target>
+                <source><![CDATA[the header :name should not contain :value]]></source>
+                <target><![CDATA[l'entête :name ne devrait pas contenir :value]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-not-exist">
-                <source><![CDATA[/^the header "(?P<name>[^"]*)" should not exist$/]]></source>
-                <target><![CDATA[/^l'entête "(?P<name>[^"]*)" ne devrait pas exister$/]]></target>
+                <source><![CDATA[the header :name should not exist]]></source>
+                <target><![CDATA[l'entête :name ne devrait pas exister]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-encoded-in">
-                <source><![CDATA[/^the response should be encoded in "(?P<encoding>[^"]*)"$/]]></source>
-                <target><![CDATA[/^la réponse devrait être encodée en "(?P<encoding>[^"]*)"$/]]></target>
+                <source><![CDATA[the response should be encoded in :encoding]]></source>
+                <target><![CDATA[la réponse devrait être encodée en :encoding]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-expire-in-the-future">
-                <source><![CDATA[/^the response should expire in the future$/]]></source>
-                <target><![CDATA[/^la réponse devrait expirer dans le futur$/]]></target>
+                <source><![CDATA[the response should expire in the future]]></source>
+                <target><![CDATA[la réponse devrait expirer dans le futur]]></target>
             </trans-unit>
             <trans-unit id="print-last-response-headers">
-                <source><![CDATA[/^print last response headers$/]]></source>
-                <target><![CDATA[/^imprimer les entêtes de la dernière réponse$/]]></target>
+                <source><![CDATA[print last response headers]]></source>
+                <target><![CDATA[imprimer les entêtes de la dernière réponse]]></target>
             </trans-unit>
             <trans-unit id="print-the-corresponding-curl-command">
-                <source><![CDATA[/^print the corresponding curl command$/]]></source>
-                <target><![CDATA[/^imprimer la commande curl correspondante$/]]></target>
+                <source><![CDATA[print the corresponding curl command]]></source>
+                <target><![CDATA[imprimer la commande curl correspondante]]></target>
             </trans-unit>
 
             <!-- TableContext.php -->
             <trans-unit id="the-columns-schema-of-the-table-should-match">
-                <source><![CDATA[/^the columns schema of the "(?P<table>[^"]*)" table should match:$/]]></source>
-                <target><![CDATA[/^le schéma des colonnes du tableau "(?P<table>[^"]*)" devrait correspondre à :$/]]></target>
+                <source><![CDATA[the columns schema of the :table table should match:]]></source>
+                <target><![CDATA[le schéma des colonnes du tableau :table devrait correspondre à :]]></target>
             </trans-unit>
             <trans-unit id="i-should-ess-n-columns-in-the-tables">
-                <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) columns? in the "(?P<table>[^"]*)" table$/]]></source>
-                <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) colonnes? dans le tableau "(?P<table>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see :nth column(s) in the :table table]]></source>
+                <target><![CDATA[(je )devrais voir :nth colonne(s) dans le tableau :table]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-nth-tables">
-                <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) rows in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<table>[^"]*)" table$/]]></source>
-                <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) lignes dans le (?P<index>\d+)(?:ier|nd|ième) tableau "(?P<table>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see :nth rows in the :index :table table]]></source>
+                <target><![CDATA[(je )devrais voir :nth lignes dans le :index tableau :table]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-tables">
-                <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) rows? in the "(?P<table>[^"]*)" table$/]]></source>
-                <target><![CDATA[/^(?:|je )devrais voir (?P<nth>\d+) lignes? dans le tableau "(?P<table>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see :nth row(s) in the :table table]]></source>
+                <target><![CDATA[(je )devrais voir :nth ligne(s) dans le tableau :table]]></target>
             </trans-unit>
             <trans-unit id="the-data-in-the-nth-row-of-the-table-should-match">
-                <source><![CDATA[/^the data in the (?P<nth>\d+)(?:st|nd|rd|th) row of the "(?P<table>[^"]*)" table should match:$/]]></source>
+                <source><![CDATA[the data in the :index row of the :table table should match:]]></source>
                 <target><![CDATA[/^les données dans la (?P<nth>\d+)(?:ière|nde|ième) ligne du tableau "(?P<table>[^"]*)" devraient correspondre à :$/]]></target>
             </trans-unit>
             <trans-unit id="the-nth-column-of-the-nth-row-in-the-table-should-contain">
-                <source><![CDATA[/^the (?P<colIndex>\d+)(?:st|nd|rd|th) column of the (?P<rowIndex>\d+)(?:st|nd|rd|th) row in the "(?P<table>[^"]*)" table should contain "(?P<text>[^"]*)"$/]]></source>
+                <source><![CDATA[the :colIndex column of the :rowIndex row in the :table table should contain :text]]></source>
                 <target><![CDATA[/^la (?P<colIndes>\d+)(?:ière|nde|ième) colonne de la (?P<rowIndex>\d+)(?:ière|nde|ième) ligne du tableau "(?P<table>[^"]*)" devrait contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
 
             <!-- DebugContext.php -->
             <trans-unit id="i-put-a-breakpoint">
-                <source><![CDATA[/^(?:|I )put a breakpoint$/]]></source>
-                <target><![CDATA[/^(?:|je )pose un point d'arrêt$/]]></target>
+                <source><![CDATA[(I )put a breakpoint]]></source>
+                <target><![CDATA[(je )pose un point d'arrêt]]></target>
             </trans-unit>
             <trans-unit id="i-save-a-screenshot-in">
-                <source><![CDATA[/^I save a screenshot in "(?P<filename>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|je )sauvegarde une capture d'écran dans "(?P<filename>[^"]*)"$/]]></target>
+                <source><![CDATA[I save a screenshot in :filename]]></source>
+                <target><![CDATA[(je )sauvegarde une capture d'écran dans :filename]]></target>
             </trans-unit>
 
             <!-- XmlContext.php -->
             <trans-unit id="the-xml-feed-should-be-valid-accoriding-to-its-dtd">
-                <source><![CDATA[/^the XML feed should be valid according to its DTD$/]]></source>
-                <target><![CDATA[/^le flux XML devrait être valide avec sa DTD$/]]></target>
+                <source><![CDATA[the XML feed should be valid according to its DTD]]></source>
+                <target><![CDATA[le flux XML devrait être valide avec sa DTD]]></target>
             </trans-unit>
             <trans-unit id="the-xml-feed-should-be-valid-according-to-the-xsd">
-                <source><![CDATA[/^the XML feed should be valid according to the XSD "(?P<filename>[^"]*)"$/]]></source>
-                <target><![CDATA[/^le flux XML devrait être valide avec le XSD "(?P<filename>[^"]*)"$/]]></target>
+                <source><![CDATA[the XML feed should be valid according to the XSD :filename]]></source>
+                <target><![CDATA[le flux XML devrait être valide avec le XSD :filename]]></target>
             </trans-unit>
             <trans-unit id="the-xml-feed-should-be-valid-according-to-this-xsd">
-                <source><![CDATA[/^the XML feed should be valid according to this XSD:$/]]></source>
-                <target><![CDATA[/^le flux XML devrait être valide avec cette XSD :$/]]></target>
+                <source><![CDATA[the XML feed should be valid according to this XSD:]]></source>
+                <target><![CDATA[le flux XML devrait être valide avec cette XSD :]]></target>
             </trans-unit>
             <trans-unit id="the-xml-feed-should-be-valid-according-to-the-relax-ng">
-                <source><![CDATA[/^the XML feed should be valid according to the relax NG schema "(?P<filename>[^"]*)"$/]]></source>
-                <target><![CDATA[/^le flux XML devrait être valide avec le schéma relax NG "(?P<filename>[^"]*)"$/]]></target>
+                <source><![CDATA[the XML feed should be valid according to the relax NG schema :filename]]></source>
+                <target><![CDATA[le flux XML devrait être valide avec le schéma relax NG :filename]]></target>
             </trans-unit>
             <trans-unit id="the-xml-feed-should-be-valid-according-to-this-relax-ng">
-                <source><![CDATA[/^the XML feed should be valid according to this relax NG schema:$/]]></source>
-                <target><![CDATA[/^le flux XML devrait être valide avec ce schéma relax NG :$/]]></target>
+                <source><![CDATA[the XML feed should be valid according to this relax NG schema:]]></source>
+                <target><![CDATA[le flux XML devrait être valide avec ce schéma relax NG :]]></target>
             </trans-unit>
             <trans-unit id="the-atom-feed-should-be-valid">
-                <source><![CDATA[/^the atom feed should be valid$/]]></source>
-                <target><![CDATA[/^le flux atom devrait être valide$/]]></target>
+                <source><![CDATA[the atom feed should be valid]]></source>
+                <target><![CDATA[le flux atom devrait être valide]]></target>
             </trans-unit>
             <trans-unit id="the-rss2-feed-should-be-valid">
-                <source><![CDATA[/^the RSS2 feed should be valid$/]]></source>
-                <target><![CDATA[/^le flux RSS2 devrait être valide$/]]></target>
+                <source><![CDATA[the RSS2 feed should be valid]]></source>
+                <target><![CDATA[le flux RSS2 devrait être valide]]></target>
             </trans-unit>
         </body>
     </file>

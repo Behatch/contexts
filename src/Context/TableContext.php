@@ -9,7 +9,7 @@ class TableContext extends BaseContext
     /**
      * Checks that the specified table's columns match the given schema
      *
-     * @Then /^the columns schema of the "(?P<table>[^"]*)" table should match:$/
+     * @Then the columns schema of the :table table should match:
      */
     public function theColumnsSchemaShouldMatch($table, TableNode $text)
     {
@@ -26,7 +26,7 @@ class TableContext extends BaseContext
     /**
      * Checks that the specified table contains the given number of columns
      *
-     * @Then /^(?:|I )should see (?P<nth>\d+) columns? in the "(?P<table>[^"]*)" table$/
+     * @Then (I )should see :nth column(s) in the :table table
      */
     public function iShouldSeeColumnsInTheTable($nth, $table)
     {
@@ -39,7 +39,7 @@ class TableContext extends BaseContext
     /**
      * Checks that the specified table contains the specified number of rows in its body
      *
-     * @Then /^(?:|I )should see (?P<nth>\d+) rows in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<table>[^"]*)" table$/
+     * @Then (I )should see :nth rows in the :index :table table
      */
     public function iShouldSeeRowsInTheNthTable($nth, $index, $table)
     {
@@ -55,7 +55,7 @@ class TableContext extends BaseContext
     /**
      * Checks that the specified table contains the specified number of rows in its body
      *
-     * @Then /^(?:|I )should see (?P<nth>\d+) rows? in the "(?P<table>[^"]*)" table$/
+     * @Then (I )should see :nth row(s) in the :table table
      */
     public function iShouldSeeRowsInTheTable($nth, $table)
     {
@@ -65,19 +65,19 @@ class TableContext extends BaseContext
     /**
      * Checks that the data of the specified row matches the given schema
      *
-     * @Then /^the data in the (?P<nth>\d+)(?:st|nd|rd|th) row of the "(?P<table>[^"]*)" table should match:$/
+     * @Then the data in the :index row of the :table table should match:
      */
-    public function theDataOfTheRowShouldMatch($nth, $table, TableNode $text)
+    public function theDataOfTheRowShouldMatch($index, $table, TableNode $text)
     {
         $rowsSelector = sprintf('%s tbody tr', $table);
         $rows = $this->getSession()->getPage()->findAll('css', $rowsSelector);
 
-        if (!isset($rows[$nth - 1])) {
-            throw new \Exception(sprintf('The row %d was not found in the "%s" table', $nth, $table));
+        if (!isset($rows[$index - 1])) {
+            throw new \Exception(sprintf('The row %d was not found in the "%s" table', $index, $table));
         }
 
-        $cells = (array)$rows[$nth - 1]->findAll('css', 'td');
-        $cells = array_merge((array)$rows[$nth - 1]->findAll('css', 'th'), $cells);
+        $cells = (array)$rows[$index - 1]->findAll('css', 'td');
+        $cells = array_merge((array)$rows[$index - 1]->findAll('css', 'th'), $cells);
 
         $hash = current($text->getHash());
         $keys = array_keys($hash);
@@ -94,7 +94,7 @@ class TableContext extends BaseContext
     /**
      * Checks that the specified cell (column/row) of the table's body contains the specified text
      *
-     * @Then /^the (?P<colIndex>\d+)(?:st|nd|rd|th) column of the (?P<rowIndex>\d+)(?:st|nd|rd|th) row in the "(?P<table>[^"]*)" table should contain "(?P<text>[^"]*)"$/
+     * @Then the :colIndex column of the :rowIndex row in the :table table should contain :text
      */
     public function theStColumnOfTheStRowInTheTableShouldContain($colIndex, $rowIndex, $table, $text)
     {
@@ -116,5 +116,21 @@ class TableContext extends BaseContext
         $actual   = $cols[$colIndex - 1]->getText();
 
         $this->assertContains($text, $actual);
+    }
+
+    /**
+     * @transform :colIndex
+     */
+    public function transformColIndex($colIndex)
+    {
+        return intval($colIndex);
+    }
+
+    /**
+     * @transform :rowIndex
+     */
+    public function transformRowIndex($rowIndex)
+    {
+        return intval($rowIndex);
     }
 }

@@ -15,6 +15,14 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         return glob(__DIR__ . '/../../i18n/*.xliff');
     }
 
+    /**
+     * @transform :index
+     */
+    public function transformIndex($index)
+    {
+        return intval($index);
+    }
+
     protected function assertContains($expected, $actual, $message = null)
     {
         $regex   = '/'.preg_quote($expected, '/').'/ui';

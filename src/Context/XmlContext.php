@@ -9,7 +9,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the response is correct XML
      *
-     * @Then /^the response should be in XML$/
+     * @Then the response should be in XML
      */
     public function theResponseShouldBeInXml()
     {
@@ -19,7 +19,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the response is not correct XML
      *
-     * @Then /^the response should not be in XML$/
+     * @Then the response should not be in XML
      */
     public function theResponseShouldNotBeInXml()
     {
@@ -41,7 +41,7 @@ class XmlContext extends BaseContext
      * @throws \Exception
      * @return \DomNodeList
      *
-     * @Then /^the XML element "(?P<element>[^"]*)" should exists?$/
+     * @Then the XML element :element should exist(s)
      */
     public function theXmlElementShouldExist($element)
     {
@@ -57,7 +57,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the specified XML element does not exist
      *
-     * @Then /^the XML element "(?P<element>[^"]*)" should not exists?$/
+     * @Then the XML element :element should not exist(s)
      */
     public function theXmlElementShouldNotExist($element)
     {
@@ -71,7 +71,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the specified XML element is equal to the given value
      *
-     * @Then /^the XML element "(?P<element>(?:[^"]|\\")*)" should be equal to "(?P<text>[^"]*)"$/
+     * @Then the XML element :element should be equal to :text
      */
     public function theXmlElementShouldBeEqualTo($element, $text)
     {
@@ -87,7 +87,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the specified XML element is not equal to the given value
      *
-     * @Then /^the XML element "(?P<element>(?:[^"]|\\")*)" should not be equal to "(?P<text>[^"]*)"$/
+     * @Then the XML element :element should not be equal to :text
      */
     public function theXmlElementShouldNotBeEqualTo($element, $text)
     {
@@ -103,7 +103,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the XML attribute on the specified element exists
      *
-     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should exists?$/
+     * @Then the XML attribute :attribute on element :element should exist(s)
      */
     public function theXmlAttributeShouldExist($attribute, $element)
     {
@@ -121,7 +121,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the XML attribute on the specified element does not exist
      *
-     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should not exists?$/
+     * @Then the XML attribute :attribute on element :element should not exist(s)
      */
     public function theXmlAttributeShouldNotExist($attribute, $element)
     {
@@ -141,7 +141,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the XML attribute on the specified element is equal to the given value
      *
-     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should be equal to "(?P<text>[^"]*)"$/
+     * @Then the XML attribute :attribute on element :element should be equal to :text
      */
     public function theXmlAttributeShouldBeEqualTo($attribute, $element, $text)
     {
@@ -155,7 +155,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the XML attribute on the specified element is not equal to the given value
      *
-     * @Then /^the XML attribute "(?P<attribute>[^"]*)" on element "(?P<element>(?:[^"]|\\")*)" should not be equal to "(?P<text>[^"]*)"$/
+     * @Then the XML attribute :attribute on element :element should not be equal to :text
      */
     public function theXmlAttributeShouldNotBeEqualTo($attribute, $element, $text)
     {
@@ -169,7 +169,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the given XML element has N child element(s)
      *
-     * @Then /^the XML element "(?P<element>[^"]*)" should have (?P<nth>\d+) elements?$/
+     * @Then the XML element :element should have :nth element(s)
      */
     public function theXmlElementShouldHaveNChildElements($element, $nth)
     {
@@ -188,7 +188,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the given XML element contains the given value
      *
-     * @Then /^the XML element "(?P<element>[^"]*)" should contain "(?P<text>[^"]*)"$/
+     * @Then the XML element :element should contain :text
      */
     public function theXmlElementShouldContain($element, $text)
     {
@@ -200,7 +200,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the given XML element does not contain the given value
      *
-     * @Then /^the XML element "(?P<element>[^"]*)" should not contain "(?P<text>[^"]*)"$/
+     * @Then the XML element :element should not contain :text
      */
     public function theXmlElementShouldNotContain($element, $text)
     {
@@ -212,7 +212,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the XML uses the specified namespace
      *
-     * @Then /^[Tt]he XML should use the namespace "(?P<namespace>[^"]*)"$/
+     * @Then the XML should use the namespace :namespace
      */
     public function theXmlShouldUseTheNamespace($namespace)
     {
@@ -226,7 +226,7 @@ class XmlContext extends BaseContext
     /**
      * Checks that the XML does not use the specified namespace
      *
-     * @Then /^[Tt]he XML should not use the namespace "(?P<namespace>[^"]*)"$/
+     * @Then the XML should not use the namespace :namespace
      */
     public function theXmlShouldNotUseTheNamespace($namespace)
     {
@@ -240,7 +240,7 @@ class XmlContext extends BaseContext
     /**
      * Optimistically (ignoring errors) attempt to pretty-print the last XML response
      *
-     * @Then /^print last XML response$/
+     * @Then print last XML response
      */
     public function printLastXmlResponse()
     {
@@ -249,10 +249,6 @@ class XmlContext extends BaseContext
         echo $dom->saveXML();
     }
 
-    /**
-     * @param string $element
-     * @return \DomNodeList
-     */
     public function xpath($element)
     {
         $dom = $this->getDom(false);
@@ -282,19 +278,11 @@ class XmlContext extends BaseContext
         return ($elements === false) ? new \DOMNodeList() : $elements;
     }
 
-    /**
-     * @param \DomDocument $dom
-     * @return \SimpleXMLElement
-     */
     private function getSimpleXml(\DOMDocument $dom = null)
     {
         return simplexml_import_dom($dom ? $dom : $this->getDom(false));
     }
 
-    /**
-     * @param \DOMDocument $dom
-     * @return array
-     */
     private function getNamespaces(\DOMDocument $dom = null)
     {
         $xml = $this->getSimpleXml($dom);
@@ -313,7 +301,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the XML feed should be valid according to its DTD$/
+     * @Then the XML feed should be valid according to its DTD
      */
     public function theXmlFeedShouldBeValidAccordingToItsDtd()
     {
@@ -328,7 +316,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the XML feed should be valid according to the XSD "(?P<filename>[^"]*)"$/
+     * @Then the XML feed should be valid according to the XSD :filename
      */
     public function theXmlFeedShouldBeValidAccordingToTheXsd($filename)
     {
@@ -345,7 +333,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the XML feed should be valid according to this XSD:$/
+     * @Then the XML feed should be valid according to this XSD:
      */
     public function theXmlFeedShouldBeValidAccordingToThisXsd(PyStringNode $xsd)
     {
@@ -365,7 +353,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the XML feed should be valid according to the relax NG schema "(?P<filename>[^"]*)"$/
+     * @Then the XML feed should be valid according to the relax NG schema :filename
      */
     public function theXmlFeedShouldBeValidAccordingToTheRelaxNgSchema($filename)
     {
@@ -382,7 +370,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the XML feed should be valid according to this relax NG schema:$/
+     * @Then the XML feed should be valid according to this relax NG schema:
      */
     public function theXmlFeedShouldBeValidAccordingToThisRelaxNgSchema(PyStringNode $ng)
     {
@@ -402,7 +390,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the atom feed should be valid$/
+     * @Then the atom feed should be valid
      */
     public function theAtomFeedShouldBeValid()
     {
@@ -412,7 +400,7 @@ class XmlContext extends BaseContext
     }
 
     /**
-     * @Then /^the RSS2 feed should be valid$/
+     * @Then the RSS2 feed should be valid
      */
     public function theRss2FeedShouldBeValid()
     {
@@ -421,12 +409,6 @@ class XmlContext extends BaseContext
         );
     }
 
-    /**
-     * @param bool $throwExceptions
-     * @param bool $preserveWhitespace
-     * @return \DomDocument
-     * @throws \RuntimeException
-     */
     private function getDom($throwExceptions, $preserveWhitespace = true)
     {
         $content = $this->getSession()->getPage()->getContent();

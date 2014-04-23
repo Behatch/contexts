@@ -16,7 +16,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that the response is correct JSON
      *
-     * @Then /^the response should be in JSON$/
+     * @Then the response should be in JSON
      */
     public function theResponseShouldBeInJson()
     {
@@ -26,7 +26,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that the response is not correct JSON
      *
-     * @Then /^the response should not be in JSON$/
+     * @Then the response should not be in JSON
      */
     public function theResponseShouldNotBeInJson()
     {
@@ -44,7 +44,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node is equal to given value
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should be equal to "(?P<text>[^"]*)"$/
+     * @Then the JSON node :node should be equal to :text
      */
     public function theJsonNodeShouldBeEqualTo($node, $text)
     {
@@ -62,7 +62,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node has N element(s)
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should have (?P<nth>\d+) elements?$/
+     * @Then the JSON node :node should have :nth element(s)
      */
     public function theJsonNodeShouldHaveElements($node, $nth)
     {
@@ -76,7 +76,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node contains given value
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should contain "(?P<text>[^"]*)"$/
+     * @Then the JSON node :node should contain :text
      */
     public function theJsonNodeShouldContain($node, $text)
     {
@@ -90,7 +90,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node does not contain given value
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>[^"]*)"$/
+     * @Then the JSON node :node should not contain :text
      */
     public function theJsonNodeShouldNotContain($node, $text)
     {
@@ -104,7 +104,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node exist
      *
-     * @Given /^the JSON node "(?P<node>[^"]*)" should exist$/
+     * @Given the JSON node :node should exist
      */
     public function theJsonNodeShouldExist($node)
     {
@@ -121,7 +121,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node does not exist
      *
-     * @Given /^the JSON node "(?P<node>[^"]*)" should not exist$/
+     * @Given the JSON node :node should not exist
      */
     public function theJsonNodeShouldNotExist($node)
     {
@@ -140,7 +140,7 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * @Then /^the JSON should be valid according to this schema:$/
+     * @Then the JSON should be valid according to this schema:
      */
     public function theJsonShouldBeValidAccordingToThisSchema(PyStringNode $schema)
     {
@@ -148,7 +148,7 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * @Then /^the JSON should be valid according to the schema "(?P<filename>[^"]*)"$/
+     * @Then the JSON should be valid according to the schema :filename
      */
     public function theJsonShouldBeValidAccordingToTheSchema($filename)
     {
@@ -164,7 +164,7 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * @Then /^the JSON should be equal to:$/
+     * @Then the JSON should be equal to:
      */
     public function theJsonShouldBeEqualTo(PyStringNode $content)
     {
@@ -185,7 +185,7 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * @Then /^print last JSON response$/
+     * @Then print last JSON response
      */
     public function printLastJsonResponse()
     {

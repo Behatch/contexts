@@ -12,7 +12,7 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request
      *
-     * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/
+     * @Given I send a :method request to :url
      */
     public function iSendARequestTo($method, $url)
     {
@@ -28,7 +28,7 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request with a some parameters
      *
-     * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with parameters:$/
+     * @Given I send a :method request to :url with parameters:
      */
     public function iSendARequestToWithParameters($method, $url, TableNode $datas)
     {
@@ -57,7 +57,7 @@ class RestContext extends BaseContext
     /**
      * Sends a HTTP request with a body
      *
-     * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)" with body:$/
+     * @Given I send a :method request to :url with body:
      */
     public function iSendARequestToWithBody($method, $url, PyStringNode $body)
     {
@@ -74,7 +74,7 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the response content is equal to given text
      *
-     * @Then /^the response should be equal to:$/
+     * @Then the response should be equal to
      */
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
     {
@@ -87,7 +87,7 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the response content is null or empty string
      *
-     * @Then /^the response should be empty$/
+     * @Then the response should be empty
      */
     public function theResponseShouldBeEmpty()
     {
@@ -99,7 +99,7 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the header name is equal to given text
      *
-     * @Then /^the header "(?P<name>[^"]*)" should be equal to "(?P<value>[^"]*)"$/
+     * @Then the header :name should be equal to :value
      */
     public function theHeaderShouldBeEqualTo($name, $value)
     {
@@ -112,7 +112,7 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the header name contains the given text
      *
-     * @Then /^the header "(?P<name>[^"]*)" should contain "(?P<value>[^"]*)"$/
+     * @Then the header :name should contain :value
      */
     public function theHeaderShouldBeContains($name, $value)
     {
@@ -124,7 +124,7 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the header name doesn't contain the given text
      *
-     * @Then /^the header "(?P<name>[^"]*)" should not contain "(?P<value>[^"]*)"$/
+     * @Then the header :name should not contain :value
      */
     public function theHeaderShouldNotContain($name, $value)
     {
@@ -136,7 +136,7 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the header not exist
      *
-     * @Then /^the header "(?P<name>[^"]*)" should not exist$/
+     * @Then the header :name should not exist
      */
     public function theHeaderShouldNotExist($name)
     {
@@ -152,7 +152,7 @@ class RestContext extends BaseContext
    /**
      * Checks, that the response header expire is in the future
      *
-     * @Then /^the response should expire in the future$/
+     * @Then the response should expire in the future
      */
     public function theResponseShouldExpireInTheFuture()
     {
@@ -167,7 +167,7 @@ class RestContext extends BaseContext
     /**
      * Add an header element in a request
      *
-     * @Then /^I add "(?P<name>[^"]*)" header equal to "(?P<value>[^"]*)"$/
+     * @Then I add :name header equal to :value
      */
     public function iAddHeaderEqualTo($name, $value)
     {
@@ -175,7 +175,7 @@ class RestContext extends BaseContext
     }
 
     /**
-     * @Then /^the response should be encoded in "(?P<encoding>[^"]*)"$/
+     * @Then the response should be encoded in :encoding
      */
     public function theResponseShouldBeEncodedIn($encoding)
     {
@@ -190,7 +190,7 @@ class RestContext extends BaseContext
     }
 
     /**
-     * @Then /^print last response headers$/
+     * @Then print last response headers
      */
     public function printLastResponseHeaders()
     {
@@ -205,7 +205,7 @@ class RestContext extends BaseContext
 
 
     /**
-     * @Then /^print the corresponding curl command$/
+     * @Then print the corresponding curl command
      */
     public function printTheCorrespondingCurlCommand()
     {
