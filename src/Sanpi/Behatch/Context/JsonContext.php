@@ -192,7 +192,7 @@ class JsonContext extends BaseContext
         echo $this->encode($this->getJson());
     }
 
-    private function evaluateJson($json, $expression)
+    protected function evaluateJson($json, $expression)
     {
         if ($this->evaluationMode === 'javascript') {
             $expression = str_replace('.', '->', $expression);
@@ -214,7 +214,7 @@ class JsonContext extends BaseContext
         return $result;
     }
 
-    private function validate($schema)
+    protected function validate($schema)
     {
         try {
             $jsonSchema = $this->decode($schema);
@@ -234,14 +234,14 @@ class JsonContext extends BaseContext
         }
     }
 
-    private function getJson()
+    protected function getJson()
     {
         $content = $this->getSession()->getPage()->getContent();
 
         return $this->decode($content);
     }
 
-    private function decode($content)
+    protected function decode($content)
     {
         $result = json_decode($content);
 
@@ -252,7 +252,7 @@ class JsonContext extends BaseContext
         return $result;
     }
 
-    private function encode($content)
+    protected function encode($content)
     {
         $json = null;
 

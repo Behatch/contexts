@@ -286,7 +286,7 @@ class XmlContext extends BaseContext
      * @param \DomDocument $dom
      * @return \SimpleXMLElement
      */
-    private function getSimpleXml(\DOMDocument $dom = null)
+    protected function getSimpleXml(\DOMDocument $dom = null)
     {
         return simplexml_import_dom($dom ? $dom : $this->getDom(false));
     }
@@ -295,7 +295,7 @@ class XmlContext extends BaseContext
      * @param \DOMDocument $dom
      * @return array
      */
-    private function getNamespaces(\DOMDocument $dom = null)
+    protected function getNamespaces(\DOMDocument $dom = null)
     {
         $xml = $this->getSimpleXml($dom);
         $namespaces = $xml->getNamespaces(true);
@@ -353,7 +353,7 @@ class XmlContext extends BaseContext
         $this->schemaValidate($dom, $xsd->getRaw());
     }
 
-    private function schemaValidate(\DomDocument $dom, $xsd)
+    protected function schemaValidate(\DomDocument $dom, $xsd)
     {
         try {
             $dom->schemaValidateSource($xsd);
@@ -390,7 +390,7 @@ class XmlContext extends BaseContext
         $this->relaxNGValidate($dom, $ng->getRaw());
     }
 
-    private function relaxNGValidate(\DomDocument $dom, $ng)
+    protected function relaxNGValidate(\DomDocument $dom, $ng)
     {
         try {
             $dom->relaxNGValidateSource($ng);
@@ -427,7 +427,7 @@ class XmlContext extends BaseContext
      * @return \DomDocument
      * @throws \RuntimeException
      */
-    private function getDom($throwExceptions, $preserveWhitespace = true)
+    protected function getDom($throwExceptions, $preserveWhitespace = true)
     {
         $content = $this->getSession()->getPage()->getContent();
 
@@ -448,7 +448,7 @@ class XmlContext extends BaseContext
         return $dom;
     }
 
-    private function throwError()
+    protected function throwError()
     {
         $error = libxml_get_last_error();
         if (!empty($error)) {
