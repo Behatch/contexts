@@ -36,7 +36,7 @@
                 <target><![CDATA[/^(?:|私が)"(?P<field>[^"]*)"の値を"(?P<parameter>[^"]*)"パラメーターに保存する$/u]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see">
-                <source><![CDATA[(I )wait :seconds second(s) until I see :text]]></source>
+                <source><![CDATA[(I )wait :count second(s) until I see :text]]></source>
                 <target><![CDATA[/^(?:|私が)"(?P<text>[^"]*)"を見るまで(?P<seconds>\d+)秒間?待つ$/u]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see">
@@ -44,7 +44,7 @@
                 <target><![CDATA[/^(?:|私が)"(?P<text>[^"]*)"を見るまで待つ$/u]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
-                <source><![CDATA[(I )wait :seconds second(s) until I see :text in the :element element]]></source>
+                <source><![CDATA[(I )wait :count second(s) until I see :text in the :element element]]></source>
                 <target><![CDATA[/^(?:|私が)"(?P<element>[^"]*)"要素(?:で|に)"(?P<text>[^"]*)"を見るまで(?P<seconds>\d+)秒間?待つ$/u]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
@@ -52,7 +52,7 @@
                 <target><![CDATA[/^(?:|私が)"(?P<element>[^"]*)"要素(?:で|に)"(?P<text>[^"]*)"を見るまで待つ$/u]]></target>
             </trans-unit>
             <trans-unit id="i-wait-second">
-                <source><![CDATA[(I )wait :seconds second(s)]]></source>
+                <source><![CDATA[(I )wait :count second(s)]]></source>
                 <target><![CDATA[/^(?:|私が)(?P<seconds>\d+)秒間?待つ$/u]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
@@ -60,11 +60,11 @@
                 <target><![CDATA[/^(?P<index>\d+)番目の"(?P<parent>[^"]*)"(?:|要素)が(?P<nth>\d+)個の"(?P<element>[^"]*)"(?:|要素)を持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-less-than-n-in-the-nth">
-                <source><![CDATA[(I )should see less than :nth :element in the :index :parent]]></source>
+                <source><![CDATA[(I )should see less than :count :element in the :index :parent]]></source>
                 <target><![CDATA[/^(?P<index>\d+)番目の"(?P<parent>[^"]*)"(?:|要素)が(?P<nth>\d+)個以下の"(?P<element>[^"]*)"(?:|要素)を持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-more-than-n-in-the-nth">
-                <source><![CDATA[(I )should see more than :nth :element in the :index :parent]]></source>
+                <source><![CDATA[(I )should see more than :count :element in the :index :parent]]></source>
                 <target><![CDATA[/^(?P<index>\d+)番目の"(?P<parent>[^"]*)"(?:|要素)が(?P<nth>\d+)個以上の"(?P<element>[^"]*)"(?:|要素)を持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="the-element-shouls-be-disabled">
@@ -119,7 +119,7 @@
                 <source><![CDATA[the JSON node :node should be equal to :text]]></source>
                 <target><![CDATA[/^JSONのノード"(?P<node>[^"]*)"が"(?P<text>[^"]*)"と等しいこと$/u]]></target> </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
-                <source><![CDATA[the JSON node :node should have :nth element(s)]]></source>
+                <source><![CDATA[the JSON node :node should have :count element(s)]]></source>
                 <target><![CDATA[/^JSONのノード"(?P<node>[^"]*)"が(?P<nth>\d+)個の要素を持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-contain">
@@ -211,15 +211,15 @@
                 <target><![CDATA[/^テーブル"(?P<table>[^"]*)"のカラムスキーマが下記と一致すること:$/u]]></target>
             </trans-unit>
             <trans-unit id="i-should-ess-n-columns-in-the-tables">
-                <source><![CDATA[(I )should see :nth column(s) in the :table table]]></source>
+                <source><![CDATA[(I )should see :count column(s) in the :table table]]></source>
                 <target><![CDATA[/^テーブル"(?P<table>[^"]*)"が(?P<nth>\d+)個のカラムを持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-nth-tables">
-                <source><![CDATA[(I )should see :nth rows in the :index :table table]]></source>
+                <source><![CDATA[(I )should see :count rows in the :index :table table]]></source>
                 <target><![CDATA[/^(?P<index>\d+)番目のテーブル"(?P<table>[^"]*)"が(?P<nth>\d+)行持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-tables">
-                <source><![CDATA[(I )should see :nth row(s) in the :table table]]></source>
+                <source><![CDATA[(I )should see :count row(s) in the :table table]]></source>
                 <target><![CDATA[/^テーブル"(?P<table>[^"]*)"が(?P<nth>\d+)行持つこと$/u]]></target>
             </trans-unit>
             <trans-unit id="the-data-in-the-nth-row-of-the-table-should-match">

@@ -16,11 +16,11 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     }
 
     /**
-     * @transform :index
+     * @transform /^(\d+)(?:st|nd|rd|th)?$/
      */
-    public function transformIndex($index)
+    public function castToInt($count)
     {
-        return intval($index);
+        return intval($count);
     }
 
     protected function assertContains($expected, $actual, $message = null)

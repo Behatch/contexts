@@ -36,16 +36,16 @@
                 <target><![CDATA[(eu )salvo o valor de :field no parâmetro :parameter]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see">
-                <source><![CDATA[(I )wait :seconds second(s) until I see :text]]></source>
-                <target><![CDATA[(eu )espero :seconds segundo(s) até ver :text]]></target>
+                <source><![CDATA[(I )wait :count second(s) until I see :text]]></source>
+                <target><![CDATA[(eu )espero :count segundo(s) até ver :text]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see">
                 <source><![CDATA[(I )wait until I see :text]]></source>
                 <target><![CDATA[(eu )espero até ver :text]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
-                <source><![CDATA[(I )wait :seconds second(s) until I see :text in the :element element]]></source>
-                <target><![CDATA[(eu )espero :seconds segundo(s) até ver :text no elemento :element]]></target>
+                <source><![CDATA[(I )wait :count second(s) until I see :text in the :element element]]></source>
+                <target><![CDATA[(eu )espero :count segundo(s) até ver :text no elemento :element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait until I see :text in the :element element]]></source>
@@ -56,24 +56,24 @@
                 <target><![CDATA[(eu )espero pelo elemento :element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-for-element">
-                <source><![CDATA[(I )wait :seconds second(s) for :element element]]></source>
-                <target><![CDATA[(eu )espero :seconds segundo(s) pelo elemento :element]]></target>
+                <source><![CDATA[(I )wait :count second(s) for :element element]]></source>
+                <target><![CDATA[(eu )espero :count segundo(s) pelo elemento :element]]></target>
             </trans-unit>
             <trans-unit id="i-wait-second">
-                <source><![CDATA[(I )wait :seconds second(s)]]></source>
-                <target><![CDATA[(eu )espero :seconds segundo(s)]]></target>
+                <source><![CDATA[(I )wait :count second(s)]]></source>
+                <target><![CDATA[(eu )espero :count segundo(s)]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
-                <source><![CDATA[/^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
-                <target><![CDATA[/^(?:|eu )devo ver (?P<nth>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
+                <source><![CDATA[/^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
+                <target><![CDATA[/^(?:|eu )devo ver (?P<count>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-less-than-n-in-the-nth">
-                <source><![CDATA[(I )should see less than :nth :element in the :index :parent]]></source>
-                <target><![CDATA[/^(?:|eu )devo ver menos que (?P<nth>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see less than :count :element in the :index :parent]]></source>
+                <target><![CDATA[/^(?:|eu )devo ver menos que (?P<count>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-more-than-n-in-the-nth">
-                <source><![CDATA[(I )should see more than :nth :element in the :index :parent]]></source>
-                <target><![CDATA[/^(?:|eu )devo ver mais que (?P<nth>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see more than :count :element in the :index :parent]]></source>
+                <target><![CDATA[/^(?:|eu )devo ver mais que (?P<count>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-element-shouls-be-disabled">
                 <source><![CDATA[the element :element should be disabled]]></source>
@@ -152,8 +152,8 @@
                 <target><![CDATA[o nó JSON :node deve ser igual a :text]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
-                <source><![CDATA[the JSON node :node should have :nth element(s)]]></source>
-                <target><![CDATA[o nó JSON :node deve ter :nth elemento(s)]]></target>
+                <source><![CDATA[the JSON node :node should have :count element(s)]]></source>
+                <target><![CDATA[o nó JSON :node deve ter :count elemento(s)]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-contain">
                 <source><![CDATA[the JSON node :node should contain :text]]></source>
@@ -248,20 +248,20 @@
                 <target><![CDATA[as colunas da tabela :table devem ser:]]></target>
             </trans-unit>
             <trans-unit id="i-should-ess-n-columns-in-the-tables">
-                <source><![CDATA[(I )should see :nth column(s) in the :table table]]></source>
-                <target><![CDATA[(eu )devo ver :nth coluna(s) na tabela :table]]></target>
+                <source><![CDATA[(I )should see :count column(s) in the :table table]]></source>
+                <target><![CDATA[(eu )devo ver :count coluna(s) na tabela :table]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-nth-tables">
-                <source><![CDATA[(I )should see :nth rows in the :index :table table]]></source>
-                <target><![CDATA[/^(?:|eu )devo ver (?P<nth>\d+) linhas na (?P<index>\d+)(?:ª) tabela "(?P<table>[^"]*)"$/]]></target>
+                <source><![CDATA[(I )should see :count rows in the :index :table table]]></source>
+                <target><![CDATA[/^(?:|eu )devo ver (?P<count>\d+) linhas na (?P<index>\d+)(?:ª) tabela "(?P<table>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="i-should-see-n-rows-in-the-tables">
-                <source><![CDATA[(I )should see :nth row(s) in the :table table]]></source>
-                <target><![CDATA[(eu )devo ver :nth linha(s) na tabela :table]]></target>
+                <source><![CDATA[(I )should see :count row(s) in the :table table]]></source>
+                <target><![CDATA[(eu )devo ver :count linha(s) na tabela :table]]></target>
             </trans-unit>
             <trans-unit id="the-data-in-the-nth-row-of-the-table-should-match">
                 <source><![CDATA[the data in the :index row of the :table table should match:]]></source>
-                <target><![CDATA[/^os dados na (?P<nth>\d+)(?:ª) linha da tabela "(?P<table>[^"]*)" devem ser iguais a:$/]]></target>
+                <target><![CDATA[/^os dados na (?P<index>\d+)(?:ª) linha da tabela "(?P<table>[^"]*)" devem ser iguais a:$/]]></target>
             </trans-unit>
             <trans-unit id="the-nth-column-of-the-nth-row-in-the-table-should-contain">
                 <source><![CDATA[the :colIndex column of the :rowIndex row in the :table table should contain :text]]></source>
@@ -360,8 +360,8 @@
                 <target><![CDATA[o elemento XML :element não deve existir]]></target>
             </trans-unit>
             <trans-unit id="the-xml-element-should-have-elements">
-                <source><![CDATA[the XML element :element should have :nth element(s)]]></source>
-                <target><![CDATA[o elemento XML :element deve ter :nth elemento(s)]]></target>
+                <source><![CDATA[the XML element :element should have :count element(s)]]></source>
+                <target><![CDATA[o elemento XML :element deve ter :count elemento(s)]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-in-xml">
                 <source><![CDATA[the response should be in XML]]></source>

@@ -169,9 +169,9 @@ class XmlContext extends BaseContext
     /**
      * Checks that the given XML element has N child element(s)
      *
-     * @Then the XML element :element should have :nth element(s)
+     * @Then the XML element :element should have :count element(s)
      */
-    public function theXmlElementShouldHaveNChildElements($element, $nth)
+    public function theXmlElementShouldHaveNChildElements($element, $count)
     {
         $elements = $this->theXmlElementShouldExist($element);
 
@@ -182,7 +182,7 @@ class XmlContext extends BaseContext
             }
         }
 
-        $this->assertEquals((integer) $nth, $length);
+        $this->assertEquals($count, $length);
     }
 
     /**

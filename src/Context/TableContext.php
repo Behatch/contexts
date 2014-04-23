@@ -26,22 +26,22 @@ class TableContext extends BaseContext
     /**
      * Checks that the specified table contains the given number of columns
      *
-     * @Then (I )should see :nth column(s) in the :table table
+     * @Then (I )should see :count column(s) in the :table table
      */
-    public function iShouldSeeColumnsInTheTable($nth, $table)
+    public function iShouldSeeColumnsInTheTable($count, $table)
     {
         $columnsSelector = sprintf('%s thead tr th', $table);
         $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
-        $this->assertEquals($nth, count($columns));
+        $this->assertEquals($count, count($columns));
     }
 
     /**
      * Checks that the specified table contains the specified number of rows in its body
      *
-     * @Then (I )should see :nth rows in the :index :table table
+     * @Then (I )should see :count rows in the :index :table table
      */
-    public function iShouldSeeRowsInTheNthTable($nth, $index, $table)
+    public function iShouldSeeRowsInTheNthTable($count, $index, $table)
     {
         $tables = $this->getSession()->getPage()->findAll('css', $table);
         if (!isset($tables[$index - 1])) {
@@ -49,17 +49,17 @@ class TableContext extends BaseContext
         }
 
         $rows = $tables[$index - 1]->findAll('css', 'tbody tr');
-        $this->assertEquals($nth, count($rows));
+        $this->assertEquals($count, count($rows));
     }
 
     /**
      * Checks that the specified table contains the specified number of rows in its body
      *
-     * @Then (I )should see :nth row(s) in the :table table
+     * @Then (I )should see :count row(s) in the :table table
      */
-    public function iShouldSeeRowsInTheTable($nth, $table)
+    public function iShouldSeeRowsInTheTable($count, $table)
     {
-        $this->iShouldSeeRowsInTheNthTable($nth, 1, $table);
+        $this->iShouldSeeRowsInTheNthTable($count, 1, $table);
     }
 
     /**
@@ -113,24 +113,8 @@ class TableContext extends BaseContext
             throw new \Exception(sprintf("The column %d was not found in the row %d of the %s table", $colIndex, $rowIndex, $table));
         }
 
-        $actual   = $cols[$colIndex - 1]->getText();
+        $actual = $cols[$colIndex - 1]->getText();
 
         $this->assertContains($text, $actual);
-    }
-
-    /**
-     * @transform :colIndex
-     */
-    public function transformColIndex($colIndex)
-    {
-        return intval($colIndex);
-    }
-
-    /**
-     * @transform :rowIndex
-     */
-    public function transformRowIndex($rowIndex)
-    {
-        return intval($rowIndex);
     }
 }

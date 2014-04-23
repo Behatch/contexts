@@ -141,11 +141,11 @@ class BrowserContext extends BaseContext
     /**
      * Checks, that the page should contains specified text after given timeout
      *
-     * @Then (I )wait :seconds second(s) until I see :text
+     * @Then (I )wait :count second(s) until I see :text
      */
-    public function iWaitSecondsUntilISee($seconds, $text)
+    public function iWaitSecondsUntilISee($count, $text)
     {
-        $this->iWaitSecondsUntilISeeInTheElement($seconds, $text, $this->getSession()->getPage());
+        $this->iWaitSecondsUntilISeeInTheElement($count, $text, $this->getSession()->getPage());
     }
 
     /**
@@ -161,9 +161,9 @@ class BrowserContext extends BaseContext
     /**
      * Checks, that the element contains specified text after timeout
      *
-     * @Then (I )wait :seconds second(s) until I see :text in the :element element
+     * @Then (I )wait :count second(s) until I see :text in the :element element
      */
-    public function iWaitSecondsUntilISeeInTheElement($seconds, $text, $element)
+    public function iWaitSecondsUntilISeeInTheElement($count, $text, $element)
     {
         $expected = str_replace('\\"', '"', $text);
 
@@ -185,8 +185,8 @@ class BrowserContext extends BaseContext
                 $this->assertContains($expected, $actual);
             }
             catch (ExpectationException $e) {
-                if ($now - $startTime >= $seconds) {
-                    $message = sprintf('The text "%s" was not found after a %s seconds timeout', $expected, $seconds);
+                if ($now - $startTime >= $count) {
+                    $message = sprintf('The text "%s" was not found after a %s seconds timeout', $expected, $count);
                     throw new ResponseTextException($message, $this->getSession(), $e);
                 }
             }
@@ -195,15 +195,15 @@ class BrowserContext extends BaseContext
                 break;
             }
 
-        } while ($now - $startTime < $seconds);
+        } while ($now - $startTime < $count);
     }
 
     /**
-     * @Then (I )wait :seconds second(s)
+     * @Then (I )wait :count second(s)
      */
-    public function iWaitSeconds($seconds)
+    public function iWaitSeconds($count)
     {
-        sleep($seconds);
+        sleep($count);
     }
 
     /**
@@ -229,9 +229,9 @@ class BrowserContext extends BaseContext
     /**
      * Wait for a element
      *
-     * @Then (I )wait :seconds second(s) for :element element
+     * @Then (I )wait :count second(s) for :element element
      */
-    public function iWaitSecondsForElement($seconds, $element)
+    public function iWaitSecondsForElement($count, $element)
     {
         $startTime = time();
 
@@ -244,8 +244,8 @@ class BrowserContext extends BaseContext
                 $this->assertCount(1, $node);
             }
             catch (ExpectationException $e) {
-                if ($now - $startTime >= $seconds) {
-                    $message = sprintf('The element "%s" was not found after a %s seconds timeout', $element, $seconds);
+                if ($now - $startTime >= $count) {
+                    $message = sprintf('The element "%s" was not found after a %s seconds timeout', $element, $count);
                     throw new ResponseTextException($message, $this->getSession(), $e);
                 }
             }
@@ -254,13 +254,13 @@ class BrowserContext extends BaseContext
                 break;
             }
 
-        } while ($now - $startTime < $seconds);
+        } while ($now - $startTime < $count);
     }
 
     /**
-     * @Then /^(?:|I )should see (?P<nth>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
+     * @Then /^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/
      */
-    public function iShouldSeeNElementInTheNthParent($nth, $element, $index, $parent)
+    public function iShouldSeeNElementInTheNthParent($count, $element, $index, $parent)
     {
         $page = $this->getSession()->getPage();
 
@@ -270,16 +270,16 @@ class BrowserContext extends BaseContext
         }
 
         $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) !== (int)$nth) {
+        if (count($elements) !== $count) {
                     throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
 
     }
 
     /**
-     * @Then (I )should see less than :nth :element in the :index :parent
+     * @Then (I )should see less than :count :element in the :index :parent
      */
-    public function iShouldSeeLessThanNElementInTheNthParent($nth, $element, $index, $parent)
+    public function iShouldSeeLessThanNElementInTheNthParent($count, $element, $index, $parent)
     {
         $page = $this->getSession()->getPage();
 
@@ -289,16 +289,16 @@ class BrowserContext extends BaseContext
         }
 
         $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) > (int)$nth) {
+        if (count($elements) > $count) {
             throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
 
     }
 
     /**
-     * @Then (I )should see more than :nth :element in the :index :parent
+     * @Then (I )should see more than :count :element in the :index :parent
      */
-    public function iShouldSeeMoreThanNElementInTheNthParent($nth, $element, $index, $parent)
+    public function iShouldSeeMoreThanNElementInTheNthParent($count, $element, $index, $parent)
     {
         $page = $this->getSession()->getPage();
 
@@ -308,7 +308,7 @@ class BrowserContext extends BaseContext
         }
 
         $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) < (int)$nth) {
+        if (count($elements) < $count) {
             throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
         }
     }

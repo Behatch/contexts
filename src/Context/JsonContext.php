@@ -62,15 +62,15 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node has N element(s)
      *
-     * @Then the JSON node :node should have :nth element(s)
+     * @Then the JSON node :node should have :count element(s)
      */
-    public function theJsonNodeShouldHaveElements($node, $nth)
+    public function theJsonNodeShouldHaveElements($node, $count)
     {
         $json = $this->getJson();
 
         $actual = $this->evaluateJson($json, $node);
 
-        $this->assertSame((integer)$nth, sizeof($actual));
+        $this->assertSame($count, sizeof($actual));
     }
 
     /**
