@@ -154,7 +154,7 @@ class JsonContext extends BaseContext
     {
         if (is_file($filename)) {
             $schema = file_get_contents($filename);
-            $this->validate($schema);
+            $this->validate($schema, array('uri' => 'file://' . getcwd() . '/' . dirname($filename) . '/'));
         }
         else {
             throw new \RuntimeException(
@@ -214,7 +214,7 @@ class JsonContext extends BaseContext
         return $result;
     }
 
-    private function validate($schema)
+    private function validate($schema, $context = null)
     {
         try {
             $jsonSchema = $this->decode($schema);
@@ -223,8 +223,22 @@ class JsonContext extends BaseContext
             throw new \Exception('The schema is not a valid JSON');
         }
 
+        $uri = null;
+        if (null !== $context) {
+            if (is_string($context)) {
+                $uri = $context;
+            } elseif (is_array($context) && array_key_exists('uri', $context)) {
+                $uri = $context['uri'];
+            }
+        }
+
+        $retriever = new \JsonSchema\Uri\UriRetriever;
+        $refResolver = new \JsonSchema\RefResolver($retriever);
+        $refResolver->resolve($jsonSchema, $uri);
+
         $validator = new \JsonSchema\Validator();
         $validator->check($this->getJson(), $jsonSchema);
+
         if (!$validator->isValid()) {
             $msg = "JSON does not validate. Violations:\n";
             foreach ($validator->getErrors() as $error) {
