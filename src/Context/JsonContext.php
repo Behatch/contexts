@@ -4,13 +4,17 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
+use Sanpi\Behatch\Json\Json;
+use Sanpi\Behatch\Json\JsonSchema;
+use Sanpi\Behatch\Json\JsonInspector;
+
 class JsonContext extends BaseContext
 {
-    private $evaluationMode;
+    private $inspector;
 
     public function __construct($evaluationMode = 'javascript')
     {
-        $this->evaluationMode = $evaluationMode;
+        $this->inspector = new JsonInspector($evaluationMode);
     }
 
     /**
@@ -50,7 +54,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        $actual = $this->evaluateJson($json, $node);
+        $actual = $this->inspector->evaluate($json, $node);
 
         if ($actual != $text) {
             throw new \Exception(
@@ -68,7 +72,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        $actual = $this->evaluateJson($json, $node);
+        $actual = $this->inspector->evaluate($json, $node);
 
         $this->assertSame($count, sizeof($actual));
     }
@@ -82,9 +86,9 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        $actual = $this->evaluateJson($json, $node);
+        $actual = $this->inspector->evaluate($json, $node);
 
-        $this->assertContains($text, (string)$actual);
+        $this->assertContains($text, (string) $actual);
     }
 
     /**
@@ -96,9 +100,9 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
-        $actual = $this->evaluateJson($json, $node);
+        $actual = $this->inspector->evaluate($json, $node);
 
-        $this->assertNotContains($text, (string)$actual);
+        $this->assertNotContains($text, (string) $actual);
     }
 
     /**
@@ -111,7 +115,7 @@ class JsonContext extends BaseContext
         $json = $this->getJson();
 
         try {
-            $this->evaluateJson($json, $node);
+            $this->inspector->evaluate($json, $node);
         }
         catch (\Exception $e) {
             throw new \Exception(sprintf("The node '%s' does not exist.", $node));
@@ -129,9 +133,8 @@ class JsonContext extends BaseContext
 
         $e = null;
         try {
-            $actual = $this->evaluateJson($json, $node);
-        }
-        catch (\Exception $e) {
+            $actual = $this->inspector->evaluate($json, $node);
+        } catch (\Exception $e) {
         }
 
         if ($e === null) {
@@ -144,7 +147,10 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeValidAccordingToThisSchema(PyStringNode $schema)
     {
-        $this->validate($schema);
+        $this->inspector->validate(
+            $this->getJson(),
+            new JsonSchema($schema)
+        );
     }
 
     /**
@@ -152,15 +158,19 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeValidAccordingToTheSchema($filename)
     {
-        if (is_file($filename)) {
-            $schema = file_get_contents($filename);
-            $this->validate($schema, array('uri' => 'file://' . getcwd() . '/' . $filename ));
-        }
-        else {
+        if (false === is_file($filename)) {
             throw new \RuntimeException(
                 'The JSON schema doesn\'t exist'
             );
         }
+
+        $this->inspector->validate(
+            $this->getJson(),
+            new JsonSchema(
+                file_get_contents($filename),
+                'file://' . getcwd() . '/' . $filename
+            )
+        );
     }
 
     /**
@@ -171,16 +181,16 @@ class JsonContext extends BaseContext
         $actual = $this->getJson();
 
         try {
-            $expected = $this->decode($content);
+            $expected = new Json($content);
         }
         catch (\Exception $e) {
             throw new \Exception('The expected JSON is not a valid');
         }
 
         $this->assertSame(
-            json_encode($expected),
-            json_encode($actual),
-            "The json is equal to:\n" . $this->encode($actual)
+            (string) $expected,
+            (string) $actual,
+            "The json is equal to:\n". $actual->encode()
         );
     }
 
@@ -189,93 +199,13 @@ class JsonContext extends BaseContext
      */
     public function printLastJsonResponse()
     {
-        echo $this->encode($this->getJson());
-    }
-
-    private function evaluateJson($json, $expression)
-    {
-        if ($this->evaluationMode === 'javascript') {
-            $expression = str_replace('.', '->', $expression);
-        }
-
-        try {
-            if(is_array($json)){
-                $expression =  preg_replace('/^root/', '', $expression);
-                eval(sprintf('$result = $json%s;', $expression));
-            } else {
-                $expression =  preg_replace('/^root->/', '', $expression);
-                eval(sprintf('$result = $json->%s;', $expression));
-            }
-        }
-        catch (\Exception $e) {
-            throw new \Exception("Failed to evaluate expression '$expression'.");
-        }
-
-        return $result;
-    }
-
-    private function validate($schema, $context = null)
-    {
-        try {
-            $jsonSchema = $this->decode($schema);
-        }
-        catch (\Exception $e) {
-            throw new \Exception('The schema is not a valid JSON');
-        }
-
-        $uri = null;
-        if (null !== $context) {
-            if (is_string($context)) {
-                $uri = $context;
-            } elseif (is_array($context) && array_key_exists('uri', $context)) {
-                $uri = $context['uri'];
-            }
-        }
-
-        $retriever = new \JsonSchema\Uri\UriRetriever;
-        $refResolver = new \JsonSchema\RefResolver($retriever);
-        $refResolver->resolve($jsonSchema, $uri);
-
-        $validator = new \JsonSchema\Validator();
-        $validator->check($this->getJson(), $jsonSchema);
-
-        if (!$validator->isValid()) {
-            $msg = "JSON does not validate. Violations:\n";
-            foreach ($validator->getErrors() as $error) {
-                $msg .= sprintf("  - [%s] %s\n", $error['property'], $error['message']);
-            }
-            throw new \Exception($msg);
-        }
+        echo (string) $this->getJson();
     }
 
     private function getJson()
     {
         $content = $this->getSession()->getPage()->getContent();
 
-        return $this->decode($content);
-    }
-
-    private function decode($content)
-    {
-        $result = json_decode($content);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \Exception("The response is not in JSON");
-        }
-
-        return $result;
-    }
-
-    private function encode($content)
-    {
-        $json = null;
-
-        if (defined('JSON_PRETTY_PRINT')) {
-            $json = json_encode($content, JSON_PRETTY_PRINT);
-        }
-        else {
-            $json = json_encode($content);
-        }
-        return $json;
+        return new Json($content);
     }
 }
