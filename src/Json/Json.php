@@ -21,6 +21,11 @@ class Json
             $expression =  preg_replace('/^root./', '', $expression);
         }
 
+        // If root asked, we return the entire content
+        if (strlen(trim($expression)) <= 0) {
+            return $this->content;
+        }
+
         return $accessor->getValue($this->content, $expression);
     }
 

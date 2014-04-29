@@ -100,3 +100,4 @@ Feature: Testing JSONContext
         Given I am on "/json/rootarray.json"
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
+        And the JSON node "root" should have 2 elements
