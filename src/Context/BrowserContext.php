@@ -39,7 +39,7 @@ class BrowserContext extends BaseContext
     /**
      * Open url with various parameters
      *
-     * @Given (I )am on url composed by
+     * @Given (I )am on url composed by:
      */
     public function iAmOnUrlComposedBy(TableNode $tableNode)
     {
@@ -48,7 +48,8 @@ class BrowserContext extends BaseContext
             $url .= $hash['parameters'];
         }
 
-        return new Step\Given(sprintf('I am on "%s"', $url));
+        return $this->getMinkContext()
+            ->visit($url);
     }
 
     /**

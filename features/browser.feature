@@ -32,7 +32,10 @@ Feature: Browser Feature
 
     @javascript
     Scenario: Elements testing
-        Given I am on "/browser/elements.html"
+        Given I am on url composed by:
+            | parameters     |
+            | /browser       |
+            | /elements.html |
         Then I should see 4 "div" in the 1st "body"
         And I should see less than 5 "div" in the 1st "body"
         And I should see more than 2 "div" in the 1st "body"

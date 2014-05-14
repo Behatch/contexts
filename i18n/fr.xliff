@@ -8,8 +8,8 @@
                 <target><![CDATA[je remplis l'authentification basique avec :user et :password]]></target>
             </trans-unit>
             <trans-unit id="i-am-on-url-composed-by">
-                <source><![CDATA[(I )am on url composed by]]></source>
-                <target><![CDATA[(je )suis sur une url composée par]]></target>
+                <source><![CDATA[(I )am on url composed by:]]></source>
+                <target><![CDATA[(je )suis sur une url composée par:]]></target>
             </trans-unit>
             <trans-unit id="i-click-on-the-nth-element">
                 <source><![CDATA[(I )click on the :index :element element]]></source>

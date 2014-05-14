@@ -8,8 +8,8 @@
                 <target><![CDATA[/^Basic認証を"(?P<user>[^"]*)"と"(?P<password>[^"]*)"で設定する$/u]]></target>
             </trans-unit>
             <trans-unit id="i-am-on-url-composed-by">
-                <source><![CDATA[(I )am on url composed by]]></source>
-                <target><![CDATA[/^(?:|私が)下記から構成されるURLを開いる$/u]]></target>
+                <source><![CDATA[(I )am on url composed by:]]></source>
+                <target><![CDATA[/^(?:|私が)下記から構成されるURLを開いる:$/u]]></target>
             </trans-unit>
             <trans-unit id="i-click-on-the-nth-element">
                 <source><![CDATA[(I )click on the :index :element element]]></source>

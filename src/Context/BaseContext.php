@@ -128,4 +128,13 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
             throw new ExpectationException($message, $this->getSession());
         }
     }
+
+    protected function getMinkContext()
+    {
+        $context = new \Behat\MinkExtension\Context\MinkContext();
+        $context->setMink($this->getMink());
+        $context->setMinkParameters($this->getMinkParameters());
+
+        return $context;
+    }
 }
