@@ -33,8 +33,8 @@ Funcionalidade: Browser
 
   Cenário: Testando elementos
     Quando Eu estou em "/browser/elements.html"
-    Então devo ver 4 "div" no 1º "body"
-    E devo ver menos que 4 "div" no 1º "body"
+    Então devo ver 5 "div" no 1º "body"
+    E devo ver menos que 6 "div" no 1º "body"
     E devo ver mais que 2 "div" no 1º "body"
     E o select "months_selector" não deve conter "december"
     E o select "months_selector" deve conter "january"
