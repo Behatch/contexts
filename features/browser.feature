@@ -73,3 +73,4 @@ Feature: Browser Feature
     Scenario:
         Given I am on "/browser/elements.html"
         Then I fill in "today" with the current date
+        And I fill in "today" with the current date and modifier "-1 day"
