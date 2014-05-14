@@ -4,10 +4,11 @@ Fonctionnalité:
     Scénario:
         Quand j'envoie une requête GET sur "rest/index.php"
         Et l'entête "Content-Type" devrait contenir "text"
-        Et l'entête "Content-Type" devrait être égal à "text/html"
+        Et l'entête "Content-Type" devrait être égal à "text/html; charset=utf-8"
         Et l'entête "Content-Type" ne devrait pas contenir "text/json"
         Et l'entête "xxx" ne devrait pas exister
         Et la réponse devrait expirer dans le futur
+        Et la réponse devrait être encodée en "UTF-8"
 
     Scénario:
         Étant donné j'envoie une requête GET sur "rest/index.php"

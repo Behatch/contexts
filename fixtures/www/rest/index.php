@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 
 header('Date: ' . date('c'));
 header('Expires: ' . date('c', time() + 60));
+header('Content-Type: text/html; charset=utf-8');
 
 $body = file_get_contents('php://input');
 if ($_SERVER['REQUEST_METHOD'] === 'PUT' && !empty($body)) {

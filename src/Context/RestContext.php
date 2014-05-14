@@ -184,9 +184,7 @@ class RestContext extends BaseContext
             throw new \Exception("The response is not encoded in $encoding");
         }
 
-        return array(
-            new Step\Then('the header "Content-Type" should contain "charset=' . $encoding . '"'),
-        );
+        $this->theHeaderShouldBeContains('Content-Type', "charset=$encoding");
     }
 
     /**
