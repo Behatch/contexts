@@ -96,7 +96,8 @@ class BrowserContext extends BaseContext
      */
     public function iFillInWithTheCurrentDate($field)
     {
-        return new Step\When(sprintf('I fill in "%s" with "%s"', $field, date($this->dateFormat)));
+        return $this->getMinkContext()
+            ->fillField($field, date($this->dateFormat));
     }
 
     /**

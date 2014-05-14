@@ -68,3 +68,8 @@ Feature: Browser Feature
         Given I am on "/browser/index.html"
         Then the "#visible-element" element should be visible
         And the "#hidden-element" element should not be visible
+
+    @javascript
+    Scenario:
+        Given I am on "/browser/elements.html"
+        Then I fill in "today" with the current date
