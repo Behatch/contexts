@@ -101,3 +101,8 @@ Feature: Testing JSONContext
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
         And the JSON node "root" should have 2 elements
+
+    Scenario: Check json value with double quote
+        Given I am on "/json/withdoublequote.json"
+        Then the response should be in JSON
+        And the JSON node "foo" should be equal to "A "bar" in a bar"

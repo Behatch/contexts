@@ -43,7 +43,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node is equal to given value
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should be equal to "(?P<text>[^"]*)"$/
+     * @Then /^the JSON node "(?P<node>[^"]*)" should be equal to "(?P<text>.*)"$/
      */
     public function theJsonNodeShouldBeEqualTo($node, $text)
     {
@@ -75,7 +75,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node contains given value
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should contain "(?P<text>[^"]*)"$/
+     * @Then /^the JSON node "(?P<node>[^"]*)" should contain "(?P<text>.*)"$/
      */
     public function theJsonNodeShouldContain($node, $text)
     {
@@ -89,7 +89,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node does not contain given value
      *
-     * @Then /^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>[^"]*)"$/
+     * @Then /^the JSON node "(?P<node>[^"]*)" should not contain "(?P<text>.*)"$/
      */
     public function theJsonNodeShouldNotContain($node, $text)
     {
