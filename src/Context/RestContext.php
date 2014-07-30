@@ -49,6 +49,8 @@ class RestContext extends BaseContext
 
             $parameters[$row['key']] = $row['value'];
         }
+        
+        parse_str(http_build_query($parameters), $parameters);
 
         $client->request($method, $this->locatePath($url), $parameters);
         $client->followRedirects(true);
