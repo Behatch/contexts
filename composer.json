@@ -8,7 +8,7 @@
     "require": {
         "behat/behat": "3.*",
         "behat/mink": "*",
-        "behat/mink-extension": "2.0.x-dev",
+        "behat/mink-extension": "~2.0",
         "justinrainbow/json-schema": "*",
         "symfony/property-access": "~2.3"
     },
