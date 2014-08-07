@@ -71,8 +71,8 @@
     @javascript
     シナリオ: Check element visibility
        前提 "/browser/index.html" を表示している
-        ならば "#visible-element"要素が有効であること
-        かつ "#hidden-element"要素が無効であること
+        ならば 要素"#visible-element"は可視であること
+        かつ 要素"#hidden-element"は不可視であること
 
     @javascript
     シナリオ:
