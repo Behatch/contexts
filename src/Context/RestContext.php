@@ -236,7 +236,7 @@ class RestContext extends BaseContext
 
         if (isset($header[$name])) {
             if (is_array($header[$name])) {
-                $value = $header[$name][0];
+                $value = implode(', ', $header[$name]);
             }
             else {
                 $value = $header[$name];
