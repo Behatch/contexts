@@ -15,7 +15,6 @@ class JsonInspector extends atoum
     {
         $this
             ->given(
-                $accessor = new \Symfony\Component\PropertyAccess\PropertyAccessor,
                 $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
                 $json->getMockController()->read = 'foobar'
             )
@@ -30,7 +29,7 @@ class JsonInspector extends atoum
 
                 ->mock($json)
                     ->call('read')
-                    ->withArguments('foo.bar', $accessor)
+                    ->withArguments('foo.bar')
                     ->once()
         ;
     }
@@ -56,7 +55,6 @@ class JsonInspector extends atoum
     {
         $this
             ->given(
-                $accessor = new \Symfony\Component\PropertyAccess\PropertyAccessor,
                 $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
                 $json->getMockController()->read = 'foobar'
             )
@@ -71,7 +69,7 @@ class JsonInspector extends atoum
 
                 ->mock($json)
                     ->call('read')
-                    ->withArguments('foo.bar', $accessor)
+                    ->withArguments('foo.bar')
                     ->once()
         ;
     }
@@ -80,7 +78,6 @@ class JsonInspector extends atoum
     {
         $this
             ->given(
-                $accessor = new \Symfony\Component\PropertyAccess\PropertyAccessor,
                 $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
                 $json->getMockController()->read = 'foobar'
             )
@@ -95,7 +92,7 @@ class JsonInspector extends atoum
 
                 ->mock($json)
                     ->call('read')
-                    ->withArguments('foo->bar', $accessor)
+                    ->withArguments('foo->bar')
                     ->once()
         ;
     }
