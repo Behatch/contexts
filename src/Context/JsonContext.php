@@ -7,14 +7,19 @@ use Behat\Gherkin\Node\PyStringNode;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
+use Sanpi\Behatch\HttpCall\HttpCallResultAware;
+use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 
 class JsonContext extends BaseContext
 {
     private $inspector;
 
-    public function __construct($evaluationMode = 'javascript')
+    private $httpCallResultPool;
+
+    public function __construct($evaluationMode = 'javascript', HttpCallResultPool $httpCallResultPool)
     {
         $this->inspector = new JsonInspector($evaluationMode);
+        $this->httpCallResultPool = $httpCallResultPool;
     }
 
     /**
@@ -204,8 +209,6 @@ class JsonContext extends BaseContext
 
     private function getJson()
     {
-        $content = $this->getSession()->getPage()->getContent();
-
-        return new Json($content);
+        return new Json($this->httpCallResultPool->getResult()->getValue());
     }
 }

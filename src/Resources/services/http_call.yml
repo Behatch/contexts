@@ -1,0 +1,23 @@
+services:
+    behatch.http_call.listener:
+        class: Sanpi\Behatch\HttpCall\HttpCallListener
+        arguments: [@behatch.context_supported.voter, @behatch.http_call.result_pool, @mink]
+        tags:
+            - { name: event_dispatcher.subscriber, priority: 0 }
+
+    behatch.http_call.result_pool:
+        class: Sanpi\Behatch\HttpCall\HttpCallResultPool
+
+    behatch.context_supported.voter:
+        class: Sanpi\Behatch\HttpCall\ContextSupportedVoters
+
+    behatch.rest_context_supported.voter:
+        class: Sanpi\Behatch\HttpCall\RestContextVoter
+        tags:
+            - { name: behatch.context_voter }
+
+    behatch.http_call.argument_resolver:
+        class: Sanpi\Behatch\HttpCall\HttpCallResultPoolResolver
+        arguments: [@behatch.http_call.result_pool]
+        tags:
+            - { name: context.argument_resolver }
