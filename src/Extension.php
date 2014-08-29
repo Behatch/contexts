@@ -2,12 +2,14 @@
 
 namespace Sanpi\Behatch;
 
-use Symfony\Component\DependencyInjection\Reference;
-use Behat\Testwork\ServiceContainer\ExtensionManager;
-use Symfony\Component\DependencyInjection\Definition;
-use Behat\Behat\Context\ServiceContainer\ContextExtension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Behat\Behat\Context\ServiceContainer\ContextExtension;
+use Behat\Testwork\ServiceContainer\ExtensionManager;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
 
 class Extension implements ExtensionInterface
@@ -27,7 +29,11 @@ class Extension implements ExtensionInterface
 
     public function load(ContainerBuilder $container, array $config)
     {
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/Resources/services'));
+        $loader->load('http_call.yml');
+
         $this->loadClassResolver($container);
+        $this->loadHttpCallListener($container);
     }
 
     public function configure(ArrayNodeDefinition $builder)
@@ -39,6 +45,17 @@ class Extension implements ExtensionInterface
         $definition = new Definition('Sanpi\Behatch\Context\ContextClass\ClassResolver');
         $definition->addTag(ContextExtension::CLASS_RESOLVER_TAG);
         $container->setDefinition('behatch.class_resolver', $definition);
+    }
+
+    private function loadHttpCallListener(ContainerBuilder $container)
+    {
+        $processor = new \Behat\Testwork\ServiceContainer\ServiceProcessor;
+        $references = $processor->findAndSortTaggedServices($container, 'behatch.context_voter');
+        $definition = $container->getDefinition('behatch.context_supported.voter');
+
+        foreach ($references as $reference) {
+            $definition->addMethodCall('register', array($reference));
+        }
     }
 
     public function getCompilerPasses()
