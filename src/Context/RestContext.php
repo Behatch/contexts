@@ -23,6 +23,8 @@ class RestContext extends BaseContext
 
         $client->request($method, $this->locatePath($url));
         $client->followRedirects(true);
+
+        return $this->getSession()->getPage();
     }
 
     /**
@@ -52,6 +54,8 @@ class RestContext extends BaseContext
 
         $client->request($method, $this->locatePath($url), $parameters);
         $client->followRedirects(true);
+
+        return $this->getSession()->getPage();
     }
 
     /**
@@ -69,6 +73,8 @@ class RestContext extends BaseContext
         $client->request($method, $this->locatePath($url),
             array(), array(), array(), $body->getRaw());
         $client->followRedirects(true);
+
+        return $this->getSession()->getPage();
     }
 
     /**
