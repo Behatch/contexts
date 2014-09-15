@@ -16,7 +16,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     }
 
     /**
-     * @transform /^(\d+)(?:st|nd|rd|th)?$/
+     * @transform /^(0|[1-9]\d*)(?:st|nd|rd|th)?$/
      */
     public function castToInt($count)
     {
