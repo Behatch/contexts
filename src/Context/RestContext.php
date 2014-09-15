@@ -49,8 +49,10 @@ class RestContext extends BaseContext
                 $row['value'] = '@'.rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.substr($row['value'],1);
             }
 
-            $parameters[$row['key']] = $row['value'];
+            $parameters[] = sprintf('%s=%s', $row['key'], $row['value']);
         }
+
+        parse_str(implode('&', $parameters), $parameters);
 
         $client->request($method, $this->locatePath($url), $parameters);
         $client->followRedirects(true);
