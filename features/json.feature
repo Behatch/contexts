@@ -72,6 +72,51 @@ Feature: Testing JSONContext
             }
             """
 
+
+    Scenario: Json validation deep
+        Given I am on "/json/booking.json"
+        Then the JSON should be invalid according to this schema:
+            """
+            {
+                "type":"object",
+                "$schema": "http://json-schema.org/draft-03/schema",
+                "id": "http://jsonschema.net",
+                "required":false,
+                "properties":{
+                    "Booking": {
+                        "type":"object",
+                        "id": "http://jsonschema.net/Booking",
+                        "required":false
+                    },
+                    "Metadata": {
+                        "type":"object",
+                        "id": "http://jsonschema.net/Metadata",
+                        "required":false,
+                        "properties":{
+                            "First": {
+                                "type":"object",
+                                "id": "http://jsonschema.net/Metadata/First",
+                                "required":false,
+                                "properties":{
+                                    "default_value": {
+                                        "type":"boolean",
+                                        "id": "http://jsonschema.net/Metadata/First/default_value",
+                                        "required":false
+                                    },
+                                    "enabled": {
+                                        "type":"boolean",
+                                        "id": "http://jsonschema.net/Metadata/First/enabled",
+                                        "required":true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            """
+
+
     Scenario: Json contents validation
         Given I am on "/json/imajson.json"
         Then the JSON should be equal to:
