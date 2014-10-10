@@ -13,6 +13,11 @@ class Json
         $this->content = $this->decode((string) $content);
     }
 
+    public function getContent()
+    {
+        return $this->content;
+    }
+
     public function read($expression, PropertyAccessor $accessor)
     {
         if (is_array($this->content)) {
