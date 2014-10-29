@@ -56,6 +56,8 @@ class HttpCallListener implements EventSubscriberInterface
             );
         } catch (\LogicException $e) {
             // Mink has no response
+        } catch (\Behat\Mink\Exception\DriverException $e) {
+            // No Mink
         }
     }
 }
