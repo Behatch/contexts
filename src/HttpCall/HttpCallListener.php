@@ -7,6 +7,7 @@ use Behat\Behat\EventDispatcher\Event\AfterStepTested;
 use Behat\Behat\Tester\Result\ExecutedStepResult;
 use Behat\Mink\Mink;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use WebDriver\Exception\UnexpectedAlertOpen;
 
 class HttpCallListener implements EventSubscriberInterface
 {
@@ -58,6 +59,8 @@ class HttpCallListener implements EventSubscriberInterface
             // Mink has no response
         } catch (\Behat\Mink\Exception\DriverException $e) {
             // No Mink
+        } catch (UnexpectedAlertOpen $e) {
+           // alert modal on screen - driver will refuse any interactions
         }
     }
 }
