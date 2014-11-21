@@ -8,5 +8,11 @@
       "complexeshizzle": true,
       "so": ["very", {"complicated": "indeed"}]
     }
+  ],
+  "object": [{
+        "id": 1
+      }, {
+        "id":2
+      }
   ]
 }

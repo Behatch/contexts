@@ -28,6 +28,8 @@ Feature: Testing JSONContext
         And the JSON node "numbers[3].complexeshizzle" should be equal to "true"
         And the JSON node "numbers[3].so[0]" should be equal to "very"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
+        And the JSON node "object[0]" should exist
+        And the JSON node "object[2]" should not exist
 
         And the JSON node "bar" should not exist
 
