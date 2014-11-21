@@ -190,6 +190,50 @@ class JsonContext extends BaseContext
         );
     }
 
+     /**
+     * Checks, that given JSON node is valid against the given JSON Schema
+     *
+     * @Then /^the JSON node "(?P<node>[^"]*)" should be valid according to the schema "(?P<filename>[^"]*)"$/
+     */
+    public function theJsonNodeShouldBeValidAccordingToTheSchema($node, $filename)
+    {
+        $jsonSchema = new JsonSchema(
+            file_get_contents($filename),
+            'file://' . getcwd() . '/' . $filename
+        );
+
+        $this->getInspector()->validate(
+            $this->extractJsonNode($node),
+            $jsonSchema
+        );
+    }
+
+     /**
+     * Checks, that given JSON node is not valid against the given JSON Schema
+     *
+     * @Then /^the JSON node "(?P<node>[^"]*)" should not be valid according to the schema "(?P<filename>[^"]*)"$/
+     */
+    public function theJsonNodeShouldNotBeValidAccordingToTheSchema($node, $filename)
+    {
+        $jsonSchema = new JsonSchema(
+            file_get_contents($filename),
+            'file://' . getcwd() . '/' . $filename
+        );
+
+        try {
+            $isValid = $this->getInspector()->validate(
+                $this->extractJsonNode($node),
+                $jsonSchema
+            );
+        } catch (\Exception $e) {
+            $isValid = false;
+        }
+
+        if (true === $isValid) {
+            throw new ExpectationException('Expected to receive invalid json, got valid one', $this->getSession());
+        }
+    }
+
     /**
      * @Then /^the JSON should be equal to:$/
      */
@@ -233,5 +277,20 @@ class JsonContext extends BaseContext
         }
 
         return $this->inspector;
+    }
+
+    /**
+     * @param $node
+     * @return Json
+     * @throws \Exception
+     */
+    private function extractJsonNode($node)
+    {
+        $jsonNode = new Json(
+            json_encode(
+                $this->getInspector()->evaluate($this->getJson(), $node)
+            )
+        );
+        return $jsonNode;
     }
 }
