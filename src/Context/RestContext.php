@@ -221,14 +221,21 @@ class RestContext extends BaseContext
         $url = $request->getUri();
 
         $headers = '';
-        foreach ($request->getServer() as $name => $value) {
+        foreach ($request->headers as $name => $value) {
             if (substr($name, 0, 5) !== 'HTTP_' && $name !== 'HTTPS') {
+                if (is_array($value)) {
+                    $value = implode(', ', $value);
+                }
                 $headers .= " -H '$name: $value'";
             }
         }
 
         $data = '';
-        $params = $request->getParameters();
+        $params = array();
+        $paramBag = $request->request;
+        foreach ($paramBag as $name => $value) {
+            $params[$name] = $value;
+        }
         if (!empty($params)) {
             $query = http_build_query($params);
             $data = " --data '$query'" ;
