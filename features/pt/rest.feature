@@ -4,7 +4,7 @@ Funcionalidade: Testando o RESTContext
   Cenário: Testando headers
     Quando envio uma requisição GET para "rest/index.php"
     Então o header "Content-Type" deve conter "text"
-    E o header "Content-Type" deve ser igual a "text/html; charset=utf-8"
+    E o header "Content-Type" deve ser igual a "text/html; charset=UTF-8"
     E o header "Content-Type" não deve conter "text/json"
     E o header "xxx" não deve existir
     E a resposta deve expirar no futuro

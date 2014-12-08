@@ -5,7 +5,7 @@
     シナリオ: Testing headers
         もし 私がGETメソッドで"rest/index.php"へリクエストを送る
         かつ "Content-Type"ヘッダが"text"を含むこと
-        かつ "Content-Type"ヘッダが"text/html; charset=utf-8"と一致すること
+        かつ "Content-Type"ヘッダが"text/html; charset=UTF-8"と一致すること
         かつ "Content-Type"ヘッダが"text/json"を含まないこと
         かつ "xxx"ヘッダが存在しないこと
         かつ レスポンスが将来期限切れになること
@@ -28,7 +28,7 @@
             | key     | value      |
             | foo     | bar        |
             | foofile | @lorem.txt |
-			
+
         ならば 最後のレスポンスを表示
         ならば 画面に "You have sent a POST request. " と表示されていること
         かつ 画面に "1 parameter(s)" と表示されていること
@@ -72,7 +72,7 @@
         もし 私がGETメソッドで"/rest/index.php"へリクエストを送る
         かつ "Content-Type"ヘッダが"text"を含むこと
 #  ならば ブレークポイントを設置する
-  
+
     シナリオ: Debug
        前提 "xxx"ヘッダに"yyy"を追加する
         もし POSTメソッドで"/rest/index.php"へ下記のパラメーターを伴ったリクエストを送る:
