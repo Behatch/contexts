@@ -56,7 +56,7 @@ Project dependancy
         "require": {
             ...
 
-            "sanpi/behatch-contexts": "*"
+            "behatch/contexts": "*"
         }
     }
 
@@ -85,7 +85,7 @@ Project boostraping
 .. code-block:: bash
 
     $ curl http://getcomposer.org/installer | php
-    $ php composer.phar create-project sanpi/behatch-skeleton
+    $ php composer.phar create-project behatch/skeleton
 
 .. note::
 
