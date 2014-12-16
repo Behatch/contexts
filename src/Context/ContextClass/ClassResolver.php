@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Context\ContextClass;
+namespace Behatch\Context\ContextClass;
 
 use Behat\Behat\Context\ContextClass\ClassResolver as BaseClassResolver;
 
@@ -16,6 +16,6 @@ class ClassResolver implements BaseClassResolver
         list(, $className) = explode(':', $contextClass);
 
         $className = ucfirst($className);
-        return "\\Sanpi\\Behatch\\Context\\{$className}Context";
+        return "\\Behatch\\Context\\{$className}Context";
     }
 }

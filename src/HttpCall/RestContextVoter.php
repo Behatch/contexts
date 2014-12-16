@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\HttpCall;
+namespace Behatch\HttpCall;
 
 class RestContextVoter implements ContextSupportedVoter, FilterableHttpCallResult
 {

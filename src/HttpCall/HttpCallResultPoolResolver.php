@@ -1,11 +1,11 @@
 <?php
 
-namespace Sanpi\Behatch\HttpCall;
+namespace Behatch\HttpCall;
 
 use Behat\Behat\Context\Environment\Handler\ContextEnvironmentHandler;
 use Behat\Behat\Context\Argument\ArgumentResolver;
 
-use Sanpi\Behatch\HttpCall\HttpCallResultPool;
+use Behatch\HttpCall\HttpCallResultPool;
 
 class HttpCallResultPoolResolver implements ArgumentResolver
 {
@@ -22,7 +22,7 @@ class HttpCallResultPoolResolver implements ArgumentResolver
         if ($constructor !== null) {
             $parameters = $constructor->getParameters();
             foreach ($parameters as $parameter) {
-                if (null !== $parameter->getClass() && $parameter->getClass()->name === 'Sanpi\\Behatch\\HttpCall\\HttpCallResultPool') {
+                if (null !== $parameter->getClass() && $parameter->getClass()->name === 'Behatch\\HttpCall\\HttpCallResultPool') {
                     $arguments[$parameter->name] = $this->httpCallResultPool;
                 }
             }

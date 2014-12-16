@@ -1,14 +1,14 @@
 <?php
 
-namespace Sanpi\Behatch\Context;
+namespace Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
-use Sanpi\Behatch\Json\Json;
-use Sanpi\Behatch\Json\JsonSchema;
-use Sanpi\Behatch\Json\JsonInspector;
-use Sanpi\Behatch\HttpCall\HttpCallResultAware;
-use Sanpi\Behatch\HttpCall\HttpCallResultPool;
+use Behatch\Json\Json;
+use Behatch\Json\JsonSchema;
+use Behatch\Json\JsonInspector;
+use Behatch\HttpCall\HttpCallResultAware;
+use Behatch\HttpCall\HttpCallResultPool;
 
 class JsonContext extends BaseContext
 {

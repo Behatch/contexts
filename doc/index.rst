@@ -75,7 +75,7 @@ Project dependancy
     default:
         # ...
         extensions:
-            Sanpi\Behatch\Extension: ~
+            Behatch\Extension: ~
 
 Project boostraping
 *******************

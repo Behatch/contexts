@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch;
+namespace Behatch;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -42,7 +42,7 @@ class Extension implements ExtensionInterface
 
     private function loadClassResolver(ContainerBuilder $container)
     {
-        $definition = new Definition('Sanpi\Behatch\Context\ContextClass\ClassResolver');
+        $definition = new Definition('Behatch\Context\ContextClass\ClassResolver');
         $definition->addTag(ContextExtension::CLASS_RESOLVER_TAG);
         $container->setDefinition('behatch.class_resolver', $definition);
     }

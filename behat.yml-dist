@@ -20,4 +20,4 @@ default:
             files_path: 'fixtures/files'
             goutte: ~
             selenium2: ~
-        Sanpi\Behatch\Extension: ~
+        Behatch\Extension: ~
