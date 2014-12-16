@@ -2,7 +2,7 @@
 
 namespace Sanpi\Behatch\Context;
 
-use Behat\Behat\Event\StepEvent;
+use Behat\Behat\Hook\Scope\AfterStepScope;
 
 class DebugContext extends BaseContext
 {
@@ -39,14 +39,41 @@ class DebugContext extends BaseContext
     }
 
     /**
-     * @AfterStep @javascript
+     * @AfterStep
      */
-    public function failScreenshots(StepEvent $event)
+    public function failScreenshots(AfterStepScope $scope)
     {
-        if ($event->getResult() == StepEvent::FAILED) {
-            $scenarioName = urlencode(str_replace(' ', '_', $event->getStep()->getParent()->getTitle()));
-            $filename = sprintf('fail_%s_%s.png', time(), $scenarioName);
-            $this->saveScreenshot($filename, $this->screenshotDir);
+        if (!$scope->getTestResult()->isPassed()) {
+            $scenario = $this->getScenario($scope);
+            if ($scenario->hasTag('javascript')) {
+                $scenarioName = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
+                $filename = sprintf('fail_%s_%s.png', time(), $scenarioName);
+                $this->saveScreenshot($filename, $this->screenshotDir);
+            }
         }
     }
+
+    /**
+     * @param AfterStepScope $scope
+     * @return \Behat\Gherkin\Node\ScenarioInterface
+     */
+    private function getScenario(AfterStepScope $scope)
+    {
+        $scenarios = $scope->getFeature()->getScenarios();
+        foreach ($scenarios as $scenario) {
+            $stepLinesInScenario = array_map(
+                function ($step) {
+                    return $step->getLine();
+                },
+                $scenario->getSteps()
+            );
+
+            if (in_array($scope->getStep()->getLine(), $stepLinesInScenario)) {
+                return $scenario;
+            }
+        }
+
+        throw new \LogicException('Unable to find the scenario');
+    }
+
 }
