@@ -10,6 +10,14 @@ use Behat\Mink\Exception\ExpectationException;
 class RestContext extends BaseContext
 {
     /**
+     * headers are no more stored on client, because client does not flush them when reset/restart session.
+     * They are on Behat\Mink\Driver\BrowserKitDriver and there is no way to get them.
+     *
+     * @var array
+     */
+    private $requestHeaders = array();
+
+    /**
      * Sends a HTTP request
      *
      * @Given /^I send a (?P<method>[A-Z]+) request to "(?P<url>[^"]*)"$/
@@ -22,8 +30,10 @@ class RestContext extends BaseContext
         // intercept redirection
         $client->followRedirects(false);
 
-        $client->request($method, $this->locatePath($url));
+        $client->request($method, $this->locatePath($url), array(), array(), $this->requestHeaders);
         $client->followRedirects(true);
+
+        $this->resetHttpHeaders();
     }
 
     /**
@@ -52,7 +62,7 @@ class RestContext extends BaseContext
             $parameters[$row['key']] = $row['value'];
         }
 
-        $client->request($method, $this->locatePath($url), $parameters);
+        $client->request($method, $this->locatePath($url), $parameters, array(), $this->requestHeaders);
         $client->followRedirects(true);
     }
 
@@ -70,7 +80,7 @@ class RestContext extends BaseContext
         $client->followRedirects(false);
 
         $client->request($method, $this->locatePath($url),
-            array(), array(), array(), $body->getRaw());
+            array(), array(), $this->requestHeaders, $body->getRaw());
         $client->followRedirects(true);
     }
 
@@ -175,6 +185,8 @@ class RestContext extends BaseContext
      */
     public function iAddHeaderEqualTo($name, $value)
     {
+        $this->requestHeaders[$name] = $value;
+
         $this->getSession()->setRequestHeader($name, $value);
     }
 
@@ -264,5 +276,10 @@ class RestContext extends BaseContext
             $this->getSession()->getResponseHeaders(),
             CASE_LOWER
         );
+    }
+
+    private function resetHttpHeaders()
+    {
+        $this->requestHeaders = array();
     }
 }
