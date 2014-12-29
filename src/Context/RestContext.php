@@ -54,6 +54,16 @@ class RestContext extends BaseContext
 
         parse_str(implode('&', $parameters), $parameters);
 
+        if (stristr($method, 'GET')) {
+            $parametersArray = array();
+            foreach ($parameters as $key => $value) {
+                $parametersArray[] = $key.'='.$value;
+            }
+            
+            $url .= (!strstr($url, '?') ? '?' : '&').implode('&', $parametersArray);
+            $parameters = array();
+        }
+
         $client->request($method, $this->locatePath($url), $parameters);
         $client->followRedirects(true);
 
@@ -265,5 +275,16 @@ class RestContext extends BaseContext
             $this->getSession()->getResponseHeaders(),
             CASE_LOWER
         );
+    }
+
+    /**
+     * @Then /^the response should contain '([^']*)'$/
+     */
+    public function theResponseShouldContain($expected)
+    {
+        $expected = str_replace('\\"', '"', $expected);
+        $actual   = $this->getSession()->getPage()->getContent();
+        $message = sprintf('The string "%s" is not containd by the response of the current request', $expected);
+        $this->assertContains($expected, $actual, $message);
     }
 }
