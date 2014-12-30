@@ -5,7 +5,7 @@ namespace Sanpi\Behatch\Json;
 use JsonSchema\RefResolver;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class JsonInspector
 {
@@ -16,9 +16,7 @@ class JsonInspector
     public function __construct($evaluationMode)
     {
         $this->evaluationMode = $evaluationMode;
-        $this->accessor = PropertyAccess::createPropertyAccessorBuilder()
-            ->enableExceptionOnInvalidIndex()
-            ->getPropertyAccessor();
+        $this->accessor = new PropertyAccessor(false, true);
     }
 
     public function evaluate(Json $json, $expression)
