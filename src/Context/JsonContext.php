@@ -79,7 +79,7 @@ class JsonContext extends BaseContext
 
         $actual = $this->inspector->evaluate($json, $node);
 
-        $this->assertSame($count, sizeof($actual));
+        $this->assertSame($nth, sizeof((array) $actual));
     }
 
     /**
