@@ -4,6 +4,7 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
+use Behat\Mink\Exception\ExpectationException;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
@@ -187,6 +188,34 @@ class JsonContext extends BaseContext
             (string) $actual,
             "The json is equal to:\n". $actual->encode()
         );
+    }
+
+    /**
+     * @Then /^the JSON should be invalid according to the schema "(?P<filename>[^"]*)"$/
+     */
+    public function theJsonShouldBeInvalidAccordingToTheSchema($filename)
+    {
+        if (false === is_file($filename)) {
+            throw new \RuntimeException(
+                'The JSON schema doesn\'t exist'
+            );
+        }
+
+        try {
+            $isValid = $this->getInspector()->validate(
+                $this->getJson(),
+                new JsonSchema(
+                    file_get_contents($filename),
+                    'file://' . getcwd() . '/' . $filename
+                )
+            );
+        } catch (\Exception $e) {
+            $isValid = false;
+        }
+
+        if (true === $isValid) {
+            throw new ExpectationException('Expected to receive invalid json, got valid one', $this->getSession());
+        }
     }
 
     /**
