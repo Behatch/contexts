@@ -4,6 +4,7 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
+use Behat\Mink\Exception\ExpectationException;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
@@ -127,12 +128,13 @@ class JsonContext extends BaseContext
         $json = $this->getJson();
 
         $e = null;
+        $actual = null;
         try {
             $actual = $this->getInspector()->evaluate($json, $node);
         } catch (\Exception $e) {
         }
 
-        if ($e === null) {
+        if (null === $e && null !== $actual) {
             throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $node , json_encode($actual)));
         }
     }
@@ -146,6 +148,26 @@ class JsonContext extends BaseContext
             $this->getJson(),
             new JsonSchema($schema)
         );
+    }
+
+    /**
+     * @Then /^the JSON should be invalid according to this schema:$/
+     */
+    public function theJsonShouldBeInvalidAccordingToThisSchema(PyStringNode $schema)
+    {
+        try {
+            $isValid = $this->getInspector()->validate(
+                $this->getJson(),
+                new JsonSchema($schema)
+            );
+
+        } catch (\Exception $e) {
+            $isValid = false;
+        }
+
+        if (true === $isValid) {
+            throw new ExpectationException('Expected to receive invalid json, got valid one', $this->getSession());
+        }
     }
 
     /**
@@ -166,6 +188,50 @@ class JsonContext extends BaseContext
                 'file://' . getcwd() . '/' . $filename
             )
         );
+    }
+
+     /**
+     * Checks, that given JSON node is valid against the given JSON Schema
+     *
+     * @Then /^the JSON node "(?P<node>[^"]*)" should be valid according to the schema "(?P<filename>[^"]*)"$/
+     */
+    public function theJsonNodeShouldBeValidAccordingToTheSchema($node, $filename)
+    {
+        $jsonSchema = new JsonSchema(
+            file_get_contents($filename),
+            'file://' . getcwd() . '/' . $filename
+        );
+
+        $this->getInspector()->validate(
+            $this->extractJsonNode($node),
+            $jsonSchema
+        );
+    }
+
+     /**
+     * Checks, that given JSON node is not valid against the given JSON Schema
+     *
+     * @Then /^the JSON node "(?P<node>[^"]*)" should not be valid according to the schema "(?P<filename>[^"]*)"$/
+     */
+    public function theJsonNodeShouldNotBeValidAccordingToTheSchema($node, $filename)
+    {
+        $jsonSchema = new JsonSchema(
+            file_get_contents($filename),
+            'file://' . getcwd() . '/' . $filename
+        );
+
+        try {
+            $isValid = $this->getInspector()->validate(
+                $this->extractJsonNode($node),
+                $jsonSchema
+            );
+        } catch (\Exception $e) {
+            $isValid = false;
+        }
+
+        if (true === $isValid) {
+            throw new ExpectationException('Expected to receive invalid json, got valid one', $this->getSession());
+        }
     }
 
     /**
@@ -211,5 +277,20 @@ class JsonContext extends BaseContext
         }
 
         return $this->inspector;
+    }
+
+    /**
+     * @param $node
+     * @return Json
+     * @throws \Exception
+     */
+    private function extractJsonNode($node)
+    {
+        $jsonNode = new Json(
+            json_encode(
+                $this->getInspector()->evaluate($this->getJson(), $node)
+            )
+        );
+        return $jsonNode;
     }
 }

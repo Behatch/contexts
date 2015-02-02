@@ -28,6 +28,8 @@ Feature: Testing JSONContext
         And the JSON node "numbers[3].complexeshizzle" should be equal to "true"
         And the JSON node "numbers[3].so[0]" should be equal to "very"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
+        And the JSON node "object[0]" should exist
+        And the JSON node "object[2]" should not exist
 
         And the JSON node "bar" should not exist
 
@@ -72,6 +74,51 @@ Feature: Testing JSONContext
             }
             """
 
+
+    Scenario: Json validation deep
+        Given I am on "/json/booking.json"
+        Then the JSON should be invalid according to this schema:
+            """
+            {
+                "type":"object",
+                "$schema": "http://json-schema.org/draft-03/schema",
+                "id": "http://jsonschema.net",
+                "required":false,
+                "properties":{
+                    "Booking": {
+                        "type":"object",
+                        "id": "http://jsonschema.net/Booking",
+                        "required":false
+                    },
+                    "Metadata": {
+                        "type":"object",
+                        "id": "http://jsonschema.net/Metadata",
+                        "required":false,
+                        "properties":{
+                            "First": {
+                                "type":"object",
+                                "id": "http://jsonschema.net/Metadata/First",
+                                "required":false,
+                                "properties":{
+                                    "default_value": {
+                                        "type":"boolean",
+                                        "id": "http://jsonschema.net/Metadata/First/default_value",
+                                        "required":false
+                                    },
+                                    "enabled": {
+                                        "type":"boolean",
+                                        "id": "http://jsonschema.net/Metadata/First/enabled",
+                                        "required":true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            """
+
+
     Scenario: Json contents validation
         Given I am on "/json/imajson.json"
         Then the JSON should be equal to:
@@ -106,3 +153,8 @@ Feature: Testing JSONContext
         Given I am on "/json/withdoublequote.json"
         Then the response should be in JSON
         And the JSON node "foo" should be equal to "A "bar" in a bar"
+
+    Scenario: Json Schema validation
+        Given I am on "/json/imajson.json"
+        And the JSON node "object[0]" should be valid according to the schema "fixtures/www/jsonschema/object.schema.json"
+        And the JSON node "object[1]" should not be valid according to the schema "fixtures/www/jsonschema/object.schema.json"
