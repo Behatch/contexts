@@ -22,15 +22,11 @@
 
     "autoload": {
         "psr-4": {
-            "Sanpi\\Behatch\\": "src/"
+            "Behatch\\": "src/"
         }
     },
 
     "config": {
         "bin-dir": "bin/"
-    },
-
-    "replace": {
-        "sanpi/Behatch-skeleton": "self.version"
     }
 }

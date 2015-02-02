@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Context;
+namespace Behatch\Context;
 
 use Behat\Behat\Hook\Scope\AfterStepScope;
 

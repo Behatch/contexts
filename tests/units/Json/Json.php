@@ -1,9 +1,9 @@
 <?php
 
-namespace Sanpi\Behatch\Tests\Units\Json;
+namespace Behatch\Tests\Units\Json;
 
-use \atoum;
-use Sanpi\Behatch\Json\Json as TestedClass;
+use atoum;
+use Behatch\Json\Json as TestedClass;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Json extends atoum
