@@ -76,6 +76,96 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node is null
+     *
+     * @Then the JSON node :node should be null
+     */
+    public function theJsonNodeShouldBeNull($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (null !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is true
+     *
+     * @Then the JSON node :node should be true
+     */
+    public function theJsonNodeShouldBeTrue($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (true !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is false
+     *
+     * @Then the JSON node :node should be false
+     */
+    public function theJsonNodeShouldBeFalse($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (false !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is equal to the given string
+     *
+     * @Then the JSON node :node should be equal to the string :text
+     */
+    public function theJsonNodeShouldBeEqualToTheString($node, $text)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if ($actual !== $text) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is equal to the given number
+     *
+     * @Then the JSON node :node should be equal to the number :number
+     */
+    public function theJsonNodeShouldBeEqualToTheNumber($node, $number)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if ($actual !== (float) $number && $actual !== (int) $number) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
      * Checks, that given JSON node has N element(s)
      *
      * @Then the JSON node :node should have :count element(s)
