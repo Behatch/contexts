@@ -61,7 +61,7 @@ class JsonContext extends BaseContext
 
         $actual = $this->inspector->evaluate($json, $node);
 
-        if ($actual != $text) {
+        if ($actual != $text && !(false === $actual && 'false' === $text) && !(null === $actual && 'null' === $text)) {
             throw new \Exception(
                 sprintf("The node value is `%s`", json_encode($actual))
             );

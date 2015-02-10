@@ -101,3 +101,9 @@ Feature: Testing JSONContext
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
         And the JSON node "root" should have 2 elements
+
+    Scenario: Check null and false values
+        Given I am on "/json/types.json"
+        Then the response should be in JSON
+        And the JSON node "foo" should be equal to "false"
+        And the JSON node "bar" should be equal to "null"
