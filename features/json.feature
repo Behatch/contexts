@@ -101,3 +101,14 @@ Feature: Testing JSONContext
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
         And the JSON node "root" should have 2 elements
+
+    Scenario: Check with type comparison
+        Given I am on "/json/arraywithtypes.json"
+        Then the response should be in JSON
+        And the JSON node "root[0]" should be null
+        And the JSON node "root[1]" should be true
+        And the JSON node "root[2]" should be false
+        And the JSON node "root[3]" should be equal to the string "dunglas.fr"
+        And the JSON node "root[4]" should be equal to the number 1312
+        And the JSON node "root[4]" should be equal to the number 1312.0
+        And the JSON node "root[5]" should be equal to the number 1936.2
