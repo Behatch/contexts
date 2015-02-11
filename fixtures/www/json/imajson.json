@@ -1,5 +1,6 @@
 {
   "foo": "bar",
+  "foo2": null,
   "numbers": [
     "one",
     "two",

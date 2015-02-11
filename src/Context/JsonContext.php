@@ -128,13 +128,13 @@ class JsonContext extends BaseContext
         $json = $this->getJson();
 
         $e = null;
-        $actual = null;
+
         try {
             $actual = $this->getInspector()->evaluate($json, $node);
         } catch (\Exception $e) {
         }
 
-        if (null === $e && null !== $actual) {
+        if (null === $e) {
             throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $node , json_encode($actual)));
         }
     }
