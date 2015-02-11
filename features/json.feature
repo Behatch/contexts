@@ -22,6 +22,8 @@ Feature: Testing JSONContext
         And the JSON node "foo" should contain "bar"
         And the JSON node "foo" should not contain "something else"
 
+        And the JSON node "foo2" should exist
+
         And the JSON node "numbers[0]" should contain "one"
         And the JSON node "numbers[1]" should contain "two"
         And the JSON node "numbers[2]" should contain "three"
