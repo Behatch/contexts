@@ -192,7 +192,9 @@ class RestContext extends BaseContext
         $this->requestHeaders[$name] = $value;
 
         $client = $this->getSession()->getDriver()->getClient();
-        $client->setHeader($name, $value);
+        if (method_exists($client, 'setHeader')) {
+            $client->setHeader($name, $value);
+        }
     }
 
     /**
