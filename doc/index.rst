@@ -1,8 +1,8 @@
 Behatch contexts
 ================
 
-.. image:: http://ci.homecomputing.fr/behatch-contexts/build/status
-    :target: http://ci.homecomputing.fr/behatch-contexts
+.. image:: https://travis-ci.org/Behatch/contexts.svg?branch=master
+    :target: https://travis-ci.org/Behatch/contexts
     :alt: Build status
 
 Behatch contexts provide most common behat tests.
