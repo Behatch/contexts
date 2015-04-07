@@ -80,7 +80,6 @@ class TableContext extends BaseContext
         $cells = array_merge((array)$rows[$index - 1]->findAll('css', 'th'), $cells);
 
         $hash = current($text->getHash());
-        $keys = array_keys($hash);
 
         foreach (array_keys($hash) as $columnName) {
             // Extract index from column. ex "col2" -> 2
