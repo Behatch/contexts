@@ -137,7 +137,7 @@ class BrowserContext extends BaseContext
             throw new \Exception(sprintf('The field "%s" was not found anywhere in the page', $field));
         }
 
-        $this->getMainContext()->setParameter($parameter, $node->getValue());
+        $this->setMinkParameter($parameter, $node->getValue());
     }
 
     /**

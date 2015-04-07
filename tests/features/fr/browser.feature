@@ -30,7 +30,7 @@ Fonctionnalité:
     @javascript
     Scénario:
         Étant donné je suis sur "/browser/elements.html"
-        Alors je devrais voir 5 "div" dans le 1er "body"
+        Alors je devrais voir 4 "div" dans le 1er "body"
         Et je devrais voir moins de 6 "div" dans le 1er "body"
         Et je devrais voir plus de 2 "div" dans le 1er "body"
         Et la liste de sélection "months_selector" ne devrait pas contenir "december"
