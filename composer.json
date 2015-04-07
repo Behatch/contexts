@@ -30,6 +30,6 @@
     },
 
     "replace": {
-        "sanpi/Behatch-skeleton": "self.version"
+        "sanpi/behatch-contexts": "self.version"
     }
 }
