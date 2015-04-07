@@ -58,11 +58,11 @@ class XmlContext extends BaseContext
      */
     public function theXmlElementShouldNotExist($element)
     {
-        $elements = $this->xpath($element);
+        $exception = new \Exception(sprintf("The element '%s' exists.", $element));
 
-        if ($elements->length != 0) {
-            throw new \Exception(sprintf("The element '%s' exists.", $element));
-        }
+        $this->not(function () use($element) {
+            $this->theXmlElementShouldExist($element);
+        }, $exception);
     }
 
     /**
