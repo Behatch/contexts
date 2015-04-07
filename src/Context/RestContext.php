@@ -49,6 +49,7 @@ class RestContext extends BaseContext
         // intercept redirection
         $client->followRedirects(false);
 
+        $files = array();
         $parameters = array();
         foreach ($datas->getHash() as $row) {
             if (!isset($row['key']) || !isset($row['value'])) {
@@ -56,15 +57,16 @@ class RestContext extends BaseContext
             }
 
             if (is_string($row['value']) && substr($row['value'], 0, 1) == '@') {
-                $row['value'] = '@'.rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.substr($row['value'],1);
+                $files[$row['key']] = rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.substr($row['value'],1);
             }
-
-            $parameters[] = sprintf('%s=%s', $row['key'], $row['value']);
+            else {
+                $parameters[] = sprintf('%s=%s', $row['key'], $row['value']);
+            }
         }
 
         parse_str(implode('&', $parameters), $parameters);
 
-        $client->request($method, $this->locatePath($url), $parameters, array(), $this->requestHeaders);
+        $client->request($method, $this->locatePath($url), $parameters, $files, $this->requestHeaders);
         $client->followRedirects(true);
 
         return $this->getSession()->getPage();
