@@ -1,0 +1,12 @@
+{
+    "Booking": {
+        "id": "1",
+        "price": "77.21"
+    }, "Metadata":
+    {
+        "First":  {
+            "bad_property_name": true,
+            "default_value": true
+        }
+    }
+}

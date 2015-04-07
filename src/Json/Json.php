@@ -6,7 +6,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class Json
 {
-    private $content;
+    protected $content;
 
     public function __construct($content)
     {

@@ -72,6 +72,43 @@ Feature: Testing JSONContext
             }
             """
 
+    Scenario: Json validation deep
+        Given I am on "/json/booking.json"
+        Then the JSON should be invalid according to this schema:
+            """
+            {
+                "type":"object",
+                "$schema": "http://json-schema.org/draft-03/schema",
+                "required":false,
+                "properties":{
+                    "Booking": {
+                        "type":"object",
+                        "required":false
+                    },
+                    "Metadata": {
+                        "type":"object",
+                        "required":false,
+                        "properties":{
+                            "First": {
+                                "type":"object",
+                                "required":false,
+                                "properties":{
+                                    "default_value": {
+                                        "type":"boolean",
+                                        "required":false
+                                    },
+                                    "enabled": {
+                                        "type":"boolean",
+                                        "required":true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            """
+
     Scenario: Json contents validation
         Given I am on "/json/imajson.json"
         Then the JSON should be equal to:
