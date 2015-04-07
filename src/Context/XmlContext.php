@@ -125,17 +125,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlAttributeShouldNotExist($attribute, $element)
     {
-        try {
-            $elements = $this->theXmlElementShouldExist("{$element}[@{$attribute}]");
-
-            $actual = $elements->item(0)->getAttribute($attribute);
-
-            if (!empty($actual)) {
-                throw new \Exception(sprintf("The element '%s' exists and contains '%s'.", $element , $elements));
-            }
-        }
-        catch (\Exception $e) {
-        }
+        $elements = $this->theXmlElementShouldNotExist("{$element}[@{$attribute}]");
     }
 
     /**
