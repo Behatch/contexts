@@ -164,12 +164,12 @@
                 <target><![CDATA[o nó JSON :node não deve conter :text]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
-                <source><![CDATA[the JSON node :node should exist]]></source>
-                <target><![CDATA[o nó JSON :node deve existir]]></target>
+                <source><![CDATA[the JSON node :name should exist]]></source>
+                <target><![CDATA[o nó JSON :name deve existir]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-exsists">
-                <source><![CDATA[the JSON node :node should not exist]]></source>
-                <target><![CDATA[o nó JSON :node não deve existir]]></target>
+                <source><![CDATA[the JSON node :name should not exist]]></source>
+                <target><![CDATA[o nó JSON :name não deve existir]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
                 <source><![CDATA[the JSON should be valid according to this schema:]]></source>

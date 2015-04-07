@@ -160,12 +160,12 @@
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne devrait pas contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
-                <source><![CDATA[the JSON node :node should exist]]></source>
-                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait exister$/]]></target>
+                <source><![CDATA[the JSON node :name should exist]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<name>[^"]*)" devrait exister$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-exsists">
-                <source><![CDATA[the JSON node :node should not exist]]></source>
-                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne devrait pas exister$/]]></target>
+                <source><![CDATA[the JSON node :name should not exist]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<name>[^"]*)" ne devrait pas exister$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
                 <source><![CDATA[the JSON should be valid according to this schema:]]></source>

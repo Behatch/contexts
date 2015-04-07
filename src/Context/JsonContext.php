@@ -40,9 +40,10 @@ class JsonContext extends BaseContext
     public function theResponseShouldNotBeInJson()
     {
         try {
-            $this->getJson();
+            $this->theResponseShouldBeInJson();
         }
         catch (\Exception $e) {
+            /* Intentionally leave blank */
         }
 
         if (!isset($e)) {
@@ -113,37 +114,37 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node exist
      *
-     * @Given the JSON node :node should exist
+     * @Given the JSON node :name should exist
      */
-    public function theJsonNodeShouldExist($node)
+    public function theJsonNodeShouldExist($name)
     {
         $json = $this->getJson();
 
         try {
-            $this->inspector->evaluate($json, $node);
+            $node = $this->inspector->evaluate($json, $name);
         }
         catch (\Exception $e) {
-            throw new \Exception(sprintf("The node '%s' does not exist.", $node));
+            throw new \Exception(sprintf("The node '%s' does not exist.", $name));
         }
+        return $node;
     }
 
     /**
      * Checks, that given JSON node does not exist
      *
-     * @Given the JSON node :node should not exist
+     * @Given the JSON node :name should not exist
      */
-    public function theJsonNodeShouldNotExist($node)
+    public function theJsonNodeShouldNotExist($name)
     {
-        $json = $this->getJson();
-
-        $e = null;
         try {
-            $actual = $this->inspector->evaluate($json, $node);
-        } catch (\Exception $e) {
+            $node = $this->theJsonNodeShouldExist($name);
+        }
+        catch (\Exception $e) {
+            /* Intentionally leave blank */
         }
 
-        if ($e === null) {
-            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $node , json_encode($actual)));
+        if (!isset($e)) {
+            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $name , json_encode($node)));
         }
     }
 
