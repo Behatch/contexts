@@ -6,18 +6,17 @@
     "license": "beerware",
 
     "require": {
-        "behat/behat": "3.*",
-        "behat/mink": "*",
+        "behat/behat": "~3.0",
         "behat/mink-extension": "~2.0",
-        "justinrainbow/json-schema": "*",
+        "justinrainbow/json-schema": "~1.4",
         "symfony/property-access": "~2.3"
     },
 
     "require-dev": {
         "kherge/box": "~2.0",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "atoum/atoum": "*@dev"
+        "behat/mink-goutte-driver": "~1.1",
+        "behat/mink-selenium2-driver": "~1.2",
+        "atoum/atoum": "~2.0"
     },
 
     "autoload": {
