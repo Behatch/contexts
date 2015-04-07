@@ -23,6 +23,18 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         return intval($count);
     }
 
+    protected function not(Callable $callbable, \Exception $exception)
+    {
+        try {
+            $callbable();
+        }
+        catch (\Exception $e) {
+            return;
+        }
+
+        throw $exception;
+    }
+
     protected function assertContains($expected, $actual, $message = null)
     {
         $regex   = '/'.preg_quote($expected, '/').'/ui';

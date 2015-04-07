@@ -39,16 +39,12 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldNotBeInJson()
     {
-        try {
-            $this->theResponseShouldBeInJson();
-        }
-        catch (\Exception $e) {
-            /* Intentionally leave blank */
-        }
+        $exception = new \Exception("The response is in JSON");
 
-        if (!isset($e)) {
-            throw new \Exception("The response is in JSON");
-        }
+        $this->not(
+            [$this, 'theResponseShouldBeInJson'],
+            $exception
+        );
     }
 
     /**
@@ -136,16 +132,11 @@ class JsonContext extends BaseContext
      */
     public function theJsonNodeShouldNotExist($name)
     {
-        try {
-            $node = $this->theJsonNodeShouldExist($name);
-        }
-        catch (\Exception $e) {
-            /* Intentionally leave blank */
-        }
+        $exception = new \Exception(sprintf("The node '%s' exists.", $name));
 
-        if (!isset($e)) {
-            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $name , json_encode($node)));
-        }
+        $this->not(function () use($name) {
+            return $this->theJsonNodeShouldExist($name);
+        }, $exception);
     }
 
     /**

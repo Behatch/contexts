@@ -160,13 +160,17 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldNotExist($name)
     {
-        try {
-            $this->getHttpHeader($name);
-            $message = sprintf('The header "%s" exist', $name);
-            throw new ExpectationException($message, $this->getSession());
-        }
-        catch (\OutOfBoundsException $e) {
-        }
+        $message = sprintf('The header "%s" exist', $name);
+        $exception = new ExpectationException($message, $this->getSession());
+
+        $this->not(function () use($name) {
+            $this->theHeaderShouldExist($name);
+        }, $exception);
+    }
+
+    protected function theHeaderShouldExist($name)
+    {
+        return $this->getHttpHeader($name);
     }
 
    /**

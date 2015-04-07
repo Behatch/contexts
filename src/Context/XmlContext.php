@@ -23,15 +23,12 @@ class XmlContext extends BaseContext
      */
     public function theResponseShouldNotBeInXml()
     {
-        try {
-            $this->theResponseShouldBeInXml();
-        }
-        catch (\Exception $e) {
-        }
+        $exception = new \Exception("The response is in XML");
 
-        if (!isset($e)) {
-            throw new \Exception("The response is in XML");
-        }
+        $this->not(
+            [$this, 'theResponseShouldBeInXml'],
+            $exception
+        );
     }
 
     /**
