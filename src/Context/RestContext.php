@@ -22,14 +22,15 @@ class RestContext extends BaseContext
      *
      * @Given I send a :method request to :url
      */
-    public function iSendARequestTo($method, $url)
+    public function iSendARequestTo($method, $url, PyStringNode $body = null)
     {
         $client = $this->getSession()->getDriver()->getClient();
 
         // intercept redirection
         $client->followRedirects(false);
 
-        $client->request($method, $this->locatePath($url), array(), array(), $this->requestHeaders);
+        $content = ($body !== null) ? $body->getRaw() : null;
+        $client->request($method, $this->locatePath($url), array(), array(), $this->requestHeaders, $content);
         $client->followRedirects(true);
 
         $this->resetHttpHeaders();
@@ -79,16 +80,7 @@ class RestContext extends BaseContext
      */
     public function iSendARequestToWithBody($method, $url, PyStringNode $body)
     {
-        $client = $this->getSession()->getDriver()->getClient();
-
-        // intercept redirection
-        $client->followRedirects(false);
-
-        $client->request($method, $this->locatePath($url),
-            array(), array(), $this->requestHeaders, $body->getRaw());
-        $client->followRedirects(true);
-
-        return $this->getSession()->getPage();
+        $this->iSendARequestTo($method, $url, $body);
     }
 
     /**
