@@ -49,14 +49,14 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
 
     protected function assertNotContains($expected, $actual, $message = null)
     {
-        $regex   = '/'.preg_quote($expected, '/').'/ui';
-
-        if (preg_match($regex, $actual)) {
-            if (is_null($message)) {
-                $message = sprintf('The string "%s" was found.', $expected);
-            }
-            throw new ExpectationException($message, $this->getSession());
+        if (is_null($message)) {
+            $message = sprintf('The string "%s" was found.', $expected);
         }
+        $exception = new ExpectationException($message, $this->getSession());
+
+        $this->not(function () use($expected, $actual) {
+                $this->assertContains($expected, $actual);
+        }, $exception);
     }
 
     protected function assertCount($expected, array $elements, $message = null)
