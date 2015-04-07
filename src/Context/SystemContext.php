@@ -85,7 +85,7 @@ class SystemContext extends BaseContext
     /**
      * @AfterScenario
      */
-    public function after($event)
+    public function after()
     {
         foreach ($this->createdFiles as $filename) {
             unlink($filename);
