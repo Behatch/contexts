@@ -24,7 +24,7 @@ class XmlContext extends BaseContext
     public function theResponseShouldNotBeInXml()
     {
         try {
-            $this->getDom(true);
+            $this->theResponseShouldBeInXml();
         }
         catch (\Exception $e) {
         }
