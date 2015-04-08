@@ -122,7 +122,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlAttributeShouldNotExist($attribute, $element)
     {
-        $elements = $this->theXmlElementShouldNotExist("{$element}[@{$attribute}]");
+        $this->theXmlElementShouldNotExist("{$element}[@{$attribute}]");
     }
 
     /**
