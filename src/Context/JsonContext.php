@@ -39,11 +39,9 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldNotBeInJson()
     {
-        $exception = new \Exception("The response is in JSON");
-
         $this->not(
             [$this, 'theResponseShouldBeInJson'],
-            $exception
+            'The response is in JSON'
         );
     }
 
@@ -132,11 +130,9 @@ class JsonContext extends BaseContext
      */
     public function theJsonNodeShouldNotExist($name)
     {
-        $exception = new \Exception(sprintf("The node '%s' exists.", $name));
-
         $this->not(function () use($name) {
             return $this->theJsonNodeShouldExist($name);
-        }, $exception);
+        }, "The node '$name' exists.");
     }
 
     /**

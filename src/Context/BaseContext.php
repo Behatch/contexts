@@ -21,7 +21,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         return intval($count);
     }
 
-    protected function not(Callable $callbable, \Exception $exception)
+    protected function not(Callable $callbable, $errorMessage)
     {
         try {
             $callbable();
@@ -30,7 +30,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
             return;
         }
 
-        throw $exception;
+        throw new ExpectationException($errorMessage, $this->getSession());
     }
 
     protected function assertContains($expected, $actual, $message = null)
@@ -48,13 +48,12 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     protected function assertNotContains($expected, $actual, $message = null)
     {
         if (is_null($message)) {
-            $message = sprintf('The string "%s" was found.', $expected);
+            $message = "The string '$expected' was found.";
         }
-        $exception = new ExpectationException($message, $this->getSession());
 
         $this->not(function () use($expected, $actual) {
                 $this->assertContains($expected, $actual);
-        }, $exception);
+        }, $message);
     }
 
     protected function assertCount($expected, array $elements, $message = null)
@@ -112,13 +111,12 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     protected function assertArrayNotHasKey($key, $array, $message = null)
     {
         if (is_null($message)) {
-            $message = sprintf('The array has key "%s"', $key);
+            $message = "The array has key '$key'";
         }
-        $exception = new ExpectationException($message, $this->getSession());
 
         $this->not(function () use($key, $array) {
             $this->assertArrayHasKey($key, $array);
-        }, $exception);
+        }, $message);
     }
 
     protected function assertTrue($value, $message = null)
@@ -134,13 +132,12 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     protected function assertFalse($value, $message = null)
     {
         if (is_null($message)) {
-            $message = sprintf('The value is true');
+            $message = 'The value is true';
         }
-        $exception = new ExpectationException($message, $this->getSession());
 
         $this->not(function () use($value) {
             $this->assertTrue($value);
-        }, $exception);
+        }, $message);
     }
 
     protected function getMinkContext()

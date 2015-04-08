@@ -23,11 +23,9 @@ class XmlContext extends BaseContext
      */
     public function theResponseShouldNotBeInXml()
     {
-        $exception = new \Exception("The response is in XML");
-
         $this->not(
             [$this, 'theResponseShouldBeInXml'],
-            $exception
+            'The response is in XML'
         );
     }
 
@@ -58,11 +56,9 @@ class XmlContext extends BaseContext
      */
     public function theXmlElementShouldNotExist($element)
     {
-        $exception = new \Exception(sprintf("The element '%s' exists.", $element));
-
         $this->not(function () use($element) {
             $this->theXmlElementShouldExist($element);
-        }, $exception);
+        }, "The element '$element' exists.");
     }
 
     /**
