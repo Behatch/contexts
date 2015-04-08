@@ -33,23 +33,26 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         throw new ExpectationException($errorMessage, $this->getSession());
     }
 
-    protected function assertContains($expected, $actual, $message = null)
+    protected function assert($test, $message)
     {
-        $regex   = '/'.preg_quote($expected, '/').'/ui';
-
-        if (!preg_match($regex, $actual)) {
-            if (is_null($message)) {
-                $message = "The string '$expected' was not found.";
-            }
+        if ($test === false) {
             throw new ExpectationException($message, $this->getSession());
         }
     }
 
+    protected function assertContains($expected, $actual, $message = null)
+    {
+        $regex   = '/' . preg_quote($expected, '/') . '/ui';
+
+        $this->assert(
+            preg_match($regex, $actual) > 0,
+            $message ?: "The string '$expected' was not found."
+        );
+    }
+
     protected function assertNotContains($expected, $actual, $message = null)
     {
-        if (is_null($message)) {
-            $message = "The string '$expected' was found.";
-        }
+        $message = $message ?: "The string '$expected' was found.";
 
         $this->not(function () use($expected, $actual) {
                 $this->assertContains($expected, $actual);
@@ -58,75 +61,52 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
 
     protected function assertCount($expected, array $elements, $message = null)
     {
-        if (intval($expected) !== count($elements)) {
-            if (is_null($message)) {
-                $message = sprintf(
-                    '%d elements found, but should be %d.',
-                    count($elements),
-                    $expected
-                );
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            intval($expected) === count($elements),
+            $message ?: sprintf('%d elements found, but should be %d.', count($elements), $expected)
+        );
     }
 
     protected function assertEquals($expected, $actual, $message = null)
     {
-        if ($expected != $actual) {
-            if (is_null($message)) {
-                $message = "The element '$actual' is not equal to '$expected'";
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            $expected == $actual,
+            $message ?: "The element '$actual' is not equal to '$expected'"
+        );
     }
 
     protected function assertSame($expected, $actual, $message = null)
     {
-        if ($expected !== $actual) {
-            if (is_null($message)) {
-                $message = "The element '$actual' is not equal to '$expected'";
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            $expected === $actual,
+            $message ?: "The element '$actual' is not equal to '$expected'"
+        );
     }
 
     protected function assertArrayHasKey($key, $array, $message = null)
     {
-        if (!isset($array[$key])) {
-            if (is_null($message)) {
-                $message = "The array has no key '$key'";
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            isset($array[$key]),
+            $message ?: "The array has no key '$key'"
+        );
     }
 
     protected function assertArrayNotHasKey($key, $array, $message = null)
     {
-        if (is_null($message)) {
-            $message = "The array has key '$key'";
-        }
+        $message = $message ?: "The array has key '$key'";
 
         $this->not(function () use($key, $array) {
             $this->assertArrayHasKey($key, $array);
         }, $message);
     }
 
-    protected function assertTrue($value, $message = null)
+    protected function assertTrue($value, $message = 'The value is false')
     {
-        if (!$value) {
-            if (is_null($message)) {
-                $message = 'The value is false';
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert($value, $message);
     }
 
-    protected function assertFalse($value, $message = null)
+    protected function assertFalse($value, $message = 'The value is true')
     {
-        if (is_null($message)) {
-            $message = 'The value is true';
-        }
-
         $this->not(function () use($value) {
             $this->assertTrue($value);
         }, $message);
