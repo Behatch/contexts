@@ -357,8 +357,6 @@ class BrowserContext extends BaseContext
         }
         $optionText = $obj->getText();
 
-
-
         $message = "The '$select' select box does not contain the '$option' option";
         $this->assertContains($option, $optionText, $message);
     }
@@ -370,19 +368,9 @@ class BrowserContext extends BaseContext
      */
     public function theSelectBoxShouldNotContain($select, $option)
     {
-        $select = str_replace('\\"', '"', $select);
-        $option = str_replace('\\"', '"', $option);
-
-        $obj = $this->getSession()->getPage()->findField($select);
-        if ($obj === null) {
-            throw new ElementNotFoundException(
-                $this->getSession(), 'select box', 'id|name|label|value', $select
-            );
-        }
-        $optionText = $obj->getText();
-
-        $message = "The '$select' select box does contain the '$option' option";
-        $this->assertNotContains($option, $optionText, $message);
+        $this->not(function () use($select, $option) {
+            $this->theSelectBoxShouldContain($select, $option);
+        }, "The '$select' select box does contain the '$option' option");
     }
 
     /**
