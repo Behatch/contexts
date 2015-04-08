@@ -1,5 +1,5 @@
 {
-    "name": "sanpi/behatch-contexts",
+    "name": "behatch/contexts",
     "description": "Behatch contexts",
     "keywords": ["BDD", "Behat", "Symfony2", "Context"],
     "type": "library",
