@@ -419,13 +419,11 @@ class BrowserContext extends BaseContext
      */
     public function theElementShouldNotBeVisible($element)
     {
-        $displayedNode = $this->getSession()->getPage()->find('css', $element);
-        if ($displayedNode === null) {
-            throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
-        }
+        $exception = new \Exception(sprintf('The element "%s" is visible', $element));
 
-        $message = sprintf('The element "%s" is visible', $element);
-        $this->assertFalse($displayedNode->isVisible(), $message);
+        $this->not(function () use($element) {
+            $this->theElementShouldBeVisible($element);
+        }, $exception);
     }
 
     /**
