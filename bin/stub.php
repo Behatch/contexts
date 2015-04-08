@@ -1,7 +1,7 @@
 <?php
 
-Phar::mapPhar('extension.phar');
-
-return require 'phar://extension.phar/bin/init.php';
-
+if (class_exists('Phar')) {
+    Phar::mapPhar('default.phar');
+    return require 'phar://' . __FILE__ . '/bin/main';
+}
 __HALT_COMPILER();

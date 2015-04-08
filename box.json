@@ -3,5 +3,6 @@
     "files": ["LICENSE"],
     "main": "bin/main",
     "output": "behatch_contexts.phar",
+    "shebang": false,
     "stub": "bin/stub.php"
 }
