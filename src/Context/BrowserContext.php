@@ -306,23 +306,6 @@ class BrowserContext extends BaseContext
     }
 
     /**
-     * Checks, that element with given CSS is disabled
-     *
-     * @Then the element :element should be disabled
-     */
-    public function theElementShouldBeDisabled($element)
-    {
-        $node = $this->getSession()->getPage()->find('css', $element);
-        if ($node == null) {
-            throw new \Exception("There is no '$element' element");
-        }
-
-        if (!$node->hasAttribute('disabled')) {
-            throw new \Exception("The element '$element' is not disabled");
-        }
-    }
-
-    /**
      * Checks, that element with given CSS is enabled
      *
      * @Then the element :element should be enabled
@@ -337,6 +320,18 @@ class BrowserContext extends BaseContext
         if ($node->hasAttribute('disabled')) {
             throw new \Exception("The element '$element' is not enabled");
         }
+    }
+
+    /**
+     * Checks, that element with given CSS is disabled
+     *
+     * @Then the element :element should be disabled
+     */
+    public function theElementShouldBeDisabled($element)
+    {
+        $this->not(function () use($element) {
+            $this->theElementShouldBeEnabled($element);
+        }, "The element '$element' is not disabled");
     }
 
     /**
