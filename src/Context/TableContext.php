@@ -43,13 +43,8 @@ class TableContext extends BaseContext
      */
     public function iShouldSeeRowsInTheNthTable($count, $index, $table)
     {
-        $tables = $this->getSession()->getPage()->findAll('css', $table);
-        if (!isset($tables[$index - 1])) {
-            throw new \Exception("The $index table '$table' was not found in the page");
-        }
-
-        $rows = $tables[$index - 1]->findAll('css', 'tbody tr');
-        $this->assertEquals($count, count($rows));
+        $actual = $this->countElements('tbody tr', $index, $table);
+        $this->assertEquals($count, $actual);
     }
 
     /**
