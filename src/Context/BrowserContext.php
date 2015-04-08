@@ -273,7 +273,7 @@ class BrowserContext extends BaseContext
     public function theElementShouldBeEnabled($element)
     {
         $node = $this->getSession()->getPage()->find('css', $element);
-        if ($node == null) {
+        if ($node === null) {
             throw new \Exception("There is no '$element' element");
         }
 
