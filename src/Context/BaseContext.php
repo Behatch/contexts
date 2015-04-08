@@ -111,12 +111,14 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
 
     protected function assertArrayNotHasKey($key, $array, $message = null)
     {
-        if (isset($array[$key])) {
-            if (is_null($message)) {
-                $message = sprintf('The array has key "%s"', $key);
-            }
-            throw new ExpectationException($message, $this->getSession());
+        if (is_null($message)) {
+            $message = sprintf('The array has key "%s"', $key);
         }
+        $exception = new ExpectationException($message, $this->getSession());
+
+        $this->not(function () use($key, $array) {
+            $this->assertArrayHasKey($key, $array);
+        }, $exception);
     }
 
     protected function assertTrue($value, $message = null)
