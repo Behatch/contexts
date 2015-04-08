@@ -264,18 +264,10 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeNElementInTheNthParent($count, $element, $index, $parent)
     {
-        $page = $this->getSession()->getPage();
-
-        $parents = $page->findAll('css', $parent);
-        if (!isset($parents[$index - 1])) {
-            throw new \Exception("The $index element '$parent' was not found anywhere in the page");
+        $actual = $this->countElements($element, $index, $parent);
+        if ($actual !== $count) {
+            throw new \Exception("$actual occurrences of the '$element' element in '$parent' found");
         }
-
-        $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) !== $count) {
-                    throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
-        }
-
     }
 
     /**
@@ -283,24 +275,24 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeLessThanNElementInTheNthParent($count, $element, $index, $parent)
     {
-        $page = $this->getSession()->getPage();
-
-        $parents = $page->findAll('css', $parent);
-        if (!isset($parents[$index - 1])) {
-            throw new \Exception("The $index element '$parent' was not found anywhere in the page");
+        $actual = $this->countElements($element, $index, $parent);
+        if ($actual > $count) {
+            throw new \Exception("$actual occurrences of the '$element' element in '$parent' found");
         }
-
-        $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) > $count) {
-            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
-        }
-
     }
 
     /**
      * @Then (I )should see more than :count :element in the :index :parent
      */
     public function iShouldSeeMoreThanNElementInTheNthParent($count, $element, $index, $parent)
+    {
+        $actual = $this->countElements($element, $index, $parent);
+        if ($actual < $count) {
+            throw new \Exception("$actual occurrences of the '$element' element in '$parent' found");
+        }
+    }
+
+    private function countElements($element, $index, $parent)
     {
         $page = $this->getSession()->getPage();
 
@@ -310,9 +302,7 @@ class BrowserContext extends BaseContext
         }
 
         $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) < $count) {
-            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
-        }
+        return count($elements);
     }
 
     /**
