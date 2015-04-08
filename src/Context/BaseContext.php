@@ -8,8 +8,6 @@ use Behat\Mink\Exception\ExpectationException;
 
 abstract class BaseContext extends RawMinkContext implements TranslatableContext
 {
-    private $parameters;
-
     public static function getTranslationResources()
     {
         return glob(__DIR__ . '/../../i18n/*.xliff');
