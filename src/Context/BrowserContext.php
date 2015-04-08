@@ -147,7 +147,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsUntilISee($count, $text)
     {
-        $this->iWaitSecondsUntilISeeInTheElement($count, $text, $this->getSession()->getPage());
+        $this->iWaitSecondsUntilISeeInTheElement($count, $text, 'html');
     }
 
     /**
@@ -167,37 +167,13 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsUntilISeeInTheElement($count, $text, $element)
     {
+        $this->iWaitSecondsForElement($count, $element);
+
         $expected = str_replace('\\"', '"', $text);
+        $node = $this->getSession()->getPage()->find('css', $element);
+        $message = "The text '$expected' was not found after a $count seconds timeout";
 
-        if (is_string($element)) {
-            $node = $this->getSession()->getPage()->find('css', $element);
-        }
-        else {
-            $node = $element;
-        }
-
-        $startTime = time();
-
-        do {
-            $now = time();
-            $actual   = $node->getText();
-            $e = null;
-
-            try {
-                $this->assertContains($expected, $actual);
-            }
-            catch (ExpectationException $e) {
-                if ($now - $startTime >= $count) {
-                    $message = "The text '$expected' was not found after a $count seconds timeout";
-                    throw new ResponseTextException($message, $this->getSession(), $e);
-                }
-            }
-
-            if ($e == null) {
-                break;
-            }
-
-        } while ($now - $startTime < $count);
+        $this->assertContains($expected, $node->getText(), $message);
     }
 
     /**
@@ -235,28 +211,25 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsForElement($count, $element)
     {
+        $found = false;
         $startTime = time();
 
         do {
-            $now = time();
-            $e = null;
-
             try {
                 $node = $this->getSession()->getPage()->findAll('css', $element);
                 $this->assertCount(1, $node);
+                $found = true;
             }
             catch (ExpectationException $e) {
-                if ($now - $startTime >= $count) {
-                    $message = "The element '$element' was not found after a $count seconds timeout";
-                    throw new ResponseTextException($message, $this->getSession(), $e);
-                }
+                /* Intentionnaly leave blank */
             }
+        }
+        while (time() - $startTime < $count);
 
-            if ($e == null) {
-                break;
-            }
-
-        } while ($now - $startTime < $count);
+        if ($found === false) {
+            $message = "The element '$element' was not found after a $count seconds timeout";
+            throw new ResponseTextException($message, $this->getSession(), $e);
+        }
     }
 
     /**
