@@ -27,7 +27,7 @@ Funcionalidade: Testando o XmlContext
     Então o XML deve ser válido de acordo com o seu DTD
 
   Cenário: Validação com um arquivo XSD
-    Então o XML deve ser válido de acordo com o XSD "fixtures/www/xml/schema.xsd"
+    Então o XML deve ser válido de acordo com o XSD "tests/fixtures/www/xml/schema.xsd"
 
   Cenário: Validação com um XSD inline
     Então o XML deve ser válido de acordo com esse XSD:
@@ -47,7 +47,7 @@ Funcionalidade: Testando o XmlContext
     """
 
   Cenário: Validação com um arquivo relax NG
-    Então o XML deve ser válido de acordo com o schema relax NG "fixtures/www/xml/schema.ng"
+    Então o XML deve ser válido de acordo com o schema relax NG "tests/fixtures/www/xml/schema.ng"
 
   Cenário: Validação com relax NG inline
     Então o XML deve ser válido de acordo com esse schema relax NG:

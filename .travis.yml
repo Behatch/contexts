@@ -10,7 +10,7 @@ before_script:
     - curl http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar > selenium.jar
     - java -jar selenium.jar &> /dev/null &
 
-    - php -S localhost:8080 -t fixtures/www &> /dev/null &
+    - php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
     - cp behat.yml{-dist,}
     - composer install
 

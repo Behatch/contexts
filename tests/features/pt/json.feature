@@ -34,7 +34,7 @@ Funcionalidade: Testando o JSONContext
 
   Cenário: Validação do JSON com schema
     Quando Eu estou em "/json/imajson.json"
-    Então o JSON deve ser válido de acordo com o schema "fixtures/www/json/schema.json"
+    Então o JSON deve ser válido de acordo com o schema "tests/fixtures/www/json/schema.json"
 
   Cenário: Validação do JSON
     Quando Eu estou em "/json/imajson.json"
