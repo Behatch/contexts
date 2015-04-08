@@ -14,7 +14,7 @@ class Json extends atoum
             ->exception(function () {
                 $json = new TestedClass('{{json');
             })
-                ->hasMessage('The string "{{json" is not valid json')
+                ->hasMessage("The string '{{json' is not valid json")
         ;
     }
 

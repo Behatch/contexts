@@ -58,7 +58,7 @@ class JsonContext extends BaseContext
 
         if ($actual != $text) {
             throw new \Exception(
-                sprintf("The node value is `%s`", json_encode($actual))
+                sprintf("The node value is '%s'", json_encode($actual))
             );
         }
     }
@@ -118,7 +118,7 @@ class JsonContext extends BaseContext
             $node = $this->inspector->evaluate($json, $name);
         }
         catch (\Exception $e) {
-            throw new \Exception(sprintf("The node '%s' does not exist.", $name));
+            throw new \Exception("The node '$name' does not exist.");
         }
         return $node;
     }

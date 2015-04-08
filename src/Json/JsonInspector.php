@@ -28,7 +28,7 @@ class JsonInspector
         try {
             return $json->read($expression, $this->accessor);
         } catch (\Exception $e) {
-            throw new \Exception(sprintf('Failed to evaluate expression "%s"', $expression));
+            throw new \Exception("Failed to evaluate expression '$expression'");
         }
     }
 

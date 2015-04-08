@@ -92,7 +92,7 @@ class RestContext extends BaseContext
     {
         $expected = str_replace('\\"', '"', $expected);
         $actual   = $this->getSession()->getPage()->getContent();
-        $message = sprintf('The string "%s" is not equal to the response of the current page', $expected);
+        $message = "The string '$expected' is not equal to the response of the current page";
         $this->assertEquals($expected, $actual, $message);
     }
 
@@ -117,7 +117,7 @@ class RestContext extends BaseContext
     {
         $actual = $this->getHttpHeader($name);
         $this->assertEquals(strtolower($value), strtolower($actual),
-            sprintf('The header "%s" is equal to "%s"', $name, $actual)
+            "The header '$name' is equal to '$actual'"
         );
     }
 
@@ -129,7 +129,7 @@ class RestContext extends BaseContext
     public function theHeaderShouldBeContains($name, $value)
     {
         $this->assertContains($value, $this->getHttpHeader($name),
-            sprintf('The header "%s" doesn\'t contain "%s"', $name, $value)
+            "The header '$name' doesn't contain '$value'"
         );
     }
 
@@ -141,7 +141,7 @@ class RestContext extends BaseContext
     public function theHeaderShouldNotContain($name, $value)
     {
         $this->assertNotContains($value, $this->getHttpHeader($name),
-            sprintf('The header "%s" contains "%s"', $name, $value)
+            "The header '$name' contains '$value'"
         );
     }
 
@@ -173,7 +173,7 @@ class RestContext extends BaseContext
         $expires = new \DateTime($this->getHttpHeader('Expires'));
 
         $this->assertSame(1, $expires->diff($date)->invert,
-            sprintf(sprintf('The response doesn\'t expire in the future (%s)', $expires->format(DATE_ATOM)))
+            sprintf('The response doesn\'t expire in the future (%s)', $expires->format(DATE_ATOM))
         );
     }
 
@@ -260,7 +260,7 @@ class RestContext extends BaseContext
         }
         else {
             throw new \OutOfBoundsException(
-                sprintf('The header "%s" doesn\'t exist', $name)
+                "The header '$name' doesn't exist"
             );
         }
         return $value;

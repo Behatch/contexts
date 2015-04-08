@@ -43,7 +43,7 @@ class XmlContext extends BaseContext
         $elements = $this->xpath($element);
 
         if ($elements->length == 0) {
-            throw new \Exception(sprintf("The element '%s' does not exist.", $element));
+            throw new \Exception("The element '$element' does not exist.");
         }
 
         return $elements;
@@ -73,7 +73,7 @@ class XmlContext extends BaseContext
         $actual = $elements->item(0)->nodeValue;
 
         if ($text != $actual) {
-            throw new \Exception(sprintf("The element value is `%s`", $actual));
+            throw new \Exception("The element value is '$actual'");
         }
     }
 
@@ -89,7 +89,7 @@ class XmlContext extends BaseContext
         $actual = $elements->item(0)->nodeValue;
 
         if ($text == $actual) {
-            throw new \Exception(sprintf("The element value is `%s`", $actual));
+            throw new \Exception("The element value is '$actual'");
         }
     }
 
@@ -105,7 +105,7 @@ class XmlContext extends BaseContext
         $actual = $elements->item(0)->getAttribute($attribute);
 
         if (empty($actual)) {
-            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+            throw new \Exception("The attribute value is '$actual'");
         }
 
         return $actual;
@@ -131,7 +131,7 @@ class XmlContext extends BaseContext
         $actual = $this->theXmlAttributeShouldExist($attribute, $element);
 
         if ($text != $actual) {
-            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+            throw new \Exception("The attribute value is '$actual'");
         }
     }
 
@@ -145,7 +145,7 @@ class XmlContext extends BaseContext
         $actual = $this->theXmlAttributeShouldExist($attribute, $element);
 
         if ($text === $actual) {
-            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+            throw new \Exception("The attribute value is '$actual'");
         }
     }
 
@@ -202,7 +202,7 @@ class XmlContext extends BaseContext
         $namespaces = $this->getNamespaces();
 
         if (!in_array($namespace, $namespaces)) {
-            throw new \Exception(sprintf("The namespace '%s' is not used", $namespace));
+            throw new \Exception("The namespace '$namespace' is not used");
         }
     }
 
@@ -216,7 +216,7 @@ class XmlContext extends BaseContext
         $namespaces = $this->getNamespaces();
 
         if (in_array($namespace, $namespaces)) {
-            throw new \Exception(sprintf("The namespace '%s' is used", $namespace));
+            throw new \Exception("The namespace '$namespace' is used");
         }
     }
 

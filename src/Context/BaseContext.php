@@ -39,7 +39,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
 
         if (!preg_match($regex, $actual)) {
             if (is_null($message)) {
-                $message = sprintf('The string "%s" was not found.', $expected);
+                $message = "The string '$expected' was not found.";
             }
             throw new ExpectationException($message, $this->getSession());
         }
@@ -74,11 +74,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     {
         if ($expected != $actual) {
             if (is_null($message)) {
-                $message = sprintf(
-                    'The element "%s" is not equal to "%s"',
-                    $actual,
-                    $expected
-                );
+                $message = "The element '$actual' is not equal to '$expected'";
             }
             throw new ExpectationException($message, $this->getSession());
         }
@@ -88,11 +84,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     {
         if ($expected !== $actual) {
             if (is_null($message)) {
-                $message = sprintf(
-                    'The element "%s" is not equal to "%s"',
-                    $actual,
-                    $expected
-                );
+                $message = "The element '$actual' is not equal to '$expected'";
             }
             throw new ExpectationException($message, $this->getSession());
         }
@@ -102,7 +94,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     {
         if (!isset($array[$key])) {
             if (is_null($message)) {
-                $message = sprintf('The array has no key "%s"', $key);
+                $message = "The array has no key '$key'";
             }
             throw new ExpectationException($message, $this->getSession());
         }
@@ -123,7 +115,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
     {
         if (!$value) {
             if (is_null($message)) {
-                $message = sprintf('The value is false');
+                $message = 'The value is false';
             }
             throw new ExpectationException($message, $this->getSession());
         }

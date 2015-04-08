@@ -25,7 +25,7 @@ class SystemContext extends BaseContext
         $path = $this->root . DIRECTORY_SEPARATOR . $file;
 
         return array(
-            new Step\When(sprintf('I attach the file "%s" to "%s"', $path, $field))
+            new Step\When("I attach the file '$path' to '$field'")
         );
     }
 
