@@ -133,12 +133,14 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
 
     protected function assertFalse($value, $message = null)
     {
-        if ($value) {
-            if (is_null($message)) {
-                $message = sprintf('The value is true');
-            }
-            throw new ExpectationException($message, $this->getSession());
+        if (is_null($message)) {
+            $message = sprintf('The value is true');
         }
+        $exception = new ExpectationException($message, $this->getSession());
+
+        $this->not(function () use($value) {
+            $this->assertTrue($value);
+        }, $exception);
     }
 
     protected function getMinkContext()
