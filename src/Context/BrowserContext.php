@@ -65,7 +65,7 @@ class BrowserContext extends BaseContext
             $nodes[$index - 1]->click();
         }
         else {
-            throw new \Exception(sprintf("The element %s number %s was not found anywhere in the page", $element, $index));
+            throw new \Exception("The element '$element' number $index was not found anywhere in the page");
         }
     }
 
@@ -83,7 +83,7 @@ class BrowserContext extends BaseContext
         ));
 
         if (!isset($links[$index - 1])) {
-            throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $index, $link));
+            throw new \Exception("The $index element '$link' was not found anywhere in the page");
         }
 
         $links[$index - 1]->click();
@@ -119,7 +119,7 @@ class BrowserContext extends BaseContext
     {
         $node = $this->getSession()->getPage()->find('css', $element);
         if ($node === null) {
-            throw new \Exception(sprintf('The hovered element "%s" was not found anywhere in the page', $element));
+            throw new \Exception("The hovered element '$element' was not found anywhere in the page");
         }
         $node->mouseOver();
     }
@@ -134,10 +134,10 @@ class BrowserContext extends BaseContext
         $field = str_replace('\\"', '"', $field);
         $node  = $this->getSession()->getPage()->findField($field);
         if ($node === null) {
-            throw new \Exception(sprintf('The field "%s" was not found anywhere in the page', $field));
+            throw new \Exception("The field '$field' was not found anywhere in the page");
         }
 
-        $this->getMainContext()->setParameter($parameter, $node->getValue());
+        $this->setMinkParameter($parameter, $node->getValue());
     }
 
     /**
@@ -147,7 +147,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsUntilISee($count, $text)
     {
-        $this->iWaitSecondsUntilISeeInTheElement($count, $text, $this->getSession()->getPage());
+        $this->iWaitSecondsUntilISeeInTheElement($count, $text, 'html');
     }
 
     /**
@@ -167,37 +167,13 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsUntilISeeInTheElement($count, $text, $element)
     {
+        $this->iWaitSecondsForElement($count, $element);
+
         $expected = str_replace('\\"', '"', $text);
+        $node = $this->getSession()->getPage()->find('css', $element);
+        $message = "The text '$expected' was not found after a $count seconds timeout";
 
-        if (is_string($element)) {
-            $node = $this->getSession()->getPage()->find('css', $element);
-        }
-        else {
-            $node = $element;
-        }
-
-        $startTime = time();
-
-        do {
-            $now = time();
-            $actual   = $node->getText();
-            $e = null;
-
-            try {
-                $this->assertContains($expected, $actual);
-            }
-            catch (ExpectationException $e) {
-                if ($now - $startTime >= $count) {
-                    $message = sprintf('The text "%s" was not found after a %s seconds timeout', $expected, $count);
-                    throw new ResponseTextException($message, $this->getSession(), $e);
-                }
-            }
-
-            if ($e == null) {
-                break;
-            }
-
-        } while ($now - $startTime < $count);
+        $this->assertContains($expected, $node->getText(), $message);
     }
 
     /**
@@ -235,28 +211,25 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsForElement($count, $element)
     {
+        $found = false;
         $startTime = time();
 
         do {
-            $now = time();
-            $e = null;
-
             try {
                 $node = $this->getSession()->getPage()->findAll('css', $element);
                 $this->assertCount(1, $node);
+                $found = true;
             }
             catch (ExpectationException $e) {
-                if ($now - $startTime >= $count) {
-                    $message = sprintf('The element "%s" was not found after a %s seconds timeout', $element, $count);
-                    throw new ResponseTextException($message, $this->getSession(), $e);
-                }
+                /* Intentionnaly leave blank */
             }
+        }
+        while (time() - $startTime < $count);
 
-            if ($e == null) {
-                break;
-            }
-
-        } while ($now - $startTime < $count);
+        if ($found === false) {
+            $message = "The element '$element' was not found after a $count seconds timeout";
+            throw new ResponseTextException($message, $this->getSession(), $e);
+        }
     }
 
     /**
@@ -264,18 +237,10 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeNElementInTheNthParent($count, $element, $index, $parent)
     {
-        $page = $this->getSession()->getPage();
-
-        $parents = $page->findAll('css', $parent);
-        if (!isset($parents[$index - 1])) {
-            throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $index, $parent));
+        $actual = $this->countElements($element, $index, $parent);
+        if ($actual !== $count) {
+            throw new \Exception("$actual occurrences of the '$element' element in '$parent' found");
         }
-
-        $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) !== $count) {
-                    throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
-        }
-
     }
 
     /**
@@ -283,18 +248,10 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeLessThanNElementInTheNthParent($count, $element, $index, $parent)
     {
-        $page = $this->getSession()->getPage();
-
-        $parents = $page->findAll('css', $parent);
-        if (!isset($parents[$index - 1])) {
-            throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $index, $parent));
+        $actual = $this->countElements($element, $index, $parent);
+        if ($actual > $count) {
+            throw new \Exception("$actual occurrences of the '$element' element in '$parent' found");
         }
-
-        $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) > $count) {
-            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
-        }
-
     }
 
     /**
@@ -302,33 +259,9 @@ class BrowserContext extends BaseContext
      */
     public function iShouldSeeMoreThanNElementInTheNthParent($count, $element, $index, $parent)
     {
-        $page = $this->getSession()->getPage();
-
-        $parents = $page->findAll('css', $parent);
-        if (!isset($parents[$index - 1])) {
-            throw new \Exception(sprintf("The %s element %s was not found anywhere in the page", $index, $parent));
-        }
-
-        $elements = $parents[$index - 1]->findAll('css', $element);
-        if (count($elements) < $count) {
-            throw new \Exception(sprintf("%d occurrences of the %s element in %s found", count($elements), $element, $parent));
-        }
-    }
-
-    /**
-     * Checks, that element with given CSS is disabled
-     *
-     * @Then the element :element should be disabled
-     */
-    public function theElementShouldBeDisabled($element)
-    {
-        $node = $this->getSession()->getPage()->find('css', $element);
-        if ($node == null) {
-            throw new \Exception(sprintf('There is no "%s" element', $element));
-        }
-
-        if (!$node->hasAttribute('disabled')) {
-            throw new \Exception(sprintf('The element "%s" is not disabled', $element));
+        $actual = $this->countElements($element, $index, $parent);
+        if ($actual < $count) {
+            throw new \Exception("$actual occurrences of the '$element' element in '$parent' found");
         }
     }
 
@@ -341,12 +274,24 @@ class BrowserContext extends BaseContext
     {
         $node = $this->getSession()->getPage()->find('css', $element);
         if ($node == null) {
-            throw new \Exception(sprintf('There is no "%s" element', $element));
+            throw new \Exception("There is no '$element' element");
         }
 
         if ($node->hasAttribute('disabled')) {
-            throw new \Exception(sprintf('The element "%s" is not enabled', $element));
+            throw new \Exception("The element '$element' is not enabled");
         }
+    }
+
+    /**
+     * Checks, that element with given CSS is disabled
+     *
+     * @Then the element :element should be disabled
+     */
+    public function theElementShouldBeDisabled($element)
+    {
+        $this->not(function () use($element) {
+            $this->theElementShouldBeEnabled($element);
+        }, "The element '$element' is not disabled");
     }
 
     /**
@@ -367,9 +312,7 @@ class BrowserContext extends BaseContext
         }
         $optionText = $obj->getText();
 
-
-
-        $message = sprintf('The "%s" select box does not contain the "%s" option', $select, $option);
+        $message = "The '$select' select box does not contain the '$option' option";
         $this->assertContains($option, $optionText, $message);
     }
 
@@ -380,19 +323,9 @@ class BrowserContext extends BaseContext
      */
     public function theSelectBoxShouldNotContain($select, $option)
     {
-        $select = str_replace('\\"', '"', $select);
-        $option = str_replace('\\"', '"', $option);
-
-        $obj = $this->getSession()->getPage()->findField($select);
-        if ($obj === null) {
-            throw new ElementNotFoundException(
-                $this->getSession(), 'select box', 'id|name|label|value', $select
-            );
-        }
-        $optionText = $obj->getText();
-
-        $message = sprintf('The "%s" select box does contain the "%s" option', $select, $option);
-        $this->assertNotContains($option, $optionText, $message);
+        $this->not(function () use($select, $option) {
+            $this->theSelectBoxShouldContain($select, $option);
+        }, "The '$select' select box does contain the '$option' option");
     }
 
     /**
@@ -404,11 +337,11 @@ class BrowserContext extends BaseContext
     {
         $displayedNode = $this->getSession()->getPage()->find('css', $element);
         if ($displayedNode === null) {
-            throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
+            throw new \Exception("The element '$element' was not found anywhere in the page");
         }
 
 
-        $message = sprintf('The element "%s" is not visible', $element);
+        $message = "The element '$element' is not visible";
         $this->assertTrue($displayedNode->isVisible(), $message);
     }
 
@@ -419,13 +352,11 @@ class BrowserContext extends BaseContext
      */
     public function theElementShouldNotBeVisible($element)
     {
-        $displayedNode = $this->getSession()->getPage()->find('css', $element);
-        if ($displayedNode === null) {
-            throw new \Exception(sprintf('The element "%s" was not found anywhere in the page', $element));
-        }
+        $exception = new \Exception("The element '$element' is visible");
 
-        $message = sprintf('The element "%s" is visible', $element);
-        $this->assertFalse($displayedNode->isVisible(), $message);
+        $this->not(function () use($element) {
+            $this->theElementShouldBeVisible($element);
+        }, $exception);
     }
 
     /**

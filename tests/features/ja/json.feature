@@ -36,12 +36,12 @@
 
     シナリオ: Json validation with schema
         前提 "/json/imajson.json" を表示している
-        ならば JSONがスキーマファイル"fixtures/www/json/schema.json"に従っていること
+        ならば JSONがスキーマファイル"tests/fixtures/www/json/schema.json"に従っていること
 #		かつ ブレークポイントを設置する
 
     シナリオ: Json validation with schema containing ref
         前提 "/json/withref.json" を表示している
-        ならば JSONがスキーマファイル"fixtures/www/json/schemaref.json"に従っていること
+        ならば JSONがスキーマファイル"tests/fixtures/www/json/schemaref.json"に従っていること
 #		かつ ブレークポイントを設置する
 
     シナリオ: Json validation

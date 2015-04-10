@@ -8,8 +8,6 @@ use Behat\Mink\Exception\ExpectationException;
 
 abstract class BaseContext extends RawMinkContext implements TranslatableContext
 {
-    private $parameters;
-
     public static function getTranslationResources()
     {
         return glob(__DIR__ . '/../../i18n/*.xliff');
@@ -23,110 +21,95 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         return intval($count);
     }
 
-    protected function assertContains($expected, $actual, $message = null)
+    protected function not(Callable $callbable, $errorMessage)
     {
-        $regex   = '/'.preg_quote($expected, '/').'/ui';
+        try {
+            $callbable();
+        }
+        catch (\Exception $e) {
+            return;
+        }
 
-        if (!preg_match($regex, $actual)) {
-            if (is_null($message)) {
-                $message = sprintf('The string "%s" was not found.', $expected);
-            }
+        throw new ExpectationException($errorMessage, $this->getSession());
+    }
+
+    protected function assert($test, $message)
+    {
+        if ($test === false) {
             throw new ExpectationException($message, $this->getSession());
         }
+    }
+
+    protected function assertContains($expected, $actual, $message = null)
+    {
+        $regex   = '/' . preg_quote($expected, '/') . '/ui';
+
+        $this->assert(
+            preg_match($regex, $actual) > 0,
+            $message ?: "The string '$expected' was not found."
+        );
     }
 
     protected function assertNotContains($expected, $actual, $message = null)
     {
-        $regex   = '/'.preg_quote($expected, '/').'/ui';
+        $message = $message ?: "The string '$expected' was found.";
 
-        if (preg_match($regex, $actual)) {
-            if (is_null($message)) {
-                $message = sprintf('The string "%s" was found.', $expected);
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->not(function () use($expected, $actual) {
+                $this->assertContains($expected, $actual);
+        }, $message);
     }
 
     protected function assertCount($expected, array $elements, $message = null)
     {
-        if (intval($expected) !== count($elements)) {
-            if (is_null($message)) {
-                $message = sprintf(
-                    '%d elements found, but should be %d.',
-                    count($elements),
-                    $expected
-                );
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            intval($expected) === count($elements),
+            $message ?: sprintf('%d elements found, but should be %d.', count($elements), $expected)
+        );
     }
 
     protected function assertEquals($expected, $actual, $message = null)
     {
-        if ($expected != $actual) {
-            if (is_null($message)) {
-                $message = sprintf(
-                    'The element "%s" is not equal to "%s"',
-                    $actual,
-                    $expected
-                );
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            $expected == $actual,
+            $message ?: "The element '$actual' is not equal to '$expected'"
+        );
     }
 
     protected function assertSame($expected, $actual, $message = null)
     {
-        if ($expected !== $actual) {
-            if (is_null($message)) {
-                $message = sprintf(
-                    'The element "%s" is not equal to "%s"',
-                    $actual,
-                    $expected
-                );
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            $expected === $actual,
+            $message ?: "The element '$actual' is not equal to '$expected'"
+        );
     }
 
     protected function assertArrayHasKey($key, $array, $message = null)
     {
-        if (!isset($array[$key])) {
-            if (is_null($message)) {
-                $message = sprintf('The array has no key "%s"', $key);
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert(
+            isset($array[$key]),
+            $message ?: "The array has no key '$key'"
+        );
     }
 
     protected function assertArrayNotHasKey($key, $array, $message = null)
     {
-        if (isset($array[$key])) {
-            if (is_null($message)) {
-                $message = sprintf('The array has key "%s"', $key);
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $message = $message ?: "The array has key '$key'";
+
+        $this->not(function () use($key, $array) {
+            $this->assertArrayHasKey($key, $array);
+        }, $message);
     }
 
-    protected function assertTrue($value, $message = null)
+    protected function assertTrue($value, $message = 'The value is false')
     {
-        if (!$value) {
-            if (is_null($message)) {
-                $message = sprintf('The value is false');
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->assert($value, $message);
     }
 
-    protected function assertFalse($value, $message = null)
+    protected function assertFalse($value, $message = 'The value is true')
     {
-        if ($value) {
-            if (is_null($message)) {
-                $message = sprintf('The value is true');
-            }
-            throw new ExpectationException($message, $this->getSession());
-        }
+        $this->not(function () use($value) {
+            $this->assertTrue($value);
+        }, $message);
     }
 
     protected function getMinkContext()
@@ -136,5 +119,18 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         $context->setMinkParameters($this->getMinkParameters());
 
         return $context;
+    }
+
+    protected function countElements($element, $index, $parent)
+    {
+        $page = $this->getSession()->getPage();
+
+        $parents = $page->findAll('css', $parent);
+        if (!isset($parents[$index - 1])) {
+            throw new \Exception("The $index element '$parent' was not found anywhere in the page");
+        }
+
+        $elements = $parents[$index - 1]->findAll('css', $element);
+        return count($elements);
     }
 }

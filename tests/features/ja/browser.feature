@@ -39,9 +39,9 @@
             | parameters     |
             | /browser       |
             | /elements.html |
-        ならば 1番目の"body"要素が5個の"div"要素を持つこと			
-        ならば 1番目の"body"要素が6個以下の"div"要素を持つこと			
-        ならば 1番目の"body"要素が2個以上の"div"要素を持つこと			
+        ならば 1番目の"body"要素が4個の"div"要素を持つこと
+        ならば 1番目の"body"要素が6個以下の"div"要素を持つこと
+        ならば 1番目の"body"要素が2個以上の"div"要素を持つこと
         かつ セレクトボックス"months_selector"は"january"を含むこと
         かつ セレクトボックス"months_selector"は"december"を含まないこと
         もし 私が 1 番目の "ul li" 要素をクリックする

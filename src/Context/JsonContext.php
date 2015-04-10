@@ -16,7 +16,7 @@ class JsonContext extends BaseContext
 
     private $httpCallResultPool;
 
-    public function __construct($evaluationMode = 'javascript', HttpCallResultPool $httpCallResultPool)
+    public function __construct(HttpCallResultPool $httpCallResultPool, $evaluationMode = 'javascript')
     {
         $this->inspector = new JsonInspector($evaluationMode);
         $this->httpCallResultPool = $httpCallResultPool;
@@ -39,15 +39,10 @@ class JsonContext extends BaseContext
      */
     public function theResponseShouldNotBeInJson()
     {
-        try {
-            $this->getJson();
-        }
-        catch (\Exception $e) {
-        }
-
-        if (!isset($e)) {
-            throw new \Exception("The response is in JSON");
-        }
+        $this->not(
+            [$this, 'theResponseShouldBeInJson'],
+            'The response is in JSON'
+        );
     }
 
     /**
@@ -63,7 +58,7 @@ class JsonContext extends BaseContext
 
         if ($actual != $text) {
             throw new \Exception(
-                sprintf("The node value is `%s`", json_encode($actual))
+                sprintf("The node value is '%s'", json_encode($actual))
             );
         }
     }
@@ -113,38 +108,31 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node exist
      *
-     * @Given the JSON node :node should exist
+     * @Given the JSON node :name should exist
      */
-    public function theJsonNodeShouldExist($node)
+    public function theJsonNodeShouldExist($name)
     {
         $json = $this->getJson();
 
         try {
-            $this->inspector->evaluate($json, $node);
+            $node = $this->inspector->evaluate($json, $name);
         }
         catch (\Exception $e) {
-            throw new \Exception(sprintf("The node '%s' does not exist.", $node));
+            throw new \Exception("The node '$name' does not exist.");
         }
+        return $node;
     }
 
     /**
      * Checks, that given JSON node does not exist
      *
-     * @Given the JSON node :node should not exist
+     * @Given the JSON node :name should not exist
      */
-    public function theJsonNodeShouldNotExist($node)
+    public function theJsonNodeShouldNotExist($name)
     {
-        $json = $this->getJson();
-
-        $e = null;
-        try {
-            $actual = $this->inspector->evaluate($json, $node);
-        } catch (\Exception $e) {
-        }
-
-        if ($e === null) {
-            throw new \Exception(sprintf("The node '%s' exists and contains '%s'.", $node , json_encode($actual)));
-        }
+        $this->not(function () use($name) {
+            return $this->theJsonNodeShouldExist($name);
+        }, "The node '$name' exists.");
     }
 
     /**

@@ -29,7 +29,7 @@ Fonctionnalité:
 
   Scénario:
     Étant donné je suis sur "/json/imajson.json"
-    Alors le JSON devrait être valide avec le schéma "fixtures/www/json/schema.json"
+    Alors le JSON devrait être valide avec le schéma "tests/fixtures/www/json/schema.json"
 
   Scénario: Json validation
     Étant donné je suis sur "/json/imajson.json"

@@ -8,8 +8,8 @@ Fonctionnalité:
         Étant donné j'exécute "bin/behat --help"
 
     Scénario: création de fichier
-        Quand je crée le fichier "fixtures/test" contenant :
+        Quand je crée le fichier "tests/fixtures/test" contenant :
         """
         A new file
         """
-        Alors imprimer le contenu du fichier "fixtures/test"
+        Alors imprimer le contenu du fichier "tests/fixtures/test"

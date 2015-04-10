@@ -9,8 +9,8 @@
        前提 "bin/behat --help"を実行する
 
     シナリオ: File creation
-        もし "fixtures/test"というファイルを下記のテキストで作成する:
+        もし "tests/fixtures/test"というファイルを下記のテキストで作成する:
         """
         A new file
         """
-        ならば "fixtures/test"というファイルのテキストを表示する
+        ならば "tests/fixtures/test"というファイルのテキストを表示する

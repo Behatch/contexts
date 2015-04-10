@@ -47,7 +47,7 @@ class JsonInspector extends atoum
                 ->exception(function () use ($json, $inspector) {
                     $inspector->evaluate($json, 'foo.bar');
                 })
-                    ->hasMessage('Failed to evaluate expression "foo.bar"')
+                    ->hasMessage("Failed to evaluate expression 'foo.bar'")
         ;
     }
 

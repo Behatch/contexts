@@ -7,6 +7,7 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class SystemContext extends BaseContext
 {
+    private $root;
     private $createdFiles = array();
 
     public function __construct($root = '.')
@@ -24,7 +25,7 @@ class SystemContext extends BaseContext
         $path = $this->root . DIRECTORY_SEPARATOR . $file;
 
         return array(
-            new Step\When(sprintf('I attach the file "%s" to "%s"', $path, $field))
+            new Step\When("I attach the file '$path' to '$field'")
         );
     }
 
@@ -84,7 +85,7 @@ class SystemContext extends BaseContext
     /**
      * @AfterScenario
      */
-    public function after($event)
+    public function after()
     {
         foreach ($this->createdFiles as $filename) {
             unlink($filename);

@@ -7,8 +7,8 @@ Feature: System feature
         Given I execute "bin/behat --help"
 
     Scenario: File creation
-        When I create the file "fixtures/test" containing:
+        When I create the file "tests/fixtures/test" containing:
         """
         A new file
         """
-        Then print the content of "fixtures/test" file
+        Then print the content of "tests/fixtures/test" file

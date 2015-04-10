@@ -24,12 +24,12 @@
         もし "/xml/notfound.xml" を表示している
         ならば レスポンスがXMLでないこと
 # ならば ブレークポイントを設置する
-		
+
     シナリオ: Validation with DTD
         ならば XMLフィードが自身のDTDに従っていること
 
     シナリオ: Validation with XSD file
-        ならば XMLフィードがXSDファイル"fixtures/www/xml/schema.xsd"に従っていること
+        ならば XMLフィードがXSDファイル"tests/fixtures/www/xml/schema.xsd"に従っていること
 
 # ならば ブレークポイントを設置する
     シナリオ: Validation with inline XSD
@@ -50,8 +50,8 @@
             """
 
     シナリオ: Validation with relax NG file
-        ならば XMLフィードがrelax NG schemaファイル"fixtures/www/xml/schema.ng"に従っていること
-		
+        ならば XMLフィードがrelax NG schemaファイル"tests/fixtures/www/xml/schema.ng"に従っていること
+
 # ならば ブレークポイントを設置する
     シナリオ: Validation with inline relax NG
         ならば XMLフィードが下記のrelax NG schemaに従っていること:
@@ -120,7 +120,7 @@
           かつ XMLには "//people/p:person" 要素が存在していること
           かつ XMLには "//people/description" 要素が存在していないこと
           かつ XMLの "//people/p:person[@id=1]/items/item[@id=1]" 要素は "Rubber Ducky" と一致していること
-          かつ XMLには "//people" 要素を 3 個含んでいること		  
+          かつ XMLには "//people" 要素を 3 個含んでいること
           かつ XMLの "//people/p:person[@id=1]" 要素の "name" 属性は "Bert" と一致していること
           かつ XMLの "//people/p:person[@id=2]" 要素の "id" 属性は "4" と一致していないこと
           かつ XMLの "//people/p:person[@id=3]" 要素には "name" 属性が存在していること

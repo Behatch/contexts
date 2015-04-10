@@ -54,9 +54,7 @@ class Json
         $result = json_decode($content);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \Exception(
-                sprintf('The string "%s" is not valid json', $content)
-            );
+            throw new \Exception("The string '$content' is not valid json");
         }
 
         return $result;

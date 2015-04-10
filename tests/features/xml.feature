@@ -26,7 +26,7 @@ Feature: Testing XmlContext
         Then the XML feed should be valid according to its DTD
 
     Scenario: Validation with XSD file
-        Then the XML feed should be valid according to the XSD "fixtures/www/xml/schema.xsd"
+        Then the XML feed should be valid according to the XSD "tests/fixtures/www/xml/schema.xsd"
 
     Scenario: Validation with inline XSD
         Then the XML feed should be valid according to this XSD:
@@ -46,7 +46,7 @@ Feature: Testing XmlContext
             """
 
     Scenario: Validation with relax NG file
-        Then the XML feed should be valid according to the relax NG schema "fixtures/www/xml/schema.ng"
+        Then the XML feed should be valid according to the relax NG schema "tests/fixtures/www/xml/schema.ng"
 
     Scenario: Validation with inline relax NG
         Then the XML feed should be valid according to this relax NG schema:

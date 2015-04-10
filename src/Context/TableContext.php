@@ -13,7 +13,7 @@ class TableContext extends BaseContext
      */
     public function theColumnsSchemaShouldMatch($table, TableNode $text)
     {
-        $columnsSelector = sprintf('%s thead tr th', $table);
+        $columnsSelector = "$table thead tr th";
         $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
         $this->iShouldSeeColumnsInTheTable(count($text->getHash()), $table);
@@ -30,7 +30,7 @@ class TableContext extends BaseContext
      */
     public function iShouldSeeColumnsInTheTable($count, $table)
     {
-        $columnsSelector = sprintf('%s thead tr th', $table);
+        $columnsSelector = "$table thead tr th";
         $columns = $this->getSession()->getPage()->findAll('css', $columnsSelector);
 
         $this->assertEquals($count, count($columns));
@@ -43,13 +43,8 @@ class TableContext extends BaseContext
      */
     public function iShouldSeeRowsInTheNthTable($count, $index, $table)
     {
-        $tables = $this->getSession()->getPage()->findAll('css', $table);
-        if (!isset($tables[$index - 1])) {
-            throw new \Exception(sprintf('The %d table "%s" was not found in the page', $index, $table));
-        }
-
-        $rows = $tables[$index - 1]->findAll('css', 'tbody tr');
-        $this->assertEquals($count, count($rows));
+        $actual = $this->countElements('tbody tr', $index, $table);
+        $this->assertEquals($count, $actual);
     }
 
     /**
@@ -69,18 +64,17 @@ class TableContext extends BaseContext
      */
     public function theDataOfTheRowShouldMatch($index, $table, TableNode $text)
     {
-        $rowsSelector = sprintf('%s tbody tr', $table);
+        $rowsSelector = "$table tbody tr";
         $rows = $this->getSession()->getPage()->findAll('css', $rowsSelector);
 
         if (!isset($rows[$index - 1])) {
-            throw new \Exception(sprintf('The row %d was not found in the "%s" table', $index, $table));
+            throw new \Exception("The row $index was not found in the '$table' table");
         }
 
         $cells = (array)$rows[$index - 1]->findAll('css', 'td');
         $cells = array_merge((array)$rows[$index - 1]->findAll('css', 'th'), $cells);
 
         $hash = current($text->getHash());
-        $keys = array_keys($hash);
 
         foreach (array_keys($hash) as $columnName) {
             // Extract index from column. ex "col2" -> 2
@@ -98,19 +92,18 @@ class TableContext extends BaseContext
      */
     public function theStColumnOfTheStRowInTheTableShouldContain($colIndex, $rowIndex, $table, $text)
     {
-        $rowSelector = sprintf('%s tbody tr', $table);
+        $rowSelector = "$table tbody tr";
         $rows = $this->getSession()->getPage()->findAll('css', $rowSelector);
 
         if (!isset($rows[$rowIndex - 1])) {
-            throw new \Exception(sprintf("The row %d was not found in the %s table", $rowIndex, $table));
+            throw new \Exception("The row $rowIndex was not found in the '$table' table");
         }
 
         $row = $rows[$rowIndex - 1];
-        $colSelector = sprintf('td', $table);
-        $cols = $row->findAll('css', $colSelector);
+        $cols = $row->findAll('css', 'td');
 
         if (!isset($cols[$colIndex - 1])) {
-            throw new \Exception(sprintf("The column %d was not found in the row %d of the %s table", $colIndex, $rowIndex, $table));
+            throw new \Exception("The column $colIndex was not found in the row $rowIndex of the '$table' table");
         }
 
         $actual = $cols[$colIndex - 1]->getText();

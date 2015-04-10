@@ -159,12 +159,12 @@
                 <target><![CDATA[/^JSONのノード"(?P<node>[^"]*)"が"(?P<text>[^"]*)"を含まないこと$/u]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
-                <source><![CDATA[the JSON node :node should exist]]></source>
-                <target><![CDATA[/^JSONにノード"(?P<node>[^"]*)"が存在すること$/u]]></target>
+                <source><![CDATA[the JSON node :name should exist]]></source>
+                <target><![CDATA[/^JSONにノード"(?P<name>[^"]*)"が存在すること$/u]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-exsists">
-                <source><![CDATA[the JSON node :node should not exist]]></source>
-                <target><![CDATA[/^JSONにノード"(?P<node>[^"]*)"が存在しないこと$/u]]></target>
+                <source><![CDATA[the JSON node :name should not exist]]></source>
+                <target><![CDATA[/^JSONにノード"(?P<name>[^"]*)"が存在しないこと$/u]]></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-this-schema">
                 <source><![CDATA[the JSON should be valid according to this schema:]]></source>

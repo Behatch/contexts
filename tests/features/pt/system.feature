@@ -8,8 +8,8 @@ Funcionalidade: System
     Quando executo "bin/behat --help"
 
   Cenário: Criação de arquivo
-    Quando crio o arquivo "fixtures/test" contendo:
+    Quando crio o arquivo "tests/fixtures/test" contendo:
       """
       A new file
       """
-    Então exiba o conteúdo do arquivo "fixtures/test"
+    Então exiba o conteúdo do arquivo "tests/fixtures/test"

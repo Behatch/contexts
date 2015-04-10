@@ -33,11 +33,11 @@ Feature: Testing JSONContext
 
     Scenario: Json validation with schema
         Given I am on "/json/imajson.json"
-        Then the JSON should be valid according to the schema "fixtures/www/json/schema.json"
+        Then the JSON should be valid according to the schema "tests/fixtures/www/json/schema.json"
 
     Scenario: Json validation with schema containing ref
         Given I am on "/json/withref.json"
-        Then the JSON should be valid according to the schema "fixtures/www/json/schemaref.json"
+        Then the JSON should be valid according to the schema "tests/fixtures/www/json/schemaref.json"
 
     Scenario: Json validation
         Given I am on "/json/imajson.json"

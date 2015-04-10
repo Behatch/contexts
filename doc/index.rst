@@ -5,6 +5,10 @@ Behatch contexts
     :target: https://travis-ci.org/Behatch/contexts
     :alt: Build status
 
+.. image:: https://scrutinizer-ci.com/g/Behatch/contexts/badges/quality-score.png?b=master
+    :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=master
+    :alt: Scrutinizer Code Quality
+
 Behatch contexts provide most common behat tests.
 
 Installation

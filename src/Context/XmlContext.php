@@ -2,6 +2,7 @@
 
 namespace Sanpi\Behatch\Context;
 
+use Sanpi\Behatch\Xml\Dom;
 use Behat\Gherkin\Node\PyStringNode;
 
 class XmlContext extends BaseContext
@@ -13,7 +14,7 @@ class XmlContext extends BaseContext
      */
     public function theResponseShouldBeInXml()
     {
-        $this->getDom(true);
+        $this->getDom();
     }
 
     /**
@@ -23,15 +24,10 @@ class XmlContext extends BaseContext
      */
     public function theResponseShouldNotBeInXml()
     {
-        try {
-            $this->getDom(true);
-        }
-        catch (\Exception $e) {
-        }
-
-        if (!isset($e)) {
-            throw new \Exception("The response is in XML");
-        }
+        $this->not(
+            [$this, 'theResponseShouldBeInXml'],
+            'The response is in XML'
+        );
     }
 
     /**
@@ -45,10 +41,11 @@ class XmlContext extends BaseContext
      */
     public function theXmlElementShouldExist($element)
     {
-        $elements = $this->xpath($element);
+        $elements = $this->getDom()
+            ->xpath($element);
 
         if ($elements->length == 0) {
-            throw new \Exception(sprintf("The element '%s' does not exist.", $element));
+            throw new \Exception("The element '$element' does not exist.");
         }
 
         return $elements;
@@ -61,11 +58,9 @@ class XmlContext extends BaseContext
      */
     public function theXmlElementShouldNotExist($element)
     {
-        $elements = $this->xpath($element);
-
-        if ($elements->length != 0) {
-            throw new \Exception(sprintf("The element '%s' exists.", $element));
-        }
+        $this->not(function () use($element) {
+            $this->theXmlElementShouldExist($element);
+        }, "The element '$element' exists.");
     }
 
     /**
@@ -80,7 +75,7 @@ class XmlContext extends BaseContext
         $actual = $elements->item(0)->nodeValue;
 
         if ($text != $actual) {
-            throw new \Exception(sprintf("The element value is `%s`", $actual));
+            throw new \Exception("The element value is '$actual'");
         }
     }
 
@@ -91,13 +86,9 @@ class XmlContext extends BaseContext
      */
     public function theXmlElementShouldNotBeEqualTo($element, $text)
     {
-        $elements = $this->theXmlElementShouldExist($element);
-
-        $actual = $elements->item(0)->nodeValue;
-
-        if ($text == $actual) {
-            throw new \Exception(sprintf("The element value is `%s`", $actual));
-        }
+        $this->not(function () use($element, $text) {
+            $this->theXmlElementShouldBeEqualTo($element, $text);
+        }, "The element '$element' value is not '$text'");
     }
 
     /**
@@ -112,7 +103,7 @@ class XmlContext extends BaseContext
         $actual = $elements->item(0)->getAttribute($attribute);
 
         if (empty($actual)) {
-            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+            throw new \Exception("The attribute value is '$actual'");
         }
 
         return $actual;
@@ -125,17 +116,7 @@ class XmlContext extends BaseContext
      */
     public function theXmlAttributeShouldNotExist($attribute, $element)
     {
-        try {
-            $elements = $this->theXmlElementShouldExist("{$element}[@{$attribute}]");
-
-            $actual = $elements->item(0)->getAttribute($attribute);
-
-            if (!empty($actual)) {
-                throw new \Exception(sprintf("The element '%s' exists and contains '%s'.", $element , $elements));
-            }
-        }
-        catch (\Exception $e) {
-        }
+        $this->theXmlElementShouldNotExist("{$element}[@{$attribute}]");
     }
 
     /**
@@ -148,7 +129,7 @@ class XmlContext extends BaseContext
         $actual = $this->theXmlAttributeShouldExist($attribute, $element);
 
         if ($text != $actual) {
-            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+            throw new \Exception("The attribute value is '$actual'");
         }
     }
 
@@ -162,7 +143,7 @@ class XmlContext extends BaseContext
         $actual = $this->theXmlAttributeShouldExist($attribute, $element);
 
         if ($text === $actual) {
-            throw new \Exception(sprintf("The attribute value is `%s`", $actual));
+            throw new \Exception("The attribute value is '$actual'");
         }
     }
 
@@ -216,10 +197,11 @@ class XmlContext extends BaseContext
      */
     public function theXmlShouldUseTheNamespace($namespace)
     {
-        $namespaces = $this->getNamespaces();
+        $namespaces = $this->getDom()
+            ->getNamespaces();
 
         if (!in_array($namespace, $namespaces)) {
-            throw new \Exception(sprintf("The namespace '%s' is not used", $namespace));
+            throw new \Exception("The namespace '$namespace' is not used");
         }
     }
 
@@ -230,10 +212,11 @@ class XmlContext extends BaseContext
      */
     public function theXmlShouldNotUseTheNamespace($namespace)
     {
-        $namespaces = $this->getNamespaces();
+        $namespaces = $this->getDom()
+            ->getNamespaces();
 
         if (in_array($namespace, $namespaces)) {
-            throw new \Exception(sprintf("The namespace '%s' is used", $namespace));
+            throw new \Exception("The namespace '$namespace' is used");
         }
     }
 
@@ -244,51 +227,7 @@ class XmlContext extends BaseContext
      */
     public function printLastXmlResponse()
     {
-        $dom = $this->getDom(false, false);
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-    }
-
-    public function xpath($element)
-    {
-        $dom = $this->getDom(false);
-        $xpath = new \DOMXpath($dom);
-        $namespaces = $this->getNamespaces($dom);
-
-        $defaultNamespaceUri = $dom->lookupNamespaceURI(null);
-        $defaultNamespacePrefix = $defaultNamespaceUri ? $dom->lookupPrefix($defaultNamespaceUri) : null;
-
-        foreach ($namespaces as $prefix => $namespace) {
-            if (empty($prefix) && empty($defaultNamespacePrefix) && !empty($defaultNamespaceUri)) {
-                $prefix = 'rootns';
-            }
-            $xpath->registerNamespace($prefix, $namespace);
-        }
-
-        // "fix" queries to the default namespace if any namespaces are defined
-        if (!empty($namespaces) && empty($defaultNamespacePrefix) && !empty($defaultNamespaceUri)) {
-            for ($i=0; $i < 2; ++$i) {
-                $element = preg_replace('/\/(\w+)(\[[^]]+\])?\//', '/rootns:$1$2/', $element);
-            }
-            $element = preg_replace('/\/(\w+)(\[[^]]+\])?$/', '/rootns:$1$2', $element);
-        }
-
-        $elements = $xpath->query($element);
-
-        return ($elements === false) ? new \DOMNodeList() : $elements;
-    }
-
-    private function getSimpleXml(\DOMDocument $dom = null)
-    {
-        return simplexml_import_dom($dom ? $dom : $this->getDom(false));
-    }
-
-    private function getNamespaces(\DOMDocument $dom = null)
-    {
-        $xml = $this->getSimpleXml($dom);
-        $namespaces = $xml->getNamespaces(true);
-
-        return $namespaces;
+        echo (string)$this->getDom();
     }
 
     /**
@@ -305,10 +244,8 @@ class XmlContext extends BaseContext
      */
     public function theXmlFeedShouldBeValidAccordingToItsDtd()
     {
-        $dom = $this->getDom(false);
         try {
-            $dom->validate();
-            $this->throwError();
+            $this->getDom();
         }
         catch(\DOMException $e) {
             throw new \RuntimeException($e->getMessage());
@@ -321,14 +258,12 @@ class XmlContext extends BaseContext
     public function theXmlFeedShouldBeValidAccordingToTheXsd($filename)
     {
         if (is_file($filename)) {
-            $dom = $this->getDom(false);
             $xsd = file_get_contents($filename);
-            $this->schemaValidate($dom, $xsd);
+            $this->getDom()
+                ->validateXsd($xsd);
         }
         else {
-            throw new \RuntimeException(
-                'The xsd doesn\'t exist'
-            );
+            throw new \RuntimeException("The xsd doesn't exist");
         }
     }
 
@@ -337,19 +272,8 @@ class XmlContext extends BaseContext
      */
     public function theXmlFeedShouldBeValidAccordingToThisXsd(PyStringNode $xsd)
     {
-        $dom = $this->getDom(false);
-        $this->schemaValidate($dom, $xsd->getRaw());
-    }
-
-    private function schemaValidate(\DomDocument $dom, $xsd)
-    {
-        try {
-            $dom->schemaValidateSource($xsd);
-            $this->throwError();
-        }
-        catch(\DOMException $e) {
-            throw new \RuntimeException($e->getMessage());
-        }
+        $this->getDom()
+            ->validateXsd($xsd->getRaw());
     }
 
     /**
@@ -358,14 +282,12 @@ class XmlContext extends BaseContext
     public function theXmlFeedShouldBeValidAccordingToTheRelaxNgSchema($filename)
     {
         if (is_file($filename)) {
-            $dom = $this->getDom(false);
             $ng = file_get_contents($filename);
-            $this->relaxNGValidate($dom, $ng);
+            $this->getDom()
+                ->validateNg($ng);
         }
         else {
-            throw new \RuntimeException(
-                'The relax NG doesn\'t exist'
-            );
+            throw new \RuntimeException("The relax NG doesn't exist");
         }
     }
 
@@ -374,19 +296,8 @@ class XmlContext extends BaseContext
      */
     public function theXmlFeedShouldBeValidAccordingToThisRelaxNgSchema(PyStringNode $ng)
     {
-        $dom = $this->getDom(false);
-        $this->relaxNGValidate($dom, $ng->getRaw());
-    }
-
-    private function relaxNGValidate(\DomDocument $dom, $ng)
-    {
-        try {
-            $dom->relaxNGValidateSource($ng);
-            $this->throwError();
-        }
-        catch(\DOMException $e) {
-            throw new \RuntimeException($e->getMessage());
-        }
+        $this->getDom()
+            ->validateNg($ng->getRaw());
     }
 
     /**
@@ -409,35 +320,10 @@ class XmlContext extends BaseContext
         );
     }
 
-    private function getDom($throwExceptions, $preserveWhitespace = true)
+    private function getDom()
     {
         $content = $this->getSession()->getPage()->getContent();
 
-        $dom = new \DomDocument();
-        try {
-            $dom->strictErrorChecking = false;
-            $dom->validateOnParse = false;
-            $dom->preserveWhiteSpace = $preserveWhitespace;
-            $dom->loadXML($content, LIBXML_PARSEHUGE);
-            $this->throwError();
-        }
-        catch(\DOMException $e) {
-            if ($throwExceptions) {
-                throw new \RuntimeException($e->getMessage());
-            }
-        }
-
-        return $dom;
-    }
-
-    private function throwError()
-    {
-        $error = libxml_get_last_error();
-        if (!empty($error)) {
-            // https://bugs.php.net/bug.php?id=46465
-            if ($error->message != 'Validation failed: no DTD found !') {
-                throw new \DomException($error->message . ' at line ' . $error->line);
-            }
-        }
+        return new Dom($content);
     }
 }

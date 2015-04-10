@@ -8,7 +8,7 @@ Fonctionnalité:
         Alors le flux XML devrait être valide avec sa DTD
 
     Scénario:
-        Alors le flux XML devrait être valide avec le XSD "fixtures/www/xml/schema.xsd"
+        Alors le flux XML devrait être valide avec le XSD "tests/fixtures/www/xml/schema.xsd"
 
     Scénario:
         Alors le flux XML devrait être valide avec cette XSD :
@@ -28,7 +28,7 @@ Fonctionnalité:
         """
 
     Scénario:
-        Alors le flux XML devrait être valide avec le schéma relax NG "fixtures/www/xml/schema.ng"
+        Alors le flux XML devrait être valide avec le schéma relax NG "tests/fixtures/www/xml/schema.ng"
 
     Scénario:
         Alors le flux XML devrait être valide avec ce schéma relax NG :
