@@ -129,10 +129,6 @@
             </trans-unit>
 
             <!-- FileSystemContext.php -->
-            <trans-unit id="i-put-the-file-into-field">
-                <source><![CDATA[(I )put the file :file into :field]]></source>
-                <target><![CDATA[/^(?:|私が)ファイル"(?P<file>[^"]*)"を"(?P<field>(?:[^"]|\\")*)"に設定する$/u]]></target>
-            </trans-unit>
             <trans-unit id="i-execute">
                 <source><![CDATA[(I )execute :command]]></source>
                 <target><![CDATA[/^(?:|私が)"(?P<command>[^"]*)"を実行する$/u]]></target>
