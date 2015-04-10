@@ -2,11 +2,10 @@
 
 namespace Sanpi\Behatch\Tests\Units\Json;
 
-use \atoum;
 use Sanpi\Behatch\Json\Json as TestedClass;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-class Json extends atoum
+class Json extends \atoum
 {
     public function test_should_not_decode_invalid_json()
     {

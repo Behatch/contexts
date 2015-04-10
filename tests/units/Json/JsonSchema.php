@@ -2,10 +2,9 @@
 
 namespace Sanpi\Behatch\Tests\Units\Json;
 
-use \atoum;
 use Sanpi\Behatch\Json\JsonSchema as TestedClass;
 
-class JsonSchema extends atoum
+class JsonSchema extends \atoum
 {
     public function test_should_not_resolve_without_uri()
     {

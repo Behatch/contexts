@@ -2,14 +2,13 @@
 
 namespace Sanpi\Behatch\Tests\Units\Json;
 
-use \atoum;
 use JsonSchema\RefResolver;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Sanpi\Behatch\Json\JsonInspector as TestedClass;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-class JsonInspector extends atoum
+class JsonInspector extends \atoum
 {
     public function test_should_read_json()
     {
