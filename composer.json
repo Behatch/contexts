@@ -16,7 +16,7 @@
         "kherge/box": "~2.0",
         "behat/mink-goutte-driver": "~1.1",
         "behat/mink-selenium2-driver": "~1.2",
-        "atoum/atoum": "~2.0"
+        "atoum/atoum": "dev-master"
     },
 
     "autoload": {
