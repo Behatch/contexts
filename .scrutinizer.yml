@@ -1,0 +1,37 @@
+tools:
+    php_sim: true
+    php_pdepend: true
+    php_analyzer: true
+
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - 'bin/*'
+
+checks:
+    php:
+        security_vulnerabilities: true
+        use_self_instead_of_fqcn: true
+        uppercase_constants: true
+        simplify_boolean_return: true
+        remove_extra_empty_lines: true
+        properties_in_camelcaps: true
+        prefer_while_loop_over_for_loop: true
+        parameters_in_camelcaps: true
+        optional_parameters_at_the_end: true
+        no_goto: true
+        newline_at_end_of_file: true
+        classes_in_camel_caps: true
+        avoid_todo_comments: true
+        avoid_multiple_statements_on_same_line: true
+        avoid_fixme_comments: true
+        fix_doc_comments: false
+
+build:
+    tests:
+        override:
+            -
+                command: './bin/atoum'
+                coverage:
+                    file: 'atoum.xunit.xml'
+                    format: 'php-clover'

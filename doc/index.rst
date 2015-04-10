@@ -9,6 +9,10 @@ Behatch contexts
     :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=master
     :alt: Scrutinizer Code Quality
 
+.. image:: https://scrutinizer-ci.com/g/Behatch/contexts/badges/coverage.png?b=code-coverage
+    :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=code-coverage
+    :alt: Code Coverage
+
 Behatch contexts provide most common behat tests.
 
 Installation
