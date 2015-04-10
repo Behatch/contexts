@@ -2,7 +2,6 @@
 
 namespace Sanpi\Behatch\Tests\Units\Json;
 
-use Sanpi\Behatch\Json\Json as TestedClass;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Json extends \atoum
@@ -11,7 +10,7 @@ class Json extends \atoum
     {
         $this
             ->exception(function () {
-                $json = new TestedClass('{{json');
+                $json = $this->newTestedInstance('{{json');
             })
                 ->hasMessage("The string '{{json' is not valid json")
         ;
@@ -25,7 +24,7 @@ class Json extends \atoum
                     $hasException = false
                 )
                 ->when(
-                    $json = new TestedClass('{"foo": "bar"}')
+                    $json = $this->newTestedInstance('{"foo": "bar"}')
                 )
             ;
         } catch (\Exception $e) {
@@ -42,7 +41,7 @@ class Json extends \atoum
                 $content = '{"foo":"bar"}'
             )
             ->when(
-                $json = new TestedClass($content)
+                $json = $this->newTestedInstance($content)
             )
             ->castToString($json)
                 ->isEqualTo($content)
@@ -54,7 +53,7 @@ class Json extends \atoum
         $this
             ->given(
                 $accessor = PropertyAccess::createPropertyAccessor(),
-                $json = new TestedClass('{"foo":"bar"}')
+                $json = $this->newTestedInstance('{"foo":"bar"}')
             )
             ->exception(function () use ($json, $accessor) {
                 $json->read('jeanmarc', $accessor);
@@ -68,7 +67,7 @@ class Json extends \atoum
         $this
             ->given(
                 $accessor = PropertyAccess::createPropertyAccessor(),
-                $json = new TestedClass('{"foo":"bar"}')
+                $json = $this->newTestedInstance('{"foo":"bar"}')
             )
             ->when(
                 $result = $json->read('foo', $accessor)

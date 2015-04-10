@@ -5,7 +5,6 @@ namespace Sanpi\Behatch\Tests\Units\Json;
 use JsonSchema\RefResolver;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
-use Sanpi\Behatch\Json\JsonInspector as TestedClass;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class JsonInspector extends \atoum
@@ -18,7 +17,7 @@ class JsonInspector extends \atoum
                 $json->getMockController()->read = 'foobar'
             )
             ->and(
-                $inspector = new TestedClass('mode')
+                $inspector = $this->newTestedInstance('mode')
             )
             ->when(
                 $result = $inspector->evaluate($json, 'foo.bar')
@@ -41,7 +40,7 @@ class JsonInspector extends \atoum
                 $json->getMockController()->read->throw = new \Exception()
             )
             ->and(
-                $inspector = new TestedClass('mode')
+                $inspector = $this->newTestedInstance('mode')
             )
                 ->exception(function () use ($json, $inspector) {
                     $inspector->evaluate($json, 'foo.bar');
@@ -58,7 +57,7 @@ class JsonInspector extends \atoum
                 $json->getMockController()->read = 'foobar'
             )
             ->and(
-                $inspector = new TestedClass('javascript')
+                $inspector = $this->newTestedInstance('javascript')
             )
             ->when(
                 $result = $inspector->evaluate($json, 'foo->bar')
@@ -81,7 +80,7 @@ class JsonInspector extends \atoum
                 $json->getMockController()->read = 'foobar'
             )
             ->and(
-                $inspector = new TestedClass('foo')
+                $inspector = $this->newTestedInstance('foo')
             )
             ->when(
                 $result = $inspector->evaluate($json, 'foo->bar')
@@ -104,7 +103,7 @@ class JsonInspector extends \atoum
                 $schema = new \mock\Sanpi\Behatch\Json\JsonSchema('{}'),
                 $schema->getMockController()->resolve = $schema,
                 $schema->getMockController()->validate = 'foobar',
-                $inspector = new TestedClass('foo')
+                $inspector = $this->newTestedInstance('foo')
             )
             ->when(
                 $result = $inspector->validate($json, $schema)

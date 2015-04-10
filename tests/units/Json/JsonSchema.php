@@ -2,15 +2,13 @@
 
 namespace Sanpi\Behatch\Tests\Units\Json;
 
-use Sanpi\Behatch\Json\JsonSchema as TestedClass;
-
 class JsonSchema extends \atoum
 {
     public function test_should_not_resolve_without_uri()
     {
         $this
             ->given(
-                $schema = new TestedClass('{}'),
+                $schema = $this->newTestedInstance('{}'),
                 $this->mockGenerator->orphanize('__construct'),
                 $resolver = new \mock\JsonSchema\RefResolver
             )
@@ -27,7 +25,7 @@ class JsonSchema extends \atoum
     {
         $this
             ->given(
-                $schema = new TestedClass('{}', 'file://test'),
+                $schema = $this->newTestedInstance('{}', 'file://test'),
                 $this->mockGenerator->orphanize('__construct'),
                 $resolver = new \mock\JsonSchema\RefResolver,
                 $resolver->getMockController()->resolve = true
@@ -49,7 +47,7 @@ class JsonSchema extends \atoum
     {
         $this
             ->given(
-                $schema = new TestedClass('{}'),
+                $schema = $this->newTestedInstance('{}'),
                 $json = new \Sanpi\Behatch\Json\Json('{}'),
                 $validator = new \mock\JsonSchema\Validator,
                 $validator->getMockController()->check = true
@@ -71,7 +69,7 @@ class JsonSchema extends \atoum
     {
         $this
             ->given(
-                $schema = new TestedClass('{}'),
+                $schema = $this->newTestedInstance('{}'),
                 $json = new \Sanpi\Behatch\Json\Json('{}'),
                 $validator = new \mock\JsonSchema\Validator,
                 $validator->getMockController()->check = false,
