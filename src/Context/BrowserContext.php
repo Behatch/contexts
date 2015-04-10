@@ -2,7 +2,6 @@
 
 namespace Sanpi\Behatch\Context;
 
-use Behat\Behat\Context\Step;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Exception\ResponseTextException;
@@ -273,7 +272,7 @@ class BrowserContext extends BaseContext
     public function theElementShouldBeEnabled($element)
     {
         $node = $this->getSession()->getPage()->find('css', $element);
-        if ($node == null) {
+        if ($node === null) {
             throw new \Exception("There is no '$element' element");
         }
 

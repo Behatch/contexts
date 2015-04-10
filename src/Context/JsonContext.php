@@ -7,7 +7,6 @@ use Behat\Gherkin\Node\PyStringNode;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
-use Sanpi\Behatch\HttpCall\HttpCallResultAware;
 use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 
 class JsonContext extends BaseContext

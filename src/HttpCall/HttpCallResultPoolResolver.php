@@ -2,10 +2,8 @@
 
 namespace Sanpi\Behatch\HttpCall;
 
-use Behat\Behat\Context\Environment\Handler\ContextEnvironmentHandler;
-use Behat\Behat\Context\Argument\ArgumentResolver;
-
 use Sanpi\Behatch\HttpCall\HttpCallResultPool;
+use Behat\Behat\Context\Argument\ArgumentResolver;
 
 class HttpCallResultPoolResolver implements ArgumentResolver
 {

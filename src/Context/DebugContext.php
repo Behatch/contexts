@@ -2,6 +2,7 @@
 
 namespace Sanpi\Behatch\Context;
 
+use Behat\Gherkin\Node\StepNode;
 use Behat\Behat\Hook\Scope\AfterStepScope;
 
 class DebugContext extends BaseContext
@@ -62,7 +63,7 @@ class DebugContext extends BaseContext
         $scenarios = $scope->getFeature()->getScenarios();
         foreach ($scenarios as $scenario) {
             $stepLinesInScenario = array_map(
-                function ($step) {
+                function (StepNode $step) {
                     return $step->getLine();
                 },
                 $scenario->getSteps()
