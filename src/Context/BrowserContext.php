@@ -77,9 +77,9 @@ class BrowserContext extends BaseContext
     {
         $page = $this->getSession()->getPage();
 
-        $links = $page->findAll('named', array(
+        $links = $page->findAll('named', [
             'link', $this->getSession()->getSelectorsHandler()->xpathLiteral($link)
-        ));
+        ]);
 
         if (!isset($links[$index - 1])) {
             throw new \Exception("The $index element '$link' was not found anywhere in the page");

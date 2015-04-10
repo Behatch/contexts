@@ -76,10 +76,10 @@ class JsonSchema extends atoum
                 $json = new \Sanpi\Behatch\Json\Json('{}'),
                 $validator = new \mock\JsonSchema\Validator,
                 $validator->getMockController()->check = false,
-                $validator->getMockController()->getErrors = array(
-                    array('property' => 'foo', 'message' => 'invalid'),
-                    array('property' => 'bar', 'message' => 'not found')
-                )
+                $validator->getMockController()->getErrors = [
+                    ['property' => 'foo', 'message' => 'invalid'],
+                    ['property' => 'bar', 'message' => 'not found'],
+                ]
             )
             ->exception(function () use ($schema, $json, $validator) {
                 $schema->validate($json, $validator);

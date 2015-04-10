@@ -13,7 +13,7 @@ class RestContext extends BaseContext
      *
      * @var array
      */
-    private $requestHeaders = array();
+    private $requestHeaders = [];
 
     /**
      * Sends a HTTP request
@@ -28,7 +28,7 @@ class RestContext extends BaseContext
         $client->followRedirects(false);
 
         $content = ($body !== null) ? $body->getRaw() : null;
-        $client->request($method, $this->locatePath($url), array(), array(), $this->requestHeaders, $content);
+        $client->request($method, $this->locatePath($url), [], [], $this->requestHeaders, $content);
         $client->followRedirects(true);
 
         $this->resetHttpHeaders();
@@ -48,8 +48,8 @@ class RestContext extends BaseContext
         // intercept redirection
         $client->followRedirects(false);
 
-        $files = array();
-        $parameters = array();
+        $files = [];
+        $parameters = [];
         foreach ($datas->getHash() as $row) {
             if (!isset($row['key']) || !isset($row['value'])) {
                 throw new \Exception("You must provide a 'key' and 'value' column in your table node.");
@@ -274,6 +274,6 @@ class RestContext extends BaseContext
 
     private function resetHttpHeaders()
     {
-        $this->requestHeaders = array();
+        $this->requestHeaders = [];
     }
 }

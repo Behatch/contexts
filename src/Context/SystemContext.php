@@ -8,7 +8,7 @@ use Behat\Gherkin\Node\PyStringNode;
 class SystemContext extends BaseContext
 {
     private $root;
-    private $createdFiles = array();
+    private $createdFiles = [];
 
     public function __construct($root = '.')
     {
@@ -24,9 +24,9 @@ class SystemContext extends BaseContext
     {
         $path = $this->root . DIRECTORY_SEPARATOR . $file;
 
-        return array(
+        return [
             new Step\When("I attach the file '$path' to '$field'")
-        );
+        ];
     }
 
     /**
