@@ -24,8 +24,7 @@
 
     "autoload": {
         "psr-4": {
-            "Behatch\\": "src/",
-            "Sanpi\\Behatch\\": "src/class_aliases/"
+            "Behatch\\": "src/"
         }
     },
 
