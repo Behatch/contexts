@@ -2,7 +2,6 @@
 
 namespace Behatch\Context;
 
-use Behat\Behat\Context\Step;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 
@@ -22,20 +21,6 @@ class SystemContext implements Context
     public static function getTranslationResources()
     {
         return glob(__DIR__ . '/../../i18n/*.xliff');
-    }
-
-    /**
-     * Uploads a file using the specified input field
-     *
-     * @When (I )put the file :file into :field
-     */
-    public function putFileIntoField($file, $field)
-    {
-        $path = $this->root . DIRECTORY_SEPARATOR . $file;
-
-        return [
-            new Step\When("I attach the file '$path' to '$field'")
-        ];
     }
 
     /**

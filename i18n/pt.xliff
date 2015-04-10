@@ -128,11 +128,7 @@
                 <target></target>
             </trans-unit>
 
-            <!-- SystemContext.php -->
-            <trans-unit id="i-put-the-file-into-field">
-                <source><![CDATA[(I )put the file :file into :field]]></source>
-                <target><![CDATA[(eu )coloco o arquivo :file no campo :field]]></target>
-            </trans-unit>
+            <!-- FileSystemContext.php -->
             <trans-unit id="i-execute">
                 <source><![CDATA[(I )execute :command]]></source>
                 <target><![CDATA[(eu )executo :command]]></target>
