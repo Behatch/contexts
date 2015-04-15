@@ -22,18 +22,14 @@ class RestContext extends BaseContext
      */
     public function iSendARequestTo($method, $url, PyStringNode $body = null)
     {
-        $client = $this->getSession()->getDriver()->getClient();
-
-        // intercept redirection
-        $client->followRedirects(false);
-
-        $content = ($body !== null) ? $body->getRaw() : null;
-        $client->request($method, $this->locatePath($url), [], [], $this->requestHeaders, $content);
-        $client->followRedirects(true);
-
-        $this->resetHttpHeaders();
-
-        return $this->getSession()->getPage();
+        return $this->request(
+            $method,
+            $url,
+            [],
+            [],
+            $this->requestHeaders,
+            $body !== null ? $body->getRaw() : null
+        );
     }
 
     /**
@@ -43,13 +39,9 @@ class RestContext extends BaseContext
      */
     public function iSendARequestToWithParameters($method, $url, TableNode $datas)
     {
-        $client = $this->getSession()->getDriver()->getClient();
-
-        // intercept redirection
-        $client->followRedirects(false);
-
         $files = [];
         $parameters = [];
+
         foreach ($datas->getHash() as $row) {
             if (!isset($row['key']) || !isset($row['value'])) {
                 throw new \Exception("You must provide a 'key' and 'value' column in your table node.");
@@ -65,10 +57,13 @@ class RestContext extends BaseContext
 
         parse_str(implode('&', $parameters), $parameters);
 
-        $client->request($method, $this->locatePath($url), $parameters, $files, $this->requestHeaders);
-        $client->followRedirects(true);
-
-        return $this->getSession()->getPage();
+        return $this->request(
+            $method,
+            $url,
+            $parameters,
+            $files,
+            $this->requestHeaders
+        );
     }
 
     /**
@@ -262,6 +257,19 @@ class RestContext extends BaseContext
             );
         }
         return $value;
+    }
+
+    private function request($method, $url, $parameters = [], $files = [], $headers = [], $content = null)
+    {
+        $client = $this->getSession()->getDriver()->getClient();
+
+        $client->followRedirects(false);
+        $client->request($method, $this->locatePath($url), $parameters, $files, $headers, $content);
+        $client->followRedirects(true);
+
+        $this->resetHttpHeaders();
+
+        return $this->getSession()->getPage();
     }
 
     private function getHttpHeaders()
