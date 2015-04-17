@@ -3,9 +3,10 @@
 namespace Sanpi\Behatch\Context;
 
 use Behat\Behat\Context\Step;
+use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 
-class SystemContext extends BaseContext
+class SystemContext implements Context
 {
     private $root;
     private $createdFiles = [];
@@ -13,6 +14,11 @@ class SystemContext extends BaseContext
     public function __construct($root = '.')
     {
         $this->root = $root;
+    }
+
+    public static function getTranslationResources()
+    {
+        return glob(__DIR__ . '/../../i18n/*.xliff');
     }
 
     /**
