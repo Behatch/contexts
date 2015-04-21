@@ -3,17 +3,17 @@
 namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\TableNode;
+use Sanpi\Behatch\HttpCall\Request;
 use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext
 {
-    /**
-     * headers are no more stored on client, because client does not flush them when reset/restart session.
-     * They are on Behat\Mink\Driver\BrowserKitDriver and there is no way to get them.
-     *
-     * @var array
-     */
-    private $requestHeaders = [];
+    private $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     /**
      * Sends a HTTP request
@@ -22,12 +22,11 @@ class RestContext extends BaseContext
      */
     public function iSendARequestTo($method, $url, PyStringNode $body = null)
     {
-        return $this->request(
+        return $this->request->send(
             $method,
-            $url,
+            $this->locatePath($url),
             [],
             [],
-            $this->requestHeaders,
             $body !== null ? $body->getRaw() : null
         );
     }
@@ -57,12 +56,11 @@ class RestContext extends BaseContext
 
         parse_str(implode('&', $parameters), $parameters);
 
-        return $this->request(
+        return $this->request->send(
             $method,
-            $url,
+            $this->locatePath($url),
             $parameters,
-            $files,
-            $this->requestHeaders
+            $files
         );
     }
 
@@ -84,7 +82,7 @@ class RestContext extends BaseContext
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
     {
         $expected = str_replace('\\"', '"', $expected);
-        $actual   = $this->getSession()->getPage()->getContent();
+        $actual   = $this->request->getContent();
         $message = "The string '$expected' is not equal to the response of the current page";
         $this->assertEquals($expected, $actual, $message);
     }
@@ -96,7 +94,7 @@ class RestContext extends BaseContext
      */
     public function theResponseShouldBeEmpty()
     {
-        $actual = $this->getSession()->getPage()->getContent();
+        $actual = $this->request->getContent();
         $message = 'The response of the current page is not empty';
         $this->assertTrue(null === $actual || "" === $actual, $message);
     }
@@ -108,7 +106,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeEqualTo($name, $value)
     {
-        $actual = $this->getHttpHeader($name);
+        $actual = $this->request->getHttpHeader($name);
         $this->assertEquals(strtolower($value), strtolower($actual),
             "The header '$name' is equal to '$actual'"
         );
@@ -121,7 +119,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldBeContains($name, $value)
     {
-        $this->assertContains($value, $this->getHttpHeader($name),
+        $this->assertContains($value, $this->request->getHttpHeader($name),
             "The header '$name' doesn't contain '$value'"
         );
     }
@@ -133,7 +131,7 @@ class RestContext extends BaseContext
      */
     public function theHeaderShouldNotContain($name, $value)
     {
-        $this->assertNotContains($value, $this->getHttpHeader($name),
+        $this->assertNotContains($value, $this->request->getHttpHeader($name),
             "The header '$name' contains '$value'"
         );
     }
@@ -152,7 +150,7 @@ class RestContext extends BaseContext
 
     protected function theHeaderShouldExist($name)
     {
-        return $this->getHttpHeader($name);
+        return $this->request->getHttpHeader($name);
     }
 
    /**
@@ -162,8 +160,8 @@ class RestContext extends BaseContext
      */
     public function theResponseShouldExpireInTheFuture()
     {
-        $date = new \DateTime($this->getHttpHeader('Date'));
-        $expires = new \DateTime($this->getHttpHeader('Expires'));
+        $date = new \DateTime($this->request->getHttpHeader('Date'));
+        $expires = new \DateTime($this->request->getHttpHeader('Expires'));
 
         $this->assertSame(1, $expires->diff($date)->invert,
             sprintf('The response doesn\'t expire in the future (%s)', $expires->format(DATE_ATOM))
@@ -177,10 +175,7 @@ class RestContext extends BaseContext
      */
     public function iAddHeaderEqualTo($name, $value)
     {
-        $this->requestHeaders[$name] = $value;
-
-        $client = $this->getSession()->getDriver()->getClient();
-        $client->setHeader($name, $value);
+        $this->request->setHttpHeader($name, $value);
     }
 
     /**
@@ -188,7 +183,7 @@ class RestContext extends BaseContext
      */
     public function theResponseShouldBeEncodedIn($encoding)
     {
-        $content = $this->getSession()->getPage()->getContent();
+        $content = $this->request->getContent();
         if (!mb_check_encoding($content, $encoding)) {
             throw new \Exception("The response is not encoded in $encoding");
         }
@@ -202,10 +197,10 @@ class RestContext extends BaseContext
     public function printLastResponseHeaders()
     {
         $text = '';
-        $headers = $this->getHttpHeaders();
+        $headers = $this->request->getHttpHeaders();
 
         foreach ($headers as $name => $value) {
-            $text .= $name . ': '. $this->getHttpHeader($name) . "\n";
+            $text .= $name . ': '. $this->request->getHttpHeader($name) . "\n";
         }
         echo $text;
     }
@@ -216,7 +211,7 @@ class RestContext extends BaseContext
      */
     public function printTheCorrespondingCurlCommand()
     {
-        $request = $this->getSession()->getDriver()->getClient()->getRequest();
+        $request = $this->request->getRequest();
 
         $method = $request->getMethod();
         $url = $request->getUri();
@@ -236,52 +231,5 @@ class RestContext extends BaseContext
         }
 
         echo "curl -X $method$data$headers '$url'";
-    }
-
-    private function getHttpHeader($name)
-    {
-        $name = strtolower($name);
-        $header = $this->getHttpHeaders();
-
-        if (isset($header[$name])) {
-            if (is_array($header[$name])) {
-                $value = implode(', ', $header[$name]);
-            }
-            else {
-                $value = $header[$name];
-            }
-        }
-        else {
-            throw new \OutOfBoundsException(
-                "The header '$name' doesn't exist"
-            );
-        }
-        return $value;
-    }
-
-    private function request($method, $url, $parameters = [], $files = [], $headers = [], $content = null)
-    {
-        $client = $this->getSession()->getDriver()->getClient();
-
-        $client->followRedirects(false);
-        $client->request($method, $this->locatePath($url), $parameters, $files, $headers, $content);
-        $client->followRedirects(true);
-
-        $this->resetHttpHeaders();
-
-        return $this->getSession()->getPage();
-    }
-
-    private function getHttpHeaders()
-    {
-        return array_change_key_case(
-            $this->getSession()->getResponseHeaders(),
-            CASE_LOWER
-        );
-    }
-
-    private function resetHttpHeaders()
-    {
-        $this->requestHeaders = [];
     }
 }

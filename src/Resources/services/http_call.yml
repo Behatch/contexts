@@ -16,8 +16,12 @@ services:
         tags:
             - { name: behatch.context_voter }
 
+    Behatch.http_call.request:
+        class: Sanpi\Behatch\HttpCall\Request
+        arguments: [@mink]
+
     behatch.http_call.argument_resolver:
         class: Sanpi\Behatch\HttpCall\HttpCallResultPoolResolver
-        arguments: [@behatch.http_call.result_pool]
+        arguments: [@behatch.http_call.result_pool, @behatch.http_call.request]
         tags:
             - { name: context.argument_resolver }
