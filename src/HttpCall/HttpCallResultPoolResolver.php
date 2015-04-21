@@ -7,11 +7,15 @@ use Behat\Behat\Context\Argument\ArgumentResolver;
 
 class HttpCallResultPoolResolver implements ArgumentResolver
 {
-    private $httpCallResultPool;
+    private $dependencies;
 
-    public function __construct(HttpCallResultPool $httpCallResultPool)
+    public function __construct(/* ... */)
     {
-        $this->httpCallResultPool = $httpCallResultPool;
+        $this->dependencies = [];
+
+        foreach (func_get_args() as $param) {
+            $this->dependencies[get_class($param)] = $param;
+        }
     }
 
     public function resolveArguments(\ReflectionClass $classReflection, array $arguments)
@@ -20,8 +24,11 @@ class HttpCallResultPoolResolver implements ArgumentResolver
         if ($constructor !== null) {
             $parameters = $constructor->getParameters();
             foreach ($parameters as $parameter) {
-                if (null !== $parameter->getClass() && $parameter->getClass()->name === 'Sanpi\\Behatch\\HttpCall\\HttpCallResultPool') {
-                    $arguments[$parameter->name] = $this->httpCallResultPool;
+                if (
+                    null !== $parameter->getClass()
+                    && isset($this->dependencies[$parameter->getClass()->name])
+                ) {
+                    $arguments[$parameter->name] = $this->dependencies[$parameter->getClass()->name];
                 }
             }
         }
