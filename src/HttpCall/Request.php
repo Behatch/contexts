@@ -6,13 +6,6 @@ use Behat\Mink\Mink;
 
 class Request
 {
-    /**
-     * headers are no more stored on client, because client does not flush them when reset/restart session.
-     * They are on Behat\Mink\Driver\BrowserKitDriver and there is no way to get them.
-     *
-     * @var array
-     */
-    private $requestHeaders = [];
     private $mink;
 
     public function __construct(Mink $mink)
@@ -20,68 +13,18 @@ class Request
         $this->mink = $mink;
     }
 
-    public function getRequest()
+    public function __call($name, $arguments)
     {
-        return $this->mink->getSession()->getDriver()->getClient()->getRequest();
+        return call_user_func_array([$this->getClient(), $name], $arguments);
     }
 
-    public function getContent()
+    private function getClient()
     {
-        return $this->mink->getSession()->getPage()->getContent();
-    }
-
-    public function send($method, $url, $parameters = [], $files = [], $content = null)
-    {
-        $client = $this->mink->getSession()->getDriver()->getClient();
-
-        $client->followRedirects(false);
-        $client->request($method, $url, $parameters, $files, $this->requestHeaders, $content);
-        $client->followRedirects(true);
-
-        $this->resetHttpHeaders();
-
-        return $this->mink->getSession()->getPage();
-    }
-
-    public function setHttpHeader($name, $value)
-    {
-        $this->requestHeaders[$name] = $value;
-
-        $client = $this->mink->getSession()->getDriver()->getClient();
-        $client->setHeader($name, $value);
-    }
-
-    public function getHttpHeaders()
-    {
-        return array_change_key_case(
-            $this->mink->getSession()->getResponseHeaders(),
-            CASE_LOWER
-        );
-    }
-
-    public function getHttpHeader($name)
-    {
-        $name = strtolower($name);
-        $header = $this->getHttpHeaders();
-
-        if (isset($header[$name])) {
-            if (is_array($header[$name])) {
-                $value = implode(', ', $header[$name]);
-            }
-            else {
-                $value = $header[$name];
-            }
+        if ($this->mink->getDefaultSessionName() === 'symfony2') {
+            return new Request\Goutte($this->mink);
         }
         else {
-            throw new \OutOfBoundsException(
-                "The header '$name' doesn't exist"
-            );
+            return new Request\BrowserKit($this->mink);
         }
-        return $value;
-    }
-
-    private function resetHttpHeaders()
-    {
-        $this->requestHeaders = [];
     }
 }
