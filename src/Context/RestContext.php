@@ -5,7 +5,6 @@ namespace Sanpi\Behatch\Context;
 use Behat\Gherkin\Node\TableNode;
 use Sanpi\Behatch\HttpCall\Request;
 use Behat\Gherkin\Node\PyStringNode;
-use Buzz\Browser;
 
 class RestContext extends BaseContext
 {
