@@ -22,7 +22,38 @@ class SystemContext implements Context
     }
 
     /**
+     * Changes directory to :directory requested
+     * Example: Given I am in "/Users/bWayne/secretfiles/batman"
+     * Example: And I am in "/Users/bWayne/secretfiles/batman"
+     *
+     * @Given I am in :dir directory
+     */
+    public function iAmInDirectory($dir)
+    {
+        //if (!file_exists($dir)) {
+        //    mkdir($dir);
+        //}
+        chdir($dir);
+    }
+
+    /**
+     * Runs a command line argument
+     * Example: When I run ".openCaveEntrance"
+     * Example: And I run ".openCaveEntrance"
+     *
+     * @When /^I run :command
+     */
+    public function iRun($command)
+    {
+        exec($command, $output);
+        $this->output = trim(implode("\n", $output));
+    }
+
+    /**
      * Uploads a file using the specified input field
+     * Example: Given I put the file "batman_profile.jpg" into "heroImage"
+     * Example: When I put the file "batman_profile.jpg" into "heroImage"
+     * Example: And I put the file "batman_profile.jpg" into "heroImage"
      *
      * @When (I )put the file :file into :field
      */
@@ -37,6 +68,9 @@ class SystemContext implements Context
 
     /**
      * Execute a command
+     * Example: Given I execute "pwd"
+     * Example: When I execute "pwd"
+     * Example: And I execute "pwd"
      *
      * @Given (I )execute :command
      */
@@ -51,6 +85,9 @@ class SystemContext implements Context
 
     /**
      * Execute a command from project root
+     * Example: Given I execute "php ./openBatCave.php" from project root
+     * Example: When I execute "php ./openBatCave.php" from project root
+     * Example: And I execute "php ./openBatCave.php" from project root
      *
      * @Given (I )execute :command from project root
      */
@@ -61,8 +98,30 @@ class SystemContext implements Context
     }
 
     /**
+     * Creates a file via touch command
+     * Example: Given I create the file "batmansPasswords.txt" containing"
+     *           """
+     *           Facebook: RIPMarthaThomas1927
+     *           Twitter: RIPTimothyDrake1986
+     *           Netflix: RIPDamianWayne2009
+     *           Google: DamnIveSeenSomeStuff
+     *           """
+     * Example: When I create the file "batmansPasswords.txt" containing"
+     *           """
+     *           Facebook: RIPMarthaThomas1927
+     *           Twitter: RIPTimothyDrake1986
+     *           Netflix: RIPDamianWayne2009
+     *           Google: DamnIveSeenSomeStuff
+     *           """
+     * Example: And I create the file "batmansPasswords.txt" containing"
+     *           """
+     *           Facebook: RIPMarthaThomas1927
+     *           Twitter: RIPTimothyDrake1986
+     *           Netflix: RIPDamianWayne2009
+     *           Google: DamnIveSeenSomeStuff
+     *           """
+     *
      * @Given (I )create the file :filename containing:
-     * @Given (I )create the file :filename contening:
      */
     public function iCreateTheFileContaining($filename, PyStringNode $string)
     {
@@ -76,6 +135,11 @@ class SystemContext implements Context
     }
 
     /**
+     * Prints the content of passed file
+     * Example: Given I print the content of "./batmansGreatestSecrets.txt" file
+     * Example: When I print the content of "./batmansGreatestSecrets.txt" file
+     * Example: Then I print the content of "./batmansGreatestSecrets.txt" file
+     *
      * @Then print the content of :filename file
      */
     public function printTheContentOfFile($filename)
@@ -85,6 +149,28 @@ class SystemContext implements Context
         }
         else {
             throw new \RuntimeException("'$filename' doesn't exists.");
+        }
+    }
+
+    /**
+     * Asserts against previously run command line argument
+     * Example: Then I should see:
+     *          """
+     *          Opening cave, master Bruce.
+     *          """
+     * Example: And I should see:
+     *          """
+     *          Opening cave, master Bruce.
+     *          """
+     *
+     * @Then I should see:
+     */
+    public function iShouldSee(PyStringNode $string)
+    {
+        if ($string->getRaw() !== $this->output) {
+            throw new \Exception(
+                "Actual output is:\n" . $this->output
+            );
         }
     }
 

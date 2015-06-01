@@ -8,6 +8,10 @@ class TableContext extends BaseContext
 {
     /**
      * Checks that the specified table's columns match the given schema
+     * Example: Then the columns schema of the "heroes" table should match:
+     *           | hero_id | hero_name | alter_ego |
+     * Example: And the columns schema of the "heroes" table should match:
+     *           | hero_id | hero_name | alter_ego |
      *
      * @Then the columns schema of the :table table should match:
      */
@@ -25,6 +29,8 @@ class TableContext extends BaseContext
 
     /**
      * Checks that the specified table contains the given number of columns
+     * Example: Then I should see 4 columns in the "heroes" table
+     * Example: And I should see 4 columns in the "heroes" table
      *
      * @Then (I )should see :count column(s) in the :table table
      */
@@ -38,6 +44,8 @@ class TableContext extends BaseContext
 
     /**
      * Checks that the specified table contains the specified number of rows in its body
+     * Example: Then I should see 4 rows in the "hero_body" "heroes" table
+     * Example: And I should see 4 rows in the "hero_body" "heroes" table
      *
      * @Then (I )should see :count rows in the :index :table table
      */
@@ -49,6 +57,8 @@ class TableContext extends BaseContext
 
     /**
      * Checks that the specified table contains the specified number of rows in its body
+     * Example: Then I should see 500 rows in the "heroes" table
+     * Example: And I should see 500 rows in the "heroes" table
      *
      * @Then (I )should see :count row(s) in the :table table
      */
@@ -59,6 +69,10 @@ class TableContext extends BaseContext
 
     /**
      * Checks that the data of the specified row matches the given schema
+     * Example: Then the data in the 4th row of the "heroes" table should match:
+     *           | 1 | Batman | Bruce Wayne |
+     * Example: And the data in the 4th row of the "heroes" table should match:
+     *           | 1 | Batman | Bruce Wayne |
      *
      * @Then the data in the :index row of the :table table should match:
      */
@@ -87,6 +101,8 @@ class TableContext extends BaseContext
 
     /**
      * Checks that the specified cell (column/row) of the table's body contains the specified text
+     * Example: Then the 1st column of the 4th row in the "heroes" table should contain "Aquaman"
+     * Example: Then the 1st column of the 5th row in the "heroes" table should contain "Wonder Woman"
      *
      * @Then the :colIndex column of the :rowIndex row in the :table table should contain :text
      */

@@ -9,6 +9,8 @@ class XmlContext extends BaseContext
 {
     /**
      * Checks that the response is correct XML
+     * Example: Then the response should be in XML
+     * Example: And the response should be in XML
      *
      * @Then the response should be in XML
      */
@@ -19,6 +21,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the response is not correct XML
+     * Example: Then the response should not be in XML
+     * Example: And the response should not be in XML
      *
      * @Then the response should not be in XML
      */
@@ -32,6 +36,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the specified XML element exists
+     * Example: Then the XML element "Vehicles" should exist
+     * Example: And the XML element "Vehicles" should exist
      *
      * @param string $element
      * @throws \Exception
@@ -53,6 +59,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the specified XML element does not exist
+     * Example: Then the XML element "Suits" should not exist
+     * Example: And the XML element "Suits" should exist
      *
      * @Then the XML element :element should not exist(s)
      */
@@ -65,6 +73,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the specified XML element is equal to the given value
+     * Example: Then the XML element "Vehicles" should be equal to "Batmobile, Batwing, Batboat, Battank"
+     * Example: And the XML element "Vehicles" should be equal to "Batmobile, Batwing, Batboat, Battank"
      *
      * @Then the XML element :element should be equal to :text
      */
@@ -81,6 +91,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the specified XML element is not equal to the given value
+     * Example: Then the XML element "Suits" should not be equal to "Santiago's BatSuit"
+     * Example: And the XML element "Suits" should not be equal to "Santiago's BatSuit"
      *
      * @Then the XML element :element should not be equal to :text
      */
@@ -93,6 +105,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the XML attribute on the specified element exists
+     * Example: Then the XML attribute "VehicleID" on element "Vehicles" should exist
+     * Example: And the XML attribute "VehicleID" on element "Vehicles" should exist
      *
      * @Then the XML attribute :attribute on element :element should exist(s)
      */
@@ -111,6 +125,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the XML attribute on the specified element does not exist
+     * Example: Then the XML attribute "VehicleID" on element "Vehicles" should not exist
+     * Example: And the XML attribute "VehicleID" on element "Vehicles" should not exist
      *
      * @Then the XML attribute :attribute on element :element should not exist(s)
      */
@@ -121,6 +137,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the XML attribute on the specified element is equal to the given value
+     * Example: Then the XML attribute "VehicleName" on element "Vehicles" should be equal to "Batmobile"
+     * Example: And the XML attribute "VehicleName" on element "Vehicles" should be equal to "Batmobile"
      *
      * @Then the XML attribute :attribute on element :element should be equal to :text
      */
@@ -135,6 +153,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the XML attribute on the specified element is not equal to the given value
+     * Example: Then the XML attribute "SuitOwner" on element "Suits" should not be equal to "David Zavimbe"
+     * Example: And the XML attribute "SuitOwner" on element "Suits" should not be equal to "David Zavimbe"
      *
      * @Then the XML attribute :attribute on element :element should not be equal to :text
      */
@@ -149,6 +169,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the given XML element has N child element(s)
+     * Example: Then the XML element "Vehicles" should have "6" elements
+     * Example: And the XML element "Vehicles" should have "6" elements
      *
      * @Then the XML element :element should have :count element(s)
      */
@@ -168,6 +190,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the given XML element contains the given value
+     * Example: Then the XML element "VehicleName" should contain "Batmobile"
+     * Example: And the XML element "VehicleName" should contain "Batmobile"
      *
      * @Then the XML element :element should contain :text
      */
@@ -180,6 +204,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the given XML element does not contain the given value
+     * Example: Then the XML element "VehicleName" should not contain "Batsub"
+     * Example: And the XML element "VehicleName" should not contain "Batsub"
      *
      * @Then the XML element :element should not contain :text
      */
@@ -192,6 +218,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the XML uses the specified namespace
+     * Example: Then the XML should use the namespace "Batman"
+     * Example: And the XML should use the namespace "Batman"
      *
      * @Then the XML should use the namespace :namespace
      */
@@ -207,6 +235,8 @@ class XmlContext extends BaseContext
 
     /**
      * Checks that the XML does not use the specified namespace
+     * Example: Then the XML should not use the namespace "Robin"
+     * Example: And the XML should not use the namespace "Robin"
      *
      * @Then the XML should not use the namespace :namespace
      */
@@ -222,6 +252,7 @@ class XmlContext extends BaseContext
 
     /**
      * Optimistically (ignoring errors) attempt to pretty-print the last XML response
+     * Example: Then print last XML response
      *
      * @Then print last XML response
      */
@@ -240,6 +271,10 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks validity of XML against a DTD
+     * Example: Then the XML feed should be valid according to its DTD
+     * Example: And the XML feed should be valid according to its DTD
+     *
      * @Then the XML feed should be valid according to its DTD
      */
     public function theXmlFeedShouldBeValidAccordingToItsDtd()
@@ -253,6 +288,10 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks validity of XML against a provided XSD
+     * Example: Then the XML feed should be valid according to the XSD "batman.xsd"
+     * Example: And the XML feed should be valid according to the XSD "batman.xsd"
+     *
      * @Then the XML feed should be valid according to the XSD :filename
      */
     public function theXmlFeedShouldBeValidAccordingToTheXsd($filename)
@@ -268,6 +307,44 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks validity of XML against a provided XSD
+     * Example: Then the XML feed should be valid according to this XSD:
+     *           """
+     *           <?xml version="1.0"?>
+     *           <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+     *
+     *           <xs:element name="note">
+     *           <xs:complexType>
+     *           <xs:sequence>
+     *           <xs:element name="to" type="xs:string"/>
+     *           <xs:element name="from" type="xs:string"/>
+     *           <xs:element name="heading" type="xs:string"/>
+     *           <xs:element name="body" type="xs:string"/>
+     *           </xs:sequence>
+     *           </xs:complexType>
+     *           </xs:element>
+     *
+     *           </xs:schema>
+     *           """
+     * Example: And the XML feed should be valid according to this XSD:
+     *           """
+     *           <?xml version="1.0"?>
+     *           <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+     *
+     *           <xs:element name="note">
+     *           <xs:complexType>
+     *           <xs:sequence>
+     *           <xs:element name="to" type="xs:string"/>
+     *           <xs:element name="from" type="xs:string"/>
+     *           <xs:element name="heading" type="xs:string"/>
+     *           <xs:element name="body" type="xs:string"/>
+     *           </xs:sequence>
+     *           </xs:complexType>
+     *           </xs:element>
+     *
+     *           </xs:schema>
+     *           """
+     *
      * @Then the XML feed should be valid according to this XSD:
      */
     public function theXmlFeedShouldBeValidAccordingToThisXsd(PyStringNode $xsd)
@@ -277,6 +354,10 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks validity of XML against a provided RELAX NG Schema
+     * Example: Then the XML feed should be valid according to the relax NG schema "batman.xsd"
+     * Example: And the XML feed should be valid according to the relax NG schema "batman.xsd"
+     *
      * @Then the XML feed should be valid according to the relax NG schema :filename
      */
     public function theXmlFeedShouldBeValidAccordingToTheRelaxNgSchema($filename)
@@ -292,6 +373,28 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks validity of XML against a provided RELAX NG Schema
+     * Example: Then the XML feed should be valid according to this relax NG schema:
+     *           """
+     *           <element name="book" xmlns="http://relaxng.org/ns/structure/1.0">
+     *           <oneOrMore>
+     *           <element name="page">
+     *           <text/>
+     *           </element>
+     *           </oneOrMore>
+     *           </element>
+     *           """
+     * Example: And the XML feed should be valid according to this relax NG schema:
+     *           """
+     *           <element name="book" xmlns="http://relaxng.org/ns/structure/1.0">
+     *           <oneOrMore>
+     *           <element name="page">
+     *           <text/>
+     *           </element>
+     *           </oneOrMore>
+     *           </element>
+     *           """
+     *
      * @Then the XML feed should be valid according to this relax NG schema:
      */
     public function theXmlFeedShouldBeValidAccordingToThisRelaxNgSchema(PyStringNode $ng)
@@ -301,6 +404,9 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks the validity of the atom XML feed
+     * Example: Then the atom feed should be valid
+     *
      * @Then the atom feed should be valid
      */
     public function theAtomFeedShouldBeValid()
@@ -311,6 +417,9 @@ class XmlContext extends BaseContext
     }
 
     /**
+     * Checks the validity of the RSS2 feed
+     * Example: Then the RSS2 feed should be valid
+     *
      * @Then the RSS2 feed should be valid
      */
     public function theRss2FeedShouldBeValid()
