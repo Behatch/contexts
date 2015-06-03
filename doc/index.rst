@@ -137,3 +137,10 @@ Configuration
 * ``table`` - play with HTML the tables
 * ``rest`` - send GET, POST, … requests and test the HTTP headers
 * ``xml`` - XML related steps
+
+Translation
+-----------
+
+.. image:: https://www.transifex.com/projects/p/behatch-contexts/resource/enxliff/chart/image_png
+    :target: https://www.transifex.com/projects/p/behatch-contexts/
+    :alt: See more information on Transifex.com
