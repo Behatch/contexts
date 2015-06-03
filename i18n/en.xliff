@@ -1,0 +1,308 @@
+<xliff version="1.2">
+    <file original="global" source-language="en" target-language="" datatype="plaintext">
+        <header></header>
+        <body>
+            <!-- BrowserContext.php -->
+            <trans-unit id="i-set-basic-authentication">
+                <source>I set basic authentication with :user and :password</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-am-on-url-composed-by">
+                <source>(I )am on url composed by:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-click-on-the-nth-element">
+                <source>(I )click on the :index :element element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-follow-the-nth-link">
+                <source>(I )follow the :index :link link</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-fill-in-with-the-current-date">
+                <source>(I )fill in :field with the current date</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-fill-in-with-the-current-date-and-modifier">
+                <source>(I )fill in :field with the current date and modifier :modifier</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-hover">
+                <source>(I )hover :element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-save-the-value-of-in-the-parameters">
+                <source>(I )save the value of :field in the :parameter parameter</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-seconds-until-i-see">
+                <source>(I )wait :count second(s) until I see :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-until-i-see">
+                <source>(I )wait until I see :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
+                <source>(I )wait :count second(s) until I see :text in the :element element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-until-i-see-in-the-element">
+                <source>(I )wait until I see :text in the :element element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-for-element">
+                <source>(I )wait for :element element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-seconds-for-element">
+                <source>(I )wait :count second(s) for :element element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-second">
+                <source>(I )wait :count second(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-n-in-the-nth">
+                <source><![CDATA[/^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-less-than-n-in-the-nth">
+                <source>(I )should see less than :count :element in the :index :parent</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-more-than-n-in-the-nth">
+                <source>(I )should see more than :count :element in the :index :parent</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-element-shouls-be-disabled">
+                <source>the element :element should be disabled</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-element-should-be-enabled">
+                <source>the element :element should be enabled</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-select-box-should-contain">
+                <source>the :select select box should contain :option</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-select-box-should-not-contain">
+                <source>the :select select box should not contain :option</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-element-shouls-be-visible">
+                <source>the :element element should be visible</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-element-should-not-be-visible">
+                <source>the :element element should not be visible</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-switch-to-iframe">
+                <source>(I )switch to iframe :name</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-switch-to-frame">
+                <source>(I )switch to frame :name</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-switch-to-main-frame">
+                <source>(I )switch to main frame</source>
+                <target></target>
+            </trans-unit>
+
+            <!-- SystemContext.php -->
+            <trans-unit id="i-put-the-file-into-field">
+                <source>(I )put the file :file into :field</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-execute">
+                <source>(I )execute :command</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-execute-from-project-root">
+                <source>(I )execute :command from project root</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-create-the-file-contening">
+                <source>(I )create the file :filename containing:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="print-the-content-of-file">
+                <source>print the content of :filename file</source>
+                <target></target>
+            </trans-unit>
+
+            <!-- JsonContext.php -->
+            <trans-unit id="the-response-should-be-in-json">
+                <source>the response should be in JSON</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-not-be-in-json">
+                <source>the response should not be in JSON</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-equal-to">
+                <source>the JSON node :node should be equal to :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-have-n-elements">
+                <source>the JSON node :node should have :count element(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-contain">
+                <source>the JSON node :node should contain :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-not-contain">
+                <source>the JSON node :node should not contain :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-exist">
+                <source>the JSON node :name should exist</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-not-exsists">
+                <source>the JSON node :name should not exist</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-should-be-valid-according-to-this-schema">
+                <source>the JSON should be valid according to this schema:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-should-be-valid-according-to-the-schema">
+                <source>the JSON should be valid according to the schema :filename</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-should-be-eqal-to">
+                <source>the JSON should be equal to:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="print-last-json-response">
+                <source>print last JSON response</source>
+                <target></target>
+            </trans-unit>
+
+            <!-- RestContext.php -->
+            <trans-unit id="i-send-a-request-to">
+                <source>I send a :method request to :url</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-send-a-request-on-with-parameters">
+                <source>I send a :method request to :url with parameters:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-send-a-request-on-with-body">
+                <source>I send a :method request to :url with body:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-be-equal-to">
+                <source>the response should be equal to:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-equal-to">
+                <source>the header :name should be equal to :value</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-add-header-equal-to">
+                <source>I add :name header equal to :value</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-be-contains">
+                <source>the header :name should contain :value</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-contain">
+                <source>the header :name should not contain :value</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-exist">
+                <source>the header :name should not exist</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-be-encoded-in">
+                <source>the response should be encoded in :encoding</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-expire-in-the-future">
+                <source>the response should expire in the future</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="print-last-response-headers">
+                <source>print last response headers</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="print-the-corresponding-curl-command">
+                <source>print the corresponding curl command</source>
+                <target></target>
+            </trans-unit>
+
+            <!-- TableContext.php -->
+            <trans-unit id="the-columns-schema-of-the-table-should-match">
+                <source>the columns schema of the :table table should match:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-ess-n-columns-in-the-tables">
+                <source>(I )should see :count column(s) in the :table table</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-n-rows-in-the-nth-tables">
+                <source>(I )should see :count rows in the :index :table table</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-n-rows-in-the-tables">
+                <source>(I )should see :count row(s) in the :table table</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-data-in-the-nth-row-of-the-table-should-match">
+                <source>the data in the :index row of the :table table should match:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-nth-column-of-the-nth-row-in-the-table-should-contain">
+                <source>the :colIndex column of the :rowIndex row in the :table table should contain :text</source>
+                <target></target>
+            </trans-unit>
+
+            <!-- DebugContext.php -->
+            <trans-unit id="i-put-a-breakpoint">
+                <source>(I )put a breakpoint</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-save-a-screenshot-in">
+                <source>I save a screenshot in :filename</source>
+                <target></target>
+            </trans-unit>
+
+            <!-- XmlContext.php -->
+            <trans-unit id="the-xml-feed-should-be-valid-accoriding-to-its-dtd">
+                <source>the XML feed should be valid according to its DTD</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-the-xsd">
+                <source>the XML feed should be valid according to the XSD :filename</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-this-xsd">
+                <source>the XML feed should be valid according to this XSD:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-the-relax-ng">
+                <source>the XML feed should be valid according to the relax NG schema :filename</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-feed-should-be-valid-according-to-this-relax-ng">
+                <source>the XML feed should be valid according to this relax NG schema:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-atom-feed-should-be-valid">
+                <source>the atom feed should be valid</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-rss2-feed-should-be-valid">
+                <source>the RSS2 feed should be valid</source>
+                <target></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
