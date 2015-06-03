@@ -211,20 +211,18 @@ class RestContext extends BaseContext
      */
     public function printTheCorrespondingCurlCommand()
     {
-        $request = $this->request->getRequest();
-
-        $method = $request->getMethod();
-        $url = $request->getUri();
+        $method = $this->request->getMethod();
+        $url = $this->request->getUri();
 
         $headers = '';
-        foreach ($request->getServer() as $name => $value) {
+        foreach ($this->request->getServer() as $name => $value) {
             if (substr($name, 0, 5) !== 'HTTP_' && $name !== 'HTTPS') {
                 $headers .= " -H '$name: $value'";
             }
         }
 
         $data = '';
-        $params = $request->getParameters();
+        $params = $this->request->getParameters();
         if (!empty($params)) {
             $query = http_build_query($params);
             $data = " --data '$query'" ;
