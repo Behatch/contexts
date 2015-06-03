@@ -39,7 +39,14 @@ class BrowserKit
 
     protected function getRequest()
     {
-        return $this->mink->getSession()->getDriver()->getClient()->getRequest();
+        $client = $this->mink->getSession()->getDriver()->getClient();
+        // BC layer for BrowserKit 2.2.x and older
+        if (method_exists($client, 'getInternalRequest')) {
+            $request = $client->getInternalRequest();
+        } else {
+            $request = $client->getRequest();
+        }
+        return $request;
     }
 
     public function getContent()
@@ -61,7 +68,13 @@ class BrowserKit
     public function setHttpHeader($name, $value)
     {
         $client = $this->mink->getSession()->getDriver()->getClient();
-        $client->setHeader($name, $value);
+        // Use for goutte Driver only
+        if (method_exists($client, 'setHeader')) {
+            $client->setHeader($name, $value);
+        } else {
+            // Browserkit
+            $client->setServerParameter($name, $value);
+        }
     }
 
     public function getHttpHeaders()
