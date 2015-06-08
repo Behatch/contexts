@@ -32,8 +32,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
         $this->getSession()->stop();
     }
 
-    //Window sizes for Mac and Windows
-
     /**
      * Sets browser window to custom size
      * Example: Given I set browser window size to "1900" x "1200"
@@ -97,8 +95,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
     {
         $this->getSession()->getDriver()->resizeWindow((int)'1280', (int)'1280', 'current');
     }
-
-    //HTTP Authentication
 
     /**
      * Set login / password for next HTTP authentication
@@ -249,7 +245,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
     /**
      * Scroll to a certain element by label.
      * Requires an "id" attribute to uniquely identify the element in the document.
-     *
      * Example: Given I scroll to the "Submit" button
      * Example: Given I scroll to the "My Date" field
      *
@@ -392,7 +387,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Checks, that the page should contains specified text after given timeout
-     * Example: Given I wait 3 seconds until I see "Hello, Bruce Wayne"
      * Example: When I wait 3 seconds until I see "Hello, Bruce Wayne"
      * Example: And I wait 3 seconds until I see "Hello, Bruce Wayne"
      *
@@ -405,7 +399,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Checks, that the page should contains specified text after timeout
-     * Example: Given I wait until I see "Hello, Bruce Wayne"
      * Example: When I wait until I see "Hello, Bruce Wayne"
      * Example: And I wait until I see "Hello, Bruce Wayne"
      *
@@ -418,7 +411,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Checks, that the element contains specified text after timeout
-     * Example: Given I wait 3 seconds until I see "Hello, Bruce Wayne" in the "nav" element
      * Example: When I wait 3 seconds until I see "Hello, Bruce Wayne" in the "nav" element
      * Example: And I wait 3 seconds until I see "Hello, Bruce Wayne" in the "nav" element
      *
@@ -438,7 +430,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Checks, that the element contains specified text after timeout
-     * Example: Given I wait until I see "Hello, Bruce Wayne" in the "nav" element
      * Example: When I wait until I see "Hello, Bruce Wayne" in the "nav" element
      * Example: And I wait until I see "Hello, Bruce Wayne" in the "nav" element
      *
@@ -451,7 +442,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Wait for a element
-     * Example: Given I wait 1 second for "sign-up" element
      * Example: When I wait 2 seconds for "sign-up" element
      * Example: And I wait 3 seconds for "sign-up" element
      *
@@ -482,7 +472,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Checks, that the page should contains specified element after timeout
-     * Example: Given I wait for "sign-up" element
      * Example: When I wait for "sign-up" element
      * Example: And I wait for "sign-up" element
      *
@@ -495,7 +484,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Waits seconds
-     * Example: Given I wait 1 second
      * Example: When I wait 2 second
      * Example: And I wait 3 seconds
      *
@@ -509,7 +497,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Waits seconds
-     * Example: Given I wait for 10 seconds
      * Example: When I wait for 9 seconds
      * Example: And I wait for 8 seconds
      *

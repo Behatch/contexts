@@ -24,6 +24,7 @@ class SystemContext implements Context
     /**
      * Changes directory to :directory requested
      * Example: Given I am in "/Users/bWayne/secretfiles/batman"
+     * Example: When I am in "/Users/bWayne/secretfiles/batman"
      * Example: And I am in "/Users/bWayne/secretfiles/batman"
      *
      * @Given I am in :dir directory
@@ -51,7 +52,6 @@ class SystemContext implements Context
 
     /**
      * Uploads a file using the specified input field
-     * Example: Given I put the file "batman_profile.jpg" into "heroImage"
      * Example: When I put the file "batman_profile.jpg" into "heroImage"
      * Example: And I put the file "batman_profile.jpg" into "heroImage"
      *
@@ -68,7 +68,6 @@ class SystemContext implements Context
 
     /**
      * Execute a command
-     * Example: Given I execute "pwd"
      * Example: When I execute "pwd"
      * Example: And I execute "pwd"
      *
@@ -85,7 +84,6 @@ class SystemContext implements Context
 
     /**
      * Execute a command from project root
-     * Example: Given I execute "php ./openBatCave.php" from project root
      * Example: When I execute "php ./openBatCave.php" from project root
      * Example: And I execute "php ./openBatCave.php" from project root
      *
@@ -99,13 +97,6 @@ class SystemContext implements Context
 
     /**
      * Creates a file via touch command
-     * Example: Given I create the file "batmansPasswords.txt" containing"
-     *           """
-     *           Facebook: RIPMarthaThomas1927
-     *           Twitter: RIPTimothyDrake1986
-     *           Netflix: RIPDamianWayne2009
-     *           Google: DamnIveSeenSomeStuff
-     *           """
      * Example: When I create the file "batmansPasswords.txt" containing"
      *           """
      *           Facebook: RIPMarthaThomas1927
@@ -136,7 +127,6 @@ class SystemContext implements Context
 
     /**
      * Prints the content of passed file
-     * Example: Given I print the content of "./batmansGreatestSecrets.txt" file
      * Example: When I print the content of "./batmansGreatestSecrets.txt" file
      * Example: Then I print the content of "./batmansGreatestSecrets.txt" file
      *

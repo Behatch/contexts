@@ -23,7 +23,6 @@ class XmlContext extends BaseContext
      * Checks that the response is not correct XML
      * Example: Then the response should not be in XML
      * Example: And the response should not be in XML
-     *
      * @Then the response should not be in XML
      */
     public function theResponseShouldNotBeInXml()
@@ -38,11 +37,9 @@ class XmlContext extends BaseContext
      * Checks that the specified XML element exists
      * Example: Then the XML element "Vehicles" should exist
      * Example: And the XML element "Vehicles" should exist
-     *
      * @param string $element
      * @throws \Exception
      * @return \DomNodeList
-     *
      * @Then the XML element :element should exist(s)
      */
     public function theXmlElementShouldExist($element)
@@ -61,7 +58,6 @@ class XmlContext extends BaseContext
      * Checks that the specified XML element does not exist
      * Example: Then the XML element "Suits" should not exist
      * Example: And the XML element "Suits" should exist
-     *
      * @Then the XML element :element should not exist(s)
      */
     public function theXmlElementShouldNotExist($element)

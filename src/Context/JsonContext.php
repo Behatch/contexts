@@ -118,7 +118,6 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node exist
-     * Example: Given the JSON node "id" should exist
      * Example: Then the JSON node "id" should exist
      * Example: And the JSON node "id" should exist
      *
@@ -139,7 +138,6 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node does not exist
-     * Example: Given the JSON node "Robin" should not exist
      * Example: Then the JSON node "Robin" should not exist
      * Example: And the JSON node "Robin" should not exist
      *
