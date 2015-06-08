@@ -134,7 +134,7 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnUrlComposedBy(TableNode $tableNode)
     {
-        $url = 'http://adcade.com/';
+        $url = '';
         foreach ($tableNode->getHash() as $hash) {
             $url .= $hash['parameters'];
         }
