@@ -34,7 +34,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Sets browser window to custom size
-     * Example: Given I set browser window size to "1900" x "1200"
      * Example: When I set browser window size to "800" x "400"
      * Example: And I set browser window size to "2880" x "1800"
      *
@@ -46,7 +45,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
     }
     /**
      * Sets browser window to 1440 by 900
-     * Example: Given I set my browser window size to MacBook Standard
      * Example: When I set my browser window size to MacBook Standard
      * Example: And I set my browser window size to MacBook Standard
      *
@@ -59,7 +57,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Sets browser window to 2880 by 1800
-     * Example: Given I set my browser window size to 15 inch MacBook Retina
      * Example: When I set my browser window size to 15 inch MacBook Retina
      * Example: And I set my browser window size to 15 inch MacBook Retina
      *
@@ -72,7 +69,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Sets browser window to 2560 by 1600
-     * Example: Given I set my browser window size to 13 inch MacBook Retina
      * Example: When I set my browser window size to 13 inch MacBook Retina
      * Example: And I set my browser window size to 13 inch MacBook Retina
      *
@@ -85,7 +81,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Sets browser window to 1280 by 1280
-     * Example: Given I set my browser window size to Windows Standard
      * Example: When I set my browser window size to Windows Standard
      * Example: And I set my browser window size to Windows Standard
      *
@@ -98,7 +93,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Set login / password for next HTTP authentication
-     * Example: Given I set authentication with "bwayne" and "iLoveBats"
      * Example: When I set authentication with "bwayne" and "iLoveBats"
      * Example: And I set authentication with "bwayne" and "iLoveBats"
      *
@@ -219,7 +213,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Scrolls to the bottom of the given page
-     * Example: Given I scroll to the bottom
      * Example: When I scroll to the bottom
      * Example: And I scroll to the bottom
      *
@@ -232,7 +225,6 @@ class BrowserContext extends BaseContext implements Context, SnippetAcceptingCon
 
     /**
      * Scrolls to the top of the given page
-     * Example: Given I scroll to the top
      * Example: When I scroll to the top
      * Example: And I scroll to the top
      *
