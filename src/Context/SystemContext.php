@@ -9,6 +9,7 @@ use Behat\Gherkin\Node\PyStringNode;
 class SystemContext implements Context
 {
     private $root;
+    private $lastExecutionTime;
     private $createdFiles = [];
 
     public function __construct($root = '.')
@@ -42,7 +43,11 @@ class SystemContext implements Context
      */
     public function iExecute($cmd)
     {
+        $start = microtime(true);
+
         exec($cmd, $output, $return);
+
+        $this->lastExecutionTime = microtime(true) - $start;
 
         if ($return !== 0) {
             throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $output)));
@@ -58,6 +63,30 @@ class SystemContext implements Context
     {
         $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
+    }
+
+    /**
+     * Command should last less than
+     *
+     * @Then command should last less than :seconds seconds
+     */
+    public function commandShouldLastLessThan($seconds)
+    {
+        if ($this->lastExecutionTime > $seconds) {
+            throw new \Exception(sprintf("Last command last %s which is more than %s seconds", $lastExecutionTime, $seconds));
+        }
+    }
+
+    /**
+     * Command should last more than
+     *
+     * @Then command should last more than :seconds seconds
+     */
+    public function commandShouldMoreLessThan($seconds)
+    {
+        if ($this->lastExecutionTime < $seconds) {
+            throw new \Exception(sprintf("Last command last %s which is less than %s seconds", $lastExecutionTime, $seconds));
+        }
     }
 
     /**
