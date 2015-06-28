@@ -9,6 +9,7 @@ use Behat\Gherkin\Node\PyStringNode;
 class SystemContext implements Context
 {
     private $root;
+    private $output;
     private $lastExecutionTime;
     private $createdFiles = [];
 
@@ -45,12 +46,12 @@ class SystemContext implements Context
     {
         $start = microtime(true);
 
-        exec($cmd, $output, $return);
+        exec($cmd, $this->output, $return);
 
         $this->lastExecutionTime = microtime(true) - $start;
 
         if ($return !== 0) {
-            throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $output)));
+            throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $this->output)));
         }
     }
 
@@ -86,6 +87,44 @@ class SystemContext implements Context
     {
         if ($this->lastExecutionTime < $seconds) {
             throw new \Exception(sprintf("Last command last %s which is less than %s seconds", $lastExecutionTime, $seconds));
+        }
+    }
+
+    /**
+     * Checks, that output contains specified text.
+     *
+     * @Then (I )should see on output ":text"
+     */
+    public function iShouldSeeOnOutput($text)
+    {
+        $regex = '/'.preg_quote($text, '/').'/ui';
+
+        $check = false;
+        foreach ($this->output as $line) {
+            if (preg_match($regex, $line) === 1) {
+                $check = true;
+                break;
+            }
+        }
+
+        if ($check === false) {
+            throw new \Exception(sprintf("The text '%s' was not found anywhere on output of command.\n%s", $text, implode("\n", $this->output)));
+        }
+    }
+
+    /**
+     * Checks, that output not contains specified text.
+     *
+     * @Then (I )should not see on output ":text"
+     */
+    public function iShouldNotSeeOnOutput($text)
+    {
+        $regex = '/'.preg_quote($text, '/').'/ui';
+
+        foreach ($this->output as $line) {
+            if (preg_match($regex, $line) === 1) {
+                throw new \Exception(sprintf("The text '%s' was found somewhere on output of command.\n%s", $text, implode("\n", $this->output)));
+            }
         }
     }
 

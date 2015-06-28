@@ -12,6 +12,11 @@ Fonctionnalité:
         Alors la commande devrait durer plus de 1 secondes
 
     Scénario:
+        Étant donné j'exécute "echo 'Hello world'"
+        Alors je devrais voir sur la sortie "Hello world"
+        Et je ne devrais pas voir sur la sortie "Hello John"
+
+    Scénario:
         Étant donné j'exécute "bin/behat --help"
 
     Scénario: création de fichier
