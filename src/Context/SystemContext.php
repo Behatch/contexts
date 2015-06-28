@@ -93,11 +93,11 @@ class SystemContext implements Context
     /**
      * Checks, that output contains specified text.
      *
-     * @Then (I )should see on output ":text"
+     * @Then output should contain :text
      */
-    public function iShouldSeeOnOutput($text)
+    public function outputShouldContain($text)
     {
-        $regex = '/'.preg_quote($text, '/').'/ui';
+        $regex = '~'.$text.'~ui';
 
         $check = false;
         foreach ($this->output as $line) {
@@ -115,16 +115,49 @@ class SystemContext implements Context
     /**
      * Checks, that output not contains specified text.
      *
-     * @Then (I )should not see on output ":text"
+     * @Then output should not contain :text
      */
-    public function iShouldNotSeeOnOutput($text)
+    public function ouputShouldNotContain($text)
     {
-        $regex = '/'.preg_quote($text, '/').'/ui';
+        $regex = '~'.$text.'~ui';
 
         foreach ($this->output as $line) {
             if (preg_match($regex, $line) === 1) {
                 throw new \Exception(sprintf("The text '%s' was found somewhere on output of command.\n%s", $text, implode("\n", $this->output)));
             }
+        }
+    }
+
+    /**
+     * @Given output should be:
+     */
+    public function outputShouldBe(PyStringNode $string)
+    {
+        $expected = $string->getStrings();
+        foreach ($this->output as $index => $line) {
+            if ($line !== $expected[$index]) {
+                throw new \Exception(sprintf("instead of\n%s", implode("\n", $this->output)));
+            }
+        }
+    }
+
+    /**
+     * @Given output should not be:
+     */
+    public function outputShouldNotBe(PyStringNode $string)
+    {
+        $expected = $string->getStrings();
+
+        $check = false;
+        foreach ($this->output as $index => $line) {
+            if ($line !== $expected[$index]) {
+                $check = true;
+                break;
+            }
+        }
+
+        if ($check === false) {
+            throw new \Exception("Output should not be");
         }
     }
 

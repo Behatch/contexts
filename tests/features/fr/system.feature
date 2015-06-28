@@ -13,8 +13,23 @@ Fonctionnalité:
 
     Scénario:
         Étant donné j'exécute "echo 'Hello world'"
-        Alors je devrais voir sur la sortie "Hello world"
-        Et je ne devrais pas voir sur la sortie "Hello John"
+        Alors la sortie devrait contenir "Hello world"
+        Et la sortie devrait contenir "Hel.*ld"
+        Et la sortie ne devrait pas contenir "Hello John"
+        Et la sortie ne devrait pas contenir "Hel.*hn"
+
+    Scénario:
+        Étant donné j'exécute "echo 'Hello world'"
+        Alors la sortie devrait être égale à :
+        """
+        Hello world
+        How are you?
+        """
+        Et la sortie ne devrait pas être égale à :
+        """
+        Hello John
+        How are you?
+        """
 
     Scénario:
         Étant donné j'exécute "bin/behat --help"
