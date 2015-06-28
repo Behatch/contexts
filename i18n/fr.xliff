@@ -133,6 +133,14 @@
                 <source><![CDATA[command should last more than :seconds seconds]]></source>
                 <target><![CDATA[la commande devrait durer plus de :seconds secondes]]></target>
             </trans-unit>
+            <trans-unit id="i-should-see-on-output">
+                <source><![CDATA[(I )should see on output ":text"]]></source>
+                <target><![CDATA[(je )devrais voir sur la sortie ":text"]]></target>
+            </trans-unit>
+            <trans-unit id="i-should-not-see-on-output">
+                <source><![CDATA[(I )should not see on output ":text"]]></source>
+                <target><![CDATA[(je )ne devrais pas voir sur la sortie ":text"]]></target>
+            </trans-unit>
             <trans-unit id="i-create-the-file-contening">
                 <source><![CDATA[(I )create the file :filename containing:]]></source>
                 <target><![CDATA[(je )crée le fichier :filename contenant :]]></target>
