@@ -3,6 +3,13 @@ Feature: System feature
     Scenario: Testing execution
         Given I execute "ls"
 
+    Scenario: Testing execution time
+        Given I execute "sleep 1"
+        Then Command should last less than 2 seconds
+
+        Given I execute "sleep 2"
+        Then Command should last more than 1 seconds
+
     Scenario: Testing execution from the project root
         Given I execute "bin/behat --help"
 
