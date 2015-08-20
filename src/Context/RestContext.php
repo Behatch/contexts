@@ -73,6 +73,20 @@ class RestContext extends BaseContext
     {
         $this->iSendARequestTo($method, $url, $body);
     }
+    
+    /**
+     * Checks, whether the response code is equal to given code
+     *
+     * @Then the response code should be equal to :code
+     */
+    public function theResponseCodeShouldBeEqualTo($code)
+    {
+        $expected = $code;
+        $actual   = $this->getSession()->getStatusCode();
+        $message  = sprintf('Expecting response code "%s" got "%s"', $expected, $actual);
+
+        $this->assertEquals($expected, $actual, $message);
+    }
 
     /**
      * Checks, whether the response content is equal to given text
