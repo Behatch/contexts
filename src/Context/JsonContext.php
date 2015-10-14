@@ -104,6 +104,18 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON nodes contains values
+     *
+     * @Then the JSON nodes should contain:
+     */
+    public function theJsonNodesShoudContain(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldContain($node, $text);
+        }
+    }
+
+    /**
      * Checks, that given JSON node does not contain given value
      *
      * @Then the JSON node :node should not contain :text
