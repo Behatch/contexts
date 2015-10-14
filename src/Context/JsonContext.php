@@ -4,6 +4,7 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
+use Behat\Gherkin\Node\TableNode;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
@@ -59,6 +60,18 @@ class JsonContext extends BaseContext
             throw new \Exception(
                 sprintf("The node value is '%s'", json_encode($actual))
             );
+        }
+    }
+
+    /**
+     * Checks, that given JSON nodes are equal to givens values
+     *
+     * @Then the JSON nodes should be equal to:
+     */
+    public function theJsonNodesShoudBeEqualTo(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldBeEqualTo($node, $text);
         }
     }
 

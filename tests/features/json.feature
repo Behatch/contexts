@@ -29,6 +29,12 @@ Feature: Testing JSONContext
         And the JSON node "numbers[3].so[0]" should be equal to "very"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
 
+        And the JSON nodes should be equal to:
+            | foo        | bar   |
+            | numbers[0] | one   |
+            | numbers[1] | two   |
+            | numbers[2] | three |
+
         And the JSON node "bar" should not exist
 
     Scenario: Json validation with schema
