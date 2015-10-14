@@ -41,6 +41,9 @@ Feature: Testing JSONContext
             | numbers[1] | two   |
             | numbers[2] | three |
 
+        And the JSON nodes should not contain:
+            | foo | something else |
+
         And the JSON node "bar" should not exist
 
     Scenario: Json validation with schema
