@@ -4,6 +4,7 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
+use Behat\Gherkin\Node\TableNode;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
@@ -63,6 +64,18 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON nodes are equal to givens values
+     *
+     * @Then the JSON nodes should be equal to:
+     */
+    public function theJsonNodesShoudBeEqualTo(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldBeEqualTo($node, $text);
+        }
+    }
+
+    /**
      * Checks, that given JSON node has N element(s)
      *
      * @Then the JSON node :node should have :count element(s)
@@ -91,6 +104,18 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON nodes contains values
+     *
+     * @Then the JSON nodes should contain:
+     */
+    public function theJsonNodesShoudContain(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldContain($node, $text);
+        }
+    }
+
+    /**
      * Checks, that given JSON node does not contain given value
      *
      * @Then the JSON node :node should not contain :text
@@ -102,6 +127,18 @@ class JsonContext extends BaseContext
         $actual = $this->inspector->evaluate($json, $node);
 
         $this->assertNotContains($text, (string) $actual);
+    }
+
+    /**
+     * Checks, that given JSON nodes does not contain given value
+     *
+     * @Then the JSON nodes should not contain:
+     */
+    public function theJsonNodesShoudNotContain(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldNotContain($node, $text);
+        }
     }
 
     /**
