@@ -26,8 +26,13 @@ Feature: Testing JSONContext
         And the JSON node "numbers[1]" should contain "two"
         And the JSON node "numbers[2]" should contain "three"
         And the JSON node "numbers[3].complexeshizzle" should be equal to "true"
+        And the JSON node "numbers[3].invertedcomplexeshizzle" should be equal to "false"
+        And the JSON node "numbers[3].complexeshizzle" should not be equal to "false"
+        And the JSON node "numbers[3].invertedcomplexeshizzle" should not be equal to "true"
         And the JSON node "numbers[3].so[0]" should be equal to "very"
+        And the JSON node "numbers[3].so[0]" should not be equal to "very much"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
+        And the JSON node "numbers[3].so[1].complicated" should not be equal to "not indeed"
 
         And the JSON nodes should be equal to:
             | foo        | bar   |
@@ -99,6 +104,7 @@ Feature: Testing JSONContext
                     "three",
                     {
                         "complexeshizzle": true,
+                        "invertedcomplexeshizzle": false,
                         "so": [
                             "very",
                             {

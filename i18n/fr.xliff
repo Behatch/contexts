@@ -147,6 +147,10 @@
                 <source><![CDATA[the JSON node :node should be equal to :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait être égal à "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-not-be-equal-to">
+                <source><![CDATA[the JSON node :node should not be equal to :text]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" ne devrait pas être égal à "(?P<text>[^"]*)"$/]]></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source><![CDATA[the JSON node :node should have :count element(s)]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait avoir (?P<count>\d+) éléments?$/]]></target>

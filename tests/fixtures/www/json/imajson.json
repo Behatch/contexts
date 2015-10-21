@@ -6,6 +6,7 @@
     "three",
     {
       "complexeshizzle": true,
+      "invertedcomplexeshizzle": false,
       "so": ["very", {"complicated": "indeed"}]
     }
   ]

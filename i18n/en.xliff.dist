@@ -147,6 +147,10 @@
                 <source>the JSON node :node should be equal to :text</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-not-be-equal-to">
+                <source>the JSON node :node should not be equal to :text</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source>the JSON node :node should have :count element(s)</source>
                 <target></target>

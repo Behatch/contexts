@@ -56,6 +56,10 @@ class JsonContext extends BaseContext
 
         $actual = $this->inspector->evaluate($json, $node);
 
+        if (is_bool($actual)) {
+            $text = $text == 'true' ? true : false;
+        }
+
         if ($actual != $text) {
             throw new \Exception(
                 sprintf("The node value is '%s'", json_encode($actual))
@@ -72,6 +76,28 @@ class JsonContext extends BaseContext
     {
         foreach ($nodes->getRowsHash() as $node => $text) {
             $this->theJsonNodeShouldBeEqualTo($node, $text);
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is not equal to given value
+     *
+     * @Then the JSON node :node should not be equal to :text
+     */
+    public function theJsonNodeShouldNotBeEqualTo($node, $text)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (is_bool($actual)) {
+            $text = $text == 'true' ? true : false;
+        }
+
+        if ($actual == $text) {
+            throw new \Exception(
+                sprintf("The node value is '%s'", json_encode($actual))
+            );
         }
     }
 
