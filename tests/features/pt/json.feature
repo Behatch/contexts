@@ -30,11 +30,30 @@ Funcionalidade: Testando o JSONContext
     E o nó JSON "numbers[3].so[0]" deve ser igual a "very"
     E o nó JSON "numbers[3].so[1].complicated" deve ser igual a "indeed"
 
+    E os nós JSON devem ser iguais a:
+      | foo        | bar   |
+      | numbers[0] | one   |
+      | numbers[1] | two   |
+      | numbers[2] | three |
+
+    E os nós JSON devem conter:
+      | foo        | bar   |
+      | numbers[0] | one   |
+      | numbers[1] | two   |
+      | numbers[2] | three |
+
+    E os nós JSON não devem conter:
+      | foo | something else |
+
     E o nó JSON "bar" não deve existir
 
   Cenário: Validação do JSON com schema
     Quando Eu estou em "/json/imajson.json"
     Então o JSON deve ser válido de acordo com o schema "tests/fixtures/www/json/schema.json"
+
+  Cenário: Validação do JSON com schema contendo ref
+    Quando Eu estou em "/json/withref.json"
+    Então o JSON deve ser válido de acordo com o schema "tests/fixtures/www/json/schemaref.json"
 
   Cenário: Validação do JSON
     Quando Eu estou em "/json/imajson.json"
@@ -97,3 +116,4 @@ Funcionalidade: Testando o JSONContext
     Quando Eu estou em "/json/rootarray.json"
     Então a resposta deve estar em JSON
     E o nó JSON "root[0].name" deve existir
+    E o nó JSON "root" deve ter 2 elementos

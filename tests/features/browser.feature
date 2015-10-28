@@ -1,6 +1,6 @@
 Feature: Browser Feature
 
-    # If this scenari fails
+    # If this scenario fails
     # It's probably because your web environment is not properly setup
     # You will find the necessery help in README.md
     @javascript

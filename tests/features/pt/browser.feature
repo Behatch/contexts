@@ -31,13 +31,19 @@ Funcionalidade: Browser
     Então o código de status da resposta deve ser 401
     E devo ver "NONE SHALL PASS"
 
+  @javascript
   Cenário: Testando elementos
-    Quando Eu estou em "/browser/elements.html"
+    Quando Eu estou em uma url composta por:
+      | parameters     |
+      | /browser       |
+      | /elements.html |
     Então devo ver 4 "div" no 1º "body"
     E devo ver menos que 6 "div" no 1º "body"
     E devo ver mais que 2 "div" no 1º "body"
     E o select "months_selector" não deve conter "december"
     E o select "months_selector" deve conter "january"
+    Quando Eu clico no 1º elemento "ul li"
+    Então Eu devo ver "You clicked First"
 
   @javascript
   Cenário: Testando frames
@@ -63,3 +69,14 @@ Funcionalidade: Browser
     Quando Eu estou em "/browser/index.html"
     Então o elemento "#visible-element" deve estar visível
     E o elemento "#hidden-element" não deve estar visível
+
+  @javascript
+  Cenário:
+    Quando Eu estou em "/browser/elements.html"
+    Então Eu preencho "today" com a data atual
+    E Eu preencho "today" com a data atual e o modificador "-1 day"
+
+
+  Cenário:
+    Quando Eu estou em "/browser/elements.html"
+    Então Eu salvo o valor de "today" no parâmetro "today"
