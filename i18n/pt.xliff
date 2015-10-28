@@ -151,6 +151,10 @@
                 <source><![CDATA[the JSON node :node should be equal to :text]]></source>
                 <target><![CDATA[o nó JSON :node deve ser igual a :text]]></target>
             </trans-unit>
+            <trans-unit id="the-json-nodes-should-be-equal-to">
+                <source><![CDATA[the JSON nodes should be equal to:]]></source>
+                <target><![CDATA[os nós JSON devem ser iguais a:]]></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source><![CDATA[the JSON node :node should have :count element(s)]]></source>
                 <target><![CDATA[o nó JSON :node deve ter :count elemento(s)]]></target>
@@ -159,9 +163,17 @@
                 <source><![CDATA[the JSON node :node should contain :text]]></source>
                 <target><![CDATA[o nó JSON :node deve conter :text]]></target>
             </trans-unit>
+            <trans-unit id="the-json-nodes-should-contain">
+                <source><![CDATA[the JSON nodes should contain:]]></source>
+                <target><![CDATA[os nós JSON devem conter:]]></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-not-contain">
                 <source><![CDATA[the JSON node :node should not contain :text]]></source>
                 <target><![CDATA[o nó JSON :node não deve conter :text]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-nodes-should-not-contain">
+                <source><![CDATA[the JSON nodes should not contain:]]></source>
+                <target><![CDATA[os nós JSON não devem conter:]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
                 <source><![CDATA[the JSON node :name should exist]]></source>
@@ -204,6 +216,10 @@
             <trans-unit id="the-response-should-be-equal-to">
                 <source><![CDATA[the response should be equal to:]]></source>
                 <target><![CDATA[a resposta deve ser igual a:]]></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-be-empty">
+                <source><![CDATA[the response should be empty]]></source>
+                <target><![CDATA[a resposta deve estar vazia]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-equal-to">
                 <source><![CDATA[the header :name should be equal to :value]]></source>

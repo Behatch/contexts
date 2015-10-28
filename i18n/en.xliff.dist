@@ -147,6 +147,10 @@
                 <source>the JSON node :node should be equal to :text</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-nodes-should-be-equal-to">
+                <source>the JSON nodes should be equal to:</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source>the JSON node :node should have :count element(s)</source>
                 <target></target>
@@ -155,8 +159,16 @@
                 <source>the JSON node :node should contain :text</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-nodes-should-contain">
+                <source>the JSON nodes should contain:</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-not-contain">
                 <source>the JSON node :node should not contain :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-nodes-should-not-contain">
+                <source>the JSON nodes should not contain</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
@@ -199,6 +211,10 @@
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
                 <source>the response should be equal to:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-be-empty">
+                <source>the response should be empty</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-header-should-equal-to">
