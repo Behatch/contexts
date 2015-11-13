@@ -17,7 +17,7 @@ Behatch contexts
     :target: https://insight.sensiolabs.com/projects/ed08ea06-93c2-4b90-b65b-4364302b5108
     :alt: SensioLabsInsight
 
-    Behatch contexts provide most common Behat tests.
+Behatch contexts provide most common Behat tests.
 
 Installation
 ------------
@@ -142,5 +142,5 @@ Translation
 -----------
 
 .. image:: https://www.transifex.com/projects/p/behatch-contexts/resource/enxliff/chart/image_png
-:target: https://www.transifex.com/projects/p/behatch-contexts/
+    :target: https://www.transifex.com/projects/p/behatch-contexts/
     :alt: See more information on Transifex.com
