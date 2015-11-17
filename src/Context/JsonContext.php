@@ -12,9 +12,9 @@ use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 
 class JsonContext extends BaseContext
 {
-    private $inspector;
+    protected $inspector;
 
-    private $httpCallResultPool;
+    protected $httpCallResultPool;
 
     public function __construct(HttpCallResultPool $httpCallResultPool, $evaluationMode = 'javascript')
     {
@@ -322,7 +322,7 @@ class JsonContext extends BaseContext
             ->encode();
     }
 
-    private function getJson()
+    protected function getJson()
     {
         return new Json($this->httpCallResultPool->getResult()->getValue());
     }
