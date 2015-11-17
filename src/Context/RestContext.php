@@ -8,15 +8,16 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext
 {
-    private $request;
-
     public function __construct(Request $request)
     {
         $this->request = $request;
-    }
 
+    }
     /**
      * Sends a HTTP request
+     * Example: Given I send a GET request to "/heroes/list"
+     * Example: When I send a GET request to "/heroes/list"
+     * Example: And I send a GET request to "/heroes/list"
      *
      * @Given I send a :method request to :url
      */
@@ -33,6 +34,18 @@ class RestContext extends BaseContext
 
     /**
      * Sends a HTTP request with a some parameters
+     * Example: Given I send a GET request to "/heroes/list" with parameters:
+     *          | userId | 27 |
+     *          | username | bruceWayne |
+     *          | password | iLoveBats123 |
+     * Example: When I send a GET request to "/heroes/list" with parameters:
+     *          | userId | 27 |
+     *          | username | bruceWayne |
+     *          | password | iLoveBats123 |
+     * Example: And I send a GET request to "/heroes/list" with parameters:
+     *          | userId | 27 |
+     *          | username | bruceWayne |
+     *          | password | iLoveBats123 |
      *
      * @Given I send a :method request to :url with parameters:
      */
@@ -66,6 +79,35 @@ class RestContext extends BaseContext
 
     /**
      * Sends a HTTP request with a body
+     * Example: Given I send a GET request to "/heroes/list" with body:
+     *          """
+     *          {
+     *             {
+     *               "body": "I am not batman I take serious offense to any claims suggesting such outlandish remarks.",
+     *                "id" : 1
+     *             }
+     *          }
+     *          """
+     * Example: When I send a POST request to "/heroes/list" with form data:
+     *          """
+     *          {
+     *             {
+     *               "postId": 1,
+     *               "id": 1,
+     *               "name": "I know who Batman is",
+     *               "email": "Eliseo@gardner.biz",
+     *             }
+     *          }
+     *          """
+     * Example: And I send a GET request to "/heroes/list" with body:
+     *          """
+     *          {
+     *             {
+     *               "body": "I am not batman I take serious offense to any claims suggesting such outlandish remarks.",
+     *                "id" : 1
+     *             }
+     *          }
+     *          """
      *
      * @Given I send a :method request to :url with body:
      */
@@ -74,8 +116,27 @@ class RestContext extends BaseContext
         $this->iSendARequestTo($method, $url, $body);
     }
 
+
     /**
      * Checks, whether the response content is equal to given text
+     * Example: Then the response should be equal to
+     *          """
+     *          {
+     *             {
+     *               "body": "Bruce Wayne, billionaire playboy.",
+     *                "id" : 1
+     *             }
+     *          }
+     *          """
+     * Example: And the response should be equal to
+     *          """
+     *          {
+     *             {
+     *               "body": "Bruce Wayne, billionaire playboy.",
+     *                "id" : 1
+     *             }
+     *          }
+     *          """
      *
      * @Then the response should be equal to
      */
@@ -89,6 +150,8 @@ class RestContext extends BaseContext
 
     /**
      * Checks, whether the response content is null or empty string
+     * Example: Then the response should be empty
+     * Example: And the response should be empty
      *
      * @Then the response should be empty
      */
@@ -101,6 +164,8 @@ class RestContext extends BaseContext
 
     /**
      * Checks, whether the header name is equal to given text
+     * Example: Then the header "User-Agent" should be equal to "Batbook, BatBrowser"
+     * Example: And the header "User-Agent" should be equal to "Batbook, BatBrowser"
      *
      * @Then the header :name should be equal to :value
      */
@@ -114,6 +179,8 @@ class RestContext extends BaseContext
 
     /**
      * Checks, whether the header name contains the given text
+     * Example: Then the header "Authentication" should contain "1024 Bit Super-Authenticated"
+     * Example: And the header "Authentication" should contain "1024 Bit Super-Authenticated"
      *
      * @Then the header :name should contain :value
      */
@@ -126,6 +193,8 @@ class RestContext extends BaseContext
 
     /**
      * Checks, whether the header name doesn't contain the given text
+     * Example: Then the header "" should contain "1024 Bit Super-Authenticated"
+     * Example: And the header "Authentication" should contain "1024 Bit Super-Authenticated"
      *
      * @Then the header :name should not contain :value
      */
@@ -138,6 +207,8 @@ class RestContext extends BaseContext
 
     /**
      * Checks, whether the header not exist
+     * Example: Then the header "Content-Type" should not exist
+     * Example: And the header "Content-Type" should not exist
      *
      * @Then the header :name should not exist
      */
@@ -155,6 +226,8 @@ class RestContext extends BaseContext
 
    /**
      * Checks, that the response header expire is in the future
+     * Example: Then the response should expire in the future
+     * Example: And the response should expire in the future
      *
      * @Then the response should expire in the future
      */
@@ -170,6 +243,8 @@ class RestContext extends BaseContext
 
     /**
      * Add an header element in a request
+     * Example: Then I add "Content-Type" header equal to "application/json"
+     * Example: And I add "Content-Type" header equal to "application/json"
      *
      * @Then I add :name header equal to :value
      */
@@ -179,6 +254,10 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Asserts against responses encoding type, see http://www.iana.org/assignments/character-sets/character-sets.xhtml
+     * Example: Then the response should be encoded in "UTF-8"
+     * Example: And the response should be encoded in "UTF-8"
+     *
      * @Then the response should be encoded in :encoding
      */
     public function theResponseShouldBeEncodedIn($encoding)
@@ -192,6 +271,9 @@ class RestContext extends BaseContext
     }
 
     /**
+     * Prints last response
+     * Example: Then print last response headers
+     *
      * @Then print last response headers
      */
     public function printLastResponseHeaders()
@@ -207,6 +289,9 @@ class RestContext extends BaseContext
 
 
     /**
+     * Prints the curl equivalent to the request
+     * Example: Then print the corresponding curl command
+     *
      * @Then print the corresponding curl command
      */
     public function printTheCorrespondingCurlCommand()

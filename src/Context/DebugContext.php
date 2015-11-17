@@ -9,13 +9,16 @@ class DebugContext extends BaseContext
 {
     private $screenshotDir;
 
-    public function __construct($screenshotDir = '.')
+    public function __construct($screenshotDir = './screenshots')
     {
         $this->screenshotDir = $screenshotDir;
     }
 
     /**
      * Pauses the scenario until the user presses a key. Useful when debugging a scenario.
+     * Example: When I put a breakpoint
+     * Example: Then I put a breakpoint
+     * Example: And I put a breakpoint
      *
      * @Then (I )put a breakpoint
      */
@@ -30,6 +33,9 @@ class DebugContext extends BaseContext
 
     /**
      * Saving a screenshot
+     * Example: When I save a screenshot in "logInView"
+     * Example: Then I save a screenshot in "logInView"
+     * Example: And I save a screenshot in "logInView"
      *
      * @When I save a screenshot in :filename
      */

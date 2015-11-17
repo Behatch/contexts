@@ -2,7 +2,7 @@ Feature: Browser Feature
 
     # If this scenario fails
     # It's probably because your web environment is not properly setup
-    # You will find the necessery help in README.md
+    # You will find the necessary help in README.md
     @javascript
     Scenario: Testing simple web access
         Given I am on "/index.html"
@@ -78,4 +78,19 @@ Feature: Browser Feature
 
     Scenario:
         Given I am on "/browser/elements.html"
-        Then i save the value of "today" in the "today" parameter
+        Then I save the value of "today" in the "today" parameter
+
+    Scenario: Regression for new step definitions added by sajjadhossain on 6/5/15
+        Given I am on "/"
+        And I am on a new session
+        And I set my browser window size to 15 inch MacBook Retina
+        And I set my browser window size to "500" x "500"
+        When I go to "https://github.com/Behatch/contexts"
+        And I scroll to the bottom
+        And I scroll to the top
+        When I go to "http://www.javascripter.net/faq/alert.htm"
+        And I press "Try it now"
+        And I confirm the popup
+        Then I should see "Alert: Modal Message Box"
+
+

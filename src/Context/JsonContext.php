@@ -24,6 +24,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that the response is correct JSON
+     * Example: Then the response should be in JSON
+     * Example: And the response should be in JSON
      *
      * @Then the response should be in JSON
      */
@@ -34,6 +36,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that the response is not correct JSON
+     * Example: Then the response should not be in JSON
+     * Example: And the response should not be in JSON
      *
      * @Then the response should not be in JSON
      */
@@ -47,6 +51,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node is equal to given value
+     * Example: Then the JSON node "isBatman"should be equal to "true"
+     * Example: And the JSON node "isBatman" should be equal to "true"
      *
      * @Then the JSON node :node should be equal to :text
      */
@@ -77,6 +83,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node has N element(s)
+     * Example: Then the JSON node "bio" should have 5 elements
+     * Example: And the JSON node "bio" should have 5 elements
      *
      * @Then the JSON node :node should have :count element(s)
      */
@@ -91,6 +99,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node contains given value
+     * Example: Then the JSON node "trueIdentity" should contain "Bruce Wayne"
+     * Example: And the JSON node "trueIdentity" should contain "Bruce Wayne"
      *
      * @Then the JSON node :node should contain :text
      */
@@ -117,6 +127,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node does not contain given value
+     * Example: Then the JSON node "isRobin" should not contain "true"
+     * Example: And the JSON node "isRobin" should not contain "true"
      *
      * @Then the JSON node :node should not contain :text
      */
@@ -143,6 +155,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node exist
+     * Example: Then the JSON node "id" should exist
+     * Example: And the JSON node "id" should exist
      *
      * @Given the JSON node :name should exist
      */
@@ -161,6 +175,8 @@ class JsonContext extends BaseContext
 
     /**
      * Checks, that given JSON node does not exist
+     * Example: Then the JSON node "Robin" should not exist
+     * Example: And the JSON node "Robin" should not exist
      *
      * @Given the JSON node :name should not exist
      */
@@ -172,6 +188,56 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks provided JSON against a JSON schema
+     * Example: Then the JSON should be valid according to this schema:
+     *          """
+     *          {
+     *              "$schema": "http://json-schema.org/draft-04/schema#",
+     *              "title": "Heroes",
+     *              "description": "A list of heroes from the known universe",
+     *              "type": "object",
+     *              "properties": {
+     *                   "id": {
+     *                        "description": "The unique identifier for a hero",
+     *                        "type": "integer"
+     *                   },
+     *                   "name": {
+     *                        "description": "Name of the hero",
+     *                        "type": "string"
+     *                   },
+     *                   "alterEgo": {
+     *                        "description": "Alter ego for hero",
+     *                        "type": "string"
+     *                   }
+     *              },
+     *              "required": ["id", "name", "alterEgo"]
+     *          }
+     *          """
+     * Example: And the JSON should be valid according to this schema:
+     *          """
+     *          {
+     *              "$schema": "http://json-schema.org/draft-04/schema#",
+     *              "title": "Heroes",
+     *              "description": "A list of heroes from the known universe",
+     *              "type": "object",
+     *              "properties": {
+     *                   "id": {
+     *                        "description": "The unique identifier for a hero",
+     *                        "type": "integer"
+     *                   },
+     *                   "name": {
+     *                        "description": "Name of the hero",
+     *                        "type": "string"
+     *                   },
+     *                   "alterEgo": {
+     *                        "description": "Alter ego for hero",
+     *                        "type": "string"
+     *                   }
+     *              },
+     *              "required": ["id", "name", "alterEgo"]
+     *          }
+     *          """
+     *
      * @Then the JSON should be valid according to this schema:
      */
     public function theJsonShouldBeValidAccordingToThisSchema(PyStringNode $schema)
@@ -183,6 +249,10 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks provided JSON against a provided JSON schema
+     * Example: Then the JSON should be valid according to the schema "http://batman.com/secret-schema"
+     * Example: And the JSON should be valid according to the schema "http://batman.com/secret-schema"
+     *
      * @Then the JSON should be valid according to the schema :filename
      */
     public function theJsonShouldBeValidAccordingToTheSchema($filename)
@@ -203,6 +273,24 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks that the JSON response is equal to value
+     * Example: Then the JSON should be equal to:
+     *           """
+     *           {
+     *               "id": 1,
+     *               "name": "Batman",
+     *               "alterEgo": "Bruce Wayne"
+     *           }
+     *           """
+     * Example: And the JSON should be equal to:
+     *           """
+     *           {
+     *               "id": 1,
+     *               "name": "Batman",
+     *               "alterEgo": "Bruce Wayne"
+     *           }
+     *           """
+     *
      * @Then the JSON should be equal to:
      */
     public function theJsonShouldBeEqualTo(PyStringNode $content)
@@ -224,6 +312,10 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Prints last JSON response
+     * Example: Then print last JSON response
+     * Example: And print last JSON response
+     *
      * @Then print last JSON response
      */
     public function printLastJsonResponse()
