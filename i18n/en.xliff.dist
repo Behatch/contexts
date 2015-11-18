@@ -125,8 +125,24 @@
                 <source>(I )execute :command from project root</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="command-should-last-lett-than">
+                <source>command should last less than :seconds seconds</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="command-should-last-more-than">
+                <source>command should last more than :seconds seconds</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-create-the-file-contening">
                 <source>(I )create the file :filename containing:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-see-on-output">
+                <source>(I )should see on output ":text"</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-should-not-see-on-output">
+                <source>(I )should not see on output ":text"</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="print-the-content-of-file">
