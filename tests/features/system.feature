@@ -12,8 +12,23 @@ Feature: System feature
 
     Scenario: Testing execution output
         Given I execute "echo 'Hello world'"
-        Then I should see on output "Hello world"
-        Then I should not see on output "Hello John"
+        Then output should contain "Hello world"
+        And output should contain "Hel.*ld"
+        And output should not contain "Hello John"
+        And output should not contain "Hel.*hn"
+
+    Scenario: Testing execution output wall output
+        Given I execute "echo 'Hello world\nHow are you?'"
+        Then output should be:
+        """
+        Hello world
+        How are you?
+        """
+        And output should not be:
+        """
+        Hello John
+        How are you?
+        """
 
     Scenario: Testing execution from the project root
         Given I execute "bin/behat --help"

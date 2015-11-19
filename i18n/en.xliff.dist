@@ -137,12 +137,20 @@
                 <source>(I )create the file :filename containing:</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="i-should-see-on-output">
-                <source>(I )should see on output ":text"</source>
+            <trans-unit id="output-should-contain">
+                <source>output should contain :text</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="i-should-not-see-on-output">
-                <source>(I )should not see on output ":text"</source>
+            <trans-unit id="output-should-not-contain">
+                <source>output should not contain :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="output-should-be">
+                <source>output should be:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="output-should-not-be">
+                <source>output should not be:</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="print-the-content-of-file">
