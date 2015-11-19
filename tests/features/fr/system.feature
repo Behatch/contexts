@@ -2,7 +2,10 @@
 Fonctionnalité:
 
     Scénario:
-        Étant donné j'exécute "ls"
+        Étant donné j'exécute "true"
+        Alors la commande devrait réussir
+        Étant donné j'exécute "false"
+        Alors la commande planter
 
     Scénario:
         Étant donné j'exécute "sleep 1"

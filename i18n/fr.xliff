@@ -125,6 +125,14 @@
                 <source><![CDATA[(I )execute :command from project root]]></source>
                 <target><![CDATA[(j')exécute :command depuis la racine du projet]]></target>
             </trans-unit>
+            <trans-unit id="command-should-succeed">
+                <source><![CDATA[command should succeed]]></source>
+                <target><![CDATA[la commande devrait réussir]]></target>
+            </trans-unit>
+            <trans-unit id="command-should-fail">
+                <source><![CDATA[command should fail]]></source>
+                <target><![CDATA[la commande planter]]></target>
+            </trans-unit>
             <trans-unit id="command-should-last-lett-than">
                 <source><![CDATA[command should last less than :seconds seconds]]></source>
                 <target><![CDATA[la commande devrait durer moins de :seconds secondes]]></target>
