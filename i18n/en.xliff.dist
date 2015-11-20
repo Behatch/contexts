@@ -125,6 +125,14 @@
                 <source>(I )execute :command from project root</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="command-should-succeed">
+                <source>command should succeed</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="command-should-fail">
+                <source>command should fail</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="command-should-last-lett-than">
                 <source>command should last less than :seconds seconds</source>
                 <target></target>

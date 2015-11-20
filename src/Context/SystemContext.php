@@ -11,6 +11,7 @@ class SystemContext implements Context
     private $root;
     private $output;
     private $lastExecutionTime;
+    private $lastReturnCode;
     private $createdFiles = [];
 
     public function __construct($root = '.')
@@ -46,13 +47,9 @@ class SystemContext implements Context
     {
         $start = microtime(true);
 
-        exec($cmd, $this->output, $return);
+        exec($cmd, $this->output, $this->lastReturnCode);
 
         $this->lastExecutionTime = microtime(true) - $start;
-
-        if ($return !== 0) {
-            throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $this->output)));
-        }
     }
 
     /**
@@ -64,6 +61,28 @@ class SystemContext implements Context
     {
         $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
+    }
+
+    /**
+     * Command should succeed
+     *
+     * @Then command should succeed
+     */
+    public function commandShouldSucceed() {
+        if ($this->lastReturnCode !== 0) {
+            throw new \Exception(sprintf("Command should succeed %b", $this->lastReturnCode));
+        };
+    }
+
+    /**
+     * Command should fail
+     *
+     * @Then command should fail
+     */
+    public function commandShouldFail() {
+        if ($this->lastReturnCode === 0) {
+            throw new \Exception(sprintf("Command should fail %b", $this->lastReturnCode));
+        };
     }
 
     /**

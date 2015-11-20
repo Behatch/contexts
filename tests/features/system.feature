@@ -1,7 +1,10 @@
 Feature: System feature
 
     Scenario: Testing execution
-        Given I execute "ls"
+        Given I execute "true"
+        Then command should succeed
+        Given I execute "false"
+        Then command should fail
 
     Scenario: Testing execution time
         Given I execute "sleep 1"
