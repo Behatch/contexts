@@ -29,7 +29,7 @@ before_script:
     - java -jar selenium.jar &> /dev/null &
 
     - php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
-    - cp behat.yml{-dist,}
+    - cp behat.yml{.dist,}
     - composer install
 
 script:
