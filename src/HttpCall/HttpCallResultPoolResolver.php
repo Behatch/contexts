@@ -2,7 +2,6 @@
 
 namespace Sanpi\Behatch\HttpCall;
 
-use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 use Behat\Behat\Context\Argument\ArgumentResolver;
 
 class HttpCallResultPoolResolver implements ArgumentResolver
