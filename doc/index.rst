@@ -9,8 +9,8 @@ Behatch contexts
     :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=master
     :alt: Scrutinizer Code Quality
 
-.. image:: https://scrutinizer-ci.com/g/Behatch/contexts/badges/coverage.png?b=code-coverage
-    :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=code-coverage
+.. image:: https://scrutinizer-ci.com/g/Behatch/contexts/badges/coverage.png?b=master
+    :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=master
     :alt: Code Coverage
 
 .. image:: https://insight.sensiolabs.com/projects/ed08ea06-93c2-4b90-b65b-4364302b5108/mini.png
