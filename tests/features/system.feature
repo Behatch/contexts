@@ -33,6 +33,10 @@ Feature: System feature
         How are you?
         """
 
+    Scenario: Debug
+        Given I execute "echo 'Hello world\nHow are you?'"
+        Then print output
+
     Scenario: Testing execution from the project root
         Given I execute "bin/behat --help"
 

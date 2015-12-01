@@ -34,6 +34,10 @@ Fonctionnalité:
         How are you?
         """
 
+    Scénario: Debug
+        Étant donné j'exécute "echo 'Hello world\nHow are you?'"
+        Alors afficher la sortie
+
     Scénario:
         Étant donné j'exécute "bin/behat --help"
 

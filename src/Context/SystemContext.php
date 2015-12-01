@@ -181,6 +181,14 @@ class SystemContext implements Context
     }
 
     /**
+     * @Then print output
+     */
+    public function printOutput()
+    {
+        echo implode("\n", $this->output);
+    }
+
+    /**
      * @Given (I )create the file :filename containing:
      * @Given (I )create the file :filename contening:
      */
