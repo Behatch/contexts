@@ -7,6 +7,16 @@ Fonctionnalité:
         Étant donné j'exécute "false"
         Alors la commande planter
 
+    @fail
+    Scénario:
+        Étant donné j'exécute "ls behat.yml.dist; false"
+        Alors la commande devrait réussir
+
+    @fail
+    Scénario:
+        Étant donné j'exécute "ls behat.yml.dist;"
+        Alors la commande planter
+
     Scénario:
         Étant donné j'exécute "sleep 1"
         Alors la commande devrait durer moins de 2 secondes

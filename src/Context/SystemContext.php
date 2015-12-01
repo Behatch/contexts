@@ -70,6 +70,7 @@ class SystemContext implements Context
      */
     public function commandShouldSucceed() {
         if ($this->lastReturnCode !== 0) {
+            $this->printOutput();
             throw new \Exception(sprintf("Command should succeed %b", $this->lastReturnCode));
         };
     }
@@ -81,6 +82,7 @@ class SystemContext implements Context
      */
     public function commandShouldFail() {
         if ($this->lastReturnCode === 0) {
+            $this->printOutput();
             throw new \Exception(sprintf("Command should fail %b", $this->lastReturnCode));
         };
     }
