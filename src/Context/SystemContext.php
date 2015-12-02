@@ -47,6 +47,8 @@ class SystemContext implements Context
     {
         $start = microtime(true);
 
+        $this->output = [];
+
         exec($cmd, $this->output, $this->lastReturnCode);
 
         $this->lastExecutionTime = microtime(true) - $start;
