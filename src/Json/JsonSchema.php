@@ -21,7 +21,7 @@ class JsonSchema extends Json
             return $this;
         }
 
-        $resolver->resolve($this->encode(false), $this->uri);
+        $resolver->resolve($this->getContent(), $this->uri);
 
         return $this;
     }
