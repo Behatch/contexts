@@ -4,90 +4,47 @@ namespace Sanpi\Behatch\Tests\Units\Json;
 
 class JsonSchema extends \atoum
 {
-    public function test_should_not_resolve_without_uri()
+    public function test_resolve_without_uri()
     {
-        $this
-            ->given(
-                $schema = $this->newTestedInstance('{}'),
-                $this->mockGenerator->orphanize('__construct'),
-                $resolver = new \mock\JsonSchema\RefResolver
-            )
-            ->when(
-                $schema->resolve($resolver)
-            )
-                ->mock($resolver)
-                    ->call('resolve')
-                    ->never()
-        ;
+        $schema = $this->newTestedInstance('{}');
+        $resolver = new \JsonSchema\RefResolver();
+        $schema->resolve($resolver);
     }
 
-    public function test_should_resolve_with_uri()
+    public function test_resolve_with_uri()
     {
-        $this
-            ->given(
-                $schema = $this->newTestedInstance('{}', 'file://test'),
-                $this->mockGenerator->orphanize('__construct'),
-                $resolver = new \mock\JsonSchema\RefResolver,
-                $resolver->getMockController()->resolve = true
-            )
-            ->when(
-                $result = $schema->resolve($resolver)
-            )
-                ->mock($resolver)
-                    ->call('resolve')
-                    ->withArguments('{}', 'file://test')
-                    ->once()
+        $schema = $this->newTestedInstance('{}', 'file://test');
+        $resolver = new \JsonSchema\RefResolver();
+        $result = $schema->resolve($resolver);
 
-                ->object($result)
-                    ->isIdenticalTo($schema)
-        ;
+        $this->object($result)
+            ->isIdenticalTo($schema);
     }
 
-    public function test_should_validate_correct_json()
+    public function test_validate()
     {
-        $this
-            ->given(
-                $schema = $this->newTestedInstance('{}'),
-                $json = new \Sanpi\Behatch\Json\Json('{}'),
-                $validator = new \mock\JsonSchema\Validator,
-                $validator->getMockController()->check = true
-            )
-            ->when(
-                $result = $schema->validate($json, $validator)
-            )
-                ->mock($validator)
-                    ->call('check')
-                    ->withArguments($json->getContent(), $schema->getContent())
-                    ->once()
+        $schema = $this->newTestedInstance('{}');
+        $json = new \Sanpi\Behatch\Json\Json('{}');
+        $validator = new \JsonSchema\Validator();
+        $result = $schema->validate($json, $validator);
 
-                ->boolean($result)
-                    ->isTrue()
-        ;
+        $this->boolean($result)
+            ->isTrue();
     }
 
-    public function test_should_throw_exception_for_incorrect_json()
+    public function test_validate_invalid()
     {
-        $this
-            ->given(
-                $schema = $this->newTestedInstance('{}'),
-                $json = new \Sanpi\Behatch\Json\Json('{}'),
-                $validator = new \mock\JsonSchema\Validator,
-                $validator->getMockController()->check = false,
-                $validator->getMockController()->getErrors = [
-                    ['property' => 'foo', 'message' => 'invalid'],
-                    ['property' => 'bar', 'message' => 'not found'],
-                ]
-            )
-            ->exception(function () use ($schema, $json, $validator) {
-                $schema->validate($json, $validator);
-            })
-                ->hasMessage(<<<"ERROR"
+        $schema = $this->newTestedInstance('{ "type": "object", "properties": {}, "additionalProperties": false }');
+        $json = new \Sanpi\Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
+        $validator = new \JsonSchema\Validator();
+        $this->exception(function () use($schema, $json, $validator) {
+            $schema->validate($json, $validator);
+        })
+        ->hasMessage(<<<EOD
 JSON does not validate. Violations:
-  - [foo] invalid
-  - [bar] not found
+  - [] The property foo is not defined and the definition does not allow additional properties
 
-ERROR
-                )
-        ;
+EOD
+        );
     }
 }
