@@ -179,13 +179,45 @@
                 <source><![CDATA[the JSON node :node should be equal to :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait être égal à "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="the-json-nodes-should-be-equal-to">
+                <source><![CDATA[the JSON nodes should be equal to:]]></source>
+                <target><![CDATA[/^les n(?:œ|oe)uds JSON devraient être égaux à:$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-null">
+                <source><![CDATA[the JSON node :node should be null]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait être nul$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-true">
+                <source><![CDATA[the JSON node :node should be true]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?<node>[^"]*)" devrait être vrai$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-false">
+                <source><![CDATA[the JSON node :node should be false]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?<node>[^"]*)" devrait être faux$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-equal-to-the-string">
+                <source><![CDATA[the JSON node :node should be equal to the string :text]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?<node>[^"]*)" devrait être la chaine de caractère "(?<text>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-equal-to-the-number">
+                <source><![CDATA[the JSON node :node should be equal to the number :number]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?<node>[^"]*)" devrait être le nombre (?<number>.*)$/]]></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source><![CDATA[the JSON node :node should have :count element(s)]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait avoir (?P<count>\d+) éléments?$/]]></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-contain">
+            <trans-unit id="the-json-node-should-contain-text">
                 <source><![CDATA[the JSON node :node should contain :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait contenir "(?P<text>[^"]*)"$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-nodes-should-contain">
+                <source><![CDATA[the JSON nodes should contain:]]></source>
+                <target><![CDATA[/^les n(?:œ|oe)uds JSON devraient contenir:$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-nodes-not-should-contain">
+                <source><![CDATA[the JSON nodes should not contain:]]></source>
+                <target><![CDATA[/^les n(?:œ|oe)uds JSON ne devraient pas contenir:$/]]></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-not-contain">
                 <source><![CDATA[the JSON node :node should not contain :text]]></source>
@@ -195,7 +227,7 @@
                 <source><![CDATA[the JSON node :name should exist]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<name>[^"]*)" devrait exister$/]]></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-not-exsists">
+            <trans-unit id="the-json-node-should-not-exists">
                 <source><![CDATA[the JSON node :name should not exist]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<name>[^"]*)" ne devrait pas exister$/]]></target>
             </trans-unit>
@@ -245,9 +277,13 @@
                 <source><![CDATA[the header :name should contain :value]]></source>
                 <target><![CDATA[l'entête :name devrait contenir :value]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-not-contain">
+            <trans-unit id="the-header-should-not-contain-text">
                 <source><![CDATA[the header :name should not contain :value]]></source>
                 <target><![CDATA[l'entête :name ne devrait pas contenir :value]]></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-contain">
+                <source><![CDATA[the header :name should not contain:]]></source>
+                <target><![CDATA[l'entête :name ne devrait pas contenir:]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-not-exist">
                 <source><![CDATA[the header :name should not exist]]></source>
