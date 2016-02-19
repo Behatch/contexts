@@ -3,7 +3,6 @@
 namespace Sanpi\Behatch\Tests\Units\Json;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 
 class Json extends \atoum
 {
@@ -49,6 +48,6 @@ class Json extends \atoum
         $this->exception(function () use ($json, $accessor) {
             $json->read('jeanmarc', $accessor);
         })
-        ->isInstanceOf(NoSuchPropertyException::class);
+        ->isInstanceOf('Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException');
     }
 }
