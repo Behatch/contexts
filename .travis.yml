@@ -26,7 +26,7 @@ before_script:
     - export DISPLAY=:99.0
     - Xvfb $DISPLAY -extension RANDR &> /dev/null &
 
-    - curl http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar > selenium.jar
+    - curl http://selenium-release.storage.googleapis.com/2.52/selenium-server-standalone-2.52.0.jar > selenium.jar
     - java -jar selenium.jar &> /dev/null &
 
     - php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
