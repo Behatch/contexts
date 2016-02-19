@@ -183,6 +183,26 @@
                 <source>the JSON nodes should be equal to:</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-be-null">
+                <source>the JSON node :node should be null</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-true">
+                <source>the JSON node :node should be true</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-false">
+                <source>the JSON node :node should be false</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-the-string">
+                <source>the JSON node :node should be the string :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-the-number">
+                <source>the JSON node :node should be the number :number</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source>the JSON node :node should have :count element(s)</source>
                 <target></target>
