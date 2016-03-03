@@ -93,6 +93,9 @@ class DebugContext extends BaseContext
     private function getBackground(AfterStepScope $scope)
     {
         $background = $scope->getFeature()->getBackground();
+        if(!$background){
+            return false;
+        }
         $stepLinesInBackground = array_map(
             function (StepNode $step) {
                 return $step->getLine();

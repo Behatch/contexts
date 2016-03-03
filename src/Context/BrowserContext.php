@@ -379,4 +379,32 @@ class BrowserContext extends BaseContext
     {
         $this->getSession()->switchToIFrame();
     }
+
+    /**
+     * Checks, that the specified CSS date field value is same date with parameter
+     *
+     * @Then the date field :field value should be equal to :expected
+     *
+     * @param $field
+     * @param $expected
+     * @throws ExpectationException
+     * @throws \Exception
+     */
+    public function assertSameDateTime($field, $expected)
+    {
+        $timestamp = strtotime($expected);
+        if (!$timestamp) {
+            throw new \Exception("Invalid date value: '$expected'");
+        }
+        $node = $this->getSession()->getPage()->find(
+            'xpath',
+            $this->getSession()->getSelectorsHandler()->selectorToXpath('xpath', $field)
+        );
+        if ($node === null) {
+            throw new \Exception("The field '$field' was not found anywhere in the page");
+        }
+        $message = "The field '$field' value is not equal to '$expected'";
+        $diff = date($this->dateFormat, $timestamp) == $node->getValue();
+        $this->assertTrue($diff, $message);
+    }
 }
