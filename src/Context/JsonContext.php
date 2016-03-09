@@ -12,9 +12,9 @@ use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 
 class JsonContext extends BaseContext
 {
-    private $inspector;
+    protected $inspector;
 
-    private $httpCallResultPool;
+    protected $httpCallResultPool;
 
     public function __construct(HttpCallResultPool $httpCallResultPool, $evaluationMode = 'javascript')
     {
@@ -72,6 +72,96 @@ class JsonContext extends BaseContext
     {
         foreach ($nodes->getRowsHash() as $node => $text) {
             $this->theJsonNodeShouldBeEqualTo($node, $text);
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is null
+     *
+     * @Then the JSON node :node should be null
+     */
+    public function theJsonNodeShouldBeNull($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (null !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is true
+     *
+     * @Then the JSON node :node should be true
+     */
+    public function theJsonNodeShouldBeTrue($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (true !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is false
+     *
+     * @Then the JSON node :node should be false
+     */
+    public function theJsonNodeShouldBeFalse($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (false !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is equal to the given string
+     *
+     * @Then the JSON node :node should be equal to the string :text
+     */
+    public function theJsonNodeShouldBeEqualToTheString($node, $text)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if ($actual !== $text) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is equal to the given number
+     *
+     * @Then the JSON node :node should be equal to the number :number
+     */
+    public function theJsonNodeShouldBeEqualToTheNumber($node, $number)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if ($actual !== (float) $number && $actual !== (int) $number) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
         }
     }
 
@@ -240,7 +330,7 @@ class JsonContext extends BaseContext
             ->encode();
     }
 
-    private function getJson()
+    protected function getJson()
     {
         return new Json($this->httpCallResultPool->getResult()->getValue());
     }

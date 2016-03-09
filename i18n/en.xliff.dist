@@ -183,11 +183,35 @@
                 <source>the JSON nodes should be equal to:</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-nodes-should-not-be-equal-to">
+                <source>the JSON nodes should not be equal to:</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-null">
+                <source>the JSON node :node should be null</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-true">
+                <source>the JSON node :node should be true</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-false">
+                <source>the JSON node :node should be false</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-the-string">
+                <source>the JSON node :node should be the string :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-the-number">
+                <source>the JSON node :node should be the number :number</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source>the JSON node :node should have :count element(s)</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-contain">
+            <trans-unit id="the-json-node-should-contain-text">
                 <source>the JSON node :node should contain :text</source>
                 <target></target>
             </trans-unit>
@@ -200,14 +224,14 @@
                 <target></target>
             </trans-unit>
             <trans-unit id="the-json-nodes-should-not-contain">
-                <source>the JSON nodes should not contain</source>
+                <source>the JSON nodes should not contain:</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
                 <source>the JSON node :name should exist</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-not-exsists">
+            <trans-unit id="the-json-node-should-not-exists">
                 <source>the JSON node :name should not exist</source>
                 <target></target>
             </trans-unit>

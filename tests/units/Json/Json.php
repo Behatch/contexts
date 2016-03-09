@@ -6,74 +6,48 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Json extends \atoum
 {
-    public function test_should_not_decode_invalid_json()
+    public function test_construct()
     {
-        $this
-            ->exception(function () {
-                $json = $this->newTestedInstance('{{json');
-            })
-                ->hasMessage("The string '{{json' is not valid json")
-        ;
+        $json = $this->newTestedInstance('{"foo": "bar"}');
+        $this->object($json)
+            ->isInstanceOf('Sanpi\Behatch\Json\Json');
     }
 
-    public function test_should_decode_valid_json()
+    public function test_construct_invalid_json()
     {
-        try {
-            $this
-                ->given(
-                    $hasException = false
-                )
-                ->when(
-                    $json = $this->newTestedInstance('{"foo": "bar"}')
-                )
-            ;
-        } catch (\Exception $e) {
-            $hasException = true;
-        }
-
-        $this->boolean($hasException)->isFalse();
+        $this->exception(function () {
+            $json = $this->newTestedInstance('{{json');
+        })
+        ->hasMessage("The string '{{json' is not valid json");
     }
 
-    public function test_should_encode_valid_json()
+    public function test_to_string()
     {
-        $this
-            ->given(
-                $content = '{"foo":"bar"}'
-            )
-            ->when(
-                $json = $this->newTestedInstance($content)
-            )
-            ->castToString($json)
-                ->isEqualTo($content)
-        ;
+        $content = '{"foo":"bar"}';
+        $json = $this->newTestedInstance($content);
+
+        $this->castToString($json)
+            ->isEqualTo($content);
     }
 
-    public function test_should_not_read_invalid_expression()
+    public function test_read()
     {
-        $this
-            ->given(
-                $accessor = PropertyAccess::createPropertyAccessor(),
-                $json = $this->newTestedInstance('{"foo":"bar"}')
-            )
-            ->exception(function () use ($json, $accessor) {
-                $json->read('jeanmarc', $accessor);
-            })
-                ->isInstanceOf('Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException')
-        ;
+        $accessor = PropertyAccess::createPropertyAccessor();
+        $json = $this->newTestedInstance('{"foo":"bar"}');
+        $result = $json->read('foo', $accessor);
+
+        $this->string($result)
+            ->isEqualTo('bar');
     }
 
-    public function test_should_read_valid_expression()
+    public function test_read_invalid_expression()
     {
-        $this
-            ->given(
-                $accessor = PropertyAccess::createPropertyAccessor(),
-                $json = $this->newTestedInstance('{"foo":"bar"}')
-            )
-            ->when(
-                $result = $json->read('foo', $accessor)
-            )
-                ->string($result)
-                    ->isEqualTo('bar')
-        ;
+        $accessor = PropertyAccess::createPropertyAccessor();
+        $json = $this->newTestedInstance('{"foo":"bar"}');
+
+        $this->exception(function () use ($json, $accessor) {
+            $json->read('jeanmarc', $accessor);
+        })
+        ->isInstanceOf('Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException');
     }
 }

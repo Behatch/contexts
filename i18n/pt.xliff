@@ -13,7 +13,7 @@
             </trans-unit>
             <trans-unit id="i-click-on-the-nth-element">
                 <source><![CDATA[(I )click on the :index :element element]]></source>
-                <target><![CDATA[(eu )clico no :index elemento :element]]></target>
+                <target><![CDATA[(eu )clico no :indexº elemento :element]]></target>
             </trans-unit>
             <trans-unit id="i-follow-the-nth-link">
                 <source><![CDATA[(I )follow the :index :link link]]></source>
