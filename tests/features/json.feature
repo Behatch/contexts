@@ -50,6 +50,10 @@ Feature: Testing JSONContext
         Given I am on "/json/imajson.json"
         Then the JSON should be valid according to the schema "tests/fixtures/www/json/schema.json"
 
+    Scenario: Json validation with schema containing ref (invalid case)
+        Given I am on "/json/withref-invalid.json"
+        Then the JSON should be invalid according to the schema "tests/fixtures/www/json/schemaref.json"
+
     Scenario: Json validation with schema containing ref
         Given I am on "/json/withref.json"
         Then the JSON should be valid according to the schema "tests/fixtures/www/json/schemaref.json"
