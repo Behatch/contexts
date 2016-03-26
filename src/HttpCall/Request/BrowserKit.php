@@ -2,7 +2,9 @@
 
 namespace Behatch\HttpCall\Request;
 
+use Behat\Mink\Driver\Goutte\Client as GoutteClient;
 use Behat\Mink\Mink;
+use Symfony\Component\BrowserKit\Client as BrowserKitClient;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BrowserKit
@@ -68,6 +70,7 @@ class BrowserKit
         $client->followRedirects(false);
         $client->request($method, $url, $parameters, $files, $headers, $content);
         $client->followRedirects(true);
+        $this->resetHttpHeaders();
 
         return $this->mink->getSession()->getPage();
     }
@@ -126,5 +129,16 @@ class BrowserKit
             );
         }
         return $value;
+    }
+
+    protected function resetHttpHeaders()
+    {
+        /** @var GoutteClient|BrowserKitClient $client */
+        $client = $this->mink->getSession()->getDriver()->getClient();
+
+        $client->setServerParameters([]);
+        if ($client instanceof GoutteClient) {
+            $client->restart();
+        }
     }
 }

@@ -26,7 +26,7 @@ class ClassResolver implements BaseClassResolver
                 E_USER_DEPRECATED
             );
 
-            return "\\Sanpi\\Behatch\\Context\\{$className}Context";
+            return "\\Behatch\\Context\\{$className}Context";
         } else {
             $className = preg_replace_callback('/(^\w|:\w)/', function ($matches) {
                 return str_replace(':', '\\', strtoupper($matches[0]));
