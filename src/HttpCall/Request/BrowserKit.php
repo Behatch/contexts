@@ -66,6 +66,7 @@ class BrowserKit
         $client->followRedirects(false);
         $client->request($method, $url, $parameters, $files, $headers, $content);
         $client->followRedirects(true);
+        $this->resetHttpHeaders();
 
         return $this->mink->getSession()->getPage();
     }
@@ -120,5 +121,15 @@ class BrowserKit
             );
         }
         return $value;
+    }
+
+    private function resetHttpHeaders()
+    {
+        $client = $this->mink->getSession()->getDriver()->getClient();
+        
+        // At this point, `$client` is not supposed to be Goutte\Client
+        // Otherwise, this code is overridden on HttpCall\Request\Goutte
+        /** @var \Symfony\Component\BrowserKit\Client $client */
+        $client->setServerParameters([]);
     }
 }
