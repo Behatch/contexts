@@ -277,11 +277,7 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeValidAccordingToTheSchema($filename)
     {
-        if (false === is_file($filename)) {
-            throw new \RuntimeException(
-                'The JSON schema doesn\'t exist'
-            );
-        }
+        $this->checkSchemaFile($filename);
 
         $this->inspector->validate(
             $this->getJson(),
@@ -290,6 +286,18 @@ class JsonContext extends BaseContext
                 'file://' . getcwd() . '/' . $filename
             )
         );
+    }
+
+    /**
+     * @Then the JSON should be invalid according to the schema :filename
+     */
+    public function theJsonShouldBeInvalidAccordingToTheSchema($filename)
+    {
+        $this->checkSchemaFile($filename);
+
+        $this->not(function () use($filename) {
+            return $this->theJsonShouldBeValidAccordingToTheSchema($filename);
+        }, "The schema was valid");
     }
 
     /**
@@ -325,5 +333,14 @@ class JsonContext extends BaseContext
     protected function getJson()
     {
         return new Json($this->httpCallResultPool->getResult()->getValue());
+    }
+
+    private function checkSchemaFile($filename)
+    {
+        if (false === is_file($filename)) {
+            throw new \RuntimeException(
+                'The JSON schema doesn\'t exist'
+            );
+        }
     }
 }
