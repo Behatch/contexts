@@ -4,17 +4,17 @@ default:
             paths: [ '%paths.base%/tests/features' ]
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
-                - behatch:browser:
+                - behatch:context:browser:
                     timeout: 1
-                - behatch:debug:
+                - behatch:context:debug:
                     screenshotDir: "."
-                - behatch:json:
+                - behatch:context:json:
                     evaluationMode: javascript
-                - behatch:rest
-                - behatch:system:
+                - behatch:context:rest
+                - behatch:context:system:
                     root: "."
-                - behatch:table
-                - behatch:xml
+                - behatch:context:table
+                - behatch:context:xml
     extensions:
         Behat\MinkExtension\ServiceContainer\MinkExtension:
             base_url: 'http://localhost:8080'
