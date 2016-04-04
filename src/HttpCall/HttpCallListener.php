@@ -25,9 +25,9 @@ class HttpCallListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
            StepTested::AFTER => 'afterStep'
-        );
+        ];
     }
 
     public function afterStep(AfterStepTested $event)
