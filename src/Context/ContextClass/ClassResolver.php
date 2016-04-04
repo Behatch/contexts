@@ -8,31 +8,15 @@ class ClassResolver implements BaseClassResolver
 {
     public function supportsClass($contextClass)
     {
-        return (strpos($contextClass, 'behatch:') === 0);
+        return (strpos($contextClass, 'behatch:context:') === 0);
     }
 
     public function resolveClass($contextClass)
     {
-        if (strpos($contextClass, 'behatch:context:') === false) {
-            list(, $className) = explode(':', $contextClass);
+        $className = preg_replace_callback('/(^\w|:\w)/', function ($matches) {
+            return str_replace(':', '\\', strtoupper($matches[0]));
+        }, $contextClass);
 
-            $className = ucfirst($className);
-
-            @trigger_error(
-                sprintf(
-                    'Deprecated context alias use behatch:context:%s instead',
-                    strtolower($className)
-                ),
-                E_USER_DEPRECATED
-            );
-
-            return "\\Behatch\\Context\\{$className}Context";
-        } else {
-            $className = preg_replace_callback('/(^\w|:\w)/', function ($matches) {
-                return str_replace(':', '\\', strtoupper($matches[0]));
-            }, $contextClass);
-
-            return $className . 'Context';
-        }
+        return $className . 'Context';
     }
 }
