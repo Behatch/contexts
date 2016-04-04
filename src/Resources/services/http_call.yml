@@ -2,26 +2,32 @@ services:
     behatch.http_call.listener:
         class: Behatch\HttpCall\HttpCallListener
         arguments: ["@behatch.context_supported.voter", "@behatch.http_call.result_pool", "@mink"]
+        public: false
         tags:
             - { name: event_dispatcher.subscriber, priority: 0 }
 
     behatch.http_call.result_pool:
         class: Behatch\HttpCall\HttpCallResultPool
+        public: false
 
     behatch.context_supported.voter:
         class: Behatch\HttpCall\ContextSupportedVoters
+        public: false
 
     behatch.rest_context_supported.voter:
         class: Behatch\HttpCall\RestContextVoter
+        public: false
         tags:
             - { name: behatch.context_voter }
 
     Behatch.http_call.request:
         class: Behatch\HttpCall\Request
         arguments: ["@mink"]
+        public: false
 
     behatch.http_call.argument_resolver:
         class: Behatch\HttpCall\HttpCallResultPoolResolver
         arguments: ["@behatch.http_call.result_pool", "@behatch.http_call.request"]
+        public: false
         tags:
             - { name: context.argument_resolver }
