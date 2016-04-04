@@ -7,6 +7,7 @@ use Behat\Mink\Mink;
 class Request
 {
     private $mink;
+    private $client;
 
     public function __construct(Mink $mink)
     {
@@ -20,11 +21,14 @@ class Request
 
     private function getClient()
     {
-        if ($this->mink->getDefaultSessionName() === 'symfony2') {
-            return new Request\Goutte($this->mink);
+        if (null === $this->client) {
+            if ($this->mink->getDefaultSessionName() === 'symfony2') {
+                $this->client = new Request\Goutte($this->mink);
+            } else {
+                $this->client = new Request\BrowserKit($this->mink);
+            }
         }
-        else {
-            return new Request\BrowserKit($this->mink);
-        }
+
+        return $this->client;
     }
 }

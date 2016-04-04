@@ -2,7 +2,9 @@
 
 namespace Sanpi\Behatch\HttpCall\Request;
 
+use Behat\Mink\Driver\Goutte\Client as GoutteClient;
 use Behat\Mink\Mink;
+use Symfony\Component\BrowserKit\Client as BrowserKitClient;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BrowserKit
@@ -123,13 +125,14 @@ class BrowserKit
         return $value;
     }
 
-    private function resetHttpHeaders()
+    protected function resetHttpHeaders()
     {
+        /** @var GoutteClient|BrowserKitClient $client */
         $client = $this->mink->getSession()->getDriver()->getClient();
-        
-        // At this point, `$client` is not supposed to be Goutte\Client
-        // Otherwise, this code is overridden on HttpCall\Request\Goutte
-        /** @var \Symfony\Component\BrowserKit\Client $client */
+
         $client->setServerParameters([]);
+        if ($client instanceof GoutteClient) {
+            $client->resetHeaders();
+        }
     }
 }

@@ -36,7 +36,9 @@ before_script:
 script:
     - ./bin/atoum
     - ./bin/behat -fprogress --tags='~@user'
+    - ./bin/behat -fprogress --tags='~@user' --profile=symfony2
 
     - ./bin/box build
     - sed -i 's/Sanpi\\Behatch\\Extension/behatch_contexts.phar/' behat.yml
     - ./bin/behat -fprogress --tags='~@user'
+    - ./bin/behat -fprogress --tags='~@user' --profile=symfony2
