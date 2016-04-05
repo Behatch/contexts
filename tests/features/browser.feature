@@ -72,10 +72,8 @@ Feature: Browser Feature
     @javascript
     Scenario: Check date input field
         Given I am on "/browser/elements.html"
-        When I fill in "today" with the current date
-        Then the date field "//input[@name='today']" value should be equal to "today"
-        When I fill in "today" with the current date and modifier "-1 day"
-        Then the date field "//input[@name='today']" value should be equal to "-1 day"
+        Then I fill in "today" with the current date
+        And I fill in "today" with the current date and modifier "-1 day"
 
 
     Scenario:

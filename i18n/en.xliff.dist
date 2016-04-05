@@ -111,10 +111,6 @@
                 <source>(I )switch to main frame</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-date-field-value-should-be-equal-to">
-                <source>the date field :field value should be equal to :expected></source>
-                <target></target>
-            </trans-unit>
 
             <!-- SystemContext.php -->
             <trans-unit id="i-put-the-file-into-field">
