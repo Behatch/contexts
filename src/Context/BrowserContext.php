@@ -12,7 +12,7 @@ class BrowserContext extends BaseContext
     private $timeout;
     private $dateFormat;
 
-    public function __construct($timeout = 1, $dateFormat = 'Y-m-d')
+    public function __construct($timeout = 1, $dateFormat = 'dmYHi')
     {
         $this->timeout = $timeout;
         $this->dateFormat = $dateFormat;
