@@ -128,7 +128,7 @@ Configuration
 
 * ``browser`` - more browser related steps (like mink)
     * ``timeout`` - default timeout
-    * ``dateFormat`` - default dateFormat "Y-m-d"
+    * ``dateFormat`` - default dateFormat "dmYHi"
 * ``debug`` - helper steps for debugging
     * ``screenshotDir`` - the directory where store screenshots
 * ``system`` - shell related steps
