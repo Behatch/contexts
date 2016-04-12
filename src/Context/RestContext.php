@@ -8,7 +8,7 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext
 {
-    private $request;
+    protected $request;
 
     public function __construct(Request $request)
     {
