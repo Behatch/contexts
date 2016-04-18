@@ -3,6 +3,7 @@
 namespace Sanpi\Behatch\HttpCall\Request;
 
 use Behat\Mink\Mink;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BrowserKit
 {
@@ -56,6 +57,10 @@ class BrowserKit
 
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
+        foreach ($files as $originalName => &$file) {
+            $file = new UploadedFile($file, $originalName);
+        }
+
         $client = $this->mink->getSession()->getDriver()->getClient();
 
         $client->followRedirects(false);
