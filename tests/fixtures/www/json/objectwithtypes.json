@@ -1,0 +1,10 @@
+{
+  "string": "abc",
+  "integer": 123,
+  "double": 2.0,
+  "float": 2.123,
+  "null": null,
+  "array": [],
+  "object": {},
+  "boolean": false
+}

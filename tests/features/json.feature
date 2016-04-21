@@ -131,3 +131,14 @@ Feature: Testing JSONContext
         And the JSON node "root[4]" should be equal to the number 1312
         And the JSON node "root[4]" should be equal to the number 1312.0
         And the JSON node "root[5]" should be equal to the number 1936.2
+        
+    Scenario: Check type
+        Given I am on "/json/objectwithtypes.json"
+        Then the response should be in JSON
+        And the JSON node "string" should be of type string
+        And the JSON node "integer" should be of type integer
+        And the JSON node "float" should be of type float
+        And the JSON node "null" should be of type NULL
+        And the JSON node "array" should be of type array
+        And the JSON node "object" should be of type object
+        And the JSON node "boolean" should be of type boolean

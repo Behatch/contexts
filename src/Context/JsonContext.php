@@ -272,6 +272,10 @@ class JsonContext extends BaseContext
 
         $actual = gettype($this->inspector->evaluate($json, $node));
 
+        if ($actual == 'double') {
+            $actual = 'float';
+        }
+
         $this->assertSame($type, $actual);        
     }
 
