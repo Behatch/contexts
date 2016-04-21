@@ -9,6 +9,9 @@ use Behat\Gherkin\Node\PyStringNode;
 class SystemContext implements Context
 {
     private $root;
+    private $output;
+    private $lastExecutionTime;
+    private $lastReturnCode;
     private $createdFiles = [];
 
     public function __construct($root = '.')
@@ -42,11 +45,11 @@ class SystemContext implements Context
      */
     public function iExecute($cmd)
     {
-        exec($cmd, $output, $return);
+        $start = microtime(true);
 
-        if ($return !== 0) {
-            throw new \Exception(sprintf("Command %s returned with status code %s\n%s", $cmd, $return, implode("\n", $output)));
-        }
+        exec($cmd, $this->output, $this->lastReturnCode);
+
+        $this->lastExecutionTime = microtime(true) - $start;
     }
 
     /**
@@ -58,6 +61,123 @@ class SystemContext implements Context
     {
         $cmd = $this->root . DIRECTORY_SEPARATOR . $cmd;
         $this->iExecute($cmd);
+    }
+
+    /**
+     * Command should succeed
+     *
+     * @Then command should succeed
+     */
+    public function commandShouldSucceed() {
+        if ($this->lastReturnCode !== 0) {
+            throw new \Exception(sprintf("Command should succeed %b", $this->lastReturnCode));
+        };
+    }
+
+    /**
+     * Command should fail
+     *
+     * @Then command should fail
+     */
+    public function commandShouldFail() {
+        if ($this->lastReturnCode === 0) {
+            throw new \Exception(sprintf("Command should fail %b", $this->lastReturnCode));
+        };
+    }
+
+    /**
+     * Command should last less than
+     *
+     * @Then command should last less than :seconds seconds
+     */
+    public function commandShouldLastLessThan($seconds)
+    {
+        if ($this->lastExecutionTime > $seconds) {
+            throw new \Exception(sprintf("Last command last %s which is more than %s seconds", $lastExecutionTime, $seconds));
+        }
+    }
+
+    /**
+     * Command should last more than
+     *
+     * @Then command should last more than :seconds seconds
+     */
+    public function commandShouldMoreLessThan($seconds)
+    {
+        if ($this->lastExecutionTime < $seconds) {
+            throw new \Exception(sprintf("Last command last %s which is less than %s seconds", $lastExecutionTime, $seconds));
+        }
+    }
+
+    /**
+     * Checks, that output contains specified text.
+     *
+     * @Then output should contain :text
+     */
+    public function outputShouldContain($text)
+    {
+        $regex = '~'.$text.'~ui';
+
+        $check = false;
+        foreach ($this->output as $line) {
+            if (preg_match($regex, $line) === 1) {
+                $check = true;
+                break;
+            }
+        }
+
+        if ($check === false) {
+            throw new \Exception(sprintf("The text '%s' was not found anywhere on output of command.\n%s", $text, implode("\n", $this->output)));
+        }
+    }
+
+    /**
+     * Checks, that output not contains specified text.
+     *
+     * @Then output should not contain :text
+     */
+    public function ouputShouldNotContain($text)
+    {
+        $regex = '~'.$text.'~ui';
+
+        foreach ($this->output as $line) {
+            if (preg_match($regex, $line) === 1) {
+                throw new \Exception(sprintf("The text '%s' was found somewhere on output of command.\n%s", $text, implode("\n", $this->output)));
+            }
+        }
+    }
+
+    /**
+     * @Given output should be:
+     */
+    public function outputShouldBe(PyStringNode $string)
+    {
+        $expected = $string->getStrings();
+        foreach ($this->output as $index => $line) {
+            if ($line !== $expected[$index]) {
+                throw new \Exception(sprintf("instead of\n%s", implode("\n", $this->output)));
+            }
+        }
+    }
+
+    /**
+     * @Given output should not be:
+     */
+    public function outputShouldNotBe(PyStringNode $string)
+    {
+        $expected = $string->getStrings();
+
+        $check = false;
+        foreach ($this->output as $index => $line) {
+            if ($line !== $expected[$index]) {
+                $check = true;
+                break;
+            }
+        }
+
+        if ($check === false) {
+            throw new \Exception("Output should not be");
+        }
     }
 
     /**

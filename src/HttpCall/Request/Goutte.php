@@ -2,7 +2,6 @@
 
 namespace Sanpi\Behatch\HttpCall\Request;
 
-use Behat\Mink\Mink;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Goutte extends BrowserKit

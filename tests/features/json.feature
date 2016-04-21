@@ -29,11 +29,30 @@ Feature: Testing JSONContext
         And the JSON node "numbers[3].so[0]" should be equal to "very"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
 
+        And the JSON nodes should be equal to:
+            | foo        | bar   |
+            | numbers[0] | one   |
+            | numbers[1] | two   |
+            | numbers[2] | three |
+
+        And the JSON nodes should contain:
+            | foo        | bar   |
+            | numbers[0] | one   |
+            | numbers[1] | two   |
+            | numbers[2] | three |
+
+        And the JSON nodes should not contain:
+            | foo | something else |
+
         And the JSON node "bar" should not exist
 
     Scenario: Json validation with schema
         Given I am on "/json/imajson.json"
         Then the JSON should be valid according to the schema "tests/fixtures/www/json/schema.json"
+
+    Scenario: Json validation with schema containing ref (invalid case)
+        Given I am on "/json/withref-invalid.json"
+        Then the JSON should be invalid according to the schema "tests/fixtures/www/json/schemaref.json"
 
     Scenario: Json validation with schema containing ref
         Given I am on "/json/withref.json"
@@ -101,3 +120,14 @@ Feature: Testing JSONContext
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
         And the JSON node "root" should have 2 elements
+
+    Scenario: Check with type comparison
+        Given I am on "/json/arraywithtypes.json"
+        Then the response should be in JSON
+        And the JSON node "root[0]" should be null
+        And the JSON node "root[1]" should be true
+        And the JSON node "root[2]" should be false
+        And the JSON node "root[3]" should be equal to the string "dunglas.fr"
+        And the JSON node "root[4]" should be equal to the number 1312
+        And the JSON node "root[4]" should be equal to the number 1312.0
+        And the JSON node "root[5]" should be equal to the number 1936.2

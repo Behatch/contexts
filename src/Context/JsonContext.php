@@ -4,6 +4,7 @@ namespace Sanpi\Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
 
+use Behat\Gherkin\Node\TableNode;
 use Sanpi\Behatch\Json\Json;
 use Sanpi\Behatch\Json\JsonSchema;
 use Sanpi\Behatch\Json\JsonInspector;
@@ -11,9 +12,9 @@ use Sanpi\Behatch\HttpCall\HttpCallResultPool;
 
 class JsonContext extends BaseContext
 {
-    private $inspector;
+    protected $inspector;
 
-    private $httpCallResultPool;
+    protected $httpCallResultPool;
 
     public function __construct(HttpCallResultPool $httpCallResultPool, $evaluationMode = 'javascript')
     {
@@ -63,6 +64,108 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON nodes are equal to givens values
+     *
+     * @Then the JSON nodes should be equal to:
+     */
+    public function theJsonNodesShoudBeEqualTo(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldBeEqualTo($node, $text);
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is null
+     *
+     * @Then the JSON node :node should be null
+     */
+    public function theJsonNodeShouldBeNull($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (null !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is true
+     *
+     * @Then the JSON node :node should be true
+     */
+    public function theJsonNodeShouldBeTrue($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (true !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is false
+     *
+     * @Then the JSON node :node should be false
+     */
+    public function theJsonNodeShouldBeFalse($node)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (false !== $actual) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is equal to the given string
+     *
+     * @Then the JSON node :node should be equal to the string :text
+     */
+    public function theJsonNodeShouldBeEqualToTheString($node, $text)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if ($actual !== $text) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
+     * Checks, that given JSON node is equal to the given number
+     *
+     * @Then the JSON node :node should be equal to the number :number
+     */
+    public function theJsonNodeShouldBeEqualToTheNumber($node, $number)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if ($actual !== (float) $number && $actual !== (int) $number) {
+            throw new \Exception(
+                sprintf('The node value is `%s`', json_encode($actual))
+            );
+        }
+    }
+
+    /**
      * Checks, that given JSON node has N element(s)
      *
      * @Then the JSON node :node should have :count element(s)
@@ -91,6 +194,18 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON nodes contains values
+     *
+     * @Then the JSON nodes should contain:
+     */
+    public function theJsonNodesShoudContain(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldContain($node, $text);
+        }
+    }
+
+    /**
      * Checks, that given JSON node does not contain given value
      *
      * @Then the JSON node :node should not contain :text
@@ -102,6 +217,18 @@ class JsonContext extends BaseContext
         $actual = $this->inspector->evaluate($json, $node);
 
         $this->assertNotContains($text, (string) $actual);
+    }
+
+    /**
+     * Checks, that given JSON nodes does not contain given value
+     *
+     * @Then the JSON nodes should not contain:
+     */
+    public function theJsonNodesShoudNotContain(TableNode $nodes)
+    {
+        foreach ($nodes->getRowsHash() as $node => $text) {
+            $this->theJsonNodeShouldNotContain($node, $text);
+        }
     }
 
     /**
@@ -164,11 +291,7 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeValidAccordingToTheSchema($filename)
     {
-        if (false === is_file($filename)) {
-            throw new \RuntimeException(
-                'The JSON schema doesn\'t exist'
-            );
-        }
+        $this->checkSchemaFile($filename);
 
         $this->inspector->validate(
             $this->getJson(),
@@ -177,6 +300,18 @@ class JsonContext extends BaseContext
                 'file://' . getcwd() . '/' . $filename
             )
         );
+    }
+
+    /**
+     * @Then the JSON should be invalid according to the schema :filename
+     */
+    public function theJsonShouldBeInvalidAccordingToTheSchema($filename)
+    {
+        $this->checkSchemaFile($filename);
+
+        $this->not(function () use($filename) {
+            return $this->theJsonShouldBeValidAccordingToTheSchema($filename);
+        }, "The schema was valid");
     }
 
     /**
@@ -209,8 +344,17 @@ class JsonContext extends BaseContext
             ->encode();
     }
 
-    private function getJson()
+    protected function getJson()
     {
         return new Json($this->httpCallResultPool->getResult()->getValue());
+    }
+
+    private function checkSchemaFile($filename)
+    {
+        if (false === is_file($filename)) {
+            throw new \RuntimeException(
+                'The JSON schema doesn\'t exist'
+            );
+        }
     }
 }

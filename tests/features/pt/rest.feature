@@ -45,6 +45,12 @@ Funcionalidade: Testando o RESTContext
       """
     Então devo ver "Body : This is a body."
 
+    Quando envio uma requisição PUT para "/rest/index.php" com o corpo:
+      """
+      {"this is":"some json"}
+      """
+    Então a resposta deve estar vazia
+
   Cenário: Adicionar um header
     Quando adiciono o header "xxx" com o valor "yyy"
     E envio uma requisição GET para "/rest/index.php"

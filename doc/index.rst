@@ -9,15 +9,15 @@ Behatch contexts
     :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=master
     :alt: Scrutinizer Code Quality
 
-.. image:: https://scrutinizer-ci.com/g/Behatch/contexts/badges/coverage.png?b=code-coverage
-    :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=code-coverage
+.. image:: https://scrutinizer-ci.com/g/Behatch/contexts/badges/coverage.png?b=master
+    :target: https://scrutinizer-ci.com/g/Behatch/contexts/?branch=master
     :alt: Code Coverage
 
 .. image:: https://insight.sensiolabs.com/projects/ed08ea06-93c2-4b90-b65b-4364302b5108/mini.png
     :target: https://insight.sensiolabs.com/projects/ed08ea06-93c2-4b90-b65b-4364302b5108
     :alt: SensioLabsInsight
 
-Behatch contexts provide most common behat tests.
+Behatch contexts provide most common Behat tests.
 
 Installation
 ------------
@@ -54,10 +54,10 @@ Through Composer
 The easiest way to keep your suite updated is to use
 `Composer <http://getcomposer.org>`_.
 
-You can add behatch contexts as dependancies for your project or rapidly
-bootstrap a behatch projects.
+You can add Behatch contexts as dependencies for your project or rapidly
+bootstrap a Behatch projects.
 
-Project dependancy
+Project dependency
 ******************
 
 1. Define dependencies in your ``composer.json``:
@@ -92,7 +92,7 @@ Project dependancy
 Project boostraping
 *******************
 
-1. Download the behatch skeleton with composer:
+1. Download the Behatch skeleton with composer:
 
 .. code-block:: bash
 
@@ -102,7 +102,7 @@ Project boostraping
 .. note::
 
     Browser, json, table and rest step need a mink configuration, see
-    `Mink extension <http://extensions.behat.org/mink/>`_ for more informations.
+    `Mink extension <http://extensions.behat.org/mink/>`_ for more information.
 
 Usage
 -----
@@ -128,7 +128,7 @@ Configuration
 
 * ``browser`` - more browser related steps (like mink)
     * ``timeout`` - default timeout
-* ``debug`` - helper steps for debuging
+* ``debug`` - helper steps for debugging
     * ``screenshotDir`` - the directory where store screenshots
 * ``system`` - shell related steps
     * ``root`` - the root directory of the filesystem

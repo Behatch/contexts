@@ -68,11 +68,22 @@ class BrowserKit
     public function setHttpHeader($name, $value)
     {
         $client = $this->mink->getSession()->getDriver()->getClient();
-        // Use for goutte Driver only
+        // Goutte\Client
         if (method_exists($client, 'setHeader')) {
             $client->setHeader($name, $value);
         } else {
-            // Browserkit
+            // Symfony\Component\BrowserKit\Client
+
+            /* taken from Behat\Mink\Driver\BrowserKitDriver::setRequestHeader */
+            $contentHeaders = array('CONTENT_LENGTH' => true, 'CONTENT_MD5' => true, 'CONTENT_TYPE' => true);
+            $name = str_replace('-', '_', strtoupper($name));
+
+            // CONTENT_* are not prefixed with HTTP_ in PHP when building $_SERVER
+            if (!isset($contentHeaders[$name])) {
+                $name = 'HTTP_' . $name;
+            }
+            /* taken from Behat\Mink\Driver\BrowserKitDriver::setRequestHeader */
+
             $client->setServerParameter($name, $value);
         }
     }

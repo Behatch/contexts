@@ -22,7 +22,8 @@ class DebugContext extends BaseContext
     public function iPutABreakpoint()
     {
         fwrite(STDOUT, "\033[s    \033[93m[Breakpoint] Press \033[1;93m[RETURN]\033[0;93m to continue...\033[0m");
-        while (fgets(STDIN, 1024) == '') {}
+        while (fgets(STDIN, 1024) == '') {
+        }
         fwrite(STDOUT, "\033[u");
 
         return;
@@ -44,11 +45,20 @@ class DebugContext extends BaseContext
      */
     public function failScreenshots(AfterStepScope $scope)
     {
-        if (!$scope->getTestResult()->isPassed()) {
-            $scenario = $this->getScenario($scope);
-            if ($scenario->hasTag('javascript')) {
-                $scenarioName = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
-                $filename = sprintf('fail_%s_%s.png', time(), $scenarioName);
+        if (! $scope->getTestResult()->isPassed()) {
+            $makeScreenshot = false;
+            $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
+            $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
+            if ($background = $this->getBackground($scope)) {
+                $makeScreenshot = $scope->getFeature()->hasTag('javascript');
+                $scenarioName   = 'background';
+            } else {
+                $scenario       = $this->getScenario($scope);
+                $makeScreenshot = $scope->getFeature()->hasTag('javascript') || $scenario->hasTag('javascript');
+                $scenarioName   = urlencode(str_replace(' ', '_', $scenario->getTitle()));
+            }
+            if ($makeScreenshot) {
+                $filename = sprintf('fail_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
                 $this->saveScreenshot($filename, $this->screenshotDir);
             }
         }
@@ -68,7 +78,6 @@ class DebugContext extends BaseContext
                 },
                 $scenario->getSteps()
             );
-
             if (in_array($scope->getStep()->getLine(), $stepLinesInScenario)) {
                 return $scenario;
             }
@@ -77,4 +86,26 @@ class DebugContext extends BaseContext
         throw new \LogicException('Unable to find the scenario');
     }
 
+    /**
+     * @param AfterStepScope $scope
+     * @return \Behat\Gherkin\Node\BackgroundNode
+     */
+    private function getBackground(AfterStepScope $scope)
+    {
+        $background = $scope->getFeature()->getBackground();
+        if(!$background){
+            return false;
+        }
+        $stepLinesInBackground = array_map(
+            function (StepNode $step) {
+                return $step->getLine();
+            },
+            $background->getSteps()
+        );
+        if (in_array($scope->getStep()->getLine(), $stepLinesInBackground)) {
+            return $background;
+        }
+
+        return false;
+    }
 }
