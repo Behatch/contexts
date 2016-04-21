@@ -260,6 +260,24 @@ class JsonContext extends BaseContext
             return $this->theJsonNodeShouldExist($name);
         }, "The node '$name' exists.");
     }
+    
+    /**
+     * Checks, that given JSON node is of the correct type
+     *
+     * @Given the JSON node :node should be of type :type
+     */
+    public function theJsonNodeShouldBeOfType($node, $type)
+    {
+        $json = $this->getJson();
+
+        $actual = gettype($this->inspector->evaluate($json, $node));
+
+        if ($actual == 'double') {
+            $actual = 'float';
+        }
+
+        $this->assertSame($type, $actual);        
+    }
 
     /**
      * @Then the JSON should be valid according to this schema:
