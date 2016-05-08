@@ -57,8 +57,8 @@ Funcionalidade: Testando o RESTContext
     Então devo ver "HTTP_XXX : yyy"
 
   Cenário: Nome do header case-insensitive
-  Como descrito na rfc2614 §4.2
-  https://tools.ietf.org/html/rfc2616#section-4.2
+    Como descrito na rfc2614 §4.2
+    https://tools.ietf.org/html/rfc2616#section-4.2
 
     Quando envio uma requisição GET para "rest/index.php"
     Então o header "content-type" deve conter "text"
