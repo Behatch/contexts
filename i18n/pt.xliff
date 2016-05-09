@@ -83,10 +83,6 @@
                 <source><![CDATA[the element :element should be enabled]]></source>
                 <target><![CDATA[o elemento :element deve estar ativo]]></target>
             </trans-unit>
-            <trans-unit id="i-should-see-the-parameter">
-                <source><![CDATA[(I )shoud see the :parameter parameter]]></source>
-                <target><![CDATA[(eu )devo ver o parâmetro :parameter]]></target>
-            </trans-unit>
             <trans-unit id="the-select-box-should-contain">
                 <source><![CDATA[the :select select box should contain :option]]></source>
                 <target><![CDATA[o select :select deve conter :option]]></target>
@@ -116,7 +112,7 @@
                 <target><![CDATA[(eu )mudo para o frame principal]]></target>
             </trans-unit>
 
-            <!-- FileSystemContext.php -->
+            <!-- SystemContext.php -->
             <trans-unit id="i-put-the-file-into-field">
                 <source><![CDATA[(I )put the file :file into :field]]></source>
                 <target><![CDATA[(eu )coloco o arquivo :file no campo :field]]></target>
@@ -129,9 +125,41 @@
                 <source><![CDATA[(I )execute :command from project root]]></source>
                 <target><![CDATA[(eu )executo :command a partir da raíz do projeto]]></target>
             </trans-unit>
+            <trans-unit id="command-should-succeed">
+                <source>command should succeed</source>
+                <target>o comando deve ser executado com sucesso</target>
+            </trans-unit>
+            <trans-unit id="command-should-fail">
+                <source>command should fail</source>
+                <target>o comando deve falhar</target>
+            </trans-unit>
+            <trans-unit id="command-should-last-lett-than">
+                <source>command should last less than :seconds seconds</source>
+                <target>o comando deve demorar menos que :seconds segundos</target>
+            </trans-unit>
+            <trans-unit id="command-should-last-more-than">
+                <source>command should last more than :seconds seconds</source>
+                <target>o comando deve demorar mais que :seconds segundos</target>
+            </trans-unit>
             <trans-unit id="i-create-the-file-contening">
                 <source><![CDATA[(I )create the file :filename containing:]]></source>
                 <target><![CDATA[(eu )crio o arquivo :filename contendo:]]></target>
+            </trans-unit>
+            <trans-unit id="output-should-contain">
+                <source>output should contain :text</source>
+                <target>a saída deve conter :text</target>
+            </trans-unit>
+            <trans-unit id="output-should-not-contain">
+                <source>output should not contain :text</source>
+                <target>a saída não deve conter :text</target>
+            </trans-unit>
+            <trans-unit id="output-should-be">
+                <source>output should be:</source>
+                <target>a saída deve ser:</target>
+            </trans-unit>
+            <trans-unit id="output-should-not-be">
+                <source>output should not be:</source>
+                <target>a saída não deve ser:</target>
             </trans-unit>
             <trans-unit id="print-the-content-of-file">
                 <source><![CDATA[print the content of :filename file]]></source>
@@ -155,11 +183,31 @@
                 <source><![CDATA[the JSON nodes should be equal to:]]></source>
                 <target><![CDATA[os nós JSON devem ser iguais a:]]></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-be-null">
+                <source>the JSON node :node should be null</source>
+                <target>o nó JSON :node deve ser null</target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-true">
+                <source>the JSON node :node should be true</source>
+                <target>o nó JSON :node deve ser true</target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-false">
+                <source>the JSON node :node should be false</source>
+                <target>o nó JSON :node deve ser false</target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-the-string">
+                <source>the JSON node :node should be equal to the string :text</source>
+                <target>o nó JSON :node deve ser igual a string :text</target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-the-number">
+                <source>the JSON node :node should be equal to the number :number</source>
+                <target>o nó JSON :node deve ser igual ao número :number</target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source><![CDATA[the JSON node :node should have :count element(s)]]></source>
                 <target><![CDATA[o nó JSON :node deve ter :count elemento(s)]]></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-contain">
+            <trans-unit id="the-json-node-should-contain-text">
                 <source><![CDATA[the JSON node :node should contain :text]]></source>
                 <target><![CDATA[o nó JSON :node deve conter :text]]></target>
             </trans-unit>
@@ -179,7 +227,7 @@
                 <source><![CDATA[the JSON node :name should exist]]></source>
                 <target><![CDATA[o nó JSON :name deve existir]]></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-not-exsists">
+            <trans-unit id="the-json-node-should-not-exists">
                 <source><![CDATA[the JSON node :name should not exist]]></source>
                 <target><![CDATA[o nó JSON :name não deve existir]]></target>
             </trans-unit>
@@ -190,6 +238,10 @@
             <trans-unit id="the-json-should-be-valid-according-to-the-schema">
                 <source><![CDATA[the JSON should be valid according to the schema :filename]]></source>
                 <target><![CDATA[o JSON deve ser válido de acordo com o schema :filename]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-should-be-invalid-according-to-the-schema">
+                <source>the JSON should be invalid according to the schema :filename</source>
+                <target>o JSON deve ser inválido de acordo com o schema :filename</target>
             </trans-unit>
             <trans-unit id="the-json-should-be-eqal-to">
                 <source><![CDATA[the JSON should be equal to:]]></source>
@@ -205,11 +257,11 @@
                 <source><![CDATA[I send a :method request to :url]]></source>
                 <target><![CDATA[(eu )envio uma requisição :method para :url]]></target>
             </trans-unit>
-            <trans-unit id="i-send-a-request-to-with-parameters">
+            <trans-unit id="i-send-a-request-on-with-parameters">
                 <source><![CDATA[I send a :method request to :url with parameters:]]></source>
                 <target><![CDATA[(eu )envio uma requisição :method para :url com os parâmetros:]]></target>
             </trans-unit>
-            <trans-unit id="i-send-a-request-to-with-body">
+            <trans-unit id="i-send-a-request-on-with-body">
                 <source><![CDATA[I send a :method request to :url with body:]]></source>
                 <target><![CDATA[(eu )envio uma requisição :method para :url com o corpo:]]></target>
             </trans-unit>

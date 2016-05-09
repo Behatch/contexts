@@ -51,6 +51,10 @@ Funcionalidade: Testando o JSONContext
     Quando Eu estou em "/json/imajson.json"
     Então o JSON deve ser válido de acordo com o schema "tests/fixtures/www/json/schema.json"
 
+  Cenário: Validação do JSON com schema contendo ref (caso inválido)
+    Quando Eu estou em "/json/withref-invalid.json"
+    Então o JSON deve ser inválido de acordo com o schema "tests/fixtures/www/json/schemaref.json"
+
   Cenário: Validação do JSON com schema contendo ref
     Quando Eu estou em "/json/withref.json"
     Então o JSON deve ser válido de acordo com o schema "tests/fixtures/www/json/schemaref.json"
@@ -117,3 +121,14 @@ Funcionalidade: Testando o JSONContext
     Então a resposta deve estar em JSON
     E o nó JSON "root[0].name" deve existir
     E o nó JSON "root" deve ter 2 elementos
+
+  Cenário: Verificação com comparação de tipos
+    Quando Eu estou em "/json/arraywithtypes.json"
+    Então a resposta deve estar em JSON
+    E o nó JSON "root[0]" deve ser null
+    E o nó JSON "root[1]" deve ser true
+    E o nó JSON "root[2]" deve ser false
+    E o nó JSON "root[3]" deve ser igual a string "dunglas.fr"
+    E o nó JSON "root[4]" deve ser igual ao número 1312
+    E o nó JSON "root[4]" deve ser igual ao número 1312.0
+    E o nó JSON "root[5]" deve ser igual ao número 1936.2
