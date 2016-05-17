@@ -94,6 +94,18 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node is not null.
+     *
+     * @Then the JSON node :node should not be null
+     */
+    public function theJsonNodeShouldNotBeNull($name)
+    {
+        $this->not(function () use ($name) {
+            return $this->theJsonNodeShouldBeNull($name);
+        }, sprintf('The node %s should not be null', $name));
+    }
+
+    /**
      * Checks, that given JSON node is true
      *
      * @Then the JSON node :node should be true
