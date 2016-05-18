@@ -131,3 +131,18 @@ Feature: Testing JSONContext
         And the JSON node "root[4]" should be equal to the number 1312
         And the JSON node "root[4]" should be equal to the number 1312.0
         And the JSON node "root[5]" should be equal to the number 1936.2
+
+    Scenario: Check not null values
+        Given I am on "/json/notnullvalues.json"
+        Then the response should be in JSON
+        And the JSON node '' should have 5 elements
+        And the JSON node "one" should not be null
+        And the JSON node "one" should be false
+        And the JSON node "two" should not be null
+        And the JSON node "two" should be true
+        And the JSON node "three" should not be null
+        And the JSON node "three" should be equal to the string ""
+        And the JSON node "four" should not be null
+        And the JSON node "four" should be equal to the string "foo"
+        And the JSON node "five" should not be null
+        And the JSON node "five" should be equal to the number 5
