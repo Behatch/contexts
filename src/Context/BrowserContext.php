@@ -58,14 +58,8 @@ class BrowserContext extends BaseContext
      */
     public function iClickOnTheNthElement($index, $element)
     {
-        $nodes = $this->getSession()->getPage()->findAll('css', $element);
-
-        if (isset($nodes[$index - 1])) {
-            $nodes[$index - 1]->click();
-        }
-        else {
-            throw new \Exception("The element '$element' number $index was not found anywhere in the page");
-        }
+        $node = $this->findElement('css', $element, $index);
+        $node->click();
     }
 
     /**
@@ -75,17 +69,21 @@ class BrowserContext extends BaseContext
      */
     public function iFollowTheNthLink($index, $link)
     {
-        $page = $this->getSession()->getPage();
+        $element = ['link', $this->getSession()->getSelectorsHandler()->xpathLiteral($link)];
+        $node = $this->findElement('named', $element, $index);
+        $node->click();
+    }
 
-        $links = $page->findAll('named', [
-            'link', $this->getSession()->getSelectorsHandler()->xpathLiteral($link)
-        ]);
-
-        if (!isset($links[$index - 1])) {
-            throw new \Exception("The $index element '$link' was not found anywhere in the page");
-        }
-
-        $links[$index - 1]->click();
+    /**
+     * Presses the nth specified button
+     *
+     * @When (I )press the :index :button button
+     */
+    public function pressTheNthButton($index, $button)
+    {
+        $element = ['button', $this->getSession()->getSelectorsHandler()->xpathLiteral($button)];
+        $node = $this->findElement('named', $element, $index);
+        $node->click();
     }
 
     /**
