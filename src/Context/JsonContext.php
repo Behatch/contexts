@@ -64,6 +64,24 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node matches given regexp
+     *
+     * @Then the JSON node :node should match :regexp
+     */
+    public function theJsonNodeShouldMatch($node, $regexp)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (!preg_match($regexp, $actual)) {
+            throw new \Exception(
+                sprintf("The node value is '%s'", json_encode($actual))
+            );
+        }
+    }
+
+    /**
      * Checks, that given JSON nodes are equal to givens values
      *
      * @Then the JSON nodes should be equal to:
