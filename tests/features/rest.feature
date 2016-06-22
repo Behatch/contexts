@@ -24,7 +24,8 @@ Feature: Testing RESTContext
             | key     | value      |
             | foo     | bar        |
             | foofile | @lorem.txt |
-        Then The response should contains "You have sent a POST request."
+        Then print the last REST request
+        And The response should contains "You have sent a POST request."
         And The response should contains "1 parameter(s)"
         And The response should contains "1 file(s)"
         And The response should contains "foo : bar"

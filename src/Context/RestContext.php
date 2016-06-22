@@ -88,6 +88,14 @@ class RestContext extends BaseContext
     }
 
     /**
+     * @Then print the last REST request
+     */
+    public function printTheLastRESTRequest()
+    {
+        echo $this->response->getBody();
+    }
+
+    /**
      * @Then The response should contains :text
      */
     public function theResponseShouldContains($text)
