@@ -12,11 +12,11 @@ Fonctionnalité:
 
     Scénario:
         Étant donné j'envoie une requête GET sur "rest/index.php"
-        Alors je devrais voir "You have sent a GET request. "
+        Alors je devrais voir "You have sent a GET request."
         Et je devrais voir "No parameter received"
 
         Quand j'envoie une requête GET sur "/rest/index.php?first=foo&second=bar"
-        Alors je devrais voir "You have sent a GET request. "
+        Alors je devrais voir "You have sent a GET request."
         Et je devrais voir "2 parameter(s)"
         Et je devrais voir "first : foo"
         Et je devrais voir "second : bar"
@@ -25,7 +25,7 @@ Fonctionnalité:
             | key     | value      |
             | foo     | bar        |
             | foofile | @lorem.txt |
-        Alors je devrais voir "You have sent a POST request. "
+        Alors je devrais voir "You have sent a POST request."
         Et je devrais voir "1 parameter(s)"
         Et je devrais voir "1 file(s)"
         Et je devrais voir "foo : bar"
@@ -34,10 +34,10 @@ Fonctionnalité:
         Et je devrais voir "foofile - size : 39"
 
         Quand j'envoie une requête PUT sur "rest/index.php"
-        Alors je devrais voir "You have sent a PUT request. "
+        Alors je devrais voir "You have sent a PUT request."
 
         Quand j'envoie une requête DELETE sur "rest/index.php"
-        Alors je devrais voir "You have sent a DELETE request. "
+        Alors je devrais voir "You have sent a DELETE request."
 
         Quand j'envoie une requête POST sur "/rest/index.php" avec le contenu :
             """

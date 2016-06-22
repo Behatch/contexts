@@ -12,11 +12,11 @@ Funcionalidade: Testando o RESTContext
 
   Cenário: Testando métodos de requisição
     Quando envio uma requisição GET para "/rest/index.php"
-    Então devo ver "You have sent a GET request. "
+    Então devo ver "You have sent a GET request."
     E devo ver "No parameter received"
 
     Quando envio uma requisição GET para "/rest/index.php?first=foo&second=bar"
-    Então devo ver "You have sent a GET request. "
+    Então devo ver "You have sent a GET request."
     E devo ver "2 parameter(s)"
     E devo ver "first : foo"
     E devo ver "second : bar"
@@ -25,7 +25,7 @@ Funcionalidade: Testando o RESTContext
       | key     | value      |
       | foo     | bar        |
       | foofile | @lorem.txt |
-    Então devo ver "You have sent a POST request. "
+    Então devo ver "You have sent a POST request."
     E devo ver "1 parameter(s)"
     E devo ver "1 file(s)"
     E devo ver "foo : bar"
@@ -34,10 +34,10 @@ Funcionalidade: Testando o RESTContext
     E devo ver "foofile - size : 39"
 
     Quando envio uma requisição PUT para "/rest/index.php"
-    Então devo ver "You have sent a PUT request. "
+    Então devo ver "You have sent a PUT request."
 
     Quando envio uma requisição DELETE para "/rest/index.php"
-    Então devo ver "You have sent a DELETE request. "
+    Então devo ver "You have sent a DELETE request."
 
     Quando envio uma requisição POST para "/rest/index.php" com o corpo:
       """
