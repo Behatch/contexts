@@ -87,6 +87,17 @@ class RestContext extends BaseContext
     }
 
     /**
+     * @Then The response should contains :text
+     */
+    public function theResponseShouldContains($text)
+    {
+        $this->assertContains(
+            $text,
+            $this->response->getBody()
+        );
+    }
+
+    /**
      * Checks, whether the response content is equal to given text
      *
      * @Then the response should be equal to
