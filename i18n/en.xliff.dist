@@ -19,6 +19,10 @@
                 <source>(I )follow the :index :link link</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="i-press-the-nth-button">
+                <source>(I )press the :index :button button</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-fill-in-with-the-current-date">
                 <source>(I )fill in :field with the current date</source>
                 <target></target>
