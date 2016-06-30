@@ -113,6 +113,21 @@ class RestContext extends BaseContext
     }
 
     /**
+    * Checks, whether the header name is not equal to given text
+    *
+    * @Then the header :name should not equal :value
+    */
+    public function theHeaderShouldNotBeEqualTo($name, $value) {
+        $actual = $this->getSession()->getResponseHeader($name);
+        if (strtolower($value) == strtolower($actual)) {
+            throw new ExpectationException(
+                "The header '$name' is equal to '$actual'",
+                $this->getSession()->getDriver()
+            );
+        }
+    }
+
+    /**
      * Checks, whether the header name contains the given text
      *
      * @Then the header :name should contain :value
