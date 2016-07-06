@@ -18,6 +18,7 @@
     </div>
     <a href="#">First</a>
     <a href="#">Second</a>
+    <pre id="keyResponse"></pre>
     <form>
         <input type="text" name="today" />
 
@@ -25,6 +26,15 @@
         <button type="button" title="Submit">Second</button>
     </form>
     <script>
+        document.getElementsByTagName('body')[0].addEventListener ('keypress', function (event) {
+            event.preventDefault();
+
+            document.getElementById('keyResponse').innerHTML += "\npressed " + event.keyCode;
+            if (event.ctrlKey) {
+                document.getElementById('keyResponse').innerHTML += " with ctrl";
+            }
+        });
+
         [].forEach.call(document.querySelectorAll('li, a, button'), function(el) {
                 el.addEventListener('click', function() {
                     document.getElementById('element').innerHTML = 'You clicked ' + el.innerHTML + ' ' + el.tagName;

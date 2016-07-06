@@ -443,6 +443,14 @@
                 <source>the response should not be in XML</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="i-press-key-char">
+                <source>(I )press key :char</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-press-key-char-on-element-element">
+                <source>(I )press key :char on :element element</source>
+                <target></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
