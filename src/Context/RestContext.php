@@ -71,7 +71,7 @@ class RestContext extends BaseContext
      */
     public function iSendARequestToWithBody($method, $url, PyStringNode $body)
     {
-        $this->iSendARequestTo($method, $url, $body);
+        return $this->iSendARequestTo($method, $url, $body);
     }
 
     /**
