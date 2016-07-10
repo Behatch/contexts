@@ -65,7 +65,7 @@ Project dependency
 .. code-block:: js
 
     {
-        "require": {
+        "require-dev": {
             ...
 
             "behatch/contexts": "*"
