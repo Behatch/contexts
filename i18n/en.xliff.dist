@@ -19,6 +19,10 @@
                 <source>(I )follow the :index :link link</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="i-press-the-nth-button">
+                <source>(I )press the :index :button button</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-fill-in-with-the-current-date">
                 <source>(I )fill in :field with the current date</source>
                 <target></target>
@@ -183,11 +187,31 @@
                 <source>the JSON nodes should be equal to:</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-be-null">
+                <source>the JSON node :node should be null</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-true">
+                <source>the JSON node :node should be true</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-false">
+                <source>the JSON node :node should be false</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-equal-to-the-string">
+                <source>the JSON node :node should be equal to the string :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-equal-to-the-number">
+                <source>the JSON node :node should be equal to the number :number</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-have-n-elements">
                 <source>the JSON node :node should have :count element(s)</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-contain">
+            <trans-unit id="the-json-node-should-contain-text">
                 <source>the JSON node :node should contain :text</source>
                 <target></target>
             </trans-unit>
@@ -200,14 +224,14 @@
                 <target></target>
             </trans-unit>
             <trans-unit id="the-json-nodes-should-not-contain">
-                <source>the JSON nodes should not contain</source>
+                <source>the JSON nodes should not contain:</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-json-node-should-exist">
                 <source>the JSON node :name should exist</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-json-node-should-not-exsists">
+            <trans-unit id="the-json-node-should-not-exists">
                 <source>the JSON node :name should not exist</source>
                 <target></target>
             </trans-unit>
@@ -217,6 +241,10 @@
             </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-the-schema">
                 <source>the JSON should be valid according to the schema :filename</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-should-be-invalid-according-to-the-schema">
+                <source>the JSON should be invalid according to the schema :filename</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-json-should-be-eqal-to">
@@ -323,6 +351,14 @@
             </trans-unit>
 
             <!-- XmlContext.php -->
+            <trans-unit id="the-xml-should-not-use-the-namespace">
+                <source>the XML should not use the namespace :namespace</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-should-use-the-namespace">
+                <source>the XML should use the namespace :namespace</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-xml-feed-should-be-valid-accoriding-to-its-dtd">
                 <source>the XML feed should be valid according to its DTD</source>
                 <target></target>
@@ -349,6 +385,62 @@
             </trans-unit>
             <trans-unit id="the-rss2-feed-should-be-valid">
                 <source>the RSS2 feed should be valid</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="print-last-xml-response">
+                <source>print last XML response</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-attribute-on-element-should-be-equal-to">
+                <source>the XML attribute :attribute on element :element should be equal to :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-attribute-on-element-should-not-be-equal-to">
+                <source>the XML attribute :attribute on element :element should not be equal to :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-attribute-on-element-should-exists">
+                <source>the XML attribute :attribute on element :element should exist(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-attribute-on-element-should-not-exists">
+                <source>the XML attribute :attribute on element :element should not exist(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-be-equal-to">
+                <source>the XML element :element should be equal to :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-not-be-equal-to">
+                <source>the XML element :element should not be equal to :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-contain">
+                <source>the XML element :element should contain :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-not-contain">
+                <source>the XML element :element should not contain :text</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-exists">
+                <source>the XML element :element should exist(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-not-exists">
+                <source>the XML element :element should not exist(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-xml-element-should-have-elements">
+                <source>the XML element :element should have :count element(s)</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-be-in-xml">
+                <source>the response should be in XML</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-not-be-in-xml">
+                <source>the response should not be in XML</source>
                 <target></target>
             </trans-unit>
         </body>

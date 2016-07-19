@@ -42,7 +42,11 @@ Feature: Browser Feature
         And the "months_selector" select box should not contain "december"
         And the "months_selector" select box should contain "january"
         When I click on the 1st "ul li" element
-        Then I should see "You clicked First"
+        Then I should see "You clicked First LI"
+        When I press the 2nd "Submit" button
+        Then I should see "You clicked Second BUTTON"
+        When I follow the 1st "Second" link
+        Then I should see "You clicked Second A"
 
     @javascript
     Scenario: Frames testing

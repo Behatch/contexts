@@ -9,116 +9,56 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class JsonInspector extends \atoum
 {
-    public function test_should_read_json()
+    public function test_evaluate()
     {
-        $this
-            ->given(
-                $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
-                $json->getMockController()->read = 'foobar'
-            )
-            ->and(
-                $inspector = $this->newTestedInstance('mode')
-            )
-            ->when(
-                $result = $inspector->evaluate($json, 'foo.bar')
-            )
-                ->variable($result)
-                    ->isEqualTo('foobar')
+        $json = new \Sanpi\Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
+        $inspector = $this->newTestedInstance('php');
+        $result = $inspector->evaluate($json, 'foo.bar');
 
-                ->mock($json)
-                    ->call('read')
-                    ->withArguments('foo.bar')
-                    ->once()
-        ;
+        $this->string($result)
+            ->isEqualTo('foobar');
     }
 
-    public function test_should_fail_if_json_reading_fail()
+    public function test_evaluate_invalid()
     {
-        $this
-            ->given(
-                $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
-                $json->getMockController()->read->throw = new \Exception()
-            )
-            ->and(
-                $inspector = $this->newTestedInstance('mode')
-            )
-                ->exception(function () use ($json, $inspector) {
-                    $inspector->evaluate($json, 'foo.bar');
-                })
-                    ->hasMessage("Failed to evaluate expression 'foo.bar'")
-        ;
+        $json = new \Sanpi\Behatch\Json\Json('{}');
+        $inspector = $this->newTestedInstance('php');
+
+        $this->exception(function () use($json, $inspector) {
+            $inspector->evaluate($json, 'foo.bar');
+        })
+        ->hasMessage("Failed to evaluate expression 'foo.bar'");
     }
 
-    public function test_should_convert_expression_if_javascript_mode()
+    public function test_evaluate_javascript_mode()
     {
-        $this
-            ->given(
-                $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
-                $json->getMockController()->read = 'foobar'
-            )
-            ->and(
-                $inspector = $this->newTestedInstance('javascript')
-            )
-            ->when(
-                $result = $inspector->evaluate($json, 'foo->bar')
-            )
-                ->variable($result)
-                    ->isEqualTo('foobar')
+        $json = new \Sanpi\Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
+        $inspector = $this->newTestedInstance('javascript');
+        $result = $inspector->evaluate($json, 'foo->bar');
 
-                ->mock($json)
-                    ->call('read')
-                    ->withArguments('foo.bar')
-                    ->once()
-        ;
+        $this->string($result)
+            ->isEqualTo('foobar');
     }
 
-    public function test_should_no_convert_expression_if_no_javascript_mode()
+    public function test_evaluate_php_mode()
     {
-        $this
-            ->given(
-                $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
-                $json->getMockController()->read = 'foobar'
-            )
-            ->and(
-                $inspector = $this->newTestedInstance('foo')
-            )
-            ->when(
-                $result = $inspector->evaluate($json, 'foo->bar')
-            )
-                ->variable($result)
-                    ->isEqualTo('foobar')
+        $json = new \Sanpi\Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
+        $inspector = $this->newTestedInstance('php');
+        $result = $inspector->evaluate($json, 'foo.bar');
 
-                ->mock($json)
-                    ->call('read')
-                    ->withArguments('foo->bar')
-                    ->once()
-        ;
+        $this->string($result)
+            ->isEqualTo('foobar');
     }
 
-    public function test_should_valid_json_through_its_schema()
+    public function test_validate()
     {
-        $this
-            ->given(
-                $json = new \mock\Sanpi\Behatch\Json\Json('{}'),
-                $schema = new \mock\Sanpi\Behatch\Json\JsonSchema('{}'),
-                $schema->getMockController()->resolve = $schema,
-                $schema->getMockController()->validate = 'foobar',
-                $inspector = $this->newTestedInstance('foo')
-            )
-            ->when(
-                $result = $inspector->validate($json, $schema)
-            )
-                ->variable($result)
-                    ->isEqualTo('foobar')
+        $json = new \Sanpi\Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
+        $inspector = $this->newTestedInstance('php');
+        $schema = new \mock\Sanpi\Behatch\Json\JsonSchema('{}');
 
-                ->mock($schema)
-                    ->call('resolve')
-                    ->withArguments(new RefResolver(new UriRetriever))
-                    ->once()
+        $result = $inspector->validate($json, $schema);
 
-                    ->call('validate')
-                    ->withArguments($json, new Validator)
-                    ->once()
-        ;
+        $this->boolean($result)
+            ->isEqualTo(true);
     }
 }

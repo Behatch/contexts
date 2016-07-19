@@ -50,6 +50,10 @@ Feature: Testing JSONContext
         Given I am on "/json/imajson.json"
         Then the JSON should be valid according to the schema "tests/fixtures/www/json/schema.json"
 
+    Scenario: Json validation with schema containing ref (invalid case)
+        Given I am on "/json/withref-invalid.json"
+        Then the JSON should be invalid according to the schema "tests/fixtures/www/json/schemaref.json"
+
     Scenario: Json validation with schema containing ref
         Given I am on "/json/withref.json"
         Then the JSON should be valid according to the schema "tests/fixtures/www/json/schemaref.json"
@@ -116,3 +120,29 @@ Feature: Testing JSONContext
         Then the response should be in JSON
         And the JSON node "root[0].name" should exist
         And the JSON node "root" should have 2 elements
+
+    Scenario: Check with type comparison
+        Given I am on "/json/arraywithtypes.json"
+        Then the response should be in JSON
+        And the JSON node "root[0]" should be null
+        And the JSON node "root[1]" should be true
+        And the JSON node "root[2]" should be false
+        And the JSON node "root[3]" should be equal to the string "dunglas.fr"
+        And the JSON node "root[4]" should be equal to the number 1312
+        And the JSON node "root[4]" should be equal to the number 1312.0
+        And the JSON node "root[5]" should be equal to the number 1936.2
+
+    Scenario: Check not null values
+        Given I am on "/json/notnullvalues.json"
+        Then the response should be in JSON
+        And the JSON node '' should have 5 elements
+        And the JSON node "one" should not be null
+        And the JSON node "one" should be false
+        And the JSON node "two" should not be null
+        And the JSON node "two" should be true
+        And the JSON node "three" should not be null
+        And the JSON node "three" should be equal to the string ""
+        And the JSON node "four" should not be null
+        And the JSON node "four" should be equal to the string "foo"
+        And the JSON node "five" should not be null
+        And the JSON node "five" should be equal to the number 5
