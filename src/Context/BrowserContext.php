@@ -161,6 +161,24 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should not contain specified text before given timeout
+     *
+     * @Then (I )should not see :text within :count second(s)
+     */
+    public function iDontSeeInSeconds($count, $text)
+    {
+        $caught = false;
+        try {
+            $this->iWaitSecondsUntilISee($count, $text);
+        }
+        catch (ExpectationException $e) {
+            $caught = true;
+        }
+
+        $this->assertTrue($caught, "Text '$text' has been found");
+    }
+
+    /**
      * Checks, that the page should contains specified text after timeout
      *
      * @Then (I )wait until I see :text
@@ -198,6 +216,10 @@ class BrowserContext extends BaseContext
                 // assume page reloaded whilst we were still waiting
             }
         } while (!$found && (time() - $startTime < $count));
+
+        // final assertion...
+        $node = $this->getSession()->getPage()->find('css', $element);
+        $this->assertContains($expected, $node->getText(), $message);
     }
 
     /**
