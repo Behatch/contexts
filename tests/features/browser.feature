@@ -69,6 +69,17 @@ Feature: Browser Feature
         Then the total elapsed time should be less than 6 seconds
 
     @javascript
+    Scenario: Waited upon text should actually be visible
+        Given I am on "/browser/timeout.html"
+        Then I should not see "timeout"
+        When I wait 3 seconds until I see "timeout"
+        Then I should see "timeout"
+
+    Scenario: Waited upon text should actually be visible
+        Given I am on "/browser/index.html"
+        Then I should not see "foobar" within 1 second
+
+    @javascript
     Scenario: Check element visibility
         Given I am on "/browser/index.html"
         Then the "#visible-element" element should be visible
