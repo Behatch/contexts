@@ -9,7 +9,7 @@
         "php": ">=5.4",
         "behat/behat": "~3.0",
         "behat/mink-extension": "~2.0",
-        "justinrainbow/json-schema": "~1.4",
+        "justinrainbow/json-schema": "~1.4|~2.0",
         "symfony/property-access": "~2.3|~3.0"
     },
 
