@@ -78,8 +78,8 @@ Project dependency
         extensions:
             Sanpi\Behatch\Extension: ~
 
-Project boostraping
-*******************
+Project bootstraping
+********************
 
 1. Download the Behatch skeleton with composer:
 
