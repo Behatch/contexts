@@ -60,24 +60,13 @@ bootstrap a Behatch projects.
 Project dependency
 ******************
 
-1. Define dependencies in your ``composer.json``:
+1. `Install Composer <https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx>`_
 
-.. code-block:: js
-
-    {
-        "require-dev": {
-            ...
-
-            "behatch/contexts": "*"
-        }
-    }
-
-2. Install/update your vendors:
+2. Require the package with Composer:
 
 .. code-block:: bash
 
-    $ curl http://getcomposer.org/installer | php
-    $ php composer.phar install
+    $ composer require --dev behatch/contexts
 
 3. Activate extension by specifying its class in your ``behat.yml``:
 
@@ -89,14 +78,13 @@ Project dependency
         extensions:
             Sanpi\Behatch\Extension: ~
 
-Project boostraping
-*******************
+Project bootstraping
+********************
 
 1. Download the Behatch skeleton with composer:
 
 .. code-block:: bash
 
-    $ curl http://getcomposer.org/installer | php
     $ php composer.phar create-project behatch/skeleton
 
 .. note::
