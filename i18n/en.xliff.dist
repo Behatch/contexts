@@ -269,6 +269,14 @@
                 <source>I send a :method request to :url with body:</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="print-the-last-rest-request">
+                <source>print the last REST request</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-response-should-contains">
+                <source>The response should contains :text</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
                 <source>the response should be equal to:</source>
                 <target></target>

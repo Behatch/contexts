@@ -14,11 +14,11 @@
 
     シナリオ: Testing request methods.
        前提 私がGETメソッドで"/rest/index.php"へリクエストを送る
-        ならば 画面に "You have sent a GET request. " と表示されていること
+        ならば 画面に "You have sent a GET request." と表示されていること
         かつ 画面に "No parameter received" と表示されていること
 
         もし 私がGETメソッドで"/rest/index.php?first=foo&second=bar"へリクエストを送る
-        ならば 画面に "You have sent a GET request. " と表示されていること
+        ならば 画面に "You have sent a GET request." と表示されていること
         かつ 画面に "2 parameter(s)" と表示されていること
         かつ 画面に "first : foo" と表示されていること
         かつ 画面に "second : bar" と表示されていること
@@ -30,7 +30,7 @@
             | foofile | @lorem.txt |
 
         ならば 最後のレスポンスを表示
-        ならば 画面に "You have sent a POST request. " と表示されていること
+        ならば 画面に "You have sent a POST request." と表示されていること
         かつ 画面に "1 parameter(s)" と表示されていること
         かつ 画面に "1 file(s)" と表示されていること
         かつ 画面に "foo : bar" と表示されていること
@@ -39,10 +39,10 @@
         かつ 画面に "foofile - size : 39" と表示されていること
 
         もし 私がPUTメソッドで"rest/index.php"へリクエストを送る
-        ならば 画面に "You have sent a PUT request. " と表示されていること
+        ならば 画面に "You have sent a PUT request." と表示されていること
 
         もし 私がDELETEメソッドで"rest/index.php"へリクエストを送る
-        ならば 画面に "You have sent a DELETE request. " と表示されていること
+        ならば 画面に "You have sent a DELETE request." と表示されていること
 
         もし POSTメソッドで"/rest/index.php"へ下記のボディを持ったリクエストを送る:
             """
