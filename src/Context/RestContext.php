@@ -8,7 +8,7 @@ use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext
 {
-    private $request;
+    protected $request;
 
     public function __construct(Request $request)
     {
@@ -20,13 +20,13 @@ class RestContext extends BaseContext
      *
      * @Given I send a :method request to :url
      */
-    public function iSendARequestTo($method, $url, PyStringNode $body = null)
+    public function iSendARequestTo($method, $url, PyStringNode $body = null, $files = [])
     {
         return $this->request->send(
             $method,
             $this->locatePath($url),
             [],
-            [],
+            $files,
             $body !== null ? $body->getRaw() : null
         );
     }
