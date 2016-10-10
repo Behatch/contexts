@@ -7,18 +7,19 @@ class JsonSchema extends \atoum
     public function test_resolve_without_uri()
     {
         $schema = $this->newTestedInstance('{}');
-        $resolver = new \JsonSchema\RefResolver();
+        $resolver = new \JsonSchema\SchemaStorage(new \JsonSchema\Uri\UriRetriever, new \JsonSchema\Uri\UriResolver);
         $schema->resolve($resolver);
     }
 
     public function test_resolve_with_uri()
     {
-        $schema = $this->newTestedInstance('{}', 'file://test');
-        $resolver = new \JsonSchema\RefResolver();
-        $result = $schema->resolve($resolver);
+        $file = 'file://' . __DIR__ . '/../../fixtures/files/schema.json';
+        $schema = (object)['id' => $file];
+        $resolver = new \JsonSchema\SchemaStorage(new \JsonSchema\Uri\UriRetriever, new \JsonSchema\Uri\UriResolver);
+        $result = $resolver->resolveRef($file);
 
         $this->object($result)
-            ->isIdenticalTo($schema);
+            ->isEqualTo($schema);
     }
 
     public function test_validate()

@@ -2,7 +2,6 @@
 
 namespace Behatch\Tests\Units\Json;
 
-use JsonSchema\RefResolver;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Symfony\Component\PropertyAccess\PropertyAccess;

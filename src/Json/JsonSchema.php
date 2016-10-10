@@ -2,7 +2,7 @@
 
 namespace Behatch\Json;
 
-use JsonSchema\RefResolver;
+use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 
 class JsonSchema extends Json
@@ -12,16 +12,17 @@ class JsonSchema extends Json
     public function __construct($content, $uri = null)
     {
         $this->uri = $uri;
+
         parent::__construct($content);
     }
 
-    public function resolve(RefResolver $resolver)
+    public function resolve(SchemaStorage $resolver)
     {
         if (!$this->hasUri()) {
             return $this;
         }
 
-        $resolver->resolve($this->getContent(), $this->uri);
+        $this->content = $resolver->resolveRef($this->uri);
 
         return $this;
     }
