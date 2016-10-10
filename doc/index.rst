@@ -28,37 +28,8 @@ This extension requires:
 * Mink
 * Mink extension
 
-Through PHAR
-~~~~~~~~~~~~
-
-Download the .phar archives:
-
-* `behat.phar <http://behat.org/downloads/behat.phar>`_ - Behat itself
-* `mink.phar <http://behat.org/downloads/mink.phar>`_ - Mink framework
-* `mink_extension.phar <http://behat.org/downloads/mink_extension.phar>`_ - Mink integration extension
-* `behatch_contexts.phar <http://behat.org/downloads/behatch_contexts.phar>`_ - Behatch contexts
-
-And activate it in your in your ``behat.yml``:
-
-.. code-block:: yaml
-
-    # behat.yml
-    default:
-        # ...
-        extensions:
-            behatch_contexts.phar: ~
-
-Through Composer
-~~~~~~~~~~~~~~~~
-
-The easiest way to keep your suite updated is to use
-`Composer <http://getcomposer.org>`_.
-
-You can add Behatch contexts as dependencies for your project or rapidly
-bootstrap a Behatch projects.
-
 Project dependency
-******************
+~~~~~~~~~~~~~~~~~~
 
 1. `Install Composer <https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx>`_
 
@@ -79,7 +50,7 @@ Project dependency
             Behatch\Extension: ~
 
 Project bootstraping
-********************
+~~~~~~~~~~~~~~~~~~~~
 
 1. Download the Behatch skeleton with composer:
 
