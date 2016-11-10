@@ -77,9 +77,9 @@ class RestContext extends BaseContext
     /**
      * Checks, whether the response content is equal to given text
      *
-     * @Then the response should be equal to
+     * @Then the response should be equal to :expected
      */
-    public function theResponseShouldBeEqualTo(PyStringNode $expected)
+    public function theResponseShouldBeEqualTo($expected)
     {
         $expected = str_replace('\\"', '"', $expected);
         $actual   = $this->request->getContent();
