@@ -132,7 +132,7 @@ class BrowserKit
 
         $client->setServerParameters([]);
         if ($client instanceof GoutteClient) {
-            $client->reset();
+            $client->restart();
         }
     }
 }

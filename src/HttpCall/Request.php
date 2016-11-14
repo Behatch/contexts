@@ -22,7 +22,7 @@ class Request
     private function getClient()
     {
         if (null === $this->client) {
-            if ($this->mink->getDefaultSessionName() === 'symfony2') {
+            if ('symfony2' === $this->mink->getDefaultSessionName()) {
                 $this->client = new Request\Goutte($this->mink);
             } else {
                 $this->client = new Request\BrowserKit($this->mink);
