@@ -58,7 +58,7 @@ class DebugContext extends BaseContext
                 $scenarioName   = urlencode(str_replace(' ', '_', $scenario->getTitle()));
             }
             if ($makeScreenshot) {
-                $filename = sprintf('fail_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
+                $filename = sprintf('fail_%s_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
                 $this->saveScreenshot($filename, $this->screenshotDir);
             }
         }
