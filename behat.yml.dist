@@ -21,4 +21,14 @@ default:
             files_path: 'tests/fixtures/files'
             goutte: ~
             selenium2: ~
+            sessions:
+                default:
+                    goutte: ~
+                symfony2:
+                    goutte: ~
         Sanpi\Behatch\Extension: ~
+
+symfony2:
+    extensions:
+        Behat\MinkExtension\ServiceContainer\MinkExtension:
+            default_session: symfony2
