@@ -69,3 +69,10 @@ Feature: Testing RESTContext
             | foo | bar   |
         Then print last response headers
         And print the corresponding curl command
+
+    Scenario: Response body
+        Given I send a GET request to "/"
+        Then the response should be equal to
+        """
+        Congratulations, you've correctly set up your apache environment.
+        """
