@@ -58,7 +58,9 @@ class BrowserKit
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
         foreach ($files as $originalName => &$file) {
-            $file = new UploadedFile($file, $originalName);
+            if (is_string($file)) {
+                $file = new UploadedFile($file, $originalName);
+            }
         }
 
         $client = $this->mink->getSession()->getDriver()->getClient();
@@ -109,12 +111,10 @@ class BrowserKit
         if (isset($headers[$name])) {
             if (is_array($headers[$name])) {
                 $value = implode(', ', $headers[$name]);
-            }
-            else {
+            } else {
                 $value = $headers[$name];
             }
-        }
-        else {
+        } else {
             throw new \OutOfBoundsException(
                 "The header '$name' doesn't exist"
             );
