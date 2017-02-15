@@ -17,7 +17,9 @@ class Goutte extends BrowserKit
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
         foreach ($files as $originalName => &$file) {
-            $file = new UploadedFile($file, $originalName);
+            if (is_string($file)) {
+                $file = new UploadedFile($file, $originalName);
+            }
         }
         $page = parent::send($method, $url, $parameters, $files, $content, $this->requestHeaders);
         $this->resetHttpHeaders();
