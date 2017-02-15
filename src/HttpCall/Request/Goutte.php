@@ -2,8 +2,6 @@
 
 namespace Sanpi\Behatch\HttpCall\Request;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 class Goutte extends BrowserKit
 {
     /**
