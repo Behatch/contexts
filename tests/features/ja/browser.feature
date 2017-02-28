@@ -75,7 +75,7 @@
         かつ 要素"#hidden-element"は不可視であること
 
     @javascript
-    シナリオ:
+    シナリオ: Check date input field
        前提 "/browser/elements.html" を表示している
         ならば 私が"today"に現在の日付を入力する
         かつ 私が"today"に現在の日付を"-1 day"で入力する

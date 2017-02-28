@@ -6,6 +6,7 @@ default:
                 - Behat\MinkExtension\Context\MinkContext
                 - behatch:browser:
                     timeout: 1
+                    dateFormat: "dmYHi"
                 - behatch:debug:
                     screenshotDir: "."
                 - behatch:json:

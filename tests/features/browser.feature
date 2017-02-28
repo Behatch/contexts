@@ -74,7 +74,7 @@ Feature: Browser Feature
         And the "#hidden-element" element should not be visible
 
     @javascript
-    Scenario:
+    Scenario: Check date input field
         Given I am on "/browser/elements.html"
         Then I fill in "today" with the current date
         And I fill in "today" with the current date and modifier "-1 day"
