@@ -79,6 +79,22 @@ Feature: Browser Feature
         Then I fill in "today" with the current date
         And I fill in "today" with the current date and modifier "-1 day"
 
+    @javascript
+    Scenario:
+        Given I am on "/browser/elements.html"
+        Then I should not see "key pressed"
+        Then I press key "r"
+        Then I should see "pressed 114"
+        Then I press key "8"
+        Then I should see "pressed 8"
+        Then I press key "["
+        Then I should see "pressed 91"
+
+        Then I press key "ctrl+r"
+        Then I should see "pressed 114 with ctrl"
+        Then I press key "ctrl+p"
+        Then I should see "pressed 112 with ctrl"
+
 
     Scenario:
         Given I am on "/browser/elements.html"

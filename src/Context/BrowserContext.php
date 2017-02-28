@@ -376,4 +376,25 @@ class BrowserContext extends BaseContext
     {
         $this->getSession()->switchToIFrame();
     }
+
+    /**
+     * Press keyboard key.
+     *
+     * @When (I )press key :char
+     * @When (I )press key :char on :element element
+     */
+    public function pressKey($char, $modifier = null, $element = 'body')
+    {
+        $node = $this->getSession()->getPage()->find('css', $element);
+        if ($node === null) {
+            throw new \Exception("The element '$element' was not found anywhere in the page");
+        }
+
+        if (preg_match('#^([^\+]+)\+([^\+]+)$#', $char, $matches)){
+            $char = $matches[2];
+            $modifier = strtolower($matches[1]);
+        }
+
+        $this->getSession()->getDriver()->keyPress($node->getXPath(), $char, $modifier);
+    }
 }
