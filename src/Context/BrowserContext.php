@@ -6,11 +6,14 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Exception\ResponseTextException;
 use Behat\Mink\Exception\ElementNotFoundException;
+use WebDriver\Exception\StaleElementReference;
+use Behat\Behat\Tester\Exception\PendingException;
 
 class BrowserContext extends BaseContext
 {
     private $timeout;
     private $dateFormat = 'dmYHi';
+    private $timerStartedAt;
 
     public function __construct($timeout = 1)
     {
@@ -23,6 +26,16 @@ class BrowserContext extends BaseContext
     public function closeBrowser()
     {
         $this->getSession()->stop();
+    }
+
+    /**
+     * @BeforeScenario
+     *
+     * @When (I )start timing now
+     */
+    public function startTimer()
+    {
+        $this->timerStartedAt = time();
     }
 
     /**
@@ -148,6 +161,24 @@ class BrowserContext extends BaseContext
     }
 
     /**
+     * Checks, that the page should not contain specified text before given timeout
+     *
+     * @Then (I )should not see :text within :count second(s)
+     */
+    public function iDontSeeInSeconds($count, $text)
+    {
+        $caught = false;
+        try {
+            $this->iWaitSecondsUntilISee($count, $text);
+        }
+        catch (ExpectationException $e) {
+            $caught = true;
+        }
+
+        $this->assertTrue($caught, "Text '$text' has been found");
+    }
+
+    /**
      * Checks, that the page should contains specified text after timeout
      *
      * @Then (I )wait until I see :text
@@ -164,12 +195,30 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSecondsUntilISeeInTheElement($count, $text, $element)
     {
+        $startTime = time();
         $this->iWaitSecondsForElement($count, $element);
 
         $expected = str_replace('\\"', '"', $text);
-        $node = $this->getSession()->getPage()->find('css', $element);
         $message = "The text '$expected' was not found after a $count seconds timeout";
 
+        $found = false;
+        do {
+            try {
+                usleep(1000);
+                $node = $this->getSession()->getPage()->find('css', $element);
+                $this->assertContains($expected, $node->getText(), $message);
+                return;
+            }
+            catch (ExpectationException $e) {
+                /* Intentionaly leave blank */
+            }
+            catch (StaleElementReference $e) {
+                // assume page reloaded whilst we were still waiting
+            }
+        } while (!$found && (time() - $startTime < $count));
+
+        // final assertion...
+        $node = $this->getSession()->getPage()->find('css', $element);
         $this->assertContains($expected, $node->getText(), $message);
     }
 
@@ -178,7 +227,7 @@ class BrowserContext extends BaseContext
      */
     public function iWaitSeconds($count)
     {
-        sleep($count);
+        usleep($count * 1000000);
     }
 
     /**
@@ -213,6 +262,7 @@ class BrowserContext extends BaseContext
 
         do {
             try {
+                usleep(1000);
                 $node = $this->getSession()->getPage()->findAll('css', $element);
                 $this->assertCount(1, $node);
                 $found = true;
@@ -221,7 +271,7 @@ class BrowserContext extends BaseContext
                 /* Intentionnaly leave blank */
             }
         }
-        while (time() - $startTime < $count);
+        while (!$found && (time() - $startTime < $count));
 
         if ($found === false) {
             $message = "The element '$element' was not found after a $count seconds timeout";
@@ -375,5 +425,33 @@ class BrowserContext extends BaseContext
     public function switchToMainFrame()
     {
         $this->getSession()->switchToIFrame();
+    }
+
+    /**
+     * test time from when the scenario started
+     *
+     * @Then (the )total elapsed time should be :comparison than :expected seconds
+     * @Then (the )total elapsed time should be :comparison to :expected seconds
+     */
+    public function elapsedTime($comparison, $expected)
+    {
+        $elapsed = time() - $this->timerStartedAt;
+
+        switch ($comparison) {
+            case 'less':
+                $this->assertTrue($elapsed < $expected, "Elapsed time '$elapsed' is not less than '$expected' seconds.");
+                break;
+
+            case 'more':
+                $this->assertTrue($elapsed > $expected, "Elapsed time '$elapsed' is not more than '$expected' seconds.");
+                break;
+
+            case 'equal':
+                $this->assertTrue($elapsed === $expected, "Elapsed time '$elapsed' is not '$expected' seconds.");
+                break;
+
+            default:
+                throw new PendingException("Unknown comparison '$comparison'. Use 'less', 'more' or 'equal'");
+        }
     }
 }

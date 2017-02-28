@@ -62,10 +62,22 @@ Feature: Browser Feature
     @javascript
     Scenario: Wait before seeing
         Given I am on "/browser/timeout.html"
-        Then I wait 3 seconds until I see "timeout"
+        When I wait 3 seconds until I see "timeout"
         And I wait 1 second
         And I wait for "#iframe" element
         And I wait 5 seconds for "#iframe" element
+        Then the total elapsed time should be less than 6 seconds
+
+    @javascript
+    Scenario: Waited upon text should actually be visible
+        Given I am on "/browser/timeout.html"
+        Then I should not see "timeout"
+        When I wait 3 seconds until I see "timeout"
+        Then I should see "timeout"
+
+    Scenario: Waited upon text should actually be visible
+        Given I am on "/browser/index.html"
+        Then I should not see "foobar" within 1 second
 
     @javascript
     Scenario: Check element visibility
@@ -83,3 +95,10 @@ Feature: Browser Feature
     Scenario:
         Given I am on "/browser/elements.html"
         Then i save the value of "today" in the "today" parameter
+
+    Scenario: Waiting for fractions of a second
+        Given I am on "/browser/index.html"
+        And I wait 1.9 seconds
+        And I wait 1.9 seconds
+        And I wait 1.9 seconds
+        Then the total elapsed time should be more than 4 seconds
