@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\HttpCall\Request;
+namespace Behatch\HttpCall\Request;
 
 use Behat\Mink\Mink;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

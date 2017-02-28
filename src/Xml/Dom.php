@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Xml;
+namespace Behatch\Xml;
 
 class Dom
 {

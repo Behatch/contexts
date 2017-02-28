@@ -1,8 +1,8 @@
 <?php
 
-namespace Sanpi\Behatch\Context;
+namespace Behatch\Context;
 
-use Sanpi\Behatch\Xml\Dom;
+use Behatch\Xml\Dom;
 use Behat\Gherkin\Node\PyStringNode;
 
 class XmlContext extends BaseContext

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\HttpCall;
+namespace Behatch\HttpCall;
 
 class ContextSupportedVoters implements ContextSupportedVoter
 {

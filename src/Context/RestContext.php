@@ -1,9 +1,9 @@
 <?php
 
-namespace Sanpi\Behatch\Context;
+namespace Behatch\Context;
 
+use Behatch\HttpCall\Request;
 use Behat\Gherkin\Node\TableNode;
-use Sanpi\Behatch\HttpCall\Request;
 use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext

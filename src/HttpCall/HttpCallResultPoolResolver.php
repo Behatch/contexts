@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\HttpCall;
+namespace Behatch\HttpCall;
 
 use Behat\Behat\Context\Argument\ArgumentResolver;
 

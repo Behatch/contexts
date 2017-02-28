@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Context\ContextClass;
+namespace Behatch\Context\ContextClass;
 
 use Behat\Behat\Context\ContextClass\ClassResolver as BaseClassResolver;
 

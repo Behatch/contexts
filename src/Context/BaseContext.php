@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Context;
+namespace Behatch\Context;
 
 use Behat\Behat\Context\TranslatableContext;
 use Behat\MinkExtension\Context\RawMinkContext;
