@@ -49,7 +49,7 @@ class DebugContext extends BaseContext
             $makeScreenshot = false;
             $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
             $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
-            if ($background = $this->getBackground($scope)) {
+            if ($this->getBackground($scope)) {
                 $makeScreenshot = $scope->getFeature()->hasTag('javascript');
                 $scenarioName   = 'background';
             } else {
