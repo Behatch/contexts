@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Tests\Units\Json;
+namespace Behatch\Tests\Units\Json;
 
 class JsonSchema extends \atoum
 {
@@ -24,7 +24,7 @@ class JsonSchema extends \atoum
     public function test_validate()
     {
         $schema = $this->newTestedInstance('{}');
-        $json = new \Sanpi\Behatch\Json\Json('{}');
+        $json = new \Behatch\Json\Json('{}');
         $validator = new \JsonSchema\Validator();
         $result = $schema->validate($json, $validator);
 
@@ -35,7 +35,7 @@ class JsonSchema extends \atoum
     public function test_validate_invalid()
     {
         $schema = $this->newTestedInstance('{ "type": "object", "properties": {}, "additionalProperties": false }');
-        $json = new \Sanpi\Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
+        $json = new \Behatch\Json\Json('{ "foo": { "bar": "foobar" } }');
         $validator = new \JsonSchema\Validator();
         $this->exception(function () use($schema, $json, $validator) {
             $schema->validate($json, $validator);

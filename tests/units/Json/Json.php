@@ -1,6 +1,6 @@
 <?php
 
-namespace Sanpi\Behatch\Tests\Units\Json;
+namespace Behatch\Tests\Units\Json;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
@@ -10,7 +10,7 @@ class Json extends \atoum
     {
         $json = $this->newTestedInstance('{"foo": "bar"}');
         $this->object($json)
-            ->isInstanceOf('Sanpi\Behatch\Json\Json');
+            ->isInstanceOf('Behatch\Json\Json');
     }
 
     public function test_construct_invalid_json()

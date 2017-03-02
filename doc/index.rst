@@ -76,7 +76,7 @@ Project dependency
     default:
         # ...
         extensions:
-            Sanpi\Behatch\Extension: ~
+            Behatch\Extension: ~
 
 Project bootstraping
 ********************
