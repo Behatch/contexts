@@ -103,13 +103,13 @@ In ``behat.yml``, enable desired contexts:
         suites:
             default:
                 contexts:
-                    - behatch:browser
-                    - behatch:debug
-                    - behatch:system
-                    - behatch:json
-                    - behatch:table
-                    - behatch:rest
-                    - behatch:xml
+                    - behatch:context:browser
+                    - behatch:context:debug
+                    - behatch:context:system
+                    - behatch:context:json
+                    - behatch:context:table
+                    - behatch:context:rest
+                    - behatch:context:xml
 
 Configuration
 -------------
