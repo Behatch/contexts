@@ -9,18 +9,13 @@ use Behat\Mink\Exception\ElementNotFoundException;
 
 class AccesibilityContext extends BaseContext
 {
-
-    public function __construct()
-    {
-    }
-
     /**
      * @Then all images should have an alt attribute
      */
     public function allImagesShouldHaveAnAltAttribute()
     {
         $images = $this->getSession()->getPage()->findAll('xpath', '//img[not(@alt)]');
-        if ($images != null) {
+        if ($images !== null) {
             throw new \Exception("There are images without an alt attribute");
         } 
     }
@@ -42,8 +37,19 @@ class AccesibilityContext extends BaseContext
     public function allTablesShouldHaveATableHeader()
     {
         $tables = $this->getSession()->getPage()->findAll('xpath', '//table/*[not(th)]');
-        if ($tables != null) {
+        if ($tables !== null) {
             throw new \Exception("There are tables without a table header");
         }
     }
+
+    /**
+     * @Then all tables should have at least one data row
+     */
+    public function allTablesShouldHaveAtLeastOneDataRow()
+    {
+        $tables = $this->getSession()->getPage()->findAll('xpath', '//table/*[not(td)]');
+        if ($tables !== null) {
+            throw new \Exception("There are tables without a data row");
+        }
+    }    
 }
