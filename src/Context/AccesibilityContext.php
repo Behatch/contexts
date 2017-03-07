@@ -1,11 +1,13 @@
 <?php
 
-namespace Sanpi\Behatch\Context;
+namespace Behatch\Context;
 
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Exception\ResponseTextException;
 use Behat\Mink\Exception\ElementNotFoundException;
+use WebDriver\Exception\StaleElementReference;
+use Behat\Behat\Tester\Exception\PendingException;
 
 class AccesibilityContext extends BaseContext
 {
