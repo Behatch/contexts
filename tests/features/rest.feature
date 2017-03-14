@@ -4,6 +4,7 @@ Feature: Testing RESTContext
         When I send a GET request to "rest/index.php"
         And the header "Content-Type" should contain "text"
         And the header "Content-Type" should be equal to "text/html; charset=UTF-8"
+        And the header "Content-Type" should not be equal to "x-test/no-such-type"
         And the header "Content-Type" should not contain "text/json"
         And the header "xxx" should not exist
         And the response should expire in the future
