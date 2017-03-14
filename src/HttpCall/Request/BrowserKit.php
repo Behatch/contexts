@@ -105,14 +105,20 @@ class BrowserKit
 
     public function getHttpHeader($name)
     {
+        $values = $this->getHttpRawHeader($name);
+
+        return implode(', ', $values);
+    }
+
+    public function getHttpRawHeader($name)
+    {
         $name = strtolower($name);
         $headers = $this->getHttpHeaders();
 
         if (isset($headers[$name])) {
-            if (is_array($headers[$name])) {
-                $value = implode(', ', $headers[$name]);
-            } else {
-                $value = $headers[$name];
+            $value = $headers[$name];
+            if (!is_array($headers[$name])) {
+                $value = [$headers[$name]];
             }
         } else {
             throw new \OutOfBoundsException(
