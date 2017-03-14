@@ -115,7 +115,7 @@ class RestContext extends BaseContext
     /**
     * Checks, whether the header name is not equal to given text
     *
-    * @Then the header :name should not equal :value
+    * @Then the header :name should not be equal to :value
     */
     public function theHeaderShouldNotBeEqualTo($name, $value) {
         $actual = $this->getSession()->getResponseHeader($name);
