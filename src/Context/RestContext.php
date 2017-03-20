@@ -175,8 +175,8 @@ class RestContext extends BaseContext
      */
     public function theResponseShouldExpireInTheFuture()
     {
-        $date = new \DateTime($this->request->getHttpHeader('Date'));
-        $expires = new \DateTime($this->request->getHttpHeader('Expires'));
+        $date = new \DateTime($this->request->getHttpRawHeader('Date')[0]);
+        $expires = new \DateTime($this->request->getHttpRawHeader('Expires')[0]);
 
         $this->assertSame(1, $expires->diff($date)->invert,
             sprintf('The response doesn\'t expire in the future (%s)', $expires->format(DATE_ATOM))
