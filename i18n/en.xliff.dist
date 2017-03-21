@@ -145,6 +145,10 @@
                 <source>command should last more than :seconds seconds</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="print-output">
+                <source>print output</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-create-the-file-contening">
                 <source>(I )create the file :filename containing:</source>
                 <target></target>

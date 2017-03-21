@@ -47,6 +47,8 @@ class SystemContext implements Context
     {
         $start = microtime(true);
 
+        $this->output = [];
+
         exec($cmd, $this->output, $this->lastReturnCode);
 
         $this->lastExecutionTime = microtime(true) - $start;
@@ -70,6 +72,7 @@ class SystemContext implements Context
      */
     public function commandShouldSucceed() {
         if ($this->lastReturnCode !== 0) {
+            $this->printOutput();
             throw new \Exception(sprintf("Command should succeed %b", $this->lastReturnCode));
         };
     }
@@ -81,6 +84,7 @@ class SystemContext implements Context
      */
     public function commandShouldFail() {
         if ($this->lastReturnCode === 0) {
+            $this->printOutput();
             throw new \Exception(sprintf("Command should fail %b", $this->lastReturnCode));
         };
     }
@@ -178,6 +182,14 @@ class SystemContext implements Context
         if ($check === false) {
             throw new \Exception("Output should not be");
         }
+    }
+
+    /**
+     * @Then print output
+     */
+    public function printOutput()
+    {
+        echo implode("\n", $this->output);
     }
 
     /**

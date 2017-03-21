@@ -157,6 +157,10 @@
                 <source><![CDATA[output should not be:]]></source>
                 <target><![CDATA[la sortie ne devrait pas être égale à :]]></target>
             </trans-unit>
+            <trans-unit id="print-output">
+                <source><![CDATA[print output]]></source>
+                <target><![CDATA[afficher la sortie]]></target>
+            </trans-unit>
             <trans-unit id="i-create-the-file-contening">
                 <source><![CDATA[(I )create the file :filename containing:]]></source>
                 <target><![CDATA[(je )crée le fichier :filename contenant :]]></target>

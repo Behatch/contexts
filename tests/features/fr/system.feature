@@ -7,6 +7,16 @@ Fonctionnalité:
         Étant donné j'exécute "false"
         Alors la commande planter
 
+    @fail
+    Scénario:
+        Étant donné j'exécute "ls behat.yml.dist; false"
+        Alors la commande devrait réussir
+
+    @fail
+    Scénario:
+        Étant donné j'exécute "ls behat.yml.dist;"
+        Alors la commande planter
+
     Scénario:
         Étant donné j'exécute "sleep 1"
         Alors la commande devrait durer moins de 2 secondes
@@ -33,6 +43,10 @@ Fonctionnalité:
         Hello John
         How are you?
         """
+
+    Scénario: Debug
+        Étant donné j'exécute "echo 'Hello world\nHow are you?'"
+        Alors afficher la sortie
 
     Scénario:
         Étant donné j'exécute "bin/behat --help"

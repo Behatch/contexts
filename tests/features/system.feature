@@ -6,6 +6,16 @@ Feature: System feature
         Given I execute "false"
         Then command should fail
 
+    @fail
+    Scenario: Fail
+        Given I execute "ls behat.yml.dist; false"
+        Then command should succeed
+
+    @fail
+    Scenario: Fail
+        Given I execute "ls behat.yml.dist"
+        Then command should fail
+
     Scenario: Testing execution time
         Given I execute "sleep 1"
         Then Command should last less than 2 seconds
@@ -32,6 +42,10 @@ Feature: System feature
         Hello John
         How are you?
         """
+
+    Scenario: Debug
+        Given I execute "echo 'Hello world\nHow are you?'"
+        Then print output
 
     Scenario: Testing execution from the project root
         Given I execute "bin/behat --help"
