@@ -68,7 +68,7 @@ class JsonContext extends BaseContext
      *
      * @Then the JSON nodes should be equal to:
      */
-    public function theJsonNodesShoudBeEqualTo(TableNode $nodes)
+    public function theJsonNodesShouldBeEqualTo(TableNode $nodes)
     {
         foreach ($nodes->getRowsHash() as $node => $text) {
             $this->theJsonNodeShouldBeEqualTo($node, $text);
@@ -210,7 +210,7 @@ class JsonContext extends BaseContext
      *
      * @Then the JSON nodes should contain:
      */
-    public function theJsonNodesShoudContain(TableNode $nodes)
+    public function theJsonNodesShouldContain(TableNode $nodes)
     {
         foreach ($nodes->getRowsHash() as $node => $text) {
             $this->theJsonNodeShouldContain($node, $text);
@@ -236,7 +236,7 @@ class JsonContext extends BaseContext
      *
      * @Then the JSON nodes should not contain:
      */
-    public function theJsonNodesShoudNotContain(TableNode $nodes)
+    public function theJsonNodesShouldNotContain(TableNode $nodes)
     {
         foreach ($nodes->getRowsHash() as $node => $text) {
             $this->theJsonNodeShouldNotContain($node, $text);
