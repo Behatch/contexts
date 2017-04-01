@@ -37,7 +37,3 @@ before_script:
 script:
     - ./bin/atoum
     - ./bin/behat -fprogress --tags='~@user'
-
-    - ./bin/box build
-    - sed -i 's/Sanpi\\Behatch\\Extension/behatch_contexts.phar/' behat.yml
-    - ./bin/behat -fprogress --tags='~@user'
