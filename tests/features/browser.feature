@@ -66,7 +66,7 @@ Feature: Browser Feature
         And I wait 1 second
         And I wait for "#iframe" element
         And I wait 5 seconds for "#iframe" element
-        Then the total elapsed time should be less than 6 seconds
+        Then the total elapsed time should be more than 3 seconds
 
     @javascript
     Scenario: Waited upon text should actually be visible
@@ -90,7 +90,6 @@ Feature: Browser Feature
         Given I am on "/browser/elements.html"
         Then I fill in "today" with the current date
         And I fill in "today" with the current date and modifier "-1 day"
-
 
     Scenario:
         Given I am on "/browser/elements.html"
