@@ -10,6 +10,8 @@ filter:
 
 checks:
     php:
+        excluded_dependencies:
+            - atoum/atoum
         security_vulnerabilities: true
         use_self_instead_of_fqcn: true
         uppercase_constants: true
