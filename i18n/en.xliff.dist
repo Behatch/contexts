@@ -3,6 +3,10 @@
         <header></header>
         <body>
             <!-- BrowserContext.php -->
+            <trans-unit id="i-start-timing-now">
+                <source>(I )start timing now</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-set-basic-authentication">
                 <source>I set basic authentication with :user and :password</source>
                 <target></target>
@@ -43,12 +47,20 @@
                 <source>(I )wait :count second(s) until I see :text</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="i-should-not-see-within-second">
+                <source>(I )should not see :text within :count second(s)</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-wait-until-i-see">
                 <source>(I )wait until I see :text</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
                 <source>(I )wait :count second(s) until I see :text in the :element element</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="i-wait-second">
+                <source>(I )wait :count second(s)</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
@@ -63,10 +75,6 @@
                 <source>(I )wait :count second(s) for :element element</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="i-wait-second">
-                <source>(I )wait :count second(s)</source>
-                <target></target>
-            </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
                 <source><![CDATA[/^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target></target>
@@ -79,12 +87,12 @@
                 <source>(I )should see more than :count :element in the :index :parent</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-element-shouls-be-disabled">
-                <source>the element :element should be disabled</source>
-                <target></target>
-            </trans-unit>
             <trans-unit id="the-element-should-be-enabled">
                 <source>the element :element should be enabled</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-element-shouls-be-disabled">
+                <source>the element :element should be disabled</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-select-box-should-contain">
@@ -113,6 +121,14 @@
             </trans-unit>
             <trans-unit id="i-switch-to-main-frame">
                 <source>(I )switch to main frame</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-than-seconds">
+                <source>(the )total elapsed time should be :comparison than :expected seconds</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-to-seconds">
+                <source>(the )total elapsed time should be :comparison to :expected seconds</source>
                 <target></target>
             </trans-unit>
 
@@ -277,8 +293,12 @@
                 <source>the response should be empty</source>
                 <target></target>
             </trans-unit>
-            <trans-unit id="the-header-should-equal-to">
+            <trans-unit id="the-header-should-be-equal-to">
                 <source>the header :name should be equal to :value</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-be-equal-to">
+                <source>the header :name should not be equal to :value</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="i-add-header-equal-to">
