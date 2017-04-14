@@ -3,6 +3,10 @@
         <header />
         <body>
             <!-- BrowserContext.php -->
+            <trans-unit id="i-start-timing-now">
+                <source>(I )start timing now</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-set-basic-authentication">
                 <source><![CDATA[I set basic authentication with :user and :password]]></source>
                 <target><![CDATA[eu preencho a autenticação com :user e :password]]></target>
@@ -39,6 +43,10 @@
                 <source><![CDATA[(I )wait :count second(s) until I see :text]]></source>
                 <target><![CDATA[(eu )espero :count segundo(s) até ver :text]]></target>
             </trans-unit>
+            <trans-unit id="i-should-not-see-within-second">
+                <source>(I )should not see :text within :count second(s)</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-wait-until-i-see">
                 <source><![CDATA[(I )wait until I see :text]]></source>
                 <target><![CDATA[(eu )espero até ver :text]]></target>
@@ -46,6 +54,10 @@
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait :count second(s) until I see :text in the :element element]]></source>
                 <target><![CDATA[(eu )espero :count segundo(s) até ver :text no elemento :element]]></target>
+            </trans-unit>
+            <trans-unit id="i-wait-second">
+                <source><![CDATA[(I )wait :count second(s)]]></source>
+                <target><![CDATA[(eu )espero :count segundo(s)]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait until I see :text in the :element element]]></source>
@@ -59,10 +71,6 @@
                 <source><![CDATA[(I )wait :count second(s) for :element element]]></source>
                 <target><![CDATA[(eu )espero :count segundo(s) pelo elemento :element]]></target>
             </trans-unit>
-            <trans-unit id="i-wait-second">
-                <source><![CDATA[(I )wait :count second(s)]]></source>
-                <target><![CDATA[(eu )espero :count segundo(s)]]></target>
-            </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
                 <source><![CDATA[/^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|eu )devo ver (?P<count>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
@@ -75,13 +83,13 @@
                 <source><![CDATA[(I )should see more than :count :element in the :index :parent]]></source>
                 <target><![CDATA[/^(?:|eu )devo ver mais que (?P<count>\d+) "(?P<element>[^"]*)" no (?P<index>\d+)(?:º) "(?P<parent>[^"]*)"$/]]></target>
             </trans-unit>
-            <trans-unit id="the-element-shouls-be-disabled">
-                <source><![CDATA[the element :element should be disabled]]></source>
-                <target><![CDATA[o elemento :element não deve estar ativo]]></target>
-            </trans-unit>
             <trans-unit id="the-element-should-be-enabled">
                 <source><![CDATA[the element :element should be enabled]]></source>
                 <target><![CDATA[o elemento :element deve estar ativo]]></target>
+            </trans-unit>
+            <trans-unit id="the-element-shouls-be-disabled">
+                <source><![CDATA[the element :element should be disabled]]></source>
+                <target><![CDATA[o elemento :element não deve estar ativo]]></target>
             </trans-unit>
             <trans-unit id="the-select-box-should-contain">
                 <source><![CDATA[the :select select box should contain :option]]></source>
@@ -110,6 +118,14 @@
             <trans-unit id="i-switch-to-main-frame">
                 <source><![CDATA[(I )switch to main frame]]></source>
                 <target><![CDATA[(eu )mudo para o frame principal]]></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-than-seconds">
+                <source>(the )total elapsed time should be :comparison than :expected seconds</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-to-seconds">
+                <source>(the )total elapsed time should be :comparison to :expected seconds</source>
+                <target></target>
             </trans-unit>
 
             <!-- SystemContext.php -->
@@ -273,9 +289,13 @@
                 <source><![CDATA[the response should be empty]]></source>
                 <target><![CDATA[a resposta deve estar vazia]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-equal-to">
+            <trans-unit id="the-header-should-be-equal-to">
                 <source><![CDATA[the header :name should be equal to :value]]></source>
                 <target><![CDATA[o header :name deve ser igual a :value]]></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-be-equal-to">
+                <source>the header :name should not be equal to :value</source>
+                <target></target>
             </trans-unit>
             <trans-unit id="i-add-header-equal-to">
                 <source><![CDATA[I add :name header equal to :value]]></source>
