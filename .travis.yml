@@ -36,4 +36,4 @@ before_script:
 
 script:
     - ./bin/atoum
-    - ./bin/behat -fprogress --tags='~@user'
+    - ./bin/behat -fprogress --tags='~@user' --no-interaction
