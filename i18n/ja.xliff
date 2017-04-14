@@ -3,6 +3,10 @@
         <header />
         <body>
             <!-- BrowserContext.php -->
+            <trans-unit id="i-start-timing-now">
+                <source>(I )start timing now</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-set-basic-authentication">
                 <source><![CDATA[I set basic authentication with :user and :password]]></source>
                 <target><![CDATA[/^Basic認証を"(?P<user>[^"]*)"と"(?P<password>[^"]*)"で設定する$/u]]></target>
@@ -39,6 +43,10 @@
                 <source><![CDATA[(I )wait :count second(s) until I see :text]]></source>
                 <target><![CDATA[/^(?:|私が)"(?P<text>[^"]*)"を見るまで(?P<seconds>\d+)秒間?待つ$/u]]></target>
             </trans-unit>
+            <trans-unit id="i-should-not-see-within-second">
+                <source>(I )should not see :text within :count second(s)</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="i-wait-until-i-see">
                 <source><![CDATA[(I )wait until I see :text]]></source>
                 <target><![CDATA[/^(?:|私が)"(?P<text>[^"]*)"を見るまで待つ$/u]]></target>
@@ -46,6 +54,10 @@
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait :count second(s) until I see :text in the :element element]]></source>
                 <target><![CDATA[/^(?:|私が)"(?P<element>[^"]*)"要素(?:で|に)"(?P<text>[^"]*)"を見るまで(?P<seconds>\d+)秒間?待つ$/u]]></target>
+            </trans-unit>
+            <trans-unit id="i-wait-second">
+                <source><![CDATA[(I )wait :count second(s)]]></source>
+                <target><![CDATA[/^(?:|私が)(?P<seconds>\d+)秒間?待つ$/u]]></target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait until I see :text in the :element element]]></source>
@@ -59,10 +71,6 @@
                 <source><![CDATA[(I )wait :count second(s) for :element element]]></source>
                 <target><![CDATA[(私が ):element 要素を見るまで :count 秒(間)待つ]]></target>
             </trans-unit>
-            <trans-unit id="i-wait-second">
-                <source><![CDATA[(I )wait :count second(s)]]></source>
-                <target><![CDATA[/^(?:|私が)(?P<seconds>\d+)秒間?待つ$/u]]></target>
-            </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
                 <source><![CDATA[/^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?P<index>\d+)番目の"(?P<parent>[^"]*)"(?:|要素)が(?P<count>\d+)個の"(?P<element>[^"]*)"(?:|要素)を持つこと$/u]]></target>
@@ -75,13 +83,13 @@
                 <source><![CDATA[(I )should see more than :count :element in the :index :parent]]></source>
                 <target><![CDATA[/^(?P<index>\d+)番目の"(?P<parent>[^"]*)"(?:|要素)が(?P<nth>\d+)個以上の"(?P<element>[^"]*)"(?:|要素)を持つこと$/u]]></target>
             </trans-unit>
-            <trans-unit id="the-element-shouls-be-disabled">
-                <source><![CDATA[the element :element should be disabled]]></source>
-                <target><![CDATA[/^"(?P<element>[^"]*)"(?:|要素)が無効であること$/u]]></target>
-            </trans-unit>
             <trans-unit id="the-element-should-be-enabled">
                 <source><![CDATA[the element :element should be enabled]]></source>
                 <target><![CDATA[/^"(?P<element>[^"]*)"(?:|要素)が有効であること$/u]]></target>
+            </trans-unit>
+            <trans-unit id="the-element-shouls-be-disabled">
+                <source><![CDATA[the element :element should be disabled]]></source>
+                <target><![CDATA[/^"(?P<element>[^"]*)"(?:|要素)が無効であること$/u]]></target>
             </trans-unit>
             <trans-unit id="the-select-box-should-contain">
                 <source><![CDATA[the :select select box should contain :option]]></source>
@@ -110,6 +118,14 @@
             <trans-unit id="i-switch-to-main-frame">
                 <source><![CDATA[(I )switch to main frame]]></source>
                 <target><![CDATA[(私が　)メインフレームにフォーカスする]]></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-than-seconds">
+                <source>(the )total elapsed time should be :comparison than :expected seconds</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-to-seconds">
+                <source>(the )total elapsed time should be :comparison to :expected seconds</source>
+                <target></target>
             </trans-unit>
 
             <!-- FileSystemContext.php -->
@@ -204,9 +220,13 @@
                 <source><![CDATA[the response should be equal to]]></source>
                 <target><![CDATA[/^レスポンスが下記と一致すること:$/u]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-equal-to">
+            <trans-unit id="the-header-should-be-equal-to">
                 <source><![CDATA[the header :name should be equal to :value]]></source>
                 <target><![CDATA[/^"(?P<name>[^"]*)"ヘッダが"(?P<value>[^"]*)"と一致すること$/u]]></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-be-equal-to">
+                <source>the header :name should not be equal to :value</source>
+                <target></target>
             </trans-unit>
             <trans-unit id="i-add-header-equal-to">
                 <source><![CDATA[I add :name header equal to :value]]></source>
