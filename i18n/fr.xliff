@@ -3,6 +3,10 @@
         <header />
         <body>
             <!-- BrowserContext.php -->
+            <trans-unit id="i-start-timing-now">
+                <source>(I )start timing now</source>
+                <target>(Je )démarre le compteur de temps maintenant</target>
+            </trans-unit>
             <trans-unit id="i-set-basic-authentication">
                 <source><![CDATA[I set basic authentication with :user and :password]]></source>
                 <target><![CDATA[je remplis l'authentification basique avec :user et :password]]></target>
@@ -17,7 +21,11 @@
             </trans-unit>
             <trans-unit id="i-follow-the-nth-link">
                 <source><![CDATA[(I )follow the :index :link link]]></source>
-                <target><![CDATA[(je )suis le :index liens]]></target>
+                <target><![CDATA[(je )suis le :index :link lien]]></target>
+            </trans-unit>
+            <trans-unit id="i-press-the-nth-button">
+                <source>(I )press the :index :button button</source>
+                <target>(Je )presse le :index :button bouton</target>
             </trans-unit>
             <trans-unit id="i-fill-in-with-the-current-date">
                 <source><![CDATA[(I )fill in :field with the current date]]></source>
@@ -39,6 +47,10 @@
                 <source><![CDATA[(I )wait :count second(s) until I see :text]]></source>
                 <target><![CDATA[(j')attends :count seconde(s) de voir :text]]></target>
             </trans-unit>
+            <trans-unit id="i-should-not-see-within-second">
+                <source>(I )should not see :text within :count second(s)</source>
+                <target>(Je )ne devrais pas voir :text durant :count seconde(s)</target>
+            </trans-unit>
             <trans-unit id="i-wait-until-i-see">
                 <source><![CDATA[(I )wait until I see :text]]></source>
                 <target><![CDATA[(j')attends de voir :text]]></target>
@@ -46,6 +58,10 @@
             <trans-unit id="i-wait-seconds-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait :count second(s) until I see :text in the :element element]]></source>
                 <target><![CDATA[(j')attends (?P<seconds>\d+) secondes? de voir :text dans l'élément (?P<element]]></target>
+            </trans-unit>
+            <trans-unit id="i-wait-second">
+                <source>(I )wait :count second(s)</source>
+                <target>(J')attends :count seconde(s)</target>
             </trans-unit>
             <trans-unit id="i-wait-until-i-see-in-the-element">
                 <source><![CDATA[(I )wait until I see :text in the :element element]]></source>
@@ -59,10 +75,6 @@
                 <source><![CDATA[(I )wait :count second(s) for :element element]]></source>
                 <target><![CDATA[(j')attends :count seconde(s) l'élément :element]]></target>
             </trans-unit>
-            <trans-unit id="i-wait-second">
-                <source><![CDATA[(I )wait :count second(s)]]></source>
-                <target><![CDATA[(j')attends :count seconde(s)]]></target>
-            </trans-unit>
             <trans-unit id="i-should-see-n-in-the-nth">
                 <source><![CDATA[/^(?:|I )should see (?P<count>\d+) "(?P<element>[^"]*)" in the (?P<index>\d+)(?:st|nd|rd|th) "(?P<parent>[^"]*)"$/]]></source>
                 <target><![CDATA[/^(?:|je )devrais voir (?P<count>\d+) "(?P<element>[^"]*)" dans le (?P<index>\d+)(?:er|nd|ième) "(?P<parent>[^"]*)"$/]]></target>
@@ -75,13 +87,13 @@
                 <source><![CDATA[(I )should see more than :count :element in the :index :parent]]></source>
                 <target><![CDATA[(je )devrais voir plus de :count :element dans le :index :parent]]></target>
             </trans-unit>
-            <trans-unit id="the-element-shouls-be-disabled">
-                <source><![CDATA[the element :element should be disabled]]></source>
-                <target><![CDATA[l'élément :element devrait être désactivé]]></target>
-            </trans-unit>
             <trans-unit id="the-element-should-be-enabled">
                 <source><![CDATA[the element :element should be enabled]]></source>
                 <target><![CDATA[l'élément :element devrait être activé]]></target>
+            </trans-unit>
+            <trans-unit id="the-element-shouls-be-disabled">
+                <source><![CDATA[the element :element should be disabled]]></source>
+                <target><![CDATA[l'élément :element devrait être désactivé]]></target>
             </trans-unit>
             <trans-unit id="the-select-box-should-contain">
                 <source><![CDATA[the :select select box should contain :option]]></source>
@@ -110,6 +122,14 @@
             <trans-unit id="i-switch-to-main-frame">
                 <source><![CDATA[(I )switch to main frame]]></source>
                 <target><![CDATA[(je )bascule vers le cadre principal]]></target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-than-seconds">
+                <source>(the )total elapsed time should be :comparison than :expected seconds</source>
+                <target>(le )temps total écoulé devrait être :comparaison que :expected secondes</target>
+            </trans-unit>
+            <trans-unit id="the-total-elapsed-time-should-be-to-seconds">
+                <source>(the )total elapsed time should be :comparison to :expected seconds</source>
+                <target></target>
             </trans-unit>
 
             <!-- SystemContext.php -->
@@ -265,9 +285,13 @@
                 <source><![CDATA[the response should be equal to:]]></source>
                 <target><![CDATA[la réponse devrait être égale à :]]></target>
             </trans-unit>
-            <trans-unit id="the-header-should-equal-to">
+            <trans-unit id="the-header-should-be-equal-to">
                 <source><![CDATA[the header :name should be equal to :value]]></source>
                 <target><![CDATA[l'entête :name devrait être égal à :value]]></target>
+            </trans-unit>
+            <trans-unit id="the-header-should-not-be-equal-to">
+                <source>the header :name should not be equal to :value</source>
+                <target>l'entête :name ne derait pas être égale à :value</target>
             </trans-unit>
             <trans-unit id="i-add-header-equal-to">
                 <source><![CDATA[I add :name header equal to :value]]></source>
