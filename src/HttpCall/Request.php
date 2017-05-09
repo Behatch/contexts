@@ -12,6 +12,11 @@ class Request
     private $mink;
 
     /**
+     * @var Request\BrowserKit
+     */
+    private $client;
+
+    /**
      * Request constructor.
      * @param Mink $mink
      */
@@ -35,11 +40,14 @@ class Request
      */
     private function getClient()
     {
-        if ($this->mink->getDefaultSessionName() === 'symfony2') {
-            return new Request\Goutte($this->mink);
+        if (!$this->client) {
+            if ($this->mink->getDefaultSessionName() === 'symfony2') {
+                $this->client = new Request\Goutte($this->mink);
+            }
+            else {
+                $this->client = new Request\BrowserKit($this->mink);
+            }
         }
-        else {
-            return new Request\BrowserKit($this->mink);
-        }
+        return $this->client;
     }
 }
