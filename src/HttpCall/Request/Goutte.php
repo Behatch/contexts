@@ -20,18 +20,6 @@ class Goutte extends BrowserKit
         return $page;
     }
 
-    public function getServer()
-    {
-        return $this->getRequest()
-            ->server->all();
-    }
-
-    public function getParameters()
-    {
-        return $this->getRequest()
-            ->query->all();
-    }
-
     public function setHttpHeader($name, $value)
     {
         $name = strtoupper("http_$name");
