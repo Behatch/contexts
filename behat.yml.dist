@@ -1,6 +1,4 @@
 default:
-    calls:
-        error_reporting: 16383 # E_ALL & ~E_USER_DREPRECATED
     suites:
         default:
             paths: [ %paths.base%/tests/features ]
@@ -31,8 +29,6 @@ default:
         Behatch\Extension: ~
 
 symfony2:
-    calls:
-        error_reporting: 16383 # E_ALL & ~E_USER_DREPRECATED
     extensions:
         Behat\MinkExtension\ServiceContainer\MinkExtension:
             default_session: symfony2
