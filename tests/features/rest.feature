@@ -56,6 +56,10 @@ Feature: Testing RESTContext
         When I send a GET request to "/rest/index.php"
         Then I should see "HTTP_XXX : yyy"
 
+    Scenario: Header should not be cross-scenarios persistent
+        When I send a GET request to "/rest/index.php"
+        Then I should not see "HTTP_XXX : yyy"
+
     Scenario: Case-insensitive header name
         Like describe in the rfc2614 §4.2
         https://tools.ietf.org/html/rfc2616#section-4.2

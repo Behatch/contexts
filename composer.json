@@ -6,7 +6,7 @@
     "license": "beerware",
 
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.5",
         "behat/behat": "~3.0",
         "behat/mink-extension": "~2.0",
         "justinrainbow/json-schema": "~5.0",
@@ -17,7 +17,8 @@
     "require-dev": {
         "behat/mink-goutte-driver": "~1.1",
         "behat/mink-selenium2-driver": "~1.2",
-        "atoum/atoum": "~2.8|~3.0"
+        "atoum/atoum": "~2.8|~3.0",
+        "fabpot/goutte": "~3.2"
     },
 
     "autoload": {
