@@ -376,7 +376,7 @@ class JsonContext extends BaseContext
 
     private function checkSchemaFile($filename)
     {
-        if (false === is_file($filename)) {
+        if (false === is_file(getcwd() . '/' . $filename)) {
             throw new \RuntimeException(
                 'The JSON schema doesn\'t exist'
             );
