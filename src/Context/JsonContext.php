@@ -322,7 +322,7 @@ class JsonContext extends BaseContext
             $this->getJson(),
             new JsonSchema(
                 file_get_contents($filename),
-                'file://' . getcwd() . '/' . $filename
+                'file://' . realpath($filename)
             )
         );
     }
@@ -332,8 +332,6 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeInvalidAccordingToTheSchema($filename)
     {
-        $this->checkSchemaFile($filename);
-
         $this->not(function () use($filename) {
             return $this->theJsonShouldBeValidAccordingToTheSchema($filename);
         }, "The schema was valid");

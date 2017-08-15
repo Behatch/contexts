@@ -37,16 +37,6 @@ class JsonInspector
         $resolver = new \JsonSchema\SchemaStorage(new \JsonSchema\Uri\UriRetriever, new \JsonSchema\Uri\UriResolver);
         $schema->resolve($resolver);
 
-        $validator->check($json->getContent(), $schema->getContent());
-        $isValid = $validator->isValid();
-        if (!$isValid) {
-            $msg = "JSON does not validate. Violations:".PHP_EOL;
-            foreach ($validator->getErrors() as $error) {
-                $msg .= sprintf("  - [%s] %s".PHP_EOL, $error['property'], $error['message']);
-            }
-            throw new \Exception($msg);
-        }
-
-        return $isValid;
+        return $schema->validate($json, $validator);
     }
 }
