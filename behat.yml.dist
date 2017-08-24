@@ -23,8 +23,6 @@ default:
             selenium2: ~
             browser_name: 'chrome'
             sessions:
-                default:
-                    goutte: ~
                 symfony2:
                     goutte: ~
         Behatch\Extension: ~
