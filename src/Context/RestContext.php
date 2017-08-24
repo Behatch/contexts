@@ -87,7 +87,7 @@ class RestContext extends BaseContext
     {
         $expected = str_replace('\\"', '"', $expected);
         $actual   = $this->request->getContent();
-        $message = "The string '$expected' is not equal to the response of the current page";
+        $message = "Actual response is '$actual', but expected '$expected'";
         $this->assertEquals($expected, $actual, $message);
     }
 
@@ -99,7 +99,7 @@ class RestContext extends BaseContext
     public function theResponseShouldBeEmpty()
     {
         $actual = $this->request->getContent();
-        $message = 'The response of the current page is not empty';
+        $message = "The response of the current page is not empty, it is: $actual";
         $this->assertTrue(null === $actual || "" === $actual, $message);
     }
 
@@ -112,7 +112,7 @@ class RestContext extends BaseContext
     {
         $actual = $this->request->getHttpHeader($name);
         $this->assertEquals(strtolower($value), strtolower($actual),
-            "The header '$name' is equal to '$actual'"
+            "The header '$name' should be equal to '$value', but it is: '$actual'"
         );
     }
 
@@ -131,15 +131,25 @@ class RestContext extends BaseContext
         }
     }
 
+    public function theHeaderShouldBeContains($name, $value)
+    {
+        trigger_error(
+            sprintf('The %s function is deprecated since version 3.1 and will be removed in 4.0. Use the %s::theHeaderShouldContain function instead.', __METHOD__, __CLASS__),
+            E_USER_DEPRECATED
+        );
+        $this->theHeaderShouldContain($name, $value);
+    }
+
     /**
      * Checks, whether the header name contains the given text
      *
      * @Then the header :name should contain :value
      */
-    public function theHeaderShouldBeContains($name, $value)
+    public function theHeaderShouldContain($name, $value)
     {
-        $this->assertContains($value, $this->request->getHttpHeader($name),
-            "The header '$name' doesn't contain '$value'"
+        $actual = $this->request->getHttpHeader($name);
+        $this->assertContains($value, $actual,
+            "The header '$name' should contain value '$value', but actual value is '$actual'"
         );
     }
 
@@ -207,7 +217,7 @@ class RestContext extends BaseContext
             throw new \Exception("The response is not encoded in $encoding");
         }
 
-        $this->theHeaderShouldBeContains('Content-Type', "charset=$encoding");
+        $this->theHeaderShouldContain('Content-Type', "charset=$encoding");
     }
 
     /**
