@@ -16,18 +16,20 @@ default:
                 - behatch:context:table
                 - behatch:context:xml
     extensions:
-        Behat\MinkExtension\ServiceContainer\MinkExtension:
+        Behat\MinkExtension:
             base_url: 'http://localhost:8080'
             files_path: 'tests/fixtures/files'
             goutte: ~
             selenium2: ~
             browser_name: 'chrome'
             sessions:
+                default:
+                    goutte: ~
                 symfony2:
                     goutte: ~
         Behatch\Extension: ~
 
 symfony2:
     extensions:
-        Behat\MinkExtension\ServiceContainer\MinkExtension:
+        Behat\MinkExtension:
             default_session: symfony2
