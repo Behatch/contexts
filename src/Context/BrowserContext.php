@@ -82,8 +82,7 @@ class BrowserContext extends BaseContext
      */
     public function iFollowTheNthLink($index, $link)
     {
-        $element = ['link', $this->getSession()->getSelectorsHandler()->xpathLiteral($link)];
-        $node = $this->findElement('named', $element, $index);
+        $node = $this->findElement('named', ['link', $link], $index);
         $node->click();
     }
 
@@ -94,8 +93,7 @@ class BrowserContext extends BaseContext
      */
     public function pressTheNthButton($index, $button)
     {
-        $element = ['button', $this->getSession()->getSelectorsHandler()->xpathLiteral($button)];
-        $node = $this->findElement('named', $element, $index);
+        $node = $this->findElement('named', ['button', $button], $index);
         $node->click();
     }
 
