@@ -7,6 +7,9 @@ use Behat\Behat\Hook\Scope\AfterStepScope;
 
 class DebugContext extends BaseContext
 {
+    /**
+     * @var string
+     */
     private $screenshotDir;
 
     public function __construct($screenshotDir = '.')
@@ -46,7 +49,6 @@ class DebugContext extends BaseContext
     public function failScreenshots(AfterStepScope $scope)
     {
         if (! $scope->getTestResult()->isPassed()) {
-            $makeScreenshot = false;
             $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
             $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
             if ($this->getBackground($scope)) {
@@ -88,7 +90,7 @@ class DebugContext extends BaseContext
 
     /**
      * @param AfterStepScope $scope
-     * @return \Behat\Gherkin\Node\BackgroundNode
+     * @return \Behat\Gherkin\Node\BackgroundNode|bool
      */
     private function getBackground(AfterStepScope $scope)
     {
