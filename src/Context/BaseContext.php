@@ -28,7 +28,7 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
         return intval($count);
     }
 
-    protected function not(Callable $callbable, $errorMessage)
+    protected function not(callable $callbable, $errorMessage)
     {
         try {
             $callbable();
