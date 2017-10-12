@@ -37,13 +37,13 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
             return;
         }
 
-        throw new ExpectationException($errorMessage, $this->getSession());
+        throw new ExpectationException($errorMessage, $this->getSession()->getDriver());
     }
 
     protected function assert($test, $message)
     {
         if ($test === false) {
-            throw new ExpectationException($message, $this->getSession());
+            throw new ExpectationException($message, $this->getSession()->getDriver());
         }
     }
 
