@@ -274,7 +274,7 @@ class BrowserContext extends BaseContext
 
         if ($found === false) {
             $message = "The element '$element' was not found after a $count seconds timeout";
-            throw new ResponseTextException($message, $this->getSession(), $e);
+            throw new ResponseTextException($message, $this->getSession()->getDriver(), $e);
         }
     }
 
@@ -353,7 +353,7 @@ class BrowserContext extends BaseContext
         $obj = $this->getSession()->getPage()->findField($select);
         if ($obj === null) {
             throw new ElementNotFoundException(
-                $this->getSession(), 'select box', 'id|name|label|value', $select
+                $this->getSession()->getDriver(), 'select box', 'id|name|label|value', $select
             );
         }
         $optionText = $obj->getText();
