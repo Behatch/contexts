@@ -208,7 +208,7 @@ class BrowserContext extends BaseContext
                 return;
             }
             catch (ExpectationException $e) {
-                /* Intentionaly leave blank */
+                /* Intentionally leave blank */
             }
             catch (StaleElementReference $e) {
                 // assume page reloaded whilst we were still waiting
@@ -257,6 +257,7 @@ class BrowserContext extends BaseContext
     {
         $found = false;
         $startTime = time();
+        $e = null;
 
         do {
             try {
@@ -266,7 +267,7 @@ class BrowserContext extends BaseContext
                 $found = true;
             }
             catch (ExpectationException $e) {
-                /* Intentionnaly leave blank */
+                /* Intentionally leave blank */
             }
         }
         while (!$found && (time() - $startTime < $count));

@@ -2,12 +2,16 @@
 
 namespace Behatch\Context;
 
+use Behat\Mink\Exception\ExpectationException;
 use Behatch\HttpCall\Request;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext
 {
+    /**
+     * @var Request
+     */
     protected $request;
 
     public function __construct(Request $request)
@@ -36,12 +40,12 @@ class RestContext extends BaseContext
      *
      * @Given I send a :method request to :url with parameters:
      */
-    public function iSendARequestToWithParameters($method, $url, TableNode $datas)
+    public function iSendARequestToWithParameters($method, $url, TableNode $data)
     {
         $files = [];
         $parameters = [];
 
-        foreach ($datas->getHash() as $row) {
+        foreach ($data->getHash() as $row) {
             if (!isset($row['key']) || !isset($row['value'])) {
                 throw new \Exception("You must provide a 'key' and 'value' column in your table node.");
             }
