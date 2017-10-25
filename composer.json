@@ -11,7 +11,8 @@
         "behat/mink-extension": "~2.0",
         "justinrainbow/json-schema": "~5.0",
         "symfony/property-access": "~2.3|~3.0",
-        "symfony/http-foundation": "~2.3|~3.0"
+        "symfony/http-foundation": "~2.3|~3.0",
+        "symfony/dom-crawler": "~2.4|~3.0"
     },
 
     "require-dev": {
