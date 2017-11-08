@@ -76,15 +76,6 @@ class JsonContext extends BaseContext
         }
     }
 
-    public function theJsonNodesShoudBeEqualTo(TableNode $nodes)
-    {
-        trigger_error(
-            sprintf('The %s function is deprecated since version 2.7 and will be removed in 3.0. Use the %s::theJsonNodesShouldBeEqualTo function instead.', __METHOD__, __CLASS__),
-            E_USER_DEPRECATED
-        );
-        return $this->theJsonNodesShouldBeEqualTo($nodes);
-    }
-
     /**
      * Checks, that given JSON node is null
      *
@@ -227,15 +218,6 @@ class JsonContext extends BaseContext
         }
     }
 
-    public function theJsonNodesShoudContain(TableNode $nodes)
-    {
-        trigger_error(
-            sprintf('The %s function is deprecated since version 2.7 and will be removed in 3.0. Use the %s::theJsonNodesShouldContain function instead.', __METHOD__, __CLASS__),
-            E_USER_DEPRECATED
-        );
-        return $this->theJsonNodesShouldBeEqualTo($nodes);
-    }
-
     /**
      * Checks, that given JSON node does not contain given value
      *
@@ -260,15 +242,6 @@ class JsonContext extends BaseContext
         foreach ($nodes->getRowsHash() as $node => $text) {
             $this->theJsonNodeShouldNotContain($node, $text);
         }
-    }
-
-    public function theJsonNodesShoudNotContain(TableNode $nodes)
-    {
-        trigger_error(
-            sprintf('The %s function is deprecated since version 2.7 and will be removed in 3.0. Use the %s::theJsonNodesShouldNotContain function instead.', __METHOD__, __CLASS__),
-            E_USER_DEPRECATED
-        );
-        return $this->theJsonNodesShouldBeEqualTo($nodes);
     }
 
     /**
