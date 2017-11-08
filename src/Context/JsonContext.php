@@ -317,19 +317,9 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeInvalidAccordingToThisSchema(PyStringNode $schema)
     {
-        try {
-            $isValid = $this->inspector->validate(
-                $this->getJson(),
-                new JsonSchema($schema)
-            );
-
-        } catch (\Exception $e) {
-            $isValid = false;
-        }
-
-        if (true === $isValid) {
-            throw new ExpectationException('Expected to receive invalid json, got valid one', $this->getSession());
-        }
+        $this->not(function() use($schema) {
+            return $this->theJsonShouldBeValidAccordingToThisSchema($schema);
+        }, 'Expected to receive invalid json, got valid one');
     }
 
     /**
