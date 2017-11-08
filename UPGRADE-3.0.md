@@ -10,3 +10,4 @@ UPGRADE FROM 2.x to 3.0
     * `JsonContext::theJsonNodesShoudBeEqualTo` => `JsonContext::theJsonNodesShouldBeEqualTo`
     * `JsonContext::theJsonNodesShoudContain` => `JsonContext::theJsonNodesShouldContain`
     * `JsonContext::theJsonNodesShoudNotContain` => `JsonContext::theJsonNodesShouldNotContain`
+    * `SystemContext::ouputShouldNotContain` => `SystemContext::outputShouldNotContain`
