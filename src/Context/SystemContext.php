@@ -131,6 +131,16 @@ class SystemContext implements Context
         }
     }
 
+
+    public function ouputShouldNotContain($text)
+    {
+        trigger_error(
+            sprintf('The %s function is deprecated since version 2.8 and will be removed in 3.0. Use the %s::outputShouldNotContain function instead.', __METHOD__, __CLASS__),
+            E_USER_DEPRECATED
+        );
+        $this->outputShouldNotContain($text);
+    }
+
     /**
      * Checks, that output not contains specified text.
      *
