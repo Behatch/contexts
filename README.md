@@ -19,7 +19,7 @@ This extension requires:
 
 ### Project dependency
 
-1. [Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+1. [Install Composer](https://getcomposer.org/download/)
 2. Require the package with Composer:
 
 ```
