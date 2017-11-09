@@ -45,7 +45,7 @@ $ php composer.phar create-project behatch/skeleton
 ```
 
 Browser, json, table and rest step need a mink configuration, see [Mink
-extension](http://extensions.behat.org/mink/) for more information.
+extension](https://github.com/Behat/MinkExtension) for more information.
 
 Usage
 -----
