@@ -41,6 +41,7 @@ before_script:
     - composer install
 
     - test "$DEPS" == "hight" || composer update --prefer-lowest
+    - test "$DEPS" == "hight" || composer update atoum/atoum
 
 script:
     - ./bin/atoum
