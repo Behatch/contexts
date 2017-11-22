@@ -1,7 +1,7 @@
 default:
     suites:
         default:
-            paths: [ %paths.base%/tests/features ]
+            paths: [ '%paths.base%/tests/features' ]
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - behatch:browser:
