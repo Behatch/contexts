@@ -16,7 +16,7 @@ services:
         tags:
             - { name: behatch.context_voter }
 
-    Behatch.http_call.request:
+    behatch.http_call.request:
         class: Behatch\HttpCall\Request
         arguments: ["@mink"]
 

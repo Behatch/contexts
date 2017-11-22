@@ -8,7 +8,7 @@ cache:
 
 env:
     matrix:
-        - DEPS=hight
+        - DEPS=high
         - DEPS=low
 
 php:
@@ -40,8 +40,8 @@ before_script:
     - cp behat.yml{.dist,}
     - composer install
 
-    - test "$DEPS" == "hight" || composer update --prefer-lowest
-    - test "$DEPS" == "hight" || composer update atoum/atoum
+    - test "$DEPS" == "high" || composer update --prefer-lowest
+    - test "$DEPS" == "high" || composer update atoum/atoum
 
 script:
     - ./bin/atoum
