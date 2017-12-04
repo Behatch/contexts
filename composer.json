@@ -36,5 +36,11 @@
 
     "replace": {
         "sanpi/behatch-contexts": "self.version"
+    },
+    
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.8.x-dev"
+        }
     }
 }
