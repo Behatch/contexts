@@ -9,7 +9,6 @@
         "php": ">=5.5",
         "behat/behat": "^3.0.13",
         "behat/mink-extension": "^2.0",
-        "guzzlehttp/guzzle": "^6.3",
         "justinrainbow/json-schema": "^5.0",
         "symfony/property-access": "^2.3|^3.0|^4.0",
         "symfony/http-foundation": "^2.3|^3.0|^4.0",
@@ -18,6 +17,7 @@
 
     "require-dev": {
         "behat/mink-goutte-driver": "^1.1",
+        "guzzlehttp/guzzle": "^6.3",
         "behat/mink-selenium2-driver": "^1.3",
         "atoum/atoum": "^2.8|^3.0",
         "fabpot/goutte": "^3.2"
@@ -37,7 +37,7 @@
     "replace": {
         "sanpi/behatch-contexts": "self.version"
     },
-    
+
     "extra": {
         "branch-alias": {
             "dev-master": "2.8.x-dev"
