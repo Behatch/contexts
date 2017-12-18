@@ -81,6 +81,19 @@ Configuration
 * `rest` - send GET, POST, ... requests and test the HTTP headers
 * `xml` - XML related steps
 
+### Configuration Example
+
+For example, if you want to change default directory to screenshots - you can do it this way:
+
+```yaml
+default:
+    suites:
+        default:
+            contexts:
+                - behatch:context:debug:
+                    screenshotDir: "var"
+```
+
 Translation
 -----------
 
