@@ -199,6 +199,10 @@
                 <source>the JSON node :node should be equal to :text</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-match">
+                <source>the JSON node :node should match :pattern</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-nodes-should-be-equal-to">
                 <source>the JSON nodes should be equal to:</source>
                 <target></target>
