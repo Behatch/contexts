@@ -22,7 +22,14 @@ class Goutte extends BrowserKit
 
     public function setHttpHeader($name, $value)
     {
-        $name = strtoupper("http_$name");
+        $contentHeaders = ['CONTENT_LENGTH' => true, 'CONTENT_MD5' => true, 'CONTENT_TYPE' => true];
+        $name = str_replace('-', '_', strtoupper($name));
+
+        // CONTENT_* are not prefixed with HTTP_ in PHP when building $_SERVER
+        if (!isset($contentHeaders[$name])) {
+            $name = 'HTTP_' . $name;
+        }
+        
         $this->requestHeaders[$name] = $value;
     }
 
