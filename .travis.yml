@@ -41,7 +41,7 @@ before_script:
     - cp behat.yml{.dist,}
     - composer install
 
-    - test "$DEPS" == "high" || composer update --prefer-lowest
+    - test "$DEPS" == "low" || composer update --prefer-lowest
     - test "$DEPS" == "high" || composer update atoum/atoum
 
 script:
