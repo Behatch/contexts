@@ -27,7 +27,12 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
      */
     public function castToInt($count)
     {
-        return intval($count);
+        if (intval($count) < PHP_INT_MAX) {
+
+            return intval($count);
+        }
+
+        return $count;
     }
 
     protected function getMinkContext()

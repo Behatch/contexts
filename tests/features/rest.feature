@@ -56,9 +56,15 @@ Feature: Testing RESTContext
         When I send a GET request to "/rest/index.php"
         Then I should see "HTTP_XXX : yyy"
 
+    Scenario: Add header with large numeric value
+        Given I add "xxx-large-numeric" header equal to "92233720368547758070"
+        When I send a GET request to "/rest/index.php"
+        Then I should see "HTTP_XXX_LARGE_NUMERIC : 92233720368547758070"
+
     Scenario: Header should not be cross-scenarios persistent
         When I send a GET request to "/rest/index.php"
         Then I should not see "HTTP_XXX : yyy"
+        Then I should not see "HTTP_XXX_LARGE_NUMERIC"
 
     Scenario: Case-insensitive header name
         Like describe in the rfc2614 §4.2
