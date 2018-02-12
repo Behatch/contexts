@@ -29,13 +29,13 @@ matrix:
     fast_finish: true
 
 before_script:
-    - export DISPLAY=:99.0 CHROME_DRIVER_VERSION=2.33 SELENIUM_VERSION=3.6.0
+    - export DISPLAY=:99.0 GECKO_DRIVER_VERSION=0.19.1 SELENIUM_VERSION=3.6.0
     - Xvfb $DISPLAY -extension RANDR &> /dev/null &
 
-    - wget "https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip"
-    - unzip chromedriver_linux64.zip
+    - wget "https://github.com/mozilla/geckodriver/releases/download/v${GECKO_DRIVER_VERSION}/geckodriver-v${GECKO_DRIVER_VERSION}-linux64.tar.gz"
+    - tar xf geckodriver-v${GECKO_DRIVER_VERSION}-linux64.tar.gz
     - wget "https://selenium-release.storage.googleapis.com/${SELENIUM_VERSION%%.[[:digit:]]}/selenium-server-standalone-${SELENIUM_VERSION}.jar" -O selenium.jar
-    - java -jar -Dwebdriver.chrome.driver=./chromedriver selenium.jar &> /dev/null &
+    - java -jar -Dwebdriver.gecko.driver=./geckodriver selenium.jar &> /dev/null &
 
     - php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
     - cp behat.yml{.dist,}

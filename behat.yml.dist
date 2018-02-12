@@ -21,7 +21,6 @@ default:
             files_path: 'tests/fixtures/files'
             goutte: ~
             selenium2: ~
-            browser_name: 'chrome'
             sessions:
                 default:
                     goutte: ~
