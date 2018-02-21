@@ -24,6 +24,9 @@ abstract class BaseContext extends RawMinkContext implements TranslatableContext
      *
      * pt
      * @transform /^(0|[1-9]\d*)º?$/
+     *
+     * ru
+     * @transform /^(0|[1-9]\d*)(?:ой|ий|ый|ей|й)?$/
      */
     public function castToInt($count)
     {
