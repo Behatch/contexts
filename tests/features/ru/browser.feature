@@ -42,11 +42,11 @@
         И я должен видеть более 2 "div" в 1 "body"
         И выпадающий список "months_selector" не должен содержать "december"
         И выпадающий список "months_selector" должен содержать "january"
-        Когда я кликаю на 1st элемент "ul li"
+        Когда я кликаю на 1 элемент "ul li"
         Тогда я должен видеть "You clicked First LI"
-        Когда я нажимаю на 2nd кнопку "Submit"
+        Когда я нажимаю на 2 кнопку "Submit"
         Тогда я должен видеть "You clicked Second BUTTON"
-        Когда я кликаю по 1st ссылке "Second"
+        Когда я кликаю по 1 ссылке "Second"
         Тогда я должен видеть "You clicked Second A"
 
     @javascript
