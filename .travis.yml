@@ -12,8 +12,10 @@ env:
         - CHROME_DRIVER_VERSION=2.33
         - SELENIUM_VERSION=3.6.0
     matrix:
-        - DEPS=high
-        - DEPS=low
+        - DEPS=high PROFILE=default
+        - DEPS=low PROFILE=default
+        - DEPS=high PROFILE=symfony2
+        - DEPS=low PROFILE=symfony2
 
 php:
     - 5.5
@@ -49,5 +51,4 @@ before_script:
 
 script:
     - ./bin/atoum
-    - ./bin/behat -fprogress --tags='~@user' --no-interaction
-    - ./bin/behat -fprogress --tags='~@user' --no-interaction --profile=symfony2
+    - ./bin/behat -fprogress --tags='~@user' --no-interaction --profile=$PROFILE
