@@ -7,6 +7,10 @@ cache:
     - $HOME/.composer/cache
 
 env:
+    global:
+        - DISPLAY=:99.0
+        - CHROME_DRIVER_VERSION=2.33
+        - SELENIUM_VERSION=3.6.0
     matrix:
         - DEPS=high
         - DEPS=low
@@ -29,7 +33,6 @@ matrix:
     fast_finish: true
 
 before_script:
-    - export DISPLAY=:99.0 CHROME_DRIVER_VERSION=2.33 SELENIUM_VERSION=3.6.0
     - Xvfb $DISPLAY -extension RANDR &> /dev/null &
 
     - wget "https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip"
