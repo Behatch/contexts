@@ -88,6 +88,7 @@ Feature: Testing RESTContext
         Congratulations, you've correctly set up your apache environment.
         """
 
+    @>php5.5
     Scenario: Set content headers in POST request
         When I add "Content-Type" header equal to "xxx"
         When I send a "POST" request to "rest/index.php" with body:

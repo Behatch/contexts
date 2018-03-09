@@ -1,15 +1,22 @@
 language: php
 
-sudo: false
+addons:
+  chrome: stable
 
 cache:
   directories:
     - $HOME/.composer/cache
 
 env:
+    global:
+        - DISPLAY=:99.0
+        - CHROME_DRIVER_VERSION=2.36
+        - SELENIUM_VERSION=3.6.0
     matrix:
-        - DEPS=high
-        - DEPS=low
+        - DEPS=high PROFILE=default
+        - DEPS=low PROFILE=default
+        - DEPS=high PROFILE=symfony2
+        - DEPS=low PROFILE=symfony2
 
 php:
     - 5.5
@@ -18,8 +25,6 @@ php:
     - 7.1
     - 7.2
     - nightly
-    - hhvm
-    - hhvm-nightly
 
 matrix:
     allow_failures:
@@ -29,7 +34,6 @@ matrix:
     fast_finish: true
 
 before_script:
-    - export DISPLAY=:99.0 CHROME_DRIVER_VERSION=2.33 SELENIUM_VERSION=3.6.0
     - Xvfb $DISPLAY -extension RANDR &> /dev/null &
 
     - wget "https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip"
@@ -42,9 +46,8 @@ before_script:
     - composer install
 
     - test "$DEPS" == "low" || composer update --prefer-lowest
-    - test "$DEPS" == "high" || composer update atoum/atoum
+    - test ${TRAVIS_PHP_VERSION:0:1} -lt 7 || composer update atoum/atoum
 
 script:
     - ./bin/atoum
-    - ./bin/behat -fprogress --tags='~@user' --no-interaction
-    - ./bin/behat -fprogress --tags='~@user' --no-interaction --profile=symfony2
+    - ./bin/behat -fprogress --tags="~@user&&~@>php${TRAVIS_PHP_VERSION:0:3}" --no-interaction --profile=$PROFILE
