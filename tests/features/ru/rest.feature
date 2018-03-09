@@ -89,6 +89,7 @@
         Congratulations, you've correctly set up your apache environment.
         """
 
+    @>php5.5
     Сценарий: Установка content-заголовка в POST запросе
         Когда я добавляю заголовок "Content-Type" со значением "xxx"
         Когда я отправляю "POST" запрос на "rest/index.php" с телом:
