@@ -1,5 +1,8 @@
 language: php
 
+addons:
+  chrome: stable
+
 cache:
   directories:
     - $HOME/.composer/cache
