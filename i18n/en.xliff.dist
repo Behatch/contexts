@@ -211,6 +211,10 @@
                 <source>the JSON node :node should be null</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-not-be-null">
+                <source>the JSON node :node should not be null</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-node-should-be-true">
                 <source>the JSON node :node should be true</source>
                 <target></target>
@@ -259,6 +263,10 @@
                 <source>the JSON should be valid according to this schema:</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-should-be-invalid-according-to-this-schema">
+                <source>the JSON should be invalid according to this schema:</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="the-json-should-be-valid-according-to-the-schema">
                 <source>the JSON should be valid according to the schema :filename</source>
                 <target></target>
@@ -290,7 +298,7 @@
                 <target></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
-                <source>the response should be equal to:</source>
+                <source>the response should be equal to</source>
                 <target></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-empty">
