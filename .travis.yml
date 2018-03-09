@@ -9,7 +9,7 @@ cache:
 env:
     global:
         - DISPLAY=:99.0
-        - CHROME_DRIVER_VERSION=2.33
+        - CHROME_DRIVER_VERSION=2.36
         - SELENIUM_VERSION=3.6.0
     matrix:
         - DEPS=high PROFILE=default
