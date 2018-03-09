@@ -50,4 +50,4 @@ before_script:
 
 script:
     - ./bin/atoum
-    - ./bin/behat -fprogress --tags='~@user' --no-interaction --profile=$PROFILE
+    - ./bin/behat -fprogress --tags="~@user&&~@>php${TRAVIS_PHP_VERSION:0:3}" --no-interaction --profile=$PROFILE
