@@ -298,7 +298,7 @@
                 <target>я отправляю :method запрос на :url с телом:</target>
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
-                <source>the response should be equal to</source>
+                <source>the response should be equal to:</source>
                 <target>ответ должен быть</target>
             </trans-unit>
             <trans-unit id="the-response-should-be-empty">

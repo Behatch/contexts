@@ -213,7 +213,7 @@
                 <target><![CDATA[/^レスポンスが空であること$/u]]></target>
             </trans-unit>
             <trans-unit id="the-response-should-be-equal-to">
-                <source><![CDATA[the response should be equal to]]></source>
+                <source><![CDATA[the response should be equal to:]]></source>
                 <target><![CDATA[/^レスポンスが下記と一致すること:$/u]]></target>
             </trans-unit>
             <trans-unit id="the-header-should-be-equal-to">

@@ -83,7 +83,7 @@ Feature: Testing RESTContext
 
     Scenario: Response body
         Given I send a GET request to "/"
-        Then the response should be equal to
+        Then the response should be equal to:
         """
         Congratulations, you've correctly set up your apache environment.
         """

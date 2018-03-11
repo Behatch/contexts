@@ -82,6 +82,7 @@ class RestContext extends BaseContext
      * Checks, whether the response content is equal to given text
      *
      * @Then the response should be equal to
+     * @Then the response should be equal to:
      */
     public function theResponseShouldBeEqualTo(PyStringNode $expected)
     {
