@@ -35,7 +35,7 @@ class XmlContext extends BaseContext
      *
      * @param string $element
      * @throws \Exception
-     * @return \DomNodeList
+     * @return \DOMNodeList
      *
      * @Then the XML element :element should exist(s)
      */

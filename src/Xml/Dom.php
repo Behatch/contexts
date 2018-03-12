@@ -8,7 +8,7 @@ class Dom
 
     public function __construct($content)
     {
-        $this->dom = new \DomDocument();
+        $this->dom = new \DOMDocument();
         $this->dom->strictErrorChecking = false;
         $this->dom->validateOnParse = false;
         $this->dom->preserveWhiteSpace = true;
@@ -47,7 +47,7 @@ class Dom
 
     public function xpath($element)
     {
-        $xpath = new \DOMXpath($this->dom);
+        $xpath = new \DOMXPath($this->dom);
         $this->registerNamespace($xpath);
 
         $element = $this->fixNamespace($element);
@@ -56,7 +56,7 @@ class Dom
         return ($elements === false) ? new \DOMNodeList() : $elements;
     }
 
-    private function registerNamespace(\DOMXpath $xpath)
+    private function registerNamespace(\DOMXPath $xpath)
     {
         $namespaces = $this->getNamespaces();
 
@@ -104,7 +104,7 @@ class Dom
         if (!empty($error)) {
             // https://bugs.php.net/bug.php?id=46465
             if ($error->message != 'Validation failed: no DTD found !') {
-                throw new \DomException($error->message . ' at line ' . $error->line);
+                throw new \DOMException($error->message . ' at line ' . $error->line);
             }
         }
     }
