@@ -71,8 +71,8 @@ class TableContext extends BaseContext
             throw new \Exception("The row $index was not found in the '$table' table");
         }
 
-        $cells = (array)$rows[$index - 1]->findAll('css', 'td');
-        $cells = array_merge((array)$rows[$index - 1]->findAll('css', 'th'), $cells);
+        $cells = $rows[$index - 1]->findAll('css', 'td');
+        $cells = array_merge($rows[$index - 1]->findAll('css', 'th'), $cells);
 
         $hash = current($text->getHash());
 
