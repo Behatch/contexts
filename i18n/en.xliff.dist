@@ -475,6 +475,14 @@
                 <source>the response should not be in XML</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="the-json-should-not-be-valid-accordind-swagger-dump-schema">
+                <source>the JSON should not be valid according to swagger :dumpPath dump schema :schemaName</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="the-json-should-be-valid-accordind-swagger-dump-schema">
+                <source>the JSON should be valid according to swagger :dumpPath dump schema :schemaName</source>
+                <target></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

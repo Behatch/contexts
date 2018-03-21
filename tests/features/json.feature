@@ -1,5 +1,3 @@
-@JSON
-
 Feature: Testing JSONContext
 
     Scenario: Am I a JSON ?

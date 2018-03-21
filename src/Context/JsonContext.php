@@ -398,13 +398,10 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldNotBeValidAccordingToTheSwaggerSchema($dumpPath, $schemaName)
     {
-        try {
-            $this->theJsonShouldBeValidAccordingToTheSwaggerSchema($dumpPath, $schemaName);
-        } catch (\Exception $e) {
-            return;
-        }
-
-        throw new \RuntimeException('JSON Schema matches but it should not');
+        $this->not(
+            [$this, 'theJsonShouldBeValidAccordingToTheSwaggerSchema'],
+            'JSON Schema matches but it should not'
+        );
     }
 
     protected function getJson()
