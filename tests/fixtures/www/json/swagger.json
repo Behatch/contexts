@@ -1,0 +1,56 @@
+{
+    "swagger": "2.0",
+    "basePath": "\/",
+    "info": {
+        "title": "Sample API",
+        "version": "2.0.0",
+        "description": "Sample API"
+    },
+    "paths": {
+        "\/a\/path": {
+            "get": {
+                "tags": [
+                    "sample"
+                ],
+                "operationId": "sampleId",
+                "produces": [
+                    "application\/json",
+                    "text\/html"
+                ],
+                "summary": "Just a fixture sample endpoint",
+                "responses": {},
+                "parameters": []
+            }
+        }
+    },
+    "definitions": {
+        "sample-invalid-definition": {
+            "type": "object",
+            "description": "",
+            "properties": {
+                "stringValue": {
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "intValue": {
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "sample-definition": {
+            "type": "object",
+            "description": "",
+            "properties": {
+                "stringValue": {
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "intValue": {
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

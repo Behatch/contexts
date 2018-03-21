@@ -1,3 +1,5 @@
+@JSON
+
 Feature: Testing JSONContext
 
     Scenario: Am I a JSON ?
@@ -186,3 +188,13 @@ Feature: Testing JSONContext
         And the JSON node "four" should be equal to the string "foo"
         And the JSON node "five" should not be null
         And the JSON node "five" should be equal to the number 5
+
+    Scenario: Json validation against swagger dump file
+        Given I am on "/json/swaggerpartial.json"
+        Then the response should be in JSON
+        And the JSON should be valid according to swagger "tests/fixtures/www/json/swagger.json" dump schema "sample-definition"
+
+    Scenario: Json validation against swagger dump file
+        Given I am on "/json/swaggerpartial.json"
+        Then the response should be in JSON
+        And the JSON should not be valid according to swagger "tests/fixtures/www/json/swagger.json" dump schema "sample-invalid-definition"
