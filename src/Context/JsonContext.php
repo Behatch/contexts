@@ -273,8 +273,7 @@ class JsonContext extends BaseContext
 
         try {
             $node = $this->inspector->evaluate($json, $name);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception("The node '$name' does not exist.");
         }
         return $node;
@@ -287,7 +286,7 @@ class JsonContext extends BaseContext
      */
     public function theJsonNodeShouldNotExist($name)
     {
-        $this->not(function () use($name) {
+        $this->not(function () use ($name) {
             return $this->theJsonNodeShouldExist($name);
         }, "The node '$name' exists.");
     }
@@ -308,7 +307,7 @@ class JsonContext extends BaseContext
      */
     public function theJsonShouldBeInvalidAccordingToThisSchema(PyStringNode $schema)
     {
-        $this->not(function() use($schema) {
+        $this->not(function () use ($schema) {
             return $this->theJsonShouldBeValidAccordingToThisSchema($schema);
         }, 'Expected to receive invalid json, got valid one');
     }
@@ -336,7 +335,7 @@ class JsonContext extends BaseContext
     {
         $this->checkSchemaFile($filename);
 
-        $this->not(function () use($filename) {
+        $this->not(function () use ($filename) {
             return $this->theJsonShouldBeValidAccordingToTheSchema($filename);
         }, "The schema was valid");
     }
@@ -350,8 +349,7 @@ class JsonContext extends BaseContext
 
         try {
             $expected = new Json($content);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception('The expected JSON is not a valid');
         }
 
@@ -370,6 +368,42 @@ class JsonContext extends BaseContext
         echo $this->getJson()
             ->encode();
     }
+
+    /**
+     * Checks, that response JSON matches with a swagger dump
+     *
+     * @Then the JSON should be valid according to swagger :dumpPath dump schema :schemaName
+     */
+    public function theJsonShouldBeValidAccordingToTheSwaggerSchema($dumpPath, $schemaName)
+    {
+        $this->checkSchemaFile($dumpPath);
+
+        $dumpJson = file_get_contents($dumpPath);
+        $schemas = json_decode($dumpJson, true);
+        $definition = json_encode(
+            $schemas['definitions'][$schemaName]
+        );
+        $this->inspector->validate(
+            $this->getJson(),
+            new JsonSchema(
+                $definition
+            )
+        );
+    }
+    /**
+     *
+     * Checks, that response JSON not matches with a swagger dump
+     *
+     * @Then the JSON should not be valid according to swagger :dumpPath dump schema :schemaName
+     */
+    public function theJsonShouldNotBeValidAccordingToTheSwaggerSchema($dumpPath, $schemaName)
+    {
+        $this->not(function () use ($dumpPath, $schemaName) {
+            return $this->theJsonShouldBeValidAccordingToTheSwaggerSchema($dumpPath, $schemaName);
+        }, 'JSON Schema matches but it should not');
+    }
+
+
 
     protected function getJson()
     {
