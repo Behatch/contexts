@@ -4,6 +4,7 @@ namespace Behatch\Context;
 
 use Behat\Gherkin\Node\StepNode;
 use Behat\Behat\Hook\Scope\AfterStepScope;
+use Behat\Mink\Exception\UnsupportedDriverActionException;
 
 class DebugContext extends BaseContext
 {
@@ -48,22 +49,22 @@ class DebugContext extends BaseContext
      */
     public function failScreenshots(AfterStepScope $scope)
     {
-        if (! $scope->getTestResult()->isPassed()) {
-            $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
-            $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
-            if ($this->getBackground($scope)) {
-                $makeScreenshot = $scope->getFeature()->hasTag('javascript');
-                $scenarioName   = 'background';
-            } else {
-                $scenario       = $this->getScenario($scope);
-                $makeScreenshot = $scope->getFeature()->hasTag('javascript') || $scenario->hasTag('javascript');
-                $scenarioName   = urlencode(str_replace(' ', '_', $scenario->getTitle()));
-            }
-            if ($makeScreenshot) {
-                $filename = sprintf('fail_%s_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
-                $this->saveScreenshot($filename, $this->screenshotDir);
-            }
+        if ($scope->getTestResult()->isPassed()) {
+            return;
         }
+
+        $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
+        $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
+
+        if ($this->getBackground($scope)) {
+            $scenarioName   = 'background';
+        } else {
+            $scenario       = $this->getScenario($scope);
+            $scenarioName   = urlencode(str_replace(' ', '_', $scenario->getTitle()));
+        }
+
+        $filename = sprintf('fail_%s_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
+        $this->saveScreenshot($filename, $this->screenshotDir);
     }
 
     /**
@@ -109,5 +110,14 @@ class DebugContext extends BaseContext
         }
 
         return false;
+    }
+
+    public function saveScreenshot($filename = null, $filepath = null)
+    {
+        try {
+            parent::saveScreenshot($filename, $filepath);
+        } catch (UnsupportedDriverActionException $e) {
+            return;
+        }
     }
 }
