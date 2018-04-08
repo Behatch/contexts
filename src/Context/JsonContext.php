@@ -265,7 +265,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node exist
      *
-     * @Given the JSON node :name should exist
+     * @Then the JSON node :name should exist
      */
     public function theJsonNodeShouldExist($name)
     {
@@ -282,7 +282,7 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node does not exist
      *
-     * @Given the JSON node :name should not exist
+     * @Then the JSON node :name should not exist
      */
     public function theJsonNodeShouldNotExist($name)
     {
