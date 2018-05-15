@@ -66,6 +66,11 @@ default:
                 - behatch:context:xml
 ```
 
+### Examples
+
+This project is self-tested, you can explore the [features
+directory](./tests/features) to find some examples.
+
 Configuration
 -------------
 
