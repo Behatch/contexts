@@ -22,25 +22,25 @@ Feature: Testing JSONContext
         And the JSON node "foo" should contain "bar"
         And the JSON node "foo" should not contain "something else"
 
-        And the JSON node "numbers[0]" should contain "one"
+        And the JSON node "numbers[0]" should contain "öne"
         And the JSON node "numbers[1]" should contain "two"
         And the JSON node "numbers[2]" should contain "three"
         And the JSON node "numbers[3].complexeshizzle" should be equal to "true"
         And the JSON node "numbers[3].so[0]" should be equal to "very"
         And the JSON node "numbers[3].so[1].complicated" should be equal to "indeed"
-        And the JSON node "numbers[0]" should match "/o.{1}e/"
+        And the JSON node "numbers[0]" should match "/ö.{1}e/"
         And the JSON node "numbers[1]" should match "/.{2}o/"
         And the JSON node "numbers[2]" should match "/[a-z]{3}e.+/"
 
         And the JSON nodes should be equal to:
             | foo        | bar   |
-            | numbers[0] | one   |
+            | numbers[0] | öne   |
             | numbers[1] | two   |
             | numbers[2] | three |
 
         And the JSON nodes should contain:
             | foo        | bar   |
-            | numbers[0] | one   |
+            | numbers[0] | öne   |
             | numbers[1] | two   |
             | numbers[2] | three |
 
@@ -138,7 +138,7 @@ Feature: Testing JSONContext
             {
                 "foo": "bar",
                 "numbers": [
-                    "one",
+                    "öne",
                     "two",
                     "three",
                     {

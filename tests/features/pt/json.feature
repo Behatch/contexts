@@ -23,7 +23,7 @@ Funcionalidade: Testando o JSONContext
     E o nó JSON "foo" deve conter "bar"
     E o nó JSON "foo" não deve conter "something else"
 
-    E o nó JSON "numbers[0]" deve conter "one"
+    E o nó JSON "numbers[0]" deve conter "öne"
     E o nó JSON "numbers[1]" deve conter "two"
     E o nó JSON "numbers[2]" deve conter "three"
     E o nó JSON "numbers[3].complexeshizzle" deve ser igual a "true"
@@ -32,13 +32,13 @@ Funcionalidade: Testando o JSONContext
 
     E os nós JSON devem ser iguais a:
       | foo        | bar   |
-      | numbers[0] | one   |
+      | numbers[0] | öne   |
       | numbers[1] | two   |
       | numbers[2] | three |
 
     E os nós JSON devem conter:
       | foo        | bar   |
-      | numbers[0] | one   |
+      | numbers[0] | öne   |
       | numbers[1] | two   |
       | numbers[2] | three |
 
@@ -75,7 +75,7 @@ Funcionalidade: Testando o JSONContext
               "numbers": {
                   "type": "array",
                   "required":true,
-                  "one": {
+                  "öne": {
                       "type": "string",
                       "required":true
                   },
@@ -99,7 +99,7 @@ Funcionalidade: Testando o JSONContext
       {
           "foo": "bar",
           "numbers": [
-              "one",
+              "öne",
               "two",
               "three",
               {

@@ -36,12 +36,13 @@ class Json
 
     public function encode($pretty = true)
     {
+        $flags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
+
         if (true === $pretty && defined('JSON_PRETTY_PRINT')) {
-            // Cannot test this part JSON_PRETTY_PRINT is only 5.4
-            return json_encode($this->content, JSON_PRETTY_PRINT);
+            $flags |= JSON_PRETTY_PRINT;
         }
 
-        return json_encode($this->content);
+        return json_encode($this->content, $flags);
     }
 
     public function __toString()
