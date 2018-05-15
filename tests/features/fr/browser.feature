@@ -63,7 +63,7 @@ Fonctionnalité:
         Et j'attends 1 seconde
         Et j'attends l'élément "#iframe"
         Et j'attends 5 secondes l'élément "#iframe"
-        Alors le temps total écoulé devrait être "more" que 3 secondes
+        Alors le temps total écoulé devrait être "more" que 1 secondes
 
     @javascript
     Scénario:
