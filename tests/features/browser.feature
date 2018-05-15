@@ -66,7 +66,7 @@ Feature: Browser Feature
         And I wait 1 second
         And I wait for "#iframe" element
         And I wait 5 seconds for "#iframe" element
-        Then the total elapsed time should be more than 3 seconds
+        Then the total elapsed time should be more than 1 seconds
 
     @javascript
     Scenario: Waited upon text should actually be visible
