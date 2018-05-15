@@ -49,6 +49,8 @@ class DebugContext extends BaseContext
     public function failScreenshots(AfterStepScope $scope)
     {
         if (! $scope->getTestResult()->isPassed()) {
+            $this->displayProfilerLink();
+
             $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
             $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
             if ($this->getBackground($scope)) {
@@ -63,6 +65,16 @@ class DebugContext extends BaseContext
                 $filename = sprintf('fail_%s_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
                 $this->saveScreenshot($filename, $this->screenshotDir);
             }
+        }
+    }
+
+    private function displayProfilerLink()
+    {
+        try {
+            $headers = $this->getMink()->getSession()->getResponseHeaders();
+            echo "The debug profile URL {$headers['X-Debug-Token-Link'][0]}";
+        } catch (\Exception $e) {
+            /* Intentionally leave blank */
         }
     }
 
