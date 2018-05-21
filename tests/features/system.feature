@@ -13,6 +13,10 @@ Feature: System feature
         Given I execute "sleep 2"
         Then Command should last more than 1 seconds
 
+    Scenario: Testing displaying output
+        Given I execute "echo 'Hello world'"
+        Then display the last command output
+
     Scenario: Testing execution output
         Given I execute "echo 'Hello world'"
         Then output should contain "Hello world"

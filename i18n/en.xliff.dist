@@ -145,6 +145,10 @@
                 <source>(I )execute :command from project root</source>
                 <target></target>
             </trans-unit>
+            <trans-unit id="i-display-the-last-command-output">
+                <source>(I )display the last command output</source>
+                <target></target>
+            </trans-unit>
             <trans-unit id="command-should-succeed">
                 <source>command should succeed</source>
                 <target></target>
