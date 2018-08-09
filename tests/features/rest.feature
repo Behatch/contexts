@@ -51,6 +51,14 @@ Feature: Testing RESTContext
             """
         Then the response should be empty
 
+    Scenario: request parameter with dot
+        https://github.com/Behatch/contexts/issues/256
+
+        When I send a POST request to "/rest/index.php" with parameters:
+            | key     | value |
+            | item.id | 1     |
+        Then I should see "item.id=1"
+
     Scenario: Add header
         Given I add "xxx" header equal to "yyy"
         When I send a GET request to "/rest/index.php"
