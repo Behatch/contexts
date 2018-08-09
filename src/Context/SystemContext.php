@@ -49,6 +49,16 @@ class SystemContext implements Context
     }
 
     /**
+     * Display the last command output
+     *
+     * @Then (I )display the last command output
+     */
+    public function iDumpCommandOutput()
+    {
+        echo implode(PHP_EOL, $this->output);
+    }
+
+    /**
      * Command should succeed
      *
      * @Then command should succeed
