@@ -23,25 +23,25 @@
         И узел JSON "foo" должен содержать "bar"
         И узел JSON "foo" не должен содержать "something else"
 
-        И узел JSON "numbers[0]" должен содержать "one"
+        И узел JSON "numbers[0]" должен содержать "öne"
         И узел JSON "numbers[1]" должен содержать "two"
         И узел JSON "numbers[2]" должен содержать "three"
         И узел JSON "numbers[3].complexeshizzle" должен быть равен "true"
         И узел JSON "numbers[3].so[0]" должен быть равен "very"
         И узел JSON "numbers[3].so[1].complicated" должен быть равен "indeed"
-        И узел JSON "numbers[0]" должен соответствовать "/o.{1}e/"
+        И узел JSON "numbers[0]" должен соответствовать "/ö.{1}e/"
         И узел JSON "numbers[1]" должен соответствовать "/.{2}o/"
         И узел JSON "numbers[2]" должен соответствовать "/[a-z]{3}e.+/"
 
         И узлы JSON должны быть равны:
             | foo        | bar   |
-            | numbers[0] | one   |
+            | numbers[0] | öne   |
             | numbers[1] | two   |
             | numbers[2] | three |
 
         И узлы JSON должны содержать:
             | foo        | bar   |
-            | numbers[0] | one   |
+            | numbers[0] | öne   |
             | numbers[1] | two   |
             | numbers[2] | three |
 
@@ -78,7 +78,7 @@
                     "numbers": {
                         "type": "array",
                         "required":true,
-                        "one": {
+                        "öne": {
                             "type": "string",
                             "required":true
                         },
@@ -139,7 +139,7 @@
             {
                 "foo": "bar",
                 "numbers": [
-                    "one",
+                    "öne",
                     "two",
                     "three",
                     {

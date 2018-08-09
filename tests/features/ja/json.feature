@@ -24,7 +24,7 @@
         かつ JSONのノード"foo"が"bar"を含むこと
         かつ JSONのノード"foo"が"something else"を含まないこと
 
-        かつ JSONのノード"numbers[0]"が"one"を含むこと
+        かつ JSONのノード"numbers[0]"が"öne"を含むこと
         かつ JSONのノード"numbers[1]"が"two"を含むこと
         かつ JSONのノード"numbers[2]"が"three"を含むこと
         かつ JSONのノード"numbers[3].complexeshizzle"が"true"と等しいこと
@@ -60,7 +60,7 @@
                     "numbers": {
                         "type": "array",
                         "required":true,
-                        "one": {
+                        "öne": {
                             "type": "string",
                             "required":true
                         },
@@ -85,7 +85,7 @@
             {
                 "foo": "bar",
                 "numbers": [
-                    "one",
+                    "öne",
                     "two",
                     "three",
                     {

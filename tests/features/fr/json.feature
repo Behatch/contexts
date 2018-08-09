@@ -23,7 +23,7 @@ Fonctionnalité:
     Et le nœud JSON "foo" devrait contenir "bar"
     Et le nœud JSON "foo" ne devrait pas contenir "something else"
 
-    Et le nœud JSON "numbers[0]" devrait contenir "one"
+    Et le nœud JSON "numbers[0]" devrait contenir "öne"
     Et le nœud JSON "numbers[1]" devrait contenir "two"
     Et le nœud JSON "numbers[2]" devrait contenir "three"
     Et le nœud JSON "numbers[3].complexeshizzle" devrait être égal à "true"
@@ -32,13 +32,13 @@ Fonctionnalité:
 
     Et les nœuds JSON devraient être égaux à:
         | foo        | bar   |
-        | numbers[0] | one   |
+        | numbers[0] | öne   |
         | numbers[1] | two   |
         | numbers[2] | three |
 
     Et les nœuds JSON devraient contenir:
         | foo        | bar   |
-        | numbers[0] | one   |
+        | numbers[0] | öne   |
         | numbers[1] | two   |
         | numbers[2] | three |
 
@@ -71,7 +71,7 @@ Fonctionnalité:
         "numbers": {
           "type": "array",
           "required":true,
-          "one": {
+          "öne": {
             "type": "string",
             "required":true
           },
@@ -95,7 +95,7 @@ Fonctionnalité:
         {
             "foo": "bar",
             "numbers": [
-                "one",
+                "öne",
                 "two",
                 "three",
                 {
