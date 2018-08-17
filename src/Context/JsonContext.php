@@ -211,6 +211,34 @@ class JsonContext extends BaseContext
     }
 
     /**
+     * Checks, that given JSON node has less than N element(s)
+     *
+     * @Then the JSON node :node should have less than :count element(s)
+     */
+    public function theJsonNodeShouldHaveLessThanElements($node, $count)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        $this->assertLessThan($count, sizeof((array) $actual));
+    }
+
+    /**
+     * Checks, that given JSON node has more than N element(s)
+     *
+     * @Then the JSON node :node should have more than :count element(s)
+     */
+    public function theJsonNodeShouldHaveMoreThanElements($node, $count)
+    {
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        $this->assertMoreThan($count, sizeof((array) $actual));
+    }
+
+    /**
      * Checks, that given JSON node contains given value
      *
      * @Then the JSON node :node should contain :text
