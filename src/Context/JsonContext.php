@@ -119,6 +119,8 @@ class JsonContext extends BaseContext
      */
     public function theJsonNodeShouldNotBeNull($node)
     {
+        $this->theJsonNodeShouldExist($node);
+
         $this->not(function () use ($node) {
             return $this->theJsonNodeShouldBeNull($node);
         }, sprintf('The node %s should not be null', $node));
