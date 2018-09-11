@@ -57,7 +57,7 @@ class JsonContext extends BaseContext
 
         if ($actual != $expected) {
             throw new \Exception(
-                sprintf("The node '%s' value is '%s', '%s' expected", $node, json_encode($actual), json_encode($expected))
+                sprintf("The node '%s' value is '%s', '%s' expected", $node, json_encode($actual), $expected)
             );
         }
     }
@@ -69,8 +69,19 @@ class JsonContext extends BaseContext
      */
     public function theJsonNodesShouldBeEqualTo(TableNode $nodes)
     {
-        foreach ($nodes->getRowsHash() as $node => $text) {
-            $this->theJsonNodeShouldBeEqualTo($node, $text);
+        $json = $this->getJson();
+
+        $errors = [];
+        foreach ($nodes->getRowsHash() as $node => $expected) {
+            $actual = $this->inspector->evaluate($json, $node);
+
+            if ($actual != $expected) {
+                $errors[] = sprintf("The node '%s' value is '%s', '%s' expected", $node, json_encode($actual), $expected);
+            }
+        }
+
+        if (!empty($errors)) {
+            throw new \Exception(implode("\n", $errors));
         }
     }
 
@@ -123,7 +134,7 @@ class JsonContext extends BaseContext
 
         if (null === $actual) {
             throw new \Exception(
-                sprintf("The node '%s' value is null, '%s' expected", $node, json_encode($actual))
+                sprintf("The node '%s' value is null, non-null value expected", $node)
             );
         }
     }
@@ -195,7 +206,7 @@ class JsonContext extends BaseContext
 
         if ($actual !== (float) $number && $actual !== (int) $number) {
             throw new \Exception(
-                sprintf("The node '%s' value is '%s', numder '%6' expected", $node, json_encode($actual), (float) $number)
+                sprintf("The node '%s' value is '%s', number '%s' expected", $node, json_encode($actual), (string) $number)
             );
         }
     }
