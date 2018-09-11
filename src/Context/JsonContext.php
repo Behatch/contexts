@@ -3,13 +3,11 @@
 namespace Behatch\Context;
 
 use Behat\Gherkin\Node\PyStringNode;
-
 use Behat\Gherkin\Node\TableNode;
-use Behat\Mink\Exception\ExpectationException;
-use Behatch\Json\Json;
-use Behatch\Json\JsonSchema;
-use Behatch\Json\JsonInspector;
 use Behatch\HttpCall\HttpCallResultPool;
+use Behatch\Json\Json;
+use Behatch\Json\JsonInspector;
+use Behatch\Json\JsonSchema;
 
 class JsonContext extends BaseContext
 {
@@ -49,17 +47,17 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node is equal to given value
      *
-     * @Then the JSON node :node should be equal to :text
+     * @Then the JSON node :node should be equal to :expected
      */
-    public function theJsonNodeShouldBeEqualTo($node, $text)
+    public function theJsonNodeShouldBeEqualTo($node, $expected)
     {
         $json = $this->getJson();
 
         $actual = $this->inspector->evaluate($json, $node);
 
-        if ($actual != $text) {
+        if ($actual != $expected) {
             throw new \Exception(
-                sprintf("The node value is '%s'", json_encode($actual))
+                sprintf("The node '%s' value is '%s', '%s' expected", $node, json_encode($actual), json_encode($expected))
             );
         }
     }
@@ -89,7 +87,7 @@ class JsonContext extends BaseContext
 
         if (preg_match($pattern, $actual) === 0) {
             throw new \Exception(
-                sprintf("The node value is '%s'", json_encode($actual))
+                sprintf("The node '%s' value is '%s', '%s' pattern expected", $node, json_encode($actual), $pattern)
             );
         }
     }
@@ -107,7 +105,7 @@ class JsonContext extends BaseContext
 
         if (null !== $actual) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s', null expected", $node, json_encode($actual))
             );
         }
     }
@@ -119,9 +117,15 @@ class JsonContext extends BaseContext
      */
     public function theJsonNodeShouldNotBeNull($node)
     {
-        $this->not(function () use ($node) {
-            return $this->theJsonNodeShouldBeNull($node);
-        }, sprintf('The node %s should not be null', $node));
+        $json = $this->getJson();
+
+        $actual = $this->inspector->evaluate($json, $node);
+
+        if (null === $actual) {
+            throw new \Exception(
+                sprintf("The node '%s' value is null, '%s' expected", $node, json_encode($actual))
+            );
+        }
     }
 
     /**
@@ -137,7 +141,7 @@ class JsonContext extends BaseContext
 
         if (true !== $actual) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s', 'true' expected", $node, json_encode($actual))
             );
         }
     }
@@ -155,7 +159,7 @@ class JsonContext extends BaseContext
 
         if (false !== $actual) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s', 'false' expected", $node, json_encode($actual))
             );
         }
     }
@@ -163,17 +167,17 @@ class JsonContext extends BaseContext
     /**
      * Checks, that given JSON node is equal to the given string
      *
-     * @Then the JSON node :node should be equal to the string :text
+     * @Then the JSON node :node should be equal to the string :expected
      */
-    public function theJsonNodeShouldBeEqualToTheString($node, $text)
+    public function theJsonNodeShouldBeEqualToTheString($node, $expected)
     {
         $json = $this->getJson();
 
         $actual = $this->inspector->evaluate($json, $node);
 
-        if ($actual !== $text) {
+        if ($actual !== $expected) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s', string '%s' expected", $node, json_encode($actual), $expected)
             );
         }
     }
@@ -191,7 +195,7 @@ class JsonContext extends BaseContext
 
         if ($actual !== (float) $number && $actual !== (int) $number) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s', numder '%6' expected", $node, json_encode($actual), (float) $number)
             );
         }
     }
@@ -207,7 +211,7 @@ class JsonContext extends BaseContext
 
         $actual = $this->inspector->evaluate($json, $node);
 
-        $this->assertSame($count, sizeof((array) $actual));
+        $this->assertSame($count, count((array) $actual));
     }
 
     /**
@@ -276,6 +280,7 @@ class JsonContext extends BaseContext
         } catch (\Exception $e) {
             throw new \Exception("The node '$name' does not exist.");
         }
+
         return $node;
     }
 
@@ -337,7 +342,7 @@ class JsonContext extends BaseContext
 
         $this->not(function () use ($filename) {
             return $this->theJsonShouldBeValidAccordingToTheSchema($filename);
-        }, "The schema was valid");
+        }, 'The schema was valid');
     }
 
     /**
@@ -356,7 +361,7 @@ class JsonContext extends BaseContext
         $this->assertSame(
             (string) $expected,
             (string) $actual,
-            "The json is equal to:\n". $actual->encode()
+            "The json is equal to:\n" . $actual->encode()
         );
     }
 
@@ -390,8 +395,8 @@ class JsonContext extends BaseContext
             )
         );
     }
+
     /**
-     *
      * Checks, that response JSON not matches with a swagger dump
      *
      * @Then the JSON should not be valid according to swagger :dumpPath dump schema :schemaName
@@ -402,8 +407,6 @@ class JsonContext extends BaseContext
             return $this->theJsonShouldBeValidAccordingToTheSwaggerSchema($dumpPath, $schemaName);
         }, 'JSON Schema matches but it should not');
     }
-
-
 
     protected function getJson()
     {
