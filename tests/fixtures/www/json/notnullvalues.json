@@ -3,5 +3,6 @@
   "two": true,
   "three": "",
   "four": "foo",
-  "five": 5
+  "five": 5,
+  "six": "44000"
 }
