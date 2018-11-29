@@ -2,10 +2,10 @@
 
 namespace Behatch\Context;
 
+use Behat\Gherkin\Node\PyStringNode;
+use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ExpectationException;
 use Behatch\HttpCall\Request;
-use Behat\Gherkin\Node\TableNode;
-use Behat\Gherkin\Node\PyStringNode;
 
 class RestContext extends BaseContext
 {
@@ -179,6 +179,33 @@ class RestContext extends BaseContext
     protected function theHeaderShouldExist($name)
     {
         return $this->request->getHttpHeader($name);
+    }
+
+    /**
+     * @Then the header :name should match :regex
+     */
+    public function theHeaderShouldMatch($name, $regex)
+    {
+        $actual = $this->request->getHttpHeader($name);
+
+        $this->assertEquals(
+            1,
+            preg_match($regex, $actual),
+            "The header '$name' should match '$regex', but it is: '$actual'"
+        );
+    }
+
+    /**
+     * @Then the header :name should not match :regex
+     */
+    public function theHeaderShouldNotMatch($name, $regex)
+    {
+        $this->not(
+            function () use ($name, $regex) {
+                $this->theHeaderShouldMatch($name, $regex);
+            },
+            "The header '$name' should not match '$regex'"
+        );
     }
 
    /**
