@@ -6,7 +6,7 @@ Feature: Testing RESTContext
         And the header "Content-Type" should be equal to "text/html; charset=UTF-8"
         And the header "Content-Type" should not be equal to "x-test/no-such-type"
         And the header "Content-Type" should not contain "text/json"
-        And the header "Content-Type" should match "/^text\/html; [a-zA-Z=-]+/"
+        And the header "Content-Type" should match "@^text/html; [a-zA-Z=-]+@"
         And the header "Content-Type" should not match "/^no-such-type$/"
         And the header "xxx" should not exist
         And the response should expire in the future
