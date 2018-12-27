@@ -403,7 +403,41 @@ class JsonContext extends BaseContext
         }, 'JSON Schema matches but it should not');
     }
 
+	/**
+	 * Checks, that given JSON node matches given PHP matcher pattern
+	 *
+	 * @Then the JSON node :node should match php-matcher :pattern
+	 */
+	public function theJsonNodeShouldMatchWithPHPMatcher($node, $pattern)
+	{
+		$json = $this->getJson();
 
+		$actual = $this->inspector->evaluate($json, $node);
+
+		if (preg_match($pattern, $actual) === 0) {
+			throw new \Exception(
+				sprintf("The node value is '%s'", json_encode($actual))
+			);
+		}
+	}
+
+	/**
+	 * Checks, that the JSON response match the given PHP matcher pattern
+	 *
+	 * @Then the JSON should match:
+	 */
+	public function theJsonShouldMatch(PyStringNode $content)
+	{
+		$expected = $content->getRaw();
+		$actual = $this->getJson();
+		// Remove all useless whitespaces
+		$expected = preg_replace('/\s(?=([^"]*"[^"]*")*[^"]*$)/', '', $expected);
+		$this->assertMatch(
+			(string) $expected,
+			(string) $actual,
+			"The json do not match:\n". $actual->encode()
+		);
+	}
 
     protected function getJson()
     {
