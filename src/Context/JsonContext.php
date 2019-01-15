@@ -323,7 +323,7 @@ class JsonContext extends BaseContext
             $this->getJson(),
             new JsonSchema(
                 file_get_contents($filename),
-                'file://' . realpath($filename)
+                'file://' . str_replace(DIRECTORY_SEPARATOR, '/', realpath($filename))
             )
         );
     }
