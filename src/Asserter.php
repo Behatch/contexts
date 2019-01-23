@@ -3,6 +3,8 @@
 namespace Behatch;
 
 use Behat\Mink\Exception\ExpectationException;
+use Behatch\Exception\MissingPackageException;
+use Coduo\PHPMatcher\PHPMatcher;
 
 trait Asserter
 {
@@ -96,4 +98,16 @@ trait Asserter
             $this->assertTrue($value);
         }, $message);
     }
+
+	protected function assertMatch($pattern, $actual, $message = null)
+	{
+		if (!class_exists(PHPMatcher::class)) {
+			throw new MissingPackageException('coduo/php-matcher', 'assertMatch');
+		}
+
+		$this->assert(
+			PHPMatcher::match($actual, $pattern, $error),
+			$message ?: "The element '$actual' do not match '$pattern'"
+		);
+	}
 }

@@ -23,6 +23,10 @@
         "fabpot/goutte": "^3.2"
     },
 
+    "suggest": {
+        "coduo/php-matcher": "Allow usage of PHP matcher with the JSON Context"
+    },
+
     "autoload": {
         "psr-4": {
             "Behatch\\": "src/"

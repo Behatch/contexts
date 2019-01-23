@@ -196,3 +196,29 @@ Feature: Testing JSONContext
         Given I am on "/json/swaggerpartial.json"
         Then the response should be in JSON
         And the JSON should not be valid according to swagger "tests/fixtures/www/json/swagger.json" dump schema "sample-invalid-definition"
+
+    @>php7.0
+    Scenario: Json contents validation with php matcher
+        Given I am on "/json/imajson.json"
+        Then the JSON should match:
+            """
+            {
+                "foo": "@string@",
+                "numbers": [
+                    "one",
+                    "two",
+                    "three",
+                    {
+                        "complexeshizzle": @boolean@,
+                        "so": [
+                            "very",
+                            {
+                                "complicated": "@string@"
+                            }
+                        ]
+                    }
+                ]
+            }
+            """
+        And the JSON node "numbers[0]" should match php-matcher "@string@"
+        And the JSON node "numbers[0]" should match php-matcher "@string@.matchRegex('/o.{1}e/')"
