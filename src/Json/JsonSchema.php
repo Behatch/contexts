@@ -36,6 +36,7 @@ class JsonSchema extends Json
             foreach ($validator->getErrors() as $error) {
                 $msg .= sprintf("  - [%s] %s".PHP_EOL, $error['property'], $error['message']);
             }
+            $msg .= "JSON is:".PHP_EOL.$json->encode().PHP_EOL;
             throw new \Exception($msg);
         }
 
