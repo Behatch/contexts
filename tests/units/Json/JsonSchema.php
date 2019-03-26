@@ -44,6 +44,12 @@ class JsonSchema extends \atoum
         ->hasMessage(<<<EOD
 JSON does not validate. Violations:
   - [] The property foo is not defined and the definition does not allow additional properties
+JSON is:
+{
+    "foo": {
+        "bar": "foobar"
+    }
+}
 
 EOD
         );
