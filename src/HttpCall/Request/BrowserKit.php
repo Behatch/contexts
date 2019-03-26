@@ -59,17 +59,19 @@ class BrowserKit
 
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
+        $client = $this->mink->getSession()->getDriver()->getClient();
+
         $tmpFiles = [];
-        foreach ($files as $key => &$file) {
-            if (is_string($file)) {
-                $tmpName = tempnam(sys_get_temp_dir(), 'upload');
-                copy($file, $tmpName);
-                $tmpFiles[] = $tmpName;
-                $file = new UploadedFile($tmpName, basename($file), null, null, true);
+        if (!$client instanceof GoutteClient) {
+            foreach ($files as &$file) {
+                if (is_string($file)) {
+                    $tmpName = tempnam(sys_get_temp_dir(), 'upload');
+                    copy($file, $tmpName);
+                    $tmpFiles[] = $tmpName;
+                    $file = new UploadedFile($tmpName, $file, null, null, true);
+                }
             }
         }
-
-        $client = $this->mink->getSession()->getDriver()->getClient();
 
         $client->followRedirects(false);
         $client->request($method, $url, $parameters, $files, $headers, $content);
