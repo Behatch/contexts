@@ -59,9 +59,13 @@ class BrowserKit
 
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
-        foreach ($files as $originalName => &$file) {
+        $tmpFiles = [];
+        foreach ($files as $key => &$file) {
             if (is_string($file)) {
-                $file = new UploadedFile($file, $originalName);
+                $tmpName = tempnam(sys_get_temp_dir(), 'upload');
+                copy($file, $tmpName);
+                $tmpFiles[] = $tmpName;
+                $file = new UploadedFile($tmpName, basename($file), null, null, true);
             }
         }
 
@@ -71,6 +75,10 @@ class BrowserKit
         $client->request($method, $url, $parameters, $files, $headers, $content);
         $client->followRedirects(true);
         $this->resetHttpHeaders();
+
+        foreach ($tmpFiles as $tmpName) {
+            @unlink($tmpName);
+        }
 
         return $this->mink->getSession()->getPage();
     }
