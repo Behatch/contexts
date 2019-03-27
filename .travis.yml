@@ -17,6 +17,8 @@ env:
         - DEPS=low PROFILE=default
         - DEPS=high PROFILE=symfony2
         - DEPS=low PROFILE=symfony2
+        - DEPS=high PROFILE=browserKit
+        - DEPS=low PROFILE=browserKit
 
 php:
     - 5.5

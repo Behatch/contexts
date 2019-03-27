@@ -2,6 +2,8 @@ default:
     suites:
         default:
             paths: [ '%paths.base%/tests/features' ]
+            filters:
+                tags: '~@symfony'
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - behatch:context:browser:
@@ -33,3 +35,21 @@ symfony2:
     extensions:
         Behat\MinkExtension:
             default_session: symfony2
+
+browserKit:
+    suites:
+        default:
+            filters:
+                tags: '@symfony'
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: 'tests/features/bootstrap/Bootstrap.php'
+                class: App\Kernel
+                env: test
+                debug: false
+        Behat\MinkExtension:
+            default_session: browserKit
+            sessions:
+                browserKit:
+                    symfony2: ~

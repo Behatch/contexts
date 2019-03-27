@@ -16,6 +16,8 @@
     },
 
     "require-dev": {
+        "symfony/templating": "^2.3|^3.0|^4.0",
+        "behat/symfony2-extension": "^2.1",
         "behat/mink-goutte-driver": "^1.1",
         "guzzlehttp/guzzle": "^6.3",
         "behat/mink-selenium2-driver": "^1.3",
@@ -25,7 +27,8 @@
 
     "autoload": {
         "psr-4": {
-            "Behatch\\": "src/"
+            "Behatch\\": "src/",
+            "App\\": "tests/fixtures/www/app"
         }
     },
 

@@ -1,0 +1,9 @@
+framework:
+    test: true
+    secret: 'xx-top-secret-yy'
+
+    router:
+        strict_requirements: ~
+
+    templating:
+        engines: ['php']
