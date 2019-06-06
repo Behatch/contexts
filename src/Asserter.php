@@ -12,10 +12,8 @@ trait Asserter
             $callbable();
         }
         catch (\Exception $e) {
-            return;
+            throw new ExpectationException($errorMessage, $this->getSession()->getDriver());
         }
-
-        throw new ExpectationException($errorMessage, $this->getSession()->getDriver());
     }
 
     protected function assert($test, $message)
