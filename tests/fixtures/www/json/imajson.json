@@ -8,5 +8,7 @@
       "complexeshizzle": true,
       "so": ["very", {"complicated": "indeed"}]
     }
-  ]
+  ],
+  "bool_value": true,
+  "not_bool_value": 1
 }

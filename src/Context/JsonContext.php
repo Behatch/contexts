@@ -370,7 +370,7 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * Checks, that response JSON matches with a swagger dump
+     * Checks, that response JSON not matches with a swagger dump
      *
      * @Then the JSON should be valid according to swagger :dumpPath dump schema :schemaName
      */
@@ -390,6 +390,31 @@ class JsonContext extends BaseContext
             )
         );
     }
+
+    /**
+     * Checks if the json node value is a boolean not an integer.
+     *
+     * @Then the JSON node :name should be a boolean
+     */
+    public function theJSONNodeShouldBeaBoolean($node)
+    {
+        $json = $this->getJson();
+        $actual = $this->inspector->evaluate($json, $node);
+        $this->assertSame($actual, (bool) $actual);
+    }
+
+    /**
+     * Checks if the json node value is a boolean not an integer.
+     *
+     * @Then the JSON node :name should not be a boolean
+     */
+    public function theJSONNodeShouldBeaBoolean($node)
+    {
+        $json = $this->getJson();
+        $actual = $this->inspector->evaluate($json, $node);
+        $this->assertSame($actual, (int) $actual);
+    }
+
     /**
      *
      * Checks, that response JSON not matches with a swagger dump
