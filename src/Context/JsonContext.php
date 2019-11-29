@@ -370,7 +370,7 @@ class JsonContext extends BaseContext
     }
 
     /**
-     * Checks, that response JSON not matches with a swagger dump
+     * Checks, that response JSON matches with a swagger dump
      *
      * @Then the JSON should be valid according to swagger :dumpPath dump schema :schemaName
      */
