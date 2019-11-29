@@ -400,19 +400,19 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
         $actual = $this->inspector->evaluate($json, $node);
-        $this->assertSame($actual, (bool) $actual);
+        $this->assertSame((bool) $actual, $actual);
     }
 
     /**
-     * Checks if the json node value is a boolean not an integer.
+     * Checks if the json node value is an integer.
      *
-     * @Then the JSON node :name should not be a boolean
+     * @Then the JSON node :name should be an integer
      */
-    public function theJSONNodeShouldBeaBoolean($node)
+    public function theJSONNodeShouldBeanInteger($node)
     {
         $json = $this->getJson();
         $actual = $this->inspector->evaluate($json, $node);
-        $this->assertSame($actual, (int) $actual);
+        $this->assertSame((int) $actual, $actual);
     }
 
     /**
