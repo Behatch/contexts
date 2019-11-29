@@ -10,5 +10,5 @@
     }
   ],
   "bool_value": true,
-  "not_bool_value": 1
+  "integer_value": 1
 }

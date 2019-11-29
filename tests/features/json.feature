@@ -33,7 +33,7 @@ Feature: Testing JSONContext
         And the JSON node "numbers[2]" should match "/[a-z]{3}e.+/"
         And the JSON node "numbers[]"
         And the JSON node "bool_value" should be a boolean
-        And the JSON node "not_bool_value" should not be a boolean
+        And the JSON node "not_bool_value" should be an integer
         And the JSON nodes should be equal to:
             | foo        | bar   |
             | numbers[0] | öne   |
