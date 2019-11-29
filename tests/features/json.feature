@@ -32,7 +32,7 @@ Feature: Testing JSONContext
         And the JSON node "numbers[1]" should match "/.{2}o/"
         And the JSON node "numbers[2]" should match "/[a-z]{3}e.+/"
         And the JSON node "bool_value" should be a boolean
-        And the JSON node "not_bool_value" should be an integer
+        And the JSON node "integer_value" should be an integer
         And the JSON nodes should be equal to:
             | foo        | bar   |
             | numbers[0] | öne   |
@@ -151,7 +151,9 @@ Feature: Testing JSONContext
                             }
                         ]
                     }
-                ]
+                ],
+                "bool_value": true,
+                "integer_value": 1
             }
             """
         And print last JSON response
@@ -176,7 +178,7 @@ Feature: Testing JSONContext
     Scenario: Check not null values
         Given I am on "/json/notnullvalues.json"
         Then the response should be in JSON
-        And the JSON node '' should have 5 elements
+        And the JSON node '' should have 6 elements
         And the JSON node "one" should not be null
         And the JSON node "one" should be false
         And the JSON node "two" should not be null
