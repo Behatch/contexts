@@ -400,7 +400,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
         $actual = $this->inspector->evaluate($json, $node);
-        $this->assertSame((bool) $actual, $actual);
+        $this->assertIsBoolean($actual);
     }
 
     /**
@@ -412,7 +412,7 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
         $actual = $this->inspector->evaluate($json, $node);
-        $this->assertSame((int) $actual, $actual);
+        $this->assertIsInteger($actual);
     }
 
     /**
