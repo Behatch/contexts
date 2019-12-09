@@ -92,7 +92,7 @@ Feature: Testing JSONContext
                         }
                     },
                     "bool_value": {
-                        "type": "bool",
+                        "type": "boolean",
                         "required": false
                     },
                     "integer_value": {
