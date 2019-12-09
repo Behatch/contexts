@@ -90,6 +90,14 @@ Feature: Testing JSONContext
                             "type": "string",
                             "required":true
                         }
+                    },
+                    "bool_value": {
+                        "type": "bool",
+                        "required": false
+                    },
+                    "integer_value": {
+                        "type": "integer",
+                        "required": false
                     }
                 }
             }
