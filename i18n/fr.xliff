@@ -227,6 +227,14 @@
                 <source><![CDATA[the JSON node :node should contain :text]]></source>
                 <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait contenir "(?P<text>[^"]*)"$/]]></target>
             </trans-unit>
+            <trans-unit id="the-json-node-should-be-a-boolean">
+                <source><![CDATA[the JSON node :name should be a boolean]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait être un booléen$/]]></target>
+            </trans-unit>
+            <trans-unit id="the-json-node-should-be-an-integer">
+                <source><![CDATA[the JSON node :name should be an integer]]></source>
+                <target><![CDATA[/^le n(?:œ|oe)ud JSON "(?P<node>[^"]*)" devrait être un entier$/]]></target>
+            </trans-unit>
             <trans-unit id="the-json-nodes-should-contain">
                 <source><![CDATA[the JSON nodes should contain:]]></source>
                 <target><![CDATA[/^les n(?:œ|oe)uds JSON devraient contenir:$/]]></target>

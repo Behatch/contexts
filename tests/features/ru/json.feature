@@ -90,6 +90,14 @@
                             "type": "string",
                             "required":true
                         }
+                    },
+                    "bool_value": {
+                        "type": "boolean",
+                        "required": false
+                    },
+                    "integer_value": {
+                        "type": "integer",
+                        "required": false
                     }
                 }
             }
@@ -151,7 +159,9 @@
                             }
                         ]
                     }
-                ]
+                ],
+                "bool_value": true,
+                "integer_value": 1
             }
             """
         И выведи последний JSON ответ
