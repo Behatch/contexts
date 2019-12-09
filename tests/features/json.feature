@@ -178,7 +178,7 @@ Feature: Testing JSONContext
     Scenario: Check not null values
         Given I am on "/json/notnullvalues.json"
         Then the response should be in JSON
-        And the JSON node '' should have 6 elements
+        And the JSON node '' should have 5 elements
         And the JSON node "one" should not be null
         And the JSON node "one" should be false
         And the JSON node "two" should not be null
