@@ -105,7 +105,7 @@ trait Asserter
          );
     }
 
-    protected function assertInteger($value, $message = 'The value is not an integer')
+    protected function assertIsInteger($value, $message = 'The value is not an integer')
     {
          $this->assert(
              gettype($value) === 'integer',
