@@ -44,6 +44,7 @@ class RestContext extends BaseContext
     {
         $files = [];
         $parameters = [];
+        $parametersInArray = [];
 
         foreach ($data->getHash() as $row) {
             if (!isset($row['key']) || !isset($row['value'])) {
@@ -53,15 +54,22 @@ class RestContext extends BaseContext
             if (is_string($row['value']) && substr($row['value'], 0, 1) == '@') {
                 $files[$row['key']] = rtrim($this->getMinkParameter('files_path'), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.substr($row['value'],1);
             }
+            elseif (substr($row['key'], -1, 1) == ']') {
+                $parametersInArray[] = sprintf('%s=%s', $row['key'], $row['value']);
+            }
             else {
                 $parameters[$row['key']] = $row['value'];
             }
         }
 
-        return $this->request->send(
+        if ($parametersInArray) {
+            parse_str(implode('&', $parametersInArray), $parametersInArray);
+        }
+
+         return $this->request->send(
             $method,
             $this->locatePath($url),
-            $parameters,
+            array_merge($parameters, $parametersInArray),
             $files
         );
     }

@@ -60,6 +60,13 @@ Feature: Testing RESTContext
             | item.id | 1     |
         Then I should see "item.id=1"
 
+    Scenario: request parameter with array
+        https://github.com/Behatch/contexts/issues/261
+        When I send a POST request to "/rest/index.php" with parameters:
+            | key     | value |
+            | item[id]| 1     |
+        Then I should see "item%5Bid%5D=1"
+
     Scenario: Add header
         Given I add "xxx" header equal to "yyy"
         When I send a GET request to "/rest/index.php"
