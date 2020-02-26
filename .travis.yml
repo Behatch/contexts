@@ -1,5 +1,7 @@
 language: php
 
+dist: trusty
+
 addons:
   chrome: stable
 
@@ -10,8 +12,7 @@ cache:
 env:
     global:
         - DISPLAY=:99.0
-        - CHROME_DRIVER_VERSION=2.36
-        - SELENIUM_VERSION=3.6.0
+        - SELENIUM_VERSION=3.9.1
     matrix:
         - DEPS=high PROFILE=default
         - DEPS=low PROFILE=default
@@ -21,31 +22,41 @@ env:
 php:
     - 5.5
     - 5.6
-    - 7.0
-    - 7.1
     - 7.2
+    - 7.3
+    - 7.4
     - nightly
 
 matrix:
+    exclude:
+        - php: 7.4
+          env: DEPS=low PROFILE=default
+        - php: 7.4
+          env: DEPS=low PROFILE=symfony2
+        - php: nightly
+          env: DEPS=low PROFILE=default
+        - php: nightly
+          env: DEPS=low PROFILE=symfony2
     allow_failures:
         - php: nightly
-        - php: hhvm
-        - php: hhvm-nightly
     fast_finish: true
 
 before_script:
     - Xvfb $DISPLAY -extension RANDR &> /dev/null &
 
-    - wget "https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip"
-    - unzip chromedriver_linux64.zip
+    - LATEST_CHROMEDRIVER_VERSION=`curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE`
+    - wget --no-verbose https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+    - unzip chromedriver_linux64.zip -d ~/bin
+
     - wget "https://selenium-release.storage.googleapis.com/${SELENIUM_VERSION%%.[[:digit:]]}/selenium-server-standalone-${SELENIUM_VERSION}.jar" -O selenium.jar
-    - java -jar -Dwebdriver.chrome.driver=./chromedriver selenium.jar &> /dev/null &
+    - java -jar selenium.jar &> /dev/null &
 
     - php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
     - cp behat.yml{.dist,}
-    - composer install
+    - COMPOSER_PATH="/home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/bin/composer"
+    - php -d memory_limit=-1 $COMPOSER_PATH install
 
-    - test "$DEPS" == "low" || composer update --prefer-lowest
+    - test "$DEPS" == "high" || php -d memory_limit=-1 $COMPOSER_PATH update --prefer-lowest
     - test ${TRAVIS_PHP_VERSION:0:1} -lt 7 || composer update atoum/atoum
 
 script:
