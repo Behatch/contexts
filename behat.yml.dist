@@ -20,7 +20,16 @@ default:
             base_url: 'http://localhost:8080'
             files_path: 'tests/fixtures/files'
             goutte: ~
-            selenium2: ~
+            selenium2:
+                capabilities:
+                    chrome:
+                        switches:
+                            - "--headless"
+                            - "--disable-gpu"
+                            - "--no-sandbox"
+                    extra_capabilities:
+                        "goog:chromeOptions":
+                            w3c: false
             browser_name: 'chrome'
             sessions:
                 default:
