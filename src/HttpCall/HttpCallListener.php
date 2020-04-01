@@ -58,6 +58,8 @@ class HttpCallListener implements EventSubscriberInterface
             // Mink has no response
         } catch (\Behat\Mink\Exception\DriverException $e) {
             // No Mink
+        } catch (\Throwable $t) {
+            printf('What do we want to do with "%s"', $t->getMessage());
         }
     }
 }
