@@ -59,7 +59,7 @@ class JsonContext extends BaseContext
 
         if ($actual != $text) {
             throw new \Exception(
-                sprintf("The node value is '%s'", json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
@@ -89,7 +89,7 @@ class JsonContext extends BaseContext
 
         if (preg_match($pattern, $actual) === 0) {
             throw new \Exception(
-                sprintf("The node value is '%s'", json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
@@ -107,7 +107,7 @@ class JsonContext extends BaseContext
 
         if (null !== $actual) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
@@ -121,7 +121,7 @@ class JsonContext extends BaseContext
     {
         $this->not(function () use ($node) {
             return $this->theJsonNodeShouldBeNull($node);
-        }, sprintf('The node %s should not be null', $node));
+        }, sprintf("The node '%s' should not be null", $node));
     }
 
     /**
@@ -137,7 +137,7 @@ class JsonContext extends BaseContext
 
         if (true !== $actual) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
@@ -155,7 +155,7 @@ class JsonContext extends BaseContext
 
         if (false !== $actual) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
@@ -173,7 +173,7 @@ class JsonContext extends BaseContext
 
         if ($actual !== $text) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
@@ -191,7 +191,7 @@ class JsonContext extends BaseContext
 
         if ($actual !== (float) $number && $actual !== (int) $number) {
             throw new \Exception(
-                sprintf('The node value is `%s`', json_encode($actual))
+                sprintf("The node '%s' value is '%s'", $node, json_encode($actual))
             );
         }
     }
