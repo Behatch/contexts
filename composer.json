@@ -6,21 +6,21 @@
     "license": "beerware",
 
     "require": {
-        "php": ">=5.5",
-        "behat/behat": "^3.0.13",
-        "friends-of-behat/mink-extension": "^2.3.1",
-        "justinrainbow/json-schema": "^5.0",
+        "php": ">=7.2",
+        "behat/behat": "^3.6",
+        "friends-of-behat/mink-extension": "^2.4",
+        "justinrainbow/json-schema": "^5.2",
         "symfony/property-access": "^2.3|^3.0|^4.0|^5.0",
         "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0",
         "symfony/dom-crawler": "^2.4|^3.0|^4.0|^5.0"
     },
 
     "require-dev": {
-        "behat/mink-goutte-driver": "^1.1",
-        "guzzlehttp/guzzle": "^6.3",
-        "behat/mink-selenium2-driver": "^1.4@dev",
+        "behat/mink-goutte-driver": "^1.2",
+        "guzzlehttp/guzzle": "^6.5",
+        "behat/mink-selenium2-driver": "^1.4",
         "atoum/atoum": "^2.8|^3.0",
-        "fabpot/goutte": "^3.2"
+        "fabpot/goutte": "^3.3|^4.0"
     },
 
     "autoload": {
