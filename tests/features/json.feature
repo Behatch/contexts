@@ -48,6 +48,7 @@ Feature: Testing JSONContext
             | foo | something else |
 
         And the JSON node "bar" should not exist
+        And the JSON node "bar" should not be null
 
     Scenario: Json validation with schema
         Given I am on "/json/imajson.json"
