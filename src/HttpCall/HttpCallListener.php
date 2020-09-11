@@ -48,6 +48,10 @@ class HttpCallListener implements EventSubscriberInterface
             return true;
         }
 
+        if (!$this->mink->getSession()->getDriver()->isStarted()) {
+            return;
+        }
+
         // For now to avoid modification on MinkContext
         // We add fallback on Mink
         try {
