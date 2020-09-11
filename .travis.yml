@@ -1,6 +1,6 @@
 language: php
 
-dist: trusty
+dist: xenial
 
 addons:
   chrome: stable
@@ -44,8 +44,9 @@ matrix:
 before_script:
     - Xvfb $DISPLAY -extension RANDR &> /dev/null &
 
-    - LATEST_CHROMEDRIVER_VERSION=`curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-    - wget --no-verbose https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+    - CHROME_MAIN_VERSION=`google-chrome-stable --version | sed -E 's/(^Google Chrome |\.[0-9]+ )//g'`
+    - CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAIN_VERSION"`
+    - wget --no-verbose "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
     - unzip chromedriver_linux64.zip -d ~/bin
 
     - wget "https://selenium-release.storage.googleapis.com/${SELENIUM_VERSION%%.[[:digit:]]}/selenium-server-standalone-${SELENIUM_VERSION}.jar" -O selenium.jar

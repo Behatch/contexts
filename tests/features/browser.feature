@@ -1,8 +1,12 @@
 Feature: Browser Feature
 
+    @javascript
+    Scenario: Testing when scenario has no HTTP call
+        Given I wait 0.1 seconds
+
     # If this scenario fails
     # It's probably because your web environment is not properly setup
-    # You will find the necessery help in README.md
+    # You will find the necessary help in README.md
     @javascript
     Scenario: Testing simple web access
         Given I am on "/index.html"
