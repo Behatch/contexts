@@ -59,9 +59,9 @@ class BrowserKit
 
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
-        foreach ($files as $originalName => &$file) {
+        foreach ($files as &$file) {
             if (is_string($file)) {
-                $file = new UploadedFile($file, $originalName);
+                $file = new UploadedFile($file, pathinfo($file, PATHINFO_BASENAME));
             }
         }
 
