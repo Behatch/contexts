@@ -390,6 +390,31 @@ class JsonContext extends BaseContext
             )
         );
     }
+
+    /**
+     * Checks if the json node value is a boolean not an integer.
+     *
+     * @Then the JSON node :name should be a boolean
+     */
+    public function theJSONNodeShouldBeaBoolean($node)
+    {
+        $json = $this->getJson();
+        $actual = $this->inspector->evaluate($json, $node);
+        $this->assertIsBoolean($actual);
+    }
+
+    /**
+     * Checks if the json node value is an integer.
+     *
+     * @Then the JSON node :name should be an integer
+     */
+    public function theJSONNodeShouldBeanInteger($node)
+    {
+        $json = $this->getJson();
+        $actual = $this->inspector->evaluate($json, $node);
+        $this->assertIsInteger($actual);
+    }
+
     /**
      *
      * Checks, that response JSON not matches with a swagger dump

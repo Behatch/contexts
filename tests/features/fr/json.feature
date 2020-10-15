@@ -26,6 +26,8 @@ Fonctionnalité:
     Et le nœud JSON "numbers[0]" devrait contenir "öne"
     Et le nœud JSON "numbers[1]" devrait contenir "two"
     Et le nœud JSON "numbers[2]" devrait contenir "three"
+    Et le nœud JSON "bool_value" devrait être un booléen
+    Et le nœud JSON "integer_value" devrait être un entier
     Et le nœud JSON "numbers[3].complexeshizzle" devrait être égal à "true"
     Et le nœud JSON "numbers[3].so[0]" devrait être égal à "very"
     Et le nœud JSON "numbers[3].so[1].complicated" devrait être égal à "indeed"
@@ -83,6 +85,14 @@ Fonctionnalité:
             "type": "string",
             "required":true
           }
+        },
+        "bool_value": {
+            "type": "boolean",
+            "required": false
+        },
+        "integer_value": {
+            "type": "integer",
+            "required": false
         }
       }
     }
@@ -107,7 +117,9 @@ Fonctionnalité:
                         }
                     ]
                 }
-            ]
+            ],
+            "bool_value": true,
+            "integer_value": 1
         }
         """
         Et imprimer la dernière réponse JSON

@@ -31,7 +31,8 @@ Feature: Testing JSONContext
         And the JSON node "numbers[0]" should match "/ö.{1}e/"
         And the JSON node "numbers[1]" should match "/.{2}o/"
         And the JSON node "numbers[2]" should match "/[a-z]{3}e.+/"
-
+        And the JSON node "bool_value" should be a boolean
+        And the JSON node "integer_value" should be an integer
         And the JSON nodes should be equal to:
             | foo        | bar   |
             | numbers[0] | öne   |
@@ -89,6 +90,14 @@ Feature: Testing JSONContext
                             "type": "string",
                             "required":true
                         }
+                    },
+                    "bool_value": {
+                        "type": "boolean",
+                        "required": false
+                    },
+                    "integer_value": {
+                        "type": "integer",
+                        "required": false
                     }
                 }
             }
@@ -150,7 +159,9 @@ Feature: Testing JSONContext
                             }
                         ]
                     }
-                ]
+                ],
+                "bool_value": true,
+                "integer_value": 1
             }
             """
         And print last JSON response

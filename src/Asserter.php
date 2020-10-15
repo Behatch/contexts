@@ -96,4 +96,20 @@ trait Asserter
             $this->assertTrue($value);
         }, $message);
     }
+
+    protected function assertIsBoolean($value, $message = 'The value is not a boolean')
+    {
+         $this->assert(
+             gettype($value) === 'boolean',
+             $message
+         );
+    }
+
+    protected function assertIsInteger($value, $message = 'The value is not an integer')
+    {
+         $this->assert(
+             gettype($value) === 'integer',
+             $message
+         );
+    }
 }
