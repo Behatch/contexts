@@ -97,7 +97,11 @@ Feature: Testing RESTContext
         Congratulations, you've correctly set up your apache environment.
         """
 
-    @>php5.5
+    Scenario: Accept header should not be set by dfault
+      When I send a GET request to "/rest/index.php"
+      Then I should not see "HTTP_ACCEPT"
+
+  @>php5.5
     Scenario: Set content headers in POST request
         When I add "Content-Type" header equal to "xxx"
         When I send a "POST" request to "rest/index.php" with body:

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && !empty($body)) {
 You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
 
 <?php print sizeof($_SERVER); ?> header(s) received.
-<?php foreach($_SERVER as $key => $value): ?>
+<?php foreach(array_filter($_SERVER) as $key => $value): ?>
   <br /><?php print $key ?> : <?php print $value; ?>
 <?php endforeach; ?>
 

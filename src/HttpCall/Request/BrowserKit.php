@@ -68,6 +68,12 @@ class BrowserKit
         $client = $this->mink->getSession()->getDriver()->getClient();
 
         $client->followRedirects(false);
+
+        // Workaround for https://github.com/symfony/symfony/issues/33393: prevent a default Accept header to be set
+        if (!isset($headers['HTTP_ACCEPT']) && '' === $client->getServerParameter('HTTP_ACCEPT')) {
+            $headers['HTTP_ACCEPT'] = null;
+        }
+
         $client->request($method, $url, $parameters, $files, $headers, $content);
         $client->followRedirects(true);
         $this->resetHttpHeaders();
@@ -78,11 +84,15 @@ class BrowserKit
     public function setHttpHeader($name, $value)
     {
         $client = $this->mink->getSession()->getDriver()->getClient();
-        // Goutte\Client
         if (method_exists($client, 'setHeader')) {
+            /**
+             * @var \Goutte\Client $client
+             */
             $client->setHeader($name, $value);
         } else {
-            // Symfony\Component\BrowserKit\Client
+            /**
+             * @var \Symfony\Component\BrowserKit\HttpBrowser $client
+             */
 
             /* taken from Behat\Mink\Driver\BrowserKitDriver::setRequestHeader */
             $contentHeaders = ['CONTENT_LENGTH' => true, 'CONTENT_MD5' => true, 'CONTENT_TYPE' => true];
