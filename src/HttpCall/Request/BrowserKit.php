@@ -59,18 +59,21 @@ class BrowserKit
 
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
-        foreach ($files as $originalName => &$file) {
-            if (is_string($file)) {
-                $file = new UploadedFile($file, $originalName);
-            }
-        }
-
         $client = $this->mink->getSession()->getDriver()->getClient();
+
+        $tmpFiles = [];
+        if (!$client instanceof GoutteClient) {
+            $tmpFiles = $this->convertFilesToSymfonyUploadedFiles($files);
+        }
 
         $client->followRedirects(false);
         $client->request($method, $url, $parameters, $files, $headers, $content);
         $client->followRedirects(true);
         $this->resetHttpHeaders();
+
+        foreach ($tmpFiles as $tmpName) {
+            @unlink($tmpName);
+        }
 
         return $this->mink->getSession()->getPage();
     }
@@ -140,5 +143,38 @@ class BrowserKit
         if ($client instanceof GoutteClient) {
             $client->restart();
         }
+    }
+
+    private function convertFilesToSymfonyUploadedFiles(& $files)
+    {
+        $tmpFiles = [];
+        foreach ($files as $key => &$file) {
+            $tmpName = false;
+            if (is_string($file)) {
+                $tmpName = tempnam(sys_get_temp_dir(), 'upload');
+                copy($file, $tmpName);
+                $tmpFiles[] = $tmpName;
+                $originalName = $file;
+            } elseif (is_array($file)) {
+                // This mirrors Goutte\Client::addPostFiles() called from Goutte\Client::doRequest()
+                // so that a Symfony\Component\HttpKernel\Client can have the same behaviour
+                if (isset($file['tmp_name'])) {
+                    $tmpName = $file['tmp_name'];
+                    if (isset($file['name'])) {
+                        $originalName = $file['name'];
+                    } else {
+                        $originalName = $tmpName;
+                    }
+                } else {
+                    $subTmpFiles = $this->convertFilesToSymfonyUploadedFiles($file);
+                    $tmpFiles = array_merge($tmpFiles, $subTmpFiles);
+                }
+            }
+            if ($tmpName) {
+                $file = new UploadedFile($tmpName, $originalName, null, null, true);
+            }
+        }
+
+        return $tmpFiles;
     }
 }

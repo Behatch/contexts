@@ -1,0 +1,3 @@
+rest:
+    path: /symfony/rest
+    controller: 'App\Controller\RestController:action'
