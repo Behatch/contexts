@@ -175,7 +175,7 @@ Feature: Testing JSONContext
     Scenario: Check not null values
         Given I am on "/json/notnullvalues.json"
         Then the response should be in JSON
-        And the JSON node '' should have 5 elements
+        And the JSON node '' should have 6 elements
         And the JSON node "one" should not be null
         And the JSON node "one" should be false
         And the JSON node "two" should not be null
@@ -186,6 +186,7 @@ Feature: Testing JSONContext
         And the JSON node "four" should be equal to the string "foo"
         And the JSON node "five" should not be null
         And the JSON node "five" should be equal to the number 5
+        And the JSON node "six" should be equal to the string "44000"
 
     Scenario: Json validation against swagger dump file
         Given I am on "/json/swaggerpartial.json"
