@@ -24,6 +24,11 @@ class HttpCallResultPoolResolver implements ArgumentResolver
             $parameters = $constructor->getParameters();
             foreach ($parameters as $parameter) {
                 if (
+                    method_exists($parameter, 'getType')
+                    && isset($this->dependencies[(string) $parameter->getType()])
+                ) {
+                    $arguments[$parameter->name] = $this->dependencies[(string) $parameter->getType()];
+                } elseif (
                     null !== $parameter->getClass()
                     && isset($this->dependencies[$parameter->getClass()->name])
                 ) {
