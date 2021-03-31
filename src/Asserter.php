@@ -96,4 +96,9 @@ trait Asserter
             $this->assertTrue($value);
         }, $message);
     }
+
+    protected function assertNull($value, $message = 'The value is not null')
+    {
+        $this->assert(null === $value, $message);
+    }
 }
