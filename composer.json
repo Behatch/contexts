@@ -1,5 +1,5 @@
 {
-    "name": "behatch/contexts",
+    "name": "astinus/contexts",
     "description": "Behatch contexts",
     "keywords": ["BDD", "Behat", "Symfony2", "Context"],
     "type": "library",
@@ -34,6 +34,7 @@
     },
 
     "replace": {
+        "behatch/contexts": "self.version",
         "sanpi/behatch-contexts": "self.version"
     },
 
