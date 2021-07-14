@@ -60,6 +60,22 @@ trait Asserter
         );
     }
 
+    protected function assertLessThan($expected, $actual, $message = null)
+    {
+        $this->assert(
+            $expected > $actual,
+            $message ?: "The element '$actual' is not smaller than to '$expected'"
+        );
+    }
+
+    protected function assertMoreThan($expected, $actual, $message = null)
+    {
+        $this->assert(
+            $expected < $actual,
+            $message ?: "The element '$actual' is not greater than to '$expected'"
+        );
+    }
+
     protected function assertSame($expected, $actual, $message = null)
     {
         $this->assert(
