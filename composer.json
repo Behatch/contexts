@@ -10,9 +10,9 @@
         "behat/behat": "^3.0.13",
         "friends-of-behat/mink-extension": "^2.3.1",
         "justinrainbow/json-schema": "^5.0",
-        "symfony/property-access": "^2.3|^3.0|^4.0|^5.0",
-        "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0",
-        "symfony/dom-crawler": "^2.4|^3.0|^4.0|^5.0"
+        "symfony/property-access": "^2.3|^3.0|^4.0|^5.0|^6.0",
+        "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0|^6.0",
+        "symfony/dom-crawler": "^2.4|^3.0|^4.0|^5.0|^6.0"
     },
 
     "require-dev": {
