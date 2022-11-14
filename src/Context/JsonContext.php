@@ -53,6 +53,8 @@ class JsonContext extends BaseContext
     {
         $json = $this->getJson();
 
+        $expected = self::reespaceSpecialGherkinValue($expected);
+
         $actual = $this->inspector->evaluate($json, $node);
 
         if ($actual != $expected) {
@@ -74,6 +76,8 @@ class JsonContext extends BaseContext
         $errors = [];
         foreach ($nodes->getRowsHash() as $node => $expected) {
             $actual = $this->inspector->evaluate($json, $node);
+
+            $expected = self::reespaceSpecialGherkinValue($expected);
 
             if ($actual != $expected) {
                 $errors[] = sprintf("The node '%s' value is '%s', '%s' expected", $node, json_encode($actual), $expected);
@@ -431,5 +435,10 @@ class JsonContext extends BaseContext
                 'The JSON schema doesn\'t exist'
             );
         }
+    }
+
+    public static function reespaceSpecialGherkinValue(string $value): string
+    {
+        return str_replace("\\n", "\n", $value);
     }
 }
