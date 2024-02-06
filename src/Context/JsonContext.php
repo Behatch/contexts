@@ -276,6 +276,9 @@ class JsonContext extends BaseContext
         } catch (\Exception $e) {
             throw new \Exception("The node '$name' does not exist.");
         }
+        if (!$node) {
+            throw new \Exception("The node '$name' does not exist.");
+        }
         return $node;
     }
 
